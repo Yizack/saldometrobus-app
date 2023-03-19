@@ -1,0 +1,59 @@
+{
+  "name": "saldometrobus-app",
+  "version": "2.0.0",
+  "description": "Saldo Metrobús es un sitio de consultas de saldo y movimientos para las tarjetas de metro y metrobús de Panamá a cualquier hora del día.",
+  "author": "Yizack Rangel",
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://saldometrobus.yizack.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yizack/saldometrobus-app"
+  },
+  "bugs": {
+    "url": "https://github.com/Yizack/saldometrobus-app/issues"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --port=5173",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "prepare": "nuxt prepare",
+    "android": "npx cap add android",
+    "ios": "npx cap add ios",
+    "resources": "npx @capacitor/assets generate --android",
+    "versionApp": "node updateVersion.js",
+    "trapeze": "npx trapeze run config.yaml -y",
+    "sync": "node rmdirs.js && npx cap sync",
+    "patch": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version major"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^4.7.1",
+    "@capacitor/app": "^4.1.1",
+    "@capacitor/assets": "^2.0.4",
+    "@capacitor/cli": "^4.7.1",
+    "@capacitor/core": "^4.7.1",
+    "@capacitor/ios": "^4.7.1",
+    "@capacitor/preferences": "^4.0.2",
+    "@capacitor/splash-screen": "^4.2.0",
+    "@capacitor/status-bar": "^4.1.1",
+    "@capacitor/toast": "^4.1.0",
+    "@nuxtjs/eslint-config": "^12.0.0",
+    "@trapezedev/configure": "^7.0.8",
+    "eslint": "^8.36.0",
+    "eslint-plugin-vue": "^9.9.0",
+    "nuxt-icon": "^0.3.3",
+    "stylelint": "^15.3.0"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.7",
+    "bootstrap": "^5.3.0-alpha1",
+    "nuxt": "^3.3.1"
+  },
+  "overrides": {
+    "vue": "latest"
+  }
+}
