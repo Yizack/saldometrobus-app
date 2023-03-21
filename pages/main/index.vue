@@ -26,6 +26,7 @@ definePageMeta({ layout: "main" });
         </div>
       </div>
     </div>
+    {{ db }}
   </section>
 </template>
 
@@ -35,12 +36,14 @@ export default {
   data () {
     return {
       tarjetas: {},
-      size: 100
+      size: 100,
+      db: []
     };
   },
   async mounted () {
     const { email, token } = AUTH.user;
     this.tarjetas = await API.getDetallesTarjetas({ email, token });
+    this.db = await DB.getTarjetas();
   }
 };
 </script>

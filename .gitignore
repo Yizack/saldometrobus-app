@@ -6,7 +6,6 @@ node_modules
 .output
 .env
 dist
-android
 ios
 config.yaml
 app-release*
