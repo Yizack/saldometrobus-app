@@ -1,8 +1,9 @@
 import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from "@capacitor-community/sqlite";
+import { defineCustomElement } from "jeep-sqlite/dist/components/jeep-sqlite";
 
 const TABLE = {
   tarjetas_table: `
-    CREATE TABLE tarjetas (
+    CREATE TABLE IF NOT EXISTS tarjetas (
       nombre TEXT,
       numero TEXT PRIMARY KEY,
       saldo TEXT,
@@ -10,7 +11,7 @@ const TABLE = {
       fecha KEY_FECHA,
       tipo TEXT)`,
   movimientos_table: `
-    CREATE TABLE movimientos (
+    CREATE TABLE IF NOT EXISTS movimientos (
       numero TEXT,
       movimiento TEXT,
       fecha TEXT,
@@ -18,38 +19,44 @@ const TABLE = {
       saldo TEXT)`
 };
 
-export class Database {
+class Database {
   constructor (database, SQLite = new SQLiteDBConnection()) {
     this.SQLite = SQLite;
     this.database = database;
+    this.query(TABLE.tarjetas_table);
+    this.query(TABLE.movimientos_table);
   }
 
   static async Setup (database) {
     const connection = new SQLiteConnection(CapacitorSQLite);
-    const exists = await connection.isConnection(database);
-    let SQLite = null;
-    if (!exists) {
-      SQLite = await connection.createConnection(database, false, "no-encryption", 1);
-      this.SQLite = SQLite;
-      await this.query(TABLE.tarjetas_table);
-      await this.query(TABLE.movimientos_table);
+
+    if (!CAPACITOR.isNative()) {
+      defineCustomElement(window);
+      const jeep = document.createElement("jeep-sqlite");
+      document.body.appendChild(jeep);
+      await customElements.whenDefined('jeep-sqlite');
+      await connection.initWebStore();
     }
+    
+    const SQLite = await connection.createConnection(database, false, "no-encryption", 1);
     return new Database(database, SQLite);
   }
 
   // Tarjetas
   getTarjetas () {
-    return this.use(() => {
+    return this.use(async () => {
       const statement = "SELECT * FROM tarjetas ORDER BY fecha DESC";
-      return this.query(statement);
+      const { values } = await this.query(statement);
+      return values;
     });
   }
 
   insertTarjeta (tarjeta) {
-    return this.use(() => {
+    return this.use(async () => {
       const { nombre, numero, saldo, estado, fecha, tipo } = tarjeta;
-      const statement = `INSERT INTO tarjetas VALUES ('${nombre}', '${numero}', '${saldo}', '${estado}', '${fecha}', '${tipo}')`;
-      return this.query(statement);
+      const values = [ nombre, numero, saldo, estado, fecha, tipo ];
+      const statement = "INSERT INTO tarjetas VALUES (?, ?, ?, ?, ?, ?);";
+      return this.query(statement, values);
     });
   }
 
@@ -116,9 +123,9 @@ export class Database {
   }
 
   // Base methods
-  query (statement) {
+  query (statement, values) {
     return this.use(() => {
-      return this.SQLite.query(statement);
+      return this.SQLite.query(statement, values);
     });
   }
 
@@ -138,4 +145,4 @@ export class Database {
   }
 }
 
-export const DB = await Database.Setup("saldometrobus");
+export const DB = await Database.Setup("saldometrobus.db");

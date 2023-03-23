@@ -35,7 +35,7 @@ export default {
   name: "MainPage",
   data () {
     return {
-      tarjetas: {},
+      tarjetas: [],
       size: 100,
       db: []
     };
@@ -43,7 +43,11 @@ export default {
   async mounted () {
     const { email, token } = AUTH.user;
     this.tarjetas = await API.getDetallesTarjetas({ email, token });
+    this.tarjetas.forEach(async (tarjeta) => {
+      console.log(await DB.insertTarjeta(tarjeta));
+    });
     this.db = await DB.getTarjetas();
+    console.log(await DB.getTarjetas())
   }
 };
 </script>
