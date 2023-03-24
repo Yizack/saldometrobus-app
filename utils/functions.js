@@ -37,3 +37,21 @@ export const formatFecha = (fecha, format = "short", locale = "es") => {
 };
 
 export const AUTH = Auth();
+
+export const showModal = (id) => {
+  const nuxtApp = useNuxtApp();
+  const modal = new nuxtApp.$Modal("#" + id);
+  modal.show();
+};
+
+export const hideModal = (id) => {
+  const nuxtApp = useNuxtApp();
+  const instance = nuxtApp.$Modal.getInstance("#" + id);
+  if (instance) {
+    instance.hide();
+  }
+};
+
+export const sleep = (seconds) => {
+  return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+};

@@ -20,6 +20,7 @@
         </div>
       </form>
     </div>
+    <ProgressDialog :message="STRINGS.get('iniciando_sesion')" />
   </section>
 </template>
 
@@ -36,6 +37,7 @@ export default {
   },
   methods: {
     async login () {
+      showModal("progress-dialog");
       this.$refs.login_form.reportValidity();
       if (this.$refs.login_form.checkValidity()) {
         const login_response = await AUTH.login({
@@ -43,6 +45,8 @@ export default {
           password: await sha256(this.form.password)
         });
         if (login_response) {
+          await sleep(0.5);
+          hideModal("progress-dialog");
           this.$router.push("/main/");
         }
       }

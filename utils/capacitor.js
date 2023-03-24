@@ -1,6 +1,7 @@
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { Capacitor } from "@capacitor/core";
 import { Preferences } from "@capacitor/preferences";
+import { Toast } from "@capacitor/toast";
 import siteInfo from "~/siteInfo.js";
 
 class CapacitorPlugins {
@@ -27,6 +28,10 @@ class CapacitorPlugins {
 
   async removePref (name) {
     await Preferences.remove({ key: name });
+  }
+
+  showToast (text, duration, position) {
+    return Toast.show({ text, duration, position });
   }
 }
 

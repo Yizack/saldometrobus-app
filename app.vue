@@ -37,6 +37,9 @@ export default {
     this.$nuxt.hook("page:finish", () => {
       this.loading = false;
     });
+  },
+  unmounted () {
+    DB.close();
   }
 };
 </script>

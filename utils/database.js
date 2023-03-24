@@ -19,12 +19,9 @@ const TABLE = {
       saldo TEXT)`
 };
 
-class Database {
-  constructor (database, SQLite = new SQLiteDBConnection()) {
+export class Database {
+  constructor (SQLite = new SQLiteDBConnection()) {
     this.SQLite = SQLite;
-    this.database = database;
-    this.query(TABLE.tarjetas_table);
-    this.query(TABLE.movimientos_table);
   }
 
   static async Setup (database) {
@@ -34,62 +31,74 @@ class Database {
       defineCustomElement(window);
       const jeep = document.createElement("jeep-sqlite");
       document.body.appendChild(jeep);
-      await customElements.whenDefined('jeep-sqlite');
+      await customElements.whenDefined("jeep-sqlite");
       await connection.initWebStore();
     }
-    
-    const SQLite = await connection.createConnection(database, false, "no-encryption", 1);
-    return new Database(database, SQLite);
+
+    const ret = await connection.checkConnectionsConsistency();
+    const isConn = (await connection.isConnection(database)).result;
+
+    let SQLite = new SQLiteDBConnection();
+    if (ret.result && isConn) {
+      SQLite = await connection.retrieveConnection(database);
+    }
+    else {
+      SQLite = await connection.createConnection(database, false, "no-encryption", 1);
+    }
+
+    await SQLite.open().then(() => {
+      console.info("Opening database");
+    });
+
+    await SQLite.execute(TABLE.tarjetas_table);
+    await SQLite.execute(TABLE.movimientos_table);
+
+    if (!CAPACITOR.isNative()) {
+      await SQLite.execute("DELETE FROM tarjetas");
+      await SQLite.execute("DELETE FROM movimientos");
+    }
+
+    return new Database(SQLite);
   }
 
   // Tarjetas
-  getTarjetas () {
-    return this.use(async () => {
-      const statement = "SELECT * FROM tarjetas ORDER BY fecha DESC";
-      const { values } = await this.query(statement);
-      return values;
-    });
-  }
-
-  insertTarjeta (tarjeta) {
-    return this.use(async () => {
-      const { nombre, numero, saldo, estado, fecha, tipo } = tarjeta;
-      const values = [ nombre, numero, saldo, estado, fecha, tipo ];
-      const statement = "INSERT INTO tarjetas VALUES (?, ?, ?, ?, ?, ?);";
-      return this.query(statement, values);
-    });
+  async insertTarjeta (tarjeta) {
+    const { nombre, numero, saldo, estado, fecha, tipo } = tarjeta;
+    const values = [nombre, numero, saldo, estado, fecha, tipo];
+    const statement = "INSERT INTO tarjetas VALUES (?, ?, ?, ?, ?, ?)";
+    const { changes } = await this.run(statement, values);
+    return changes;
   }
 
   getTarjeta (numero) {
-    return this.use(() => {
-      const statement = `SELECT * FROM tarjetas WHERE numero = '${numero}'`;
-      return this.query(statement);
-    });
+    const statement = `SELECT * FROM tarjetas WHERE numero = '${numero}'`;
+    return this.query(statement);
+  }
+
+  async getTarjetas () {
+    const statement = "SELECT * FROM tarjetas ORDER BY fecha DESC";
+    const { values } = await this.query(statement);
+    return values;
   }
 
   updateTarjeta (tarjeta) {
-    return this.use(() => {
-      const { nombre, numero, saldo, estado, fecha, tipo } = tarjeta;
-      const statement = `UPDATE tarjetas SET nombre = '${nombre}', saldo = '${saldo}', estado = '${estado}', fecha = '${fecha}', tipo = '${tipo}' WHERE numero = '${numero}'`;
-      return this.query(statement);
-    });
+    const { nombre, numero, saldo, estado, fecha, tipo } = tarjeta;
+    const statement = `UPDATE tarjetas SET nombre = '${nombre}', saldo = '${saldo}', estado = '${estado}', fecha = '${fecha}', tipo = '${tipo}' WHERE numero = '${numero}'`;
+    return this.query(statement);
   }
 
   updateNombreTarjeta (numero, nombre) {
-    return this.use(() => {
-      const statement = `UPDATE tarjetas SET nombre = '${nombre}' WHERE numero = '${numero}'`;
-      return this.query(statement);
-    });
+    const statement = `UPDATE tarjetas SET nombre = '${nombre}' WHERE numero = '${numero}'`;
+    return this.query(statement);
   }
 
   existsTarjeta (numero) {
-    return this.use(() => {
-      const statement = `SELECT * FROM tarjetas WHERE numero = '${numero}'`;
-      return this.query(statement);
-    });
+    const statement = `SELECT * FROM tarjetas WHERE numero = '${numero}'`;
+    return this.query(statement);
   }
 
   deleteTarjeta (numero) {
+    // TODO: use execSet
     const statements = [
       `DELETE FROM tarjetas WHERE numero = '${numero}'`,
       `DELETE FROM movimientos WHERE numero = '${numero}'`
@@ -97,10 +106,8 @@ class Database {
 
     const results = [];
 
-    statements.forEach((statement) => {
-      this.use(async () => {
-        results.push(await this.query(statement));
-      });
+    statements.forEach(async (statement) => {
+      results.push(await this.execute(statement));
     });
 
     return results;
@@ -108,41 +115,39 @@ class Database {
 
   // Movimientos
   insertMovimientos (movimientos) {
-    return this.use(() => {
-      const { numero, movimiento, fecha, monto, saldo } = movimientos;
-      const statement = `INSERT INTO movimientos VALUES ('${numero}', '${movimiento}', '${fecha}', '${monto}', '${saldo}')`;
-      return this.query(statement);
-    });
+    const { numero, movimiento, fecha, monto, saldo } = movimientos;
+    const statement = `INSERT INTO movimientos VALUES ('${numero}', '${movimiento}', '${fecha}', '${monto}', '${saldo}')`;
+    return this.query(statement);
   }
 
   getMovimientos (numero) {
-    return this.use(() => {
-      const statement = `SELECT * FROM movimientos WHERE numero = '${numero}' ORDER BY fecha DESC`;
-      return this.query(statement);
-    });
+    const statement = `SELECT * FROM movimientos WHERE numero = '${numero}' ORDER BY fecha DESC`;
+    return this.query(statement);
   }
 
   // Base methods
-  query (statement, values) {
-    return this.use(() => {
-      return this.SQLite.query(statement, values);
-    });
+  query (statement) {
+    return this.SQLite.query(statement);
   }
 
-  async open () {
-    await this.SQLite.open();
+  run (statement, values) {
+    return this.SQLite.run(statement, values);
+  }
+
+  execute (statement) {
+    return this.SQLite.execute(statement);
   }
 
   async close () {
+    console.info("Closing database");
     await this.SQLite.close();
-  }
-
-  async use (callback) {
-    await this.open();
-    const result = await callback();
-    await this.close();
-    return result;
   }
 }
 
-export const DB = await Database.Setup("saldometrobus.db");
+// eslint-disable-next-line import/no-mutable-exports
+let DB = new Database();
+(async () => {
+  DB = await Database.Setup("saldometrobus.db");
+})();
+
+export { DB };

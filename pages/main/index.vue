@@ -18,7 +18,7 @@ definePageMeta({ layout: "main" });
       <div class="actions">
         <div class="image">
           <img v-if="tarjeta.tipo === 'Tarjeta Rapipass'" class="img-fluid" src="/images/rapipass.webp" :width="size" :height="size">
-          <img v-else-if="tarjeta.tipo === 'Tarjeta Normal al Portador b'" class="img-fluid" src="/images/metro_metrobus.webp" :width="size" :height="size">
+          <img v-else-if="tarjeta.tipo === 'Tarjeta Normal'" class="img-fluid" src="/images/metro_metrobus.webp" :width="size" :height="size">
           <img v-else src="/images/metrobus.webp" class="img-fluid" :width="size" :height="size">
         </div>
         <div class="d-grid gap-2">
@@ -26,7 +26,7 @@ definePageMeta({ layout: "main" });
         </div>
       </div>
     </div>
-    {{ db }}
+    <ProgressDialog :message="STRINGS.get('adding_tarjetas')" />
   </section>
 </template>
 
@@ -36,18 +36,31 @@ export default {
   data () {
     return {
       tarjetas: [],
-      size: 100,
-      db: []
+      size: 100
     };
   },
   async mounted () {
     const { email, token } = AUTH.user;
-    this.tarjetas = await API.getDetallesTarjetas({ email, token });
-    this.tarjetas.forEach(async (tarjeta) => {
-      console.log(await DB.insertTarjeta(tarjeta));
-    });
-    this.db = await DB.getTarjetas();
-    console.log(await DB.getTarjetas())
+    this.tarjetas = await DB.getTarjetas();
+    if (this.tarjetas.length === 0) {
+      await sleep(0.5);
+      showModal("progress-dialog");
+      this.tarjetas = await API.getDetallesTarjetas({ email, token }) || [];
+      for (const tarjeta of this.tarjetas) {
+        if (tarjeta.tipo === "Tarjeta Normal al Portador b") {
+          tarjeta.tipo = STRINGS.get("tarjeta_normal");
+        }
+        if (tarjeta.tipo === "Tarjeta Normal al Portador b") {
+          tarjeta.tipo = STRINGS.get("tarjeta_normal");
+        }
+        const { changes } = await DB.insertTarjeta(tarjeta);
+        if (changes > 0) {
+          await CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
+        }
+        await sleep(0.5);
+        hideModal("progress-dialog");
+      }
+    }
   }
 };
 </script>
