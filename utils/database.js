@@ -2,7 +2,7 @@ import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from "@capacito
 import { defineCustomElement } from "jeep-sqlite/dist/components/jeep-sqlite";
 
 const TABLE = {
-  tarjetas_table: `
+  tarjetas: `
     CREATE TABLE IF NOT EXISTS tarjetas (
       nombre TEXT,
       numero TEXT PRIMARY KEY,
@@ -10,7 +10,7 @@ const TABLE = {
       estado TEXT,
       fecha KEY_FECHA,
       tipo TEXT)`,
-  movimientos_table: `
+  movimientos: `
     CREATE TABLE IF NOT EXISTS movimientos (
       numero TEXT,
       movimiento TEXT,
@@ -50,8 +50,8 @@ export class Database {
       console.info("Opening database");
     });
 
-    await SQLite.execute(TABLE.tarjetas_table);
-    await SQLite.execute(TABLE.movimientos_table);
+    await SQLite.execute(TABLE.tarjetas);
+    await SQLite.execute(TABLE.movimientos);
 
     if (!CAPACITOR.isNative()) {
       await SQLite.execute("DELETE FROM tarjetas");
