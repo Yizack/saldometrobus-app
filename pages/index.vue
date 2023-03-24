@@ -6,7 +6,7 @@
         <h1><b>{{ STRINGS.get("app_name") }}</b></h1>
         <p>{{ STRINGS.get("enter_email_password") }}</p>
       </div>
-      <form ref="login_form">
+      <form @submit.prevent="login()">
         <div class="mb-3">
           <input v-model="form.email" class="form-control" type="email" :placeholder="STRINGS.get('correo')" required>
         </div>
@@ -14,7 +14,7 @@
           <input v-model="form.password" class="form-control" type="password" :placeholder="STRINGS.get('password')" required>
         </div>
         <div class="d-grid gap-2 mt-5 mt-auto">
-          <a class="btn btn-primary mb-4" role="button" @click="login()">{{ STRINGS.get("login") }}</a>
+          <input class="btn btn-primary mb-4" type="submit" role="button" :value="STRINGS.get('login')">
           <NuxtLink class="btn btn-success" role="button" to="/registro/">{{ STRINGS.get("registrate") }}</NuxtLink>
           <NuxtLink class="btn btn-secondary" role="button" to="/main/">{{ STRINGS.get("no_registro") }}</NuxtLink>
         </div>
@@ -38,17 +38,17 @@ export default {
   methods: {
     async login () {
       showModal("progress-dialog");
-      this.$refs.login_form.reportValidity();
-      if (this.$refs.login_form.checkValidity()) {
-        const login_response = await AUTH.login({
-          email: this.form.email,
-          password: await sha256(this.form.password)
-        });
-        if (login_response) {
-          await sleep(0.5);
-          hideModal("progress-dialog");
-          this.$router.push("/main/");
-        }
+      const { error, error_key } = await AUTH.login({
+        email: this.form.email,
+        password: await sha256(this.form.password)
+      });
+      await sleep(0.5);
+      hideModal("progress-dialog");
+      if (!error) {
+        this.$router.push("/main/");
+      }
+      else {
+        CAPACITOR.showToast(STRINGS.get(error_key), "long");
       }
     }
   }

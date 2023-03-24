@@ -1,3 +1,7 @@
+import "bootstrap/js/dist/offcanvas";
+import "bootstrap/js/dist/dropdown";
+import Modal from "bootstrap/js/dist/modal";
+
 export const sha256 = async (message) => {
   const msgBuffer = new TextEncoder().encode(message);
   const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
@@ -39,14 +43,12 @@ export const formatFecha = (fecha, format = "short", locale = "es") => {
 export const AUTH = Auth();
 
 export const showModal = (id) => {
-  const nuxtApp = useNuxtApp();
-  const modal = new nuxtApp.$Modal("#" + id);
+  const modal = new Modal("#" + id);
   modal.show();
 };
 
 export const hideModal = (id) => {
-  const nuxtApp = useNuxtApp();
-  const instance = nuxtApp.$Modal.getInstance("#" + id);
+  const instance = Modal.getInstance("#" + id);
   if (instance) {
     instance.hide();
   }
