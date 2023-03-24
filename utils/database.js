@@ -19,7 +19,7 @@ const TABLE = {
       saldo TEXT)`
 };
 
-export class Database {
+class Database {
   constructor (SQLite = new SQLiteDBConnection()) {
     this.SQLite = SQLite;
   }
