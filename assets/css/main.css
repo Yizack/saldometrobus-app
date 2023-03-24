@@ -83,3 +83,7 @@ a {
 .modal-header h1 {
   color: var(--bs-primary);
 }
+
+.nuxt-loading-indicator {
+  background: repeating-linear-gradient(to right, var(--bs-secondary) 0%, var(--bs-body-bg) 50%,var(--bs-secondary) 100%)!important;
+}

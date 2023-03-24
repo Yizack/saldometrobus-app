@@ -9,7 +9,7 @@ class CapacitorPlugins {
     if (Capacitor.getPlatform() === "android" && Capacitor.isPluginAvailable("StatusBar")) {
       const { dark, light } = siteInfo.colors;
       await StatusBar.setStyle({ style: isDark ? Style.Dark : Style.Light });
-      await StatusBar.setBackgroundColor({ color: isDark ? dark.body : light.body });
+      await StatusBar.setBackgroundColor({ color: isDark ? dark.primary : light.primary });
     }
   }
 

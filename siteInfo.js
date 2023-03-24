@@ -19,12 +19,11 @@ export default {
       progressBackground: "#eaecf4"
     },
     light: {
+      primary: "#4E73DF",
       primaryDark: "#1f1f1f",
       background: "#121212",
       text: "#D5D5DB",
       border: "#373737"
     }
-  },
-  pages: {
   }
 };

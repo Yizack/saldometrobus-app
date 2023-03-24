@@ -6,12 +6,18 @@
         <h1><b>{{ STRINGS.get("app_name") }}</b></h1>
         <p>{{ STRINGS.get("enter_email_password") }}</p>
       </div>
-      <form @submit.prevent="login()">
-        <div class="mb-3">
+      <form ref="login" novalidate @submit.prevent="login()">
+        <div class="mb-3 position-relative">
           <input v-model="form.email" class="form-control" type="email" :placeholder="STRINGS.get('correo')" required>
+          <div class="invalid-tooltip">
+            {{ STRINGS.get("correo_incorrecto") }}
+          </div>
         </div>
-        <div class="mb-3">
-          <input v-model="form.password" class="form-control" type="password" :placeholder="STRINGS.get('password')" required>
+        <div class="mb-3 position-relative">
+          <input v-model="form.password" class="form-control" type="password" :placeholder="STRINGS.get('password')" minlength="3" required>
+          <div class="invalid-tooltip">
+            {{ STRINGS.get("password_limit") }}
+          </div>
         </div>
         <div class="d-grid gap-2 mt-5 mt-auto">
           <input class="btn btn-primary mb-4" type="submit" role="button" :value="STRINGS.get('login')">
@@ -37,18 +43,26 @@ export default {
   },
   methods: {
     async login () {
-      showModal("progress-dialog");
-      const { error, error_key } = await AUTH.login({
-        email: this.form.email,
-        password: await sha256(this.form.password)
-      });
-      await sleep(0.5);
-      hideModal("progress-dialog");
-      if (!error) {
-        this.$router.push("/main/");
+      const form = this.$refs.login;
+      if (form.checkValidity()) {
+        showModal("progress-dialog");
+        const { error, error_key } = await AUTH.login({
+          email: this.form.email,
+          password: await sha256(this.form.password)
+        });
+        await sleep(0.5);
+        hideModal("progress-dialog");
+        if (!error) {
+          form.classList.add("was-validated");
+          this.$router.push("/main/");
+        }
+        else {
+          CAPACITOR.showToast(STRINGS.get(error_key), "long");
+          form.classList.remove("was-validated");
+        }
       }
       else {
-        CAPACITOR.showToast(STRINGS.get(error_key), "long");
+        form.classList.add("was-validated");
       }
     }
   }

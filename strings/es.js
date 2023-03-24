@@ -28,6 +28,7 @@ export default {
   password: "Contraseña",
   password_check: "Confirmar contraseña",
   password_check_error: "Las contraseñas no coinciden",
+  password_limit: "La contraseña debe tener al menos 3 caracteres",
   no_cuenta: "¿No tienes una cuenta?",
   registrate: "Regístrate",
   no_registro: "Entrar sin registrarse",
