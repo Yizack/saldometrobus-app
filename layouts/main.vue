@@ -1,6 +1,6 @@
 <script setup>
 if (!AUTH.exists) {
-  await AUTH.restore();
+  navigateTo("/");
 }
 </script>
 
@@ -15,11 +15,6 @@ if (!AUTH.exists) {
 
 <script>
 export default {
-  name: "MainLayout",
-  mounted () {
-    if (!AUTH.exists) {
-      this.$router.push("/");
-    }
-  }
+  name: "MainLayout"
 };
 </script>

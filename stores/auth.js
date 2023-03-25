@@ -1,4 +1,4 @@
-const Auth = defineStore("auth", {
+export const AUTH = defineStore("auth", {
   state: () => ({
     auth: {}
   }),
@@ -32,6 +32,8 @@ const Auth = defineStore("auth", {
       }
     }
   }
-});
+})();
 
-export const AUTH = Auth();
+if (!AUTH.exists) {
+  await AUTH.restore();
+}

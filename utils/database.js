@@ -114,10 +114,15 @@ class Database {
   }
 
   // Movimientos
-  insertMovimientos (movimientos) {
-    const { numero, movimiento, fecha, monto, saldo } = movimientos;
-    const statement = `INSERT INTO movimientos VALUES ('${numero}', '${movimiento}', '${fecha}', '${monto}', '${saldo}')`;
-    return this.query(statement);
+  insertMovimientos (movimientos = []) {
+    const statements = [];
+    movimientos.forEach((item) => {
+      const { numero, movimiento, fecha, monto, saldo } = item;
+      const statement = "INSERT INTO movimientos VALUES (?, ?, ?, ?, ?)";
+      const values = [numero, movimiento, fecha, monto, saldo];
+      statements.push({ statement, values });
+    });
+    return this.execute(statements);
   }
 
   getMovimientos (numero) {
@@ -141,7 +146,12 @@ class Database {
     else if (Array.isArray(statement)) {
       const set = [];
       statement.forEach((item) => {
-        set.push({ statement: item, values: [] });
+        if (typeof item === "string") {
+          set.push({ statement: item, values: [] });
+        }
+        else if (typeof item === "object") {
+          set.push(item);
+        }
       });
       return this.SQLite.executeSet(set);
     }

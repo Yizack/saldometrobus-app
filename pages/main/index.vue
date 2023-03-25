@@ -74,20 +74,23 @@ export default {
     };
   },
   async mounted () {
-    const { email, token } = AUTH.user;
-    this.tarjetas = await DB.getTarjetas();
-    if (!this.tarjetas.length) {
-      await sleep(0.5);
-      showModal("progress-dialog");
-      this.tarjetas = await API.getDetallesTarjetas({ email, token }) || [];
-      for (const tarjeta of this.tarjetas) {
-        const { changes } = await DB.insertTarjeta(tarjeta);
-        if (changes > 0) {
-          await CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
+    console.info(AUTH.user);
+    if (AUTH.exists) {
+      this.tarjetas = await DB.getTarjetas();
+      if (!this.tarjetas.length) {
+        await sleep(0.5);
+        showModal("progress-dialog");
+        const { email, token } = AUTH.user;
+        this.tarjetas = await API.getDetallesTarjetas({ email, token }) || [];
+        for (const tarjeta of this.tarjetas) {
+          const { changes } = await DB.insertTarjeta(tarjeta);
+          if (changes > 0) {
+            await CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
+          }
         }
+        await sleep(0.5);
+        hideModal("progress-dialog");
       }
-      await sleep(0.5);
-      hideModal("progress-dialog");
     }
   },
   methods: {
