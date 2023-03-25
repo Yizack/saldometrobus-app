@@ -1,6 +1,7 @@
 import "bootstrap/js/dist/offcanvas";
 import "bootstrap/js/dist/dropdown";
 import "bootstrap/js/dist/tooltip";
+import "bootstrap/js/dist/tab";
 import Modal from "bootstrap/js/dist/modal";
 
 export const sha256 = async (message) => {
@@ -32,9 +33,15 @@ export const _GET = (url) => {
   });
 };
 
+export const convertToTime = (datetime) => {
+  const [date, time] = datetime.split(" ");
+  const [day, month, year] = date.split("/");
+  return new Date(`${year}-${month}-${day}T${time}`).getTime();
+};
+
 export const formatFecha = (fecha, format = "short", locale = "es") => {
   if (format === "short") {
-    return new Date(fecha).toLocaleDateString(locale);
+    return new Date(fecha).toLocaleDateString(locale, { month: "2-digit", day: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
   }
   else if (format === "long") {
     return new Date(fecha).toLocaleString(locale, { month: "long", day: "numeric", weekday: "long", year: "numeric", hour: "numeric", minute: "numeric", hour12: true });

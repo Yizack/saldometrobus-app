@@ -8,7 +8,8 @@ const TABLE = {
       numero TEXT PRIMARY KEY,
       saldo TEXT,
       estado TEXT,
-      fecha KEY_FECHA,
+      fecha TEXT,
+      fecha_added TEXT,
       tipo TEXT)`,
   movimientos: `
     CREATE TABLE IF NOT EXISTS movimientos (
@@ -60,20 +61,21 @@ class Database {
 
   // Tarjetas
   async insertTarjeta (tarjeta) {
-    const { nombre, numero, saldo, estado, fecha, tipo } = tarjeta;
-    const values = [nombre, numero, saldo, estado, fecha, tipo];
-    const statement = "INSERT INTO tarjetas VALUES (?, ?, ?, ?, ?, ?)";
+    const { nombre, numero, saldo, estado, fecha, fecha_added, tipo } = tarjeta;
+    const values = [nombre, numero, saldo, estado, fecha, fecha_added, tipo];
+    const statement = "INSERT INTO tarjetas VALUES (?, ?, ?, ?, ?, ?, ?)";
     const { changes } = await this.run(statement, values);
     return changes;
   }
 
-  getTarjeta (numero) {
+  async getTarjeta (numero) {
     const statement = `SELECT * FROM tarjetas WHERE numero = '${numero}'`;
-    return this.query(statement);
+    const { values } = await this.query(statement);
+    return values[0];
   }
 
   async getTarjetas () {
-    const statement = "SELECT * FROM tarjetas ORDER BY fecha DESC";
+    const statement = "SELECT * FROM tarjetas ORDER BY fecha_added DESC";
     const { values } = await this.query(statement);
     return values;
   }
@@ -114,20 +116,26 @@ class Database {
   }
 
   // Movimientos
-  insertMovimientos (movimientos = []) {
+  insertMovimientos (tarjeta) {
     const statements = [];
-    movimientos.forEach((item) => {
-      const { numero, movimiento, fecha, monto, saldo } = item;
+    const { numero, movimientos } = tarjeta;
+    let size = movimientos.movimiento.length;
+    while (size--) {
+      const movimiento = movimientos.movimiento[size];
+      const fecha = convertToTime(movimientos.fecha_hora[size]);
+      const monto = movimientos.monto[size];
+      const saldo = movimientos.saldo_tarjeta[size];
       const statement = "INSERT INTO movimientos VALUES (?, ?, ?, ?, ?)";
       const values = [numero, movimiento, fecha, monto, saldo];
       statements.push({ statement, values });
-    });
+    }
     return this.execute(statements);
   }
 
-  getMovimientos (numero) {
+  async getMovimientos (numero) {
     const statement = `SELECT * FROM movimientos WHERE numero = '${numero}' ORDER BY fecha DESC`;
-    return this.query(statement);
+    const { values } = await this.query(statement);
+    return values;
   }
 
   // Base methods

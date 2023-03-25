@@ -80,7 +80,6 @@ class SaldometrobusAPI {
             if (data.tarjeta.tipo === "Tarjeta Normal al Portador b") {
               data.tarjeta.tipo = STRINGS.get("tarjeta_normal");
             }
-            data.tarjeta.fecha_uso = data.tarjeta.fecha;
             Object.assign(data.tarjeta, tarjeta);
             arr.push(data.tarjeta);
           }

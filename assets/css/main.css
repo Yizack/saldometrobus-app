@@ -1,7 +1,7 @@
 html, body {
   font-family: "Nunito";
   overflow-x: hidden;
-  height: 100vh;
+  height: 100%;
 }
 
 [data-bs-theme=light] {
@@ -9,10 +9,16 @@ html, body {
   --bs-dark-rgb: 90, 92, 105;
   --bs-primary: #4E73DF;
   --bs-primary-rgb: 78, 115, 223;
+  --primary-dark: #405FB9;
   --bs-success: #1cc88a;
   --bs-secondary: #FF916B;
   --bs-body-color: #5a5c69;
   --bs-body-bg: #F8F9FC;
+}
+
+.border {
+  border-color: #d7d9e4!important;
+  border-width: 2px!important;
 }
 
 a {
@@ -82,4 +88,24 @@ a {
 
 .nuxt-loading-indicator {
   background: repeating-linear-gradient(to right, var(--bs-secondary) 0%, var(--bs-body-bg) 50%,var(--bs-secondary) 100%)!important;
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-color: #fff;
+  --bs-nav-pills-link-active-bg: var(--primary-dark);
+  font-size: 0.80rem;
+}
+
+.nav-pills .nav-link {
+  color: #FFF;
+  background: var(--bs-primary);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+#pills-tab {
+  margin: -0.5rem;
+  top: 3.5rem;
 }

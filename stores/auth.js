@@ -35,5 +35,7 @@ export const AUTH = defineStore("auth", {
 })();
 
 if (!AUTH.exists) {
-  await AUTH.restore();
+  (async () => {
+    await AUTH.restore();
+  })();
 }

@@ -4,14 +4,14 @@ definePageMeta({ layout: "main" });
 
 <template>
   <section>
-    <div v-for="tarjeta in tarjetas" :key="tarjeta.numero" class="bg-white border rounded d-flex p-2 mb-2 shadow" role="button">
+    <div v-for="tarjeta in tarjetas" :key="tarjeta.numero" class="bg-white border rounded d-flex p-2 mb-2 shadow" role="button" @click="openCard(tarjeta.numero)">
       <div class="flex-grow-1">
         <h4 class="text-primary m-0"><b>{{ tarjeta.nombre }}</b></h4>
         <div class="info mx-2 small">
           <p class="m-0">{{ STRINGS.get("numero") }}: {{ tarjeta.numero }}</p>
           <p class="m-0">{{ STRINGS.get("estado") }}: {{ tarjeta.estado }}</p>
           <p class="m-0">{{ STRINGS.get("tipo") }}: {{ tarjeta.tipo }}</p>
-          <p class="m-0">{{ STRINGS.get("fecha") }}: {{ tarjeta.fecha_uso }}</p>
+          <p class="m-0">{{ STRINGS.get("fecha") }}: {{ tarjeta.fecha }}</p>
           <h3><b>{{ STRINGS.get("saldo") }}: B/. {{ tarjeta.saldo }}</b></h3>
         </div>
       </div>
@@ -74,7 +74,6 @@ export default {
     };
   },
   async mounted () {
-    console.info(AUTH.user);
     if (AUTH.exists) {
       this.tarjetas = await DB.getTarjetas();
       if (!this.tarjetas.length) {
@@ -84,6 +83,7 @@ export default {
         this.tarjetas = await API.getDetallesTarjetas({ email, token }) || [];
         for (const tarjeta of this.tarjetas) {
           const { changes } = await DB.insertTarjeta(tarjeta);
+          await DB.insertMovimientos(tarjeta);
           if (changes > 0) {
             await CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
           }
@@ -124,6 +124,9 @@ export default {
           CAPACITOR.showToast(STRINGS.get("error"));
         }
       }
+    },
+    openCard (numero) {
+      this.$router.push(`/main/${numero}`);
     }
   }
 };

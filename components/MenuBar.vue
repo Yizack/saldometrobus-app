@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-dark navbar-expand-lg bg-primary">
+  <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top shadow">
     <div class="container-fluid">
       <a class="text-white pe-4 display-6" data-bs-toggle="offcanvas" href="#menu" role="button" aria-controls="menu"><Icon class="d-flex" name="material-symbols:menu" /></a>
       <span class="navbar-brand me-auto">{{ title }}</span>
