@@ -50,13 +50,10 @@ class Database {
       console.info("Opening database");
     });
 
-    await SQLite.execute(TABLE.tarjetas);
-    await SQLite.execute(TABLE.movimientos);
-
-    if (!CAPACITOR.isNative()) {
-      await SQLite.execute("DELETE FROM tarjetas");
-      await SQLite.execute("DELETE FROM movimientos");
-    }
+    await SQLite.executeSet([
+      { statement: TABLE.tarjetas, values: [] },
+      { statement: TABLE.movimientos, values: [] }
+    ]);
 
     return new Database(SQLite);
   }
@@ -98,19 +95,22 @@ class Database {
   }
 
   deleteTarjeta (numero) {
-    // TODO: use execSet
     const statements = [
       `DELETE FROM tarjetas WHERE numero = '${numero}'`,
       `DELETE FROM movimientos WHERE numero = '${numero}'`
     ];
 
-    const results = [];
+    return this.execute(statements);
+  }
 
-    statements.forEach(async (statement) => {
-      results.push(await this.execute(statement));
-    });
+  deleteAll () {
+    const statements = [
+      "DELETE FROM tarjetas",
+      "DELETE FROM movimientos"
+    ];
+    console.info("Deleting all data");
 
-    return results;
+    return this.execute(statements);
   }
 
   // Movimientos
@@ -135,7 +135,16 @@ class Database {
   }
 
   execute (statement) {
-    return this.SQLite.execute(statement);
+    if (typeof statement === "string") {
+      return this.SQLite.execute(statement);
+    }
+    else if (Array.isArray(statement)) {
+      const set = [];
+      statement.forEach((item) => {
+        set.push({ statement: item, values: [] });
+      });
+      return this.SQLite.executeSet(set);
+    }
   }
 
   async close () {

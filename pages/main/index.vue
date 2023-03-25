@@ -40,7 +40,7 @@ definePageMeta({ layout: "main" });
             <h1 id="add-dialog-label" class="modal-title fs-5">{{ STRINGS.get("add_tarjeta") }}</h1>
           </div>
           <div class="modal-body text-center">
-            <form @submit.prevent="addTarjeta()">
+            <form ref="add" novalidate @submit.prevent="addTarjeta()">
               <div class="mb-3">
                 <input v-model="form.nombre" class="form-control" type="text" :placeholder="STRINGS.get('nombre')" required>
               </div>

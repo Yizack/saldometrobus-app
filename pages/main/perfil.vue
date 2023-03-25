@@ -19,8 +19,11 @@ definePageMeta({ layout: "main" });
     <div class="bg-white border rounded p-2 mb-2 shadow">
       <h4 class="text-primary m-0"><b>{{ STRINGS.get("tarjetas_vinculadas") }}</b></h4>
       <div class="m-2">
-        <p v-for="tarjeta in form.tarjetas" :key="tarjeta.numero" class="m-0"><Icon name="material-symbols:credit-card-outline" /> {{ tarjeta.numero }}</p>
+        <p v-for="tarjeta in form.tarjetas" :key="tarjeta.numero" class="m-0"><Icon name="material-symbols:credit-card-outline" /> {{ tarjeta.numero }} ({{ tarjeta.nombre }})</p>
       </div>
+    </div>
+    <div class="text-center mt-3">
+      <p class="small m-0"><small>{{ STRINGS.get("nota") }}</small></p>
     </div>
   </section>
 </template>

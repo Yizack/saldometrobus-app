@@ -41,8 +41,6 @@ export const formatFecha = (fecha, format = "short", locale = "es") => {
   }
 };
 
-export const AUTH = Auth();
-
 export const showModal = (id) => {
   const modal = new Modal("#" + id);
   modal.show();

@@ -39,8 +39,8 @@ export default {
       this.loading = false;
     });
   },
-  unmounted () {
-    DB.close();
+  async unmounted () {
+    await DB.close();
   }
 };
 </script>

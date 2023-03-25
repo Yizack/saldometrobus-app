@@ -33,6 +33,14 @@
 <script>
 export default {
   name: "LoginPage",
+  async beforeRouteEnter (to, from, next) {
+    if (from.meta.layout === "main") {
+      await DB.deleteAll();
+      await AUTH.logout();
+    }
+    await AUTH.restore();
+    next();
+  },
   data () {
     return {
       form: {
@@ -40,6 +48,11 @@ export default {
         password: ""
       }
     };
+  },
+  mounted () {
+    if (AUTH.exists) {
+      this.$router.replace("/main/");
+    }
   },
   methods: {
     async login () {

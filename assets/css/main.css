@@ -4,10 +4,6 @@ html, body {
   height: 100vh;
 }
 
-#app, #page, main, section {
-  height: 100%;
-}
-
 [data-bs-theme=light] {
   --bs-dark: #5a5c69;
   --bs-dark-rgb: 90, 92, 105;
