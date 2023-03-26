@@ -120,6 +120,9 @@ class Database {
     const statements = [];
     const { numero, movimientos } = tarjeta;
     let size = movimientos.movimiento.length;
+    if (!size) {
+      return false;
+    };
     while (size--) {
       const movimiento = movimientos.movimiento[size];
       const fecha = convertToTime(movimientos.fecha_hora[size]);
