@@ -106,12 +106,13 @@ export default {
         try {
           const res = await Promise.all([
             DB.insertTarjeta(tarjeta),
-            API.addTarjeta({ nombre, numero, email, token })
+            API.addTarjeta({ nombre, numero, email, token }),
+            await DB.insertMovimientos(tarjeta)
           ]);
           const { changes } = res[0];
           const { error, error_key } = res[1];
           if (changes > 0 && !error) {
-            this.tarjetas.push(tarjeta);
+            this.tarjetas.unshift(tarjeta);
             CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
           }
           else {
