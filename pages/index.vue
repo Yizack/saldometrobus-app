@@ -37,6 +37,7 @@ export default {
     if (from.meta.layout === "main") {
       await DB.deleteAll();
       await AUTH.logout();
+      document.body.removeAttribute("style");
     }
     await AUTH.restore();
     next();

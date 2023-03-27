@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div class="text-center py-2">
     <h4><b>{{ tarjeta.nombre }}</b></h4>
   </div>
   <div class="bg-white border rounded p-2 mb-2 shadow text-center">

@@ -7,7 +7,7 @@ class Strings {
     this.strings = {};
   }
 
-  get (key) {
+  get (key = "") {
     return this.strings[key];
   }
 

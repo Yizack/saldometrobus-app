@@ -68,7 +68,7 @@ export default {
   nota2: "Saldo Metrobús no puede acceder a la contraseña de ninguno de sus usuarios porque esta pasa por un algoritmo hash (SHA-256) con una Salt, y es almacenada ya cifrada para proteger tus redes sociales en caso de que alguien no autorizado tenga acceso a nuestra base de datos.",
   informacion: "Información",
   movimientos: "Movimientos",
-  saldos: "Saldos",
+  saldos: "Saldos y movimientos",
   fecha_mov: "Fecha",
   monto: "Monto",
   mov_4_semanas: "Movimientos de las últimas 4 semanas",

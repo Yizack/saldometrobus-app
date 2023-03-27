@@ -105,7 +105,12 @@ a {
   padding-right: .5rem;
 }
 
-#pills-tab {
+#tabs {
   margin: -0.5rem;
   top: 3.5rem;
+}
+
+.table>:not(caption)>*>* {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }
