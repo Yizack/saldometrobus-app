@@ -11,10 +11,11 @@ definePageMeta({ layout: "main" });
         </div>
       </li>
     </ul>
-    <div>
+    <Transition name="tab" mode="out-in">
       <CardInfo v-if="tabs.informacion" :tarjeta="tarjeta" />
       <CardMov v-else-if="tabs.movimientos" :tarjeta="tarjeta" />
-    </div>
+      <CardGraphs v-else-if="tabs.graficas" :tarjeta="tarjeta" />
+    </Transition>
   </section>
 </template>
 
@@ -48,3 +49,15 @@ export default {
   }
 };
 </script>
+
+<style>
+.tab-enter-active,
+.tab-leave-active {
+  transition: all 0.2s;
+}
+.tab-enter-from,
+.tab-leave-to {
+  opacity: 0;
+  transform: translate(0, -10px);
+}
+</style>

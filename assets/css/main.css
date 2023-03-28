@@ -9,12 +9,15 @@ html, body {
   --bs-dark-rgb: 90, 92, 105;
   --bs-primary: #4E73DF;
   --bs-primary-rgb: 78, 115, 223;
+  --primary-hover: #617fd6;
   --primary-dark: #405FB9;
-  --bs-success: #1cc88a;
+  --bs-success: #1cc889;
+  --success-area: #aee9d5;
   --bs-success-rgb: 28, 200, 138;
   --bs-secondary: rgb(255, 144, 107);
   --bs-secondary-rgb: 255, 145, 107;
   --bs-danger: #E74A3B;
+  --danger-hover: #ca473b;
   --bs-danger-rgb: 231, 74, 59;
   --bs-warning: #f6c23e;
   --bs-warning-rgb: 246, 194, 62;
@@ -42,7 +45,7 @@ a {
   --bs-btn-bg: var(--bs-primary);
   --bs-btn-border-color: var(--bs-primary);
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #0b5ed7;
+  --bs-btn-hover-bg: var(--primary-dark);
   --bs-btn-hover-border-color: #0a58ca;
   --bs-btn-focus-shadow-rgb: 49,132,253;
   --bs-btn-active-color: #fff;
@@ -88,6 +91,23 @@ a {
   --bs-btn-disabled-border-color: var(--bs-secondary);
 }
 
+.btn-danger {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--bs-danger);
+  --bs-btn-border-color: var(--bs-danger);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--danger-hover);
+  --bs-btn-hover-border-color: #b02a37;
+  --bs-btn-focus-shadow-rgb: 225,83,97;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #b02a37;
+  --bs-btn-active-border-color: #a52834;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: var(--bs-danger);
+  --bs-btn-disabled-border-color: var(--bs-danger);
+}
+
 .modal-header h1 {
   color: var(--bs-primary);
 }
@@ -98,7 +118,6 @@ a {
 
 .nav-pills {
   --bs-nav-pills-link-active-color: #fff;
-  --bs-nav-pills-link-active-bg: var(--primary-dark);
   font-size: 0.80rem;
 }
 
@@ -109,6 +128,14 @@ a {
   padding-bottom: 1rem;
   padding-left: .5rem;
   padding-right: .5rem;
+}
+
+.nav-pills .nav-link:hover {
+  background: var(--primary-hover);
+}
+
+.nav-pills .nav-link.active {
+  background: var(--primary-dark)!important;
 }
 
 #tabs {

@@ -48,7 +48,7 @@ definePageMeta({ layout: "main" });
                 <input v-model="form.numero" class="form-control" type="number" :placeholder="STRINGS.get('numero_tarjeta')" required>
               </div>
               <div class="d-flex justify-content-end">
-                <button class="btn btn-secondary me-2" type="button" data-bs-dismiss="modal">{{ STRINGS.get("cancel") }}</button>
+                <button class="btn btn-danger me-2" type="button" data-bs-dismiss="modal">{{ STRINGS.get("cancel") }}</button>
                 <input class="btn btn-primary" type="submit" role="button" :value="STRINGS.get('add')">
               </div>
             </form>
@@ -106,24 +106,25 @@ export default {
         try {
           const res = await Promise.all([
             DB.insertTarjeta(tarjeta),
-            API.addTarjeta({ nombre, numero, email, token }),
-            await DB.insertMovimientos(tarjeta)
+            API.addTarjeta({ nombre, numero, email, token })
           ]);
           const { changes } = res[0];
           const { error, error_key } = res[1];
           if (changes > 0 && !error) {
+            await DB.insertMovimientos(tarjeta);
             this.tarjetas.unshift(tarjeta);
             CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
           }
           else {
             CAPACITOR.showToast(STRINGS.get(error_key));
           }
-          await sleep(0.5);
-          hideModal("progress-dialog");
         }
-        catch {
+        catch (error) {
           CAPACITOR.showToast(STRINGS.get("error"));
+          console.warn(error);
         }
+        await sleep(0.5);
+        hideModal("progress-dialog");
       }
     },
     openCard (numero) {

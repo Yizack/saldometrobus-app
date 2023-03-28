@@ -8,6 +8,19 @@ export default {
   email: "saldometrobus@yizack.com",
   dark: false,
   colors: {
+    light: {
+      primary: "#4E73DF",
+      primaryDark: "#1f1f1f",
+      background: "#121212",
+      text: "#D5D5DB",
+      dark: "#5D5F6C",
+      dark_area: "#C3C5CB",
+      border: "#373737",
+      success: "#1cc88a",
+      success_area: "#AEE9D5",
+      danger: "#E74A3B",
+      danger_area: "#F2BEBB"
+    },
     dark: {
       primary: "#4E73DF",
       primaryDark: "#405FB9",
@@ -17,13 +30,6 @@ export default {
       background: "#F8F9FC",
       border: "#e3e6f0",
       progressBackground: "#eaecf4"
-    },
-    light: {
-      primary: "#4E73DF",
-      primaryDark: "#1f1f1f",
-      background: "#121212",
-      text: "#D5D5DB",
-      border: "#373737"
     }
   }
 };
