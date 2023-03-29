@@ -95,9 +95,14 @@ export default {
   methods: {
     getData (chart) {
       const map = [];
+
       this.tarjeta.movimientos.forEach((tarjeta) => {
         const fecha = new Date(Number(tarjeta.fecha) - timeOffSet).toISOString().split("T")[0];
-        if (new Date(fecha).getTime() > new Date(this.daysBeforeToday[this.daysBefore - 1].x).getTime()) {
+        const fechaTime = new Date(fecha).getTime();
+        const startTime = new Date(this.daysBeforeToday[this.daysBefore - 1].x).getTime();
+        const endTime = new Date(this.daysBeforeToday[0].x).getTime();
+
+        if (fechaTime > startTime && fechaTime <= endTime) {
           if (this.conditions[chart](tarjeta.movimiento)) {
             const y = chart === "cambio" ? Number(tarjeta.saldo) : Number(tarjeta.monto);
             map.push({ x: fecha, y });
