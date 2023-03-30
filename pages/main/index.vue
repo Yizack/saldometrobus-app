@@ -41,11 +41,17 @@ definePageMeta({ layout: "main" });
           </div>
           <div class="modal-body text-center">
             <form ref="add" novalidate @submit.prevent="addTarjeta()">
-              <div class="mb-3">
+              <div class="mb-3 position-relative">
                 <input v-model="form.nombre" class="form-control" type="text" :placeholder="STRINGS.get('nombre')" required>
+                <div class="invalid-tooltip">
+                  {{ STRINGS.get("obligatorio") }}
+                </div>
               </div>
-              <div class="mb-3">
-                <input v-model="form.numero" class="form-control" type="number" :placeholder="STRINGS.get('numero_tarjeta')" required>
+              <div class="mb-3 position-relative">
+                <input v-model="form.numero" class="form-control" type="number" pattern="[0-9]" :placeholder="STRINGS.get('numero_tarjeta')" required>
+                <div class="invalid-tooltip">
+                  {{ STRINGS.get("error_tarjeta") }}
+                </div>
               </div>
               <div class="d-flex justify-content-end">
                 <button class="btn btn-danger me-2" type="button" data-bs-dismiss="modal">{{ STRINGS.get("cancel") }}</button>
@@ -95,36 +101,44 @@ export default {
   },
   methods: {
     async addTarjeta () {
-      hideModal("add-dialog");
-      await sleep(0.5);
-      showModal("progress-dialog");
-      const { email, token } = AUTH.user;
-      const { nombre, numero } = this.form;
-      const { tarjeta } = await API.getTarjeta(numero);
-      if (tarjeta) {
-        tarjeta.nombre = String(nombre).trim();
-        try {
-          const res = await Promise.all([
-            DB.insertTarjeta(tarjeta),
-            API.addTarjeta({ nombre, numero, email, token })
-          ]);
-          const { changes } = res[0];
-          const { error, error_key } = res[1];
-          if (changes > 0 && !error) {
-            await DB.insertMovimientos(tarjeta);
-            this.tarjetas.unshift(tarjeta);
-            CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
-          }
-          else {
-            CAPACITOR.showToast(STRINGS.get(error_key));
-          }
-        }
-        catch (error) {
-          CAPACITOR.showToast(STRINGS.get("error"));
-          console.warn(error);
-        }
+      const form = this.$refs.add;
+      if (form.checkValidity()) {
+        hideModal("add-dialog");
         await sleep(0.5);
-        hideModal("progress-dialog");
+        showModal("progress-dialog");
+        const { email, token } = AUTH.user;
+        const { nombre, numero } = this.form;
+        const { tarjeta } = await API.getTarjeta(numero);
+        if (tarjeta) {
+          tarjeta.nombre = String(nombre).trim();
+          try {
+            const res = await Promise.all([
+              DB.insertTarjeta(tarjeta),
+              API.addTarjeta({ nombre, numero, email, token })
+            ]);
+            const { changes } = res[0];
+            const { error, error_key } = res[1];
+            if (changes > 0 && !error) {
+              await DB.insertMovimientos(tarjeta);
+              this.tarjetas.unshift(tarjeta);
+              CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
+            }
+            else {
+              CAPACITOR.showToast(STRINGS.get(error_key));
+            }
+          }
+          catch (error) {
+            CAPACITOR.showToast(STRINGS.get("error"));
+            console.warn(error);
+          }
+          await sleep(0.5);
+          hideModal("progress-dialog");
+          form.classList.remove("was-validated");
+          this.form = { numero: "", nombre: "" };
+        }
+      }
+      else {
+        form.classList.add("was-validated");
       }
     },
     openCard (numero) {
