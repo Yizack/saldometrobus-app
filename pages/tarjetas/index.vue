@@ -142,7 +142,7 @@ export default {
       }
     },
     openCard (numero) {
-      this.$router.push(`/main/${numero}`);
+      this.$router.push(`${numero}`);
     }
   }
 };

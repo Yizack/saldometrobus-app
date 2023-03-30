@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top shadow">
+  <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top shadow-sm">
     <div class="container-fluid">
       <NuxtLink class="text-white pe-4 display-6" :to="back"><Icon class="d-flex" name="material-symbols:arrow-back-sharp" /></NuxtLink>
       <span class="navbar-brand me-auto">{{ title }}</span>

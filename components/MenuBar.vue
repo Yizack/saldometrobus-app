@@ -3,6 +3,13 @@
     <div class="container-fluid">
       <a class="text-white pe-4 display-6" data-bs-toggle="offcanvas" href="#menu" role="button" aria-controls="menu"><Icon class="d-flex" name="material-symbols:menu" /></a>
       <span class="navbar-brand me-auto">{{ title }}</span>
+      <div class="nav-item dropstart">
+        <a class="text-white display-6" role="button" data-bs-toggle="dropdown" aria-expanded="false"><Icon name="ic:baseline-more-vert" /></a>
+        <ul class="dropdown-menu m-0 end-0">
+          <li><NuxtLink class="dropdown-item" to="config">{{ STRINGS.get("config") }}</NuxtLink></li>
+          <li><a class="dropdown-item" href="#">{{ STRINGS.get("acerca") }}</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
   <div id="menu" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="menuLabel">
@@ -50,12 +57,12 @@ export default {
         {
           name: STRINGS.get("tarjetas"),
           icon: "material-symbols:credit-card-outline",
-          link: "/main/"
+          link: "/tarjetas/"
         },
         {
           name: STRINGS.get("perfil"),
           icon: "material-symbols:account-circle",
-          link: "/main/perfil/"
+          link: "/tarjetas/perfil/"
         },
         {
           name: STRINGS.get("estado"),

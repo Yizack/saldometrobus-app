@@ -21,7 +21,7 @@ export default {
     };
   },
   async beforeMount () {
-    STRINGS.setLanguage("es");
+    CONFIG.load();
     await CAPACITOR.setStatusBar(true);
     this.$nuxt.hook("page:finish", () => {
       this.loading = false;

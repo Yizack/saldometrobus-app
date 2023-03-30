@@ -8,13 +8,13 @@
       </div>
       <form ref="login" novalidate @submit.prevent="login()">
         <div class="mb-3 position-relative">
-          <input v-model="form.email" class="form-control" type="email" :placeholder="STRINGS.get('correo')" required>
+          <input v-model="form.email" class="form-control" type="email" :placeholder="STRINGS.get('correo')" autocomplete="email" required>
           <div class="invalid-tooltip">
             {{ STRINGS.get("correo_incorrecto") }}
           </div>
         </div>
         <div class="mb-3 position-relative">
-          <input v-model="form.password" class="form-control" type="password" :placeholder="STRINGS.get('password')" minlength="3" required>
+          <input v-model="form.password" class="form-control" type="password" :placeholder="STRINGS.get('password')" autocomplete="current-password" minlength="3" required>
           <div class="invalid-tooltip">
             {{ STRINGS.get("password_limit") }}
           </div>
@@ -22,7 +22,7 @@
         <div class="d-grid gap-2 mt-5 mt-auto">
           <input class="btn btn-primary mb-4" type="submit" role="button" :value="STRINGS.get('login')">
           <NuxtLink class="btn btn-success" role="button" to="/registro/">{{ STRINGS.get("registrate") }}</NuxtLink>
-          <NuxtLink class="btn btn-secondary" role="button" to="/main/">{{ STRINGS.get("no_registro") }}</NuxtLink>
+          <NuxtLink class="btn btn-secondary" role="button" to="/tarjetas/">{{ STRINGS.get("no_registro") }}</NuxtLink>
         </div>
       </form>
     </div>
@@ -52,7 +52,7 @@ export default {
   },
   mounted () {
     if (AUTH.exists) {
-      this.$router.replace("/main/");
+      this.$router.replace("/tarjetas/");
     }
   },
   methods: {
@@ -68,7 +68,7 @@ export default {
         hideModal("progress-dialog");
         if (!error) {
           form.classList.add("was-validated");
-          this.$router.push("/main/");
+          this.$router.replace("/tarjetas/");
         }
         else {
           CAPACITOR.showToast(STRINGS.get(error_key), "long");
