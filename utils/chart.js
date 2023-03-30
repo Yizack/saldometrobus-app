@@ -9,7 +9,7 @@ export class Chart {
   render (style) {
     const { reduce, color, color_area, title, monotone, tension, stepped, subtitle } = style;
 
-    const reduced = reduce
+    const dataset = reduce
       ? this.dataset.reduce((a, b) => {
         const index = a.findIndex(d => d.x === b.x);
         if (index < 0) {
@@ -30,12 +30,11 @@ export class Chart {
         }
         return a;
       }, []);
-    const dataset = reduced.map(d => ({ x: formatFecha(d.x, "chart", "es"), y: d.y }));
-    const total = reduce ? reduced.reduce((a, b) => a + b.y, 0) : reduced[reduced.length - 1].y;
 
-    const tipo = "line";
+    const total = reduce ? dataset.reduce((a, b) => a + b.y, 0) : dataset[dataset.length - 1].y;
+
     return new ChartJS(this.ctx, {
-      type: tipo,
+      type: "line",
       data: {
         datasets: [{
           label: title,
@@ -55,6 +54,10 @@ export class Chart {
         }]
       },
       options: {
+        interaction: {
+          mode: "index",
+          intersect: false
+        },
         tooltips: {
           mode: "interpolate",
           intersect: false
@@ -113,8 +116,9 @@ export class Chart {
               },
               stepSize: 0.25,
               font: {
-                size: 8
-              }
+                size: 10
+              },
+              autoSkip: true
             },
             stacked: true,
             beginAtZero: true

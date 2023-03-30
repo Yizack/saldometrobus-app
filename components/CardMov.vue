@@ -2,7 +2,7 @@
   <div>
     <h4 class="text-center py-2"><b>{{ STRINGS.get("saldos") }}</b></h4>
     <p class="m-0">{{ STRINGS.get("mov_4_semanas") }}</p>
-    <table class="table table-hover shadow small">
+    <table v-if="tarjeta.movimientos.length > 0" class="table table-hover shadow small">
       <thead>
         <tr class="bg-primary text-white small">
           <th scope="col">{{ STRINGS.get("tipo") }}</th>
@@ -22,6 +22,7 @@
         </tr>
       </tbody>
     </table>
+    <p v-else class="text-center my-4"><i>{{ STRINGS.get("mov_notfound") }}.</i></p>
   </div>
 </template>
 

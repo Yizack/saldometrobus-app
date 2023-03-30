@@ -78,3 +78,7 @@ export const fixed = (n = 0, d = 0) => {
 export const colors = siteInfo.colors;
 
 export const timeOffSet = new Date().getTimezoneOffset() * 60 * 1000;
+
+export const formatHour = (hour) => {
+  return `${hour}h`;
+};

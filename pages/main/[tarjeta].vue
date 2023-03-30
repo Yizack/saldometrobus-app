@@ -4,18 +4,20 @@ definePageMeta({ layout: "main" });
 
 <template>
   <section>
-    <ul id="tabs" class="nav nav-pills mb-2 sticky-top" role="tablist">
+    <ul id="tabs" class="nav nav-pills" role="tablist">
       <li v-for="(tab, key) in tabs" :key="key" class="nav-item flex-fill" role="presentation">
         <div class="d-grid gap-2">
           <a class="nav-link rounded-0 text-uppercase text-center" :class="{ active: tab }" role="button" @click="tabClick(key)">{{ STRINGS.get(key) }}</a>
         </div>
       </li>
     </ul>
-    <Transition name="tab" mode="out-in">
-      <CardInfo v-if="tabs.informacion" :tarjeta="tarjeta" />
-      <CardMov v-else-if="tabs.movimientos" :tarjeta="tarjeta" />
-      <CardGraphs v-else-if="tabs.graficas" :tarjeta="tarjeta" />
-    </Transition>
+    <div class="pt-5">
+      <Transition name="tab" mode="out-in">
+        <CardInfo v-if="tabs.informacion" :tarjeta="tarjeta" />
+        <CardMov v-else-if="tabs.movimientos" :tarjeta="tarjeta" />
+        <CardGraphs v-else-if="tabs.graficas" :tarjeta="tarjeta" />
+      </Transition>
+    </div>
   </section>
 </template>
 

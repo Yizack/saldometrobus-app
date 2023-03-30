@@ -2,6 +2,7 @@ html, body {
   font-family: "Nunito";
   overflow-x: hidden;
   height: 100%;
+  caret-color: var(--bs-secondary);
 }
 
 [data-bs-theme=light] {
@@ -14,7 +15,7 @@ html, body {
   --bs-success: #1cc889;
   --success-area: #aee9d5;
   --bs-success-rgb: 28, 200, 138;
-  --bs-secondary: rgb(255, 144, 107);
+  --bs-secondary: #ff906b;
   --bs-secondary-rgb: 255, 145, 107;
   --bs-danger: #E74A3B;
   --danger-hover: #ca473b;
@@ -23,6 +24,22 @@ html, body {
   --bs-warning-rgb: 246, 194, 62;
   --bs-body-color: #5a5c69;
   --bs-body-bg: #F8F9FC;
+  --nav-hover: #eaecf4;
+  --nav-active: #e3e6f0;
+}
+
+.form-control {
+  border-radius: 0;
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-bottom-width: 2px;
+}
+
+.form-control:focus {
+  border-color: var(--bs-secondary);
+  outline: 0;
+  box-shadow: 0 0.25rem 0 0 rgb(255, 144, 107, 0.25);
 }
 
 .border {
@@ -140,10 +157,24 @@ a {
 
 #tabs {
   margin: -0.5rem;
-  top: 3.5rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 .table>:not(caption)>*>* {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
+}
+
+.filters button {
+  min-width: 25%;
+}
+
+.router-link-active.router-link-exact-active.nav-link {
+  background: var(--nav-active);
+}
+
+.nav-link:hover {
+  background: var(--nav-hover);
 }

@@ -14,12 +14,12 @@ export default {
       background: "#121212",
       text: "#D5D5DB",
       dark: "#5D5F6C",
-      dark_area: "#C3C5CB",
+      dark_area: "#5D5F6C33",
       border: "#373737",
       success: "#1cc88a",
-      success_area: "#AEE9D5",
+      success_area: "#1cc88a33",
       danger: "#E74A3B",
-      danger_area: "#F2BEBB"
+      danger_area: "#E74A3B33"
     },
     dark: {
       primary: "#4E73DF",

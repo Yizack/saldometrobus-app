@@ -8,7 +8,7 @@
   <div id="menu" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="menuLabel">
     <div class="offcanvas-header bg-primary align-items-start" data-bs-theme="dark">
       <div class="text-dark-emphasis">
-        <img class="img-fluid" src="/images/logo2.webp" width="50" height="50">
+        <img class="img-fluid" src="/images/logo2.webp" width="70" height="70">
         <h5 id="menuLabel" class="offcanvas-title">{{ AUTH.user.nombre }}</h5>
         {{ AUTH.user.email }}
       </div>

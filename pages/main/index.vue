@@ -102,7 +102,7 @@ export default {
       const { nombre, numero } = this.form;
       const { tarjeta } = await API.getTarjeta(numero);
       if (tarjeta) {
-        tarjeta.nombre = nombre;
+        tarjeta.nombre = String(nombre).trim();
         try {
           const res = await Promise.all([
             DB.insertTarjeta(tarjeta),

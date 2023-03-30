@@ -81,7 +81,7 @@ export default {
   correo_existe: "Ya existe una cuenta con este correo",
   contrato_activo: "Activo",
   graficas: "Gráficas",
-  filtrar: "Filtrar",
+  filtrar: "Filtrar por",
   d1: "1 día",
   d7: "7 días",
   d28: "28 días",
