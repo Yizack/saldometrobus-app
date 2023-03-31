@@ -3,7 +3,14 @@
   "appName": "Saldo Metrobús",
   "webDir": ".output/public",
   "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https",
+    "hostname": "saldometrobus.yizack.com"
+  },
   "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    },
     "SplashScreen": {
       "launchShowDuration": 500,
       "launchAutoHide": true,

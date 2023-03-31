@@ -5,12 +5,10 @@
     <div class="d-flex align-items-center my-3">
       <span>{{ STRINGS.get("filtrar") }}:</span>
       <div class="d-flex justify-content-evenly flex-grow-1 filters">
-        <button class="btn btn-sm btn-outline-dark rounded-pill text-nowrap" :class="{ active: daysBefore === 1}" @click="daysBefore = 1">{{ STRINGS.get("d1") }}</button>
-        <button class="btn btn-sm btn-outline-dark rounded-pill text-nowrap" :class="{ active: daysBefore === 7}" @click="daysBefore = 7">{{ STRINGS.get("d7") }}</button>
-        <button class="btn btn-sm btn-outline-dark rounded-pill text-nowrap" :class="{ active: daysBefore === 28}" @click="daysBefore = 28">{{ STRINGS.get("d28") }}</button>
+        <button v-for="(filter, key) in filters" :key="key" class="btn btn-sm rounded-pill text-nowrap" :class="{ 'active': daysBefore === filter, 'btn-outline-dark': !CONFIG.dark, 'btn-outline-light': CONFIG.dark }" @click="daysBefore = filter">{{ STRINGS.get(key) }}</button>
       </div>
     </div>
-    <div v-for="(chart, key) in charts" :key="key" class="bg-white border rounded p-2 mb-2 shadow">
+    <div v-for="(chart, key) in charts" :key="key" class="bg-body-tertiary border rounded p-2 mb-2 shadow">
       <canvas ref="chart" class="my-2 w-100" />
     </div>
   </div>
@@ -28,6 +26,11 @@ export default {
     return {
       dataset: {
         gastos: []
+      },
+      filters: {
+        d1: 1,
+        d7: 7,
+        d28: 28
       },
       daysBefore: 28,
       charts: [
@@ -147,14 +150,17 @@ export default {
         const ctx = this.$refs.chart[index].getContext("2d");
         const dataset = this.getData(chart.name).map(d => ({ x: this.daysBefore > 1 ? formatFecha(d.x, "chart", "es") : formatHour(d.x), y: d.y }));
         const chart_instance = new Chart(ctx, dataset);
+        const theme = CONFIG.dark ? "dark" : "light";
         chart_instance.render({
           reduce: chart.reduce,
           monotone: chart.monotone,
           title: chart.title,
           subtitle: chart.subtitle,
           stepped: chart.stepped,
-          color: colors.light[chart.color],
-          color_area: colors.light[`${chart.color}_area`]
+          color: colors[theme][chart.color],
+          color_area: colors[theme][`${chart.color}_area`],
+          text_color: colors[theme].text,
+          tick_color: colors[theme].tick
         });
       });
     }

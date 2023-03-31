@@ -4,10 +4,10 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 id="progress-dialog-label" class="modal-title fs-5">{{ message }}</h1>
+          <h1 id="progress-dialog-label" class="modal-title fs-5 text-primary-emphasis">{{ message }}</h1>
         </div>
         <div class="modal-body text-center">
-          <div class="spinner-border text-primary" role="status">
+          <div class="spinner-border text-primary-emphasis" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>

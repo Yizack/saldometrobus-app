@@ -7,7 +7,7 @@ export class Chart {
   }
 
   render (style) {
-    const { reduce, color, color_area, title, monotone, tension, stepped, subtitle } = style;
+    const { reduce, color, color_area, title, monotone, tension, stepped, subtitle, text_color, tick_color } = style;
 
     const dataset = reduce
       ? this.dataset.reduce((a, b) => {
@@ -77,6 +77,7 @@ export class Chart {
           title: {
             display: true,
             text: title,
+            color: text_color,
             font: {
               size: 12
             }
@@ -84,6 +85,7 @@ export class Chart {
           subtitle: {
             display: true,
             text: reduce ? `${subtitle}: B/. ${fixed(total, 2)}` : `${subtitle} ${dataset[dataset.length - 1].x}: B/. ${fixed(total, 2)}`,
+            color: text_color,
             font: {
               size: 12,
               weight: "bold"
@@ -101,19 +103,35 @@ export class Chart {
         responsive: true,
         scales: {
           x: {
+            border: {
+              color: tick_color
+            },
+            grid: {
+              color: tick_color,
+              tickColor: tick_color
+            },
             display: true,
             stacked: true,
             ticks: {
+              color: text_color,
               autoSkip: true,
               maxRotation: 0,
               minRotation: 0
             }
           },
           y: {
+            border: {
+              color: tick_color
+            },
+            grid: {
+              color: tick_color,
+              tickColor: tick_color
+            },
             ticks: {
               callback: (value) => {
                 return `B/. ${fixed(value, 2)}`;
               },
+              color: text_color,
               stepSize: 0.25,
               font: {
                 size: 10

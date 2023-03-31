@@ -79,7 +79,7 @@ export default {
   puerta_trasera: "Back door",
   correo_incorrecto: "Invalid email address",
   correo_existe: "An account with this email already exists.",
-  contrato_activo: "Active contract",
+  contrato_activo: "Active Contract",
   graficas: "Graphs",
   filtrar: "Filter by",
   d1: "1 day",

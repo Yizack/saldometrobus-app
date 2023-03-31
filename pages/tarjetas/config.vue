@@ -3,8 +3,8 @@
   <section>
     <NavBar back="/tarjetas/" :title="STRINGS.get('config')" />
     <div class="m-2">
-      <div class="bg-white border rounded p-2 mb-2 shadow">
-        <h4 class="text-primary m-0"><b>{{ STRINGS.get("idioma") }}</b></h4>
+      <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
+        <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("idioma") }}</b></h4>
         <div class="m-2">
           <select v-model="lang" class="form-select">
             <option value="es">Español</option>
@@ -12,10 +12,10 @@
           </select>
         </div>
       </div>
-      <div class="bg-white border rounded p-2 mb-2 shadow">
-        <h4 class="text-primary m-0"><b>{{ STRINGS.get("modo_oscuro") }}</b></h4>
+      <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
+        <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("modo_oscuro") }}</b></h4>
         <div class="m-2">
-          <div class="form-check form-switch form-check-reverse">
+          <div class="form-check form-switch form-check-reverse text-start">
             <label class="form-check-label" for="theme">{{ STRINGS.get("dark_mode_desc") }}</label>
             <input id="theme" v-model="dark" class="form-check-input" type="checkbox" role="switch">
           </div>

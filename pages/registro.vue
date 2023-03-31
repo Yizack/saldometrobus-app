@@ -1,7 +1,7 @@
 <template>
   <section>
     <NavBar back="/" :title="STRINGS.get('registrate')" />
-    <div class="container-fluid text-center text-dark">
+    <div class="container-fluid text-center">
       <div class="my-5">
         <form ref="signup_form">
           <div class="mb-3">

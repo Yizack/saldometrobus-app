@@ -1,20 +1,20 @@
 <template>
   <div>
     <h4 class="text-center py-2"><b>{{ tarjeta.nombre }}</b></h4>
-    <div class="bg-white border rounded p-2 mb-2 shadow text-center">
-      <img v-if="tarjeta.tipo === 'Tarjeta Rapipass'" class="img-fluid" src="/images/rapipass_brand.webp" :width="size" :height="size">
-      <img v-else-if="tarjeta.tipo === 'Tarjeta Normal'" class="img-fluid" src="/images/metro_metrobus_brand.webp" :width="size" :height="size">
+    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow text-center">
+      <img v-if="tarjeta.tipo === STRINGS.get('tarjeta_rapipass')" class="img-fluid" src="/images/rapipass_brand.webp" :width="size" :height="size">
+      <img v-else-if="tarjeta.tipo === STRINGS.get('tarjeta_normal')" class="img-fluid" src="/images/metro_metrobus_brand.webp" :width="size" :height="size">
       <img v-else src="/images/metrobus_brand.webp" class="img-fluid" :width="size" :height="size">
       <h3><b>{{ tarjeta.numero }}</b></h3>
     </div>
-    <div class="bg-white border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary m-0"><b>{{ STRINGS.get("saldo") }}</b></h4>
+    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
+      <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("saldo") }}</b></h4>
       <div class="m-2">
         <h3><b>B/. {{ tarjeta.saldo }}</b></h3>
       </div>
     </div>
-    <div class="bg-white border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary m-0"><b>{{ STRINGS.get("info_tarjeta") }}</b></h4>
+    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
+      <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("info_tarjeta") }}</b></h4>
       <div class="p-2">
         <div class="row">
           <div class="col-6">
@@ -36,8 +36,8 @@
         </div>
       </div>
     </div>
-    <div class="bg-white border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary m-0"><b>{{ STRINGS.get("balance") }}</b></h4>
+    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
+      <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("balance") }}</b></h4>
       <div class="ms-2">
         <div class="d-flex justify-content-between">
           <h4 class="small"><b>Actual: B/. {{ tarjeta.saldo }}</b></h4>

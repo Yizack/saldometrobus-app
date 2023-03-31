@@ -4,9 +4,9 @@ definePageMeta({ layout: "main" });
 
 <template>
   <section>
-    <div v-for="tarjeta in tarjetas" :key="tarjeta.numero" class="bg-white border rounded d-flex p-2 mb-2 shadow" role="button" @click="openCard(tarjeta.numero)">
+    <div v-for="tarjeta in tarjetas" :key="tarjeta.numero" class="bg-body-tertiary border rounded d-flex p-2 mb-2 shadow" role="button" @click="openCard(tarjeta.numero)">
       <div class="flex-grow-1">
-        <h4 class="text-primary m-0"><b>{{ tarjeta.nombre }}</b></h4>
+        <h4 class="text-primary-emphasis m-0"><b>{{ tarjeta.nombre }}</b></h4>
         <div class="info mx-2 small">
           <p class="m-0">{{ STRINGS.get("numero") }}: {{ tarjeta.numero }}</p>
           <p class="m-0">{{ STRINGS.get("estado") }}: {{ tarjeta.estado }}</p>
@@ -17,8 +17,8 @@ definePageMeta({ layout: "main" });
       </div>
       <div class="actions">
         <div class="image">
-          <img v-if="tarjeta.tipo === 'Tarjeta Rapipass'" class="img-fluid" src="/images/rapipass.webp" :width="size" :height="size">
-          <img v-else-if="tarjeta.tipo === 'Tarjeta Normal'" class="img-fluid" src="/images/metro_metrobus.webp" :width="size" :height="size">
+          <img v-if="tarjeta.tipo === STRINGS.get('tarjeta_rapipass')" class="img-fluid" src="/images/rapipass.webp" :width="size" :height="size">
+          <img v-else-if="tarjeta.tipo === STRINGS.get('tarjeta_normal')" class="img-fluid" src="/images/metro_metrobus.webp" :width="size" :height="size">
           <img v-else src="/images/metrobus.webp" class="img-fluid" :width="size" :height="size">
         </div>
         <div class="d-grid gap-2">
@@ -37,7 +37,7 @@ definePageMeta({ layout: "main" });
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 id="add-dialog-label" class="modal-title fs-5">{{ STRINGS.get("add_tarjeta") }}</h1>
+            <h1 id="add-dialog-label" class="modal-title fs-5 text-primary-emphasis">{{ STRINGS.get("add_tarjeta") }}</h1>
           </div>
           <div class="modal-body text-center">
             <form ref="add" novalidate @submit.prevent="addTarjeta()">

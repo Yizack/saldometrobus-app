@@ -2,7 +2,7 @@
   <div>
     <h4 class="text-center py-2"><b>{{ STRINGS.get("saldos") }}</b></h4>
     <p class="m-0">{{ STRINGS.get("mov_4_semanas") }}</p>
-    <table v-if="tarjeta.movimientos.length > 0" class="table table-hover shadow small">
+    <table v-if="tarjeta.movimientos.length > 0" class="table table-hover shadow small bg-body-tertiary">
       <thead>
         <tr class="bg-primary text-white small">
           <th scope="col">{{ STRINGS.get("tipo") }}</th>
@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="movimiento in tarjeta.movimientos" :key="movimiento.id" class="small">
+        <tr v-for="movimiento in tarjeta.movimientos" :key="movimiento.id" class="small" role="button">
           <td>{{ movimiento.movimiento }}</td>
           <td :title="movimiento.fecha" class="text-nowrap">{{ formatFecha(Number(movimiento.fecha)) }}</td>
           <td class="pe-0 text-end" :class="`text-${movimiento.color}`">{{ movimiento.sign }}</td>

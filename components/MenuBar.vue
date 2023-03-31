@@ -13,8 +13,8 @@
     </div>
   </nav>
   <div id="menu" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="menuLabel">
-    <div class="offcanvas-header bg-primary align-items-start" data-bs-theme="dark">
-      <div class="text-dark-emphasis">
+    <div class="offcanvas-header bg-primary align-items-start">
+      <div class="text-white">
         <img class="img-fluid" src="/images/logo2.webp" width="70" height="70">
         <h5 id="menuLabel" class="offcanvas-title">{{ AUTH.user.nombre }}</h5>
         {{ AUTH.user.email }}
@@ -25,14 +25,14 @@
       <nav class="nav flex-column">
         <template v-for="(tab, index) in menu" :key="index">
           <span v-if="!tab.new_section" data-bs-dismiss="offcanvas">
-            <NuxtLink class="nav-link text-dark py-3" :to="tab.link">
+            <NuxtLink class="nav-link text-dark-emphasis py-3" :to="tab.link">
               <Icon :name="tab.icon" width="24" height="24" class="me-4" /> {{ tab.name }}
             </NuxtLink>
           </span>
           <template v-else>
             <hr>
             <div class="px-3">{{ tab.new_section.name }}</div>
-            <NuxtLink class="nav-link text-dark py-3" :to="tab.link">
+            <NuxtLink class="nav-link text-dark-emphasis py-3" :to="tab.link">
               <Icon :name="tab.icon" width="24" height="24" class="me-4" /> {{ tab.name }}
             </NuxtLink>
           </template>

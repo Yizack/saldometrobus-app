@@ -12,27 +12,6 @@ export const sha256 = async (message) => {
   return hashHex;
 };
 
-export const _POST = (url, payload) => {
-  return fetch(url, {
-    method: "POST",
-    body: new URLSearchParams(payload).toString(),
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    }
-  });
-};
-
-export const _GET = (url) => {
-  return fetch(url, {
-    method: "GET",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    }
-  });
-};
-
 export const convertToTime = (datetime) => {
   const [date, time] = datetime.split(" ");
   const [day, month, year] = date.split("/");

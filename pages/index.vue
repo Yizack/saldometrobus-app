@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="container-fluid text-center text-dark">
+    <div class="container-fluid text-center">
       <div class="my-5">
         <img width="100" height="100" src="/images/logo.png">
         <h1><b>{{ STRINGS.get("app_name") }}</b></h1>
@@ -8,13 +8,13 @@
       </div>
       <form ref="login" novalidate @submit.prevent="login()">
         <div class="mb-3 position-relative">
-          <input v-model="form.email" class="form-control" type="email" :placeholder="STRINGS.get('correo')" autocomplete="email" required>
+          <input v-model="form.email" class="form-control" type="email" :placeholder="STRINGS.get('correo')" name="email" autocomplete="email" required>
           <div class="invalid-tooltip">
             {{ STRINGS.get("correo_incorrecto") }}
           </div>
         </div>
         <div class="mb-3 position-relative">
-          <input v-model="form.password" class="form-control" type="password" :placeholder="STRINGS.get('password')" autocomplete="current-password" minlength="3" required>
+          <input v-model="form.password" class="form-control" type="password" :placeholder="STRINGS.get('password')" name="password" autocomplete="current-password" minlength="3" required>
           <div class="invalid-tooltip">
             {{ STRINGS.get("password_limit") }}
           </div>

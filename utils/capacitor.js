@@ -1,5 +1,5 @@
 import { StatusBar, Style } from "@capacitor/status-bar";
-import { Capacitor } from "@capacitor/core";
+import { Capacitor, CapacitorHttp } from "@capacitor/core";
 import { Preferences } from "@capacitor/preferences";
 import { Toast } from "@capacitor/toast";
 import siteInfo from "~/siteInfo.js";
@@ -33,6 +33,24 @@ class CapacitorPlugins {
   showToast (text, duration, position) {
     return Toast.show({ text, duration, position });
   }
+
+  doGet (url) {
+    return CapacitorHttp.get({ url });
+  };
+
+  async doPost (url, payload) {
+    const options = {
+      url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: new URLSearchParams(payload).toString()
+    };
+
+    const response = await CapacitorHttp.post(options);
+    response.data = JSON.parse(response.data);
+    return response;
+  };
 }
 
 export const CAPACITOR = new CapacitorPlugins();

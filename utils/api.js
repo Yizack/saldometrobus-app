@@ -13,84 +13,69 @@ class SaldometrobusAPI {
   }
 
   async userLogin (payload) {
-    try {
-      const response = await _POST(this.loginURL, payload);
-      const data = await response.json();
-      return data;
-    }
-    catch {
-      return error_response;
-    }
+    const response = await CAPACITOR.doPost(this.loginURL, payload);
+    return response.status === 200 ? response.data : error_response;
   }
 
   async addTarjeta (payload) {
-    try {
-      const response = await _POST(this.addTarjetaURL, payload);
-      const data = await response.json();
-      return data;
-    }
-    catch {
-      return error_response;
-    }
+    const response = await CAPACITOR.doPost(this.addTarjetaURL, payload);
+    return response.status === 200 ? response.data : error_response;
   }
 
   async getTarjetas (payload) {
-    const response = await _POST(this.getTarjetasURL, payload);
-    try {
-      const data = await response.json();
-      return data;
-    }
-    catch (error) {
-      return error_response;
-    }
+    const response = await CAPACITOR.doPost(this.getTarjetasURL, payload);
+    return response.status === 200 ? response.data : error_response;
   }
 
   async getTarjeta (numero) {
-    const response = await _GET(`${this.tarjetasAPI}/${numero}`);
-    try {
-      const data = await response.json();
+    const response = await CAPACITOR.doGet(`${this.tarjetasAPI}/${numero}`);
+    if (response.status === 200) {
+      const data = response.data;
       if (data.status === "ok") {
         if (data.tarjeta.tipo === "Tarjeta Normal al Portador b") {
           data.tarjeta.tipo = STRINGS.get("tarjeta_normal");
         }
-        if (data.tarjeta.tipo === "Tarjeta Normal al Portador b") {
-          data.tarjeta.tipo = STRINGS.get("tarjeta_normal");
+        else if (data.tarjeta.tipo === "Tarjeta Rapipass") {
+          data.tarjeta.tipo = STRINGS.get("tarjeta_rapipass");
+        }
+        if (data.tarjeta.estado === "Contrato Activo") {
+          data.tarjeta.estado = STRINGS.get("contrato_activo");
         }
         return data;
       }
       return false;
     }
-    catch {
+    else {
       return error_response;
     }
   }
 
   async getDetallesTarjetas (payload) {
-    try {
-      const { error, tarjetas } = await this.getTarjetas(payload);
-      if (!error) {
-        const arr = [];
-        for (const tarjeta of tarjetas) {
-          const response = await _GET(`${this.tarjetasAPI}/${tarjeta.numero}`);
-          const data = await response.json();
+    const { error, tarjetas } = await this.getTarjetas(payload);
+    if (!error) {
+      const arr = [];
+      for (const tarjeta of tarjetas) {
+        const response = await CAPACITOR.doGet(`${this.tarjetasAPI}/${tarjeta.numero}`);
+        if (response.status === 200) {
+          const data = response.data;
           if (data.status === "ok") {
             if (data.tarjeta.tipo === "Tarjeta Normal al Portador b") {
               data.tarjeta.tipo = STRINGS.get("tarjeta_normal");
             }
-            if (data.tarjeta.tipo === "Tarjeta Normal al Portador b") {
-              data.tarjeta.tipo = STRINGS.get("tarjeta_normal");
+            else if (data.tarjeta.tipo === "Tarjeta Rapipass") {
+              data.tarjeta.tipo = STRINGS.get("tarjeta_rapipass");
+            }
+            if (data.tarjeta.estado === "Contrato Activo") {
+              data.tarjeta.estado = STRINGS.get("contrato_activo");
             }
             Object.assign(data.tarjeta, tarjeta);
             arr.push(data.tarjeta);
           }
         }
-        return arr;
       }
-      else {
-        return false;
-      }
+      return arr;
     }
-    catch {
+    else {
       return false;
     }
   }
