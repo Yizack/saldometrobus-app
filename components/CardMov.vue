@@ -28,59 +28,12 @@
 
 <script>
 export default {
-  name: "InformationCard",
+  name: "MovimientosTarjeta",
   props: {
     tarjeta: {
       type: Object,
       required: true
     }
-  },
-  data () {
-    return {
-      size: 200,
-      saldoBar: {
-        percent: 0,
-        color: ""
-      },
-      tipos: {
-        uso: {
-          text: "Uso",
-          translation: STRINGS.get("uso")
-        },
-        carga: {
-          text: "Carga",
-          translation: STRINGS.get("carga")
-        },
-        online: {
-          text: "Transacción de Carga de Monedero con #RA",
-          translation: STRINGS.get("carga_online")
-        },
-        trasera: {
-          text: "Puerta Trasera",
-          translation: STRINGS.get("puerta_trasera")
-        }
-      }
-    };
-  },
-  mounted () {
-    this.tarjeta.movimientos.forEach((mov) => {
-      const tipo = mov.movimiento;
-      if (tipo === this.tipos.uso.text || tipo === this.tipos.trasera.text) {
-        mov.movimiento = tipo === this.tipos.uso.text ? this.tipos.uso.translation : this.tipos.trasera.translation;
-        if (Number(mov.monto) > 0) {
-          mov.sign = "-";
-          mov.color = "danger";
-        }
-        else {
-          mov.color = "warning";
-        }
-      }
-      else if (tipo === this.tipos.carga.text || tipo === this.tipos.online.text) {
-        mov.movimiento = tipo === this.tipos.carga.text ? this.tipos.carga.translation : this.tipos.online.translation;
-        mov.sign = "+";
-        mov.color = "success";
-      }
-    });
   }
 };
 </script>

@@ -2,7 +2,6 @@ import "bootstrap/js/dist/offcanvas";
 import "bootstrap/js/dist/dropdown";
 import "bootstrap/js/dist/tooltip";
 import Modal from "bootstrap/js/dist/modal";
-import siteInfo from "~/siteInfo.js";
 
 export const sha256 = async (message) => {
   const msgBuffer = new TextEncoder().encode(message);
@@ -53,8 +52,6 @@ export const sleep = (seconds) => {
 export const fixed = (n = 0, d = 0) => {
   return Number(n).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }).replace(/,/g, "");
 };
-
-export const colors = siteInfo.colors;
 
 export const timeOffSet = new Date().getTimezoneOffset() * 60 * 1000;
 

@@ -76,10 +76,17 @@ html, body {
   border-bottom-width: 2px;
 }
 
-.form-check-input:focus, .form-control:focus {
+.form-check-input:focus, .form-control:focus, .form-select:focus {
   border-color: var(--bs-secondary);
   outline: 0;
+}
+
+.form-control:focus {
   box-shadow: 0 0.25rem 0 0 rgb(255, 144, 107, 0.25);
+}
+
+.form-check-input:focus, .form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgb(255, 144, 107, 0.25);
 }
 
 .border {
@@ -170,7 +177,8 @@ a {
 }
 
 .nuxt-loading-indicator {
-  background: repeating-linear-gradient(to right, var(--bs-secondary) 0%, var(--bs-body-bg) 50%,var(--bs-secondary) 100%)!important;
+  background: repeating-linear-gradient(to right, var(--primary-hover) 0%, var(--bs-secondary) 50%,var(--primary-hover) 100%)!important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .nav-pills {
@@ -217,4 +225,24 @@ a {
 
 .nav-link:hover {
   background: var(--nav-hover);
+}
+
+.form-switch .form-check-input:focus {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffc1ad'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input:checked {
+  background-position: right center;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input {
+  width: 3em;
+  height: 1.5em;
+  margin: 0;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: var(--nav-hover);
+  color: var(--bs-body-color);
 }

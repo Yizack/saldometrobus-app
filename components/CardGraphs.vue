@@ -148,9 +148,10 @@ export default {
     render () {
       this.charts.forEach((chart, index) => {
         const ctx = this.$refs.chart[index].getContext("2d");
-        const dataset = this.getData(chart.name).map(d => ({ x: this.daysBefore > 1 ? formatFecha(d.x, "chart", "es") : formatHour(d.x), y: d.y }));
+        const dataset = this.getData(chart.name).map(d => ({ x: this.daysBefore > 1 ? formatFecha(d.x, "chart", CONFIG.lang) : formatHour(d.x), y: d.y }));
         const chart_instance = new Chart(ctx, dataset);
         const theme = CONFIG.dark ? "dark" : "light";
+        const colors = CONST.colors;
         chart_instance.render({
           reduce: chart.reduce,
           monotone: chart.monotone,

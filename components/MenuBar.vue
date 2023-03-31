@@ -6,8 +6,8 @@
       <div class="nav-item dropstart">
         <a class="text-white display-6" role="button" data-bs-toggle="dropdown" aria-expanded="false"><Icon name="ic:baseline-more-vert" /></a>
         <ul class="dropdown-menu m-0 end-0">
-          <li><NuxtLink class="dropdown-item" to="config">{{ STRINGS.get("config") }}</NuxtLink></li>
-          <li><a class="dropdown-item" href="#">{{ STRINGS.get("acerca") }}</a></li>
+          <li><NuxtLink class="dropdown-item py-3 px-4" to="/app/config/">{{ STRINGS.get("config") }}</NuxtLink></li>
+          <li><a class="dropdown-item py-3 px-4" data-bs-toggle="modal" data-bs-target="#about" role="button">{{ STRINGS.get("acerca") }}</a></li>
         </ul>
       </div>
     </div>
@@ -17,11 +17,13 @@
       <div class="text-white">
         <img class="img-fluid" src="/images/logo2.webp" width="70" height="70">
         <h5 id="menuLabel" class="offcanvas-title">{{ AUTH.user.nombre }}</h5>
-        {{ AUTH.user.email }}
+        <div>{{ AUTH.user.email }}</div>
       </div>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
+      <div data-bs-theme="dark">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
+      </div>
     </div>
-    <div class="offcanvas-body px-0">
+    <div class="offcanvas-body px-0 h-100 w-100 d-flex flex-column">
       <nav class="nav flex-column">
         <template v-for="(tab, index) in menu" :key="index">
           <span v-if="!tab.new_section" data-bs-dismiss="offcanvas">
@@ -38,8 +40,12 @@
           </template>
         </template>
       </nav>
+      <div class="mt-auto text-center small">
+        <i>{{ STRINGS.get("version") }}: {{ CONST.version }}</i>
+      </div>
     </div>
   </div>
+  <AboutDialog />
 </template>
 
 <script>
@@ -57,12 +63,12 @@ export default {
         {
           name: STRINGS.get("tarjetas"),
           icon: "material-symbols:credit-card-outline",
-          link: "/tarjetas/"
+          link: "/app/"
         },
         {
           name: STRINGS.get("perfil"),
           icon: "material-symbols:account-circle",
-          link: "/tarjetas/perfil/"
+          link: "/app/perfil/"
         },
         {
           name: STRINGS.get("estado"),

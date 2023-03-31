@@ -1,9 +1,12 @@
-export default {
+import { version } from "~/package.json";
+
+export const CONST = {
+  name: "Saldo Metrobús",
+  version,
   dev: {
     name: "Yizack Rangel",
     url: "https://yizack.com"
   },
-  name: "Saldo Metrobús",
   url: "https://saldometrobus.yizack.com",
   email: "saldometrobus@yizack.com",
   dark: false,

@@ -1,7 +1,7 @@
 
 <template>
   <section>
-    <NavBar back="/tarjetas/" :title="STRINGS.get('config')" />
+    <NavBar back="/app/" :title="STRINGS.get('config')" />
     <div class="m-2">
       <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
         <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("idioma") }}</b></h4>
@@ -15,8 +15,10 @@
       <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
         <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("modo_oscuro") }}</b></h4>
         <div class="m-2">
-          <div class="form-check form-switch form-check-reverse text-start">
-            <label class="form-check-label" for="theme">{{ STRINGS.get("dark_mode_desc") }}</label>
+          <div class="form-switch text-start p-0 d-flex justify-content-between align-items-center">
+            <div class="col-8">
+              <label for="theme">{{ STRINGS.get("dark_mode_desc") }}</label>
+            </div>
             <input id="theme" v-model="dark" class="form-check-input" type="checkbox" role="switch">
           </div>
         </div>

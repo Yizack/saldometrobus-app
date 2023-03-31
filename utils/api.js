@@ -32,15 +32,6 @@ class SaldometrobusAPI {
     if (response.status === 200) {
       const data = response.data;
       if (data.status === "ok") {
-        if (data.tarjeta.tipo === "Tarjeta Normal al Portador b") {
-          data.tarjeta.tipo = STRINGS.get("tarjeta_normal");
-        }
-        else if (data.tarjeta.tipo === "Tarjeta Rapipass") {
-          data.tarjeta.tipo = STRINGS.get("tarjeta_rapipass");
-        }
-        if (data.tarjeta.estado === "Contrato Activo") {
-          data.tarjeta.estado = STRINGS.get("contrato_activo");
-        }
         return data;
       }
       return false;
@@ -59,15 +50,6 @@ class SaldometrobusAPI {
         if (response.status === 200) {
           const data = response.data;
           if (data.status === "ok") {
-            if (data.tarjeta.tipo === "Tarjeta Normal al Portador b") {
-              data.tarjeta.tipo = STRINGS.get("tarjeta_normal");
-            }
-            else if (data.tarjeta.tipo === "Tarjeta Rapipass") {
-              data.tarjeta.tipo = STRINGS.get("tarjeta_rapipass");
-            }
-            if (data.tarjeta.estado === "Contrato Activo") {
-              data.tarjeta.estado = STRINGS.get("contrato_activo");
-            }
             Object.assign(data.tarjeta, tarjeta);
             arr.push(data.tarjeta);
           }

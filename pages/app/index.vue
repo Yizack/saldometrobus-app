@@ -68,7 +68,7 @@ definePageMeta({ layout: "main" });
 
 <script>
 export default {
-  name: "MainPage",
+  name: "AppPage",
   data () {
     return {
       tarjetas: [],
@@ -86,14 +86,15 @@ export default {
         await sleep(0.5);
         showModal("progress-dialog");
         const { email, token } = AUTH.user;
-        this.tarjetas = await API.getDetallesTarjetas({ email, token }) || [];
-        for (const tarjeta of this.tarjetas) {
+        const tarjetas_api = await API.getDetallesTarjetas({ email, token }) || [];
+        for (const tarjeta of tarjetas_api) {
           const { changes } = await DB.insertTarjeta(tarjeta);
           await DB.insertMovimientos(tarjeta);
           if (changes > 0) {
             await CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
           }
         }
+        this.tarjetas = await DB.getTarjetas();
         await sleep(0.5);
         hideModal("progress-dialog");
       }

@@ -51,7 +51,7 @@ export default {
   languages: ["Español", "English"],
   guardar: "Guardar cambios",
   dark_mode_desc: "Reduce el resplandor y mejora la visión nocturna",
-  about_message: "\"Saldo Metrobús\" es una app de consultas de saldo y movimientos para las tarjetas de metro y metrobús de Panamá, diseñada y desarrollada por Yizack Rangel. Los dos diferentes logos fueron diseñados por Georlenys Martínez. Todos los datos de las tarjetas son obtenidos de la página de consultas de www.tarjetametrobus.com.",
+  about_message: "\"Saldo Metrobús\" es una app de consultas de saldo y movimientos para las tarjetas de metro y metrobús de Panamá, diseñada y desarrollada por Yizack Rangel. Los dos diferentes logos fueron diseñados por Georlenys Martínez.\n\nTodos los datos de las tarjetas son obtenidos de la página de consultas de www.tarjetametrobus.com.",
   tarjeta_added: "Tarjeta agregada",
   tarjeta_actualizada: "Tarjeta actualizada",
   error_conexion: "Error de conexión. Inténtalo de nuevo más tarde.",
@@ -102,5 +102,6 @@ export default {
   no_cambio: "No hubo cambios en el saldo.",
   grafica_nota: "Las gráficas no incluyen los datos del día actual.",
   error_tarjeta: "Número de tarjeta no válido.",
-  existe_tarjeta: "Ya existe una tarjeta con este número."
+  existe_tarjeta: "Ya existe una tarjeta con este número.",
+  version: "Versión"
 };

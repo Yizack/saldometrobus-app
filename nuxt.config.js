@@ -1,11 +1,9 @@
-import siteInfo from "./siteInfo.js";
-
 export default {
   app: {
     rootId: "app",
     buildAssetsDir: "/_app/",
     head: {
-      title: siteInfo.name,
+      title: "Saldo Metrobús",
       htmlAttrs: {
         lang: "es"
       },

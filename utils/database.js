@@ -71,12 +71,38 @@ class Database {
   async getTarjeta (numero) {
     const statement = `SELECT * FROM tarjetas WHERE numero = '${numero}'`;
     const { values } = await this.query(statement);
-    return values[0];
+    let tarjeta = {};
+    if (values.length) {
+      tarjeta = values[0];
+      if (tarjeta.tipo === "Tarjeta Normal al Portador b") {
+        tarjeta.tipo = STRINGS.get("tarjeta_normal");
+      }
+      else if (tarjeta.tipo === "Tarjeta Rapipass") {
+        tarjeta.tipo = STRINGS.get("tarjeta_rapipass");
+      }
+      if (tarjeta.estado === "Contrato Activo") {
+        tarjeta.estado = STRINGS.get("contrato_activo");
+      }
+    }
+    return tarjeta;
   }
 
   async getTarjetas () {
     const statement = "SELECT * FROM tarjetas ORDER BY fecha_added DESC";
     const { values } = await this.query(statement);
+    if (values.length) {
+      values.forEach((tarjeta) => {
+        if (tarjeta.tipo === "Tarjeta Normal al Portador b") {
+          tarjeta.tipo = STRINGS.get("tarjeta_normal");
+        }
+        else if (tarjeta.tipo === "Tarjeta Rapipass") {
+          tarjeta.tipo = STRINGS.get("tarjeta_rapipass");
+        }
+        if (tarjeta.estado === "Contrato Activo") {
+          tarjeta.estado = STRINGS.get("contrato_activo");
+        }
+      });
+    }
     return values;
   }
 
@@ -138,6 +164,44 @@ class Database {
   async getMovimientos (numero) {
     const statement = `SELECT * FROM movimientos WHERE numero = '${numero}' ORDER BY fecha DESC`;
     const { values } = await this.query(statement);
+    if (values.length) {
+      const tipos = {
+        uso: {
+          text: "Uso",
+          translation: STRINGS.get("uso")
+        },
+        carga: {
+          text: "Carga",
+          translation: STRINGS.get("carga")
+        },
+        online: {
+          text: "Transacción de Carga de Monedero con #RA",
+          translation: STRINGS.get("carga_online")
+        },
+        trasera: {
+          text: "Puerta Trasera",
+          translation: STRINGS.get("puerta_trasera")
+        }
+      };
+      values.forEach((mov) => {
+        const tipo = mov.movimiento;
+        if (tipo === tipos.uso.text || tipo === tipos.trasera.text) {
+          mov.movimiento = tipo === tipos.uso.text ? tipos.uso.translation : tipos.trasera.translation;
+          if (Number(mov.monto) > 0) {
+            mov.sign = "-";
+            mov.color = "danger";
+          }
+          else {
+            mov.color = "warning";
+          }
+        }
+        else if (tipo === tipos.carga.text || tipo === tipos.online.text) {
+          mov.movimiento = tipo === tipos.carga.text ? tipos.carga.translation : tipos.online.translation;
+          mov.sign = "+";
+          mov.color = "success";
+        }
+      });
+    }
     return values;
   }
 

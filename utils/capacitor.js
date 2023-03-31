@@ -2,12 +2,11 @@ import { StatusBar, Style } from "@capacitor/status-bar";
 import { Capacitor, CapacitorHttp } from "@capacitor/core";
 import { Preferences } from "@capacitor/preferences";
 import { Toast } from "@capacitor/toast";
-import siteInfo from "~/siteInfo.js";
 
 class CapacitorPlugins {
   async setStatusBar (isDark) {
     if (Capacitor.getPlatform() === "android" && Capacitor.isPluginAvailable("StatusBar")) {
-      const { dark, light } = siteInfo.colors;
+      const { dark, light } = CONST.colors;
       await StatusBar.setStyle({ style: isDark ? Style.Dark : Style.Light });
       await StatusBar.setBackgroundColor({ color: isDark ? dark.primary : light.primary });
     }

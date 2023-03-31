@@ -2,7 +2,7 @@
   <section>
     <div class="container-fluid text-center">
       <div class="my-5">
-        <img width="100" height="100" src="/images/logo.png">
+        <img class="img-fluid shadow-sm my-3 p-2 rounded" width="90" height="90" src="/images/logo.webp">
         <h1><b>{{ STRINGS.get("app_name") }}</b></h1>
         <p>{{ STRINGS.get("enter_email_password") }}</p>
       </div>
@@ -22,9 +22,12 @@
         <div class="d-grid gap-2 mt-5 mt-auto">
           <input class="btn btn-primary mb-4" type="submit" role="button" :value="STRINGS.get('login')">
           <NuxtLink class="btn btn-success" role="button" to="/registro/">{{ STRINGS.get("registrate") }}</NuxtLink>
-          <NuxtLink class="btn btn-secondary" role="button" to="/tarjetas/">{{ STRINGS.get("no_registro") }}</NuxtLink>
+          <NuxtLink class="btn btn-secondary" role="button" to="/app/">{{ STRINGS.get("no_registro") }}</NuxtLink>
         </div>
       </form>
+      <div class="mt-4 small">
+        <i>{{ STRINGS.get("version") }}: {{ CONST.version }}</i>
+      </div>
     </div>
     <ProgressDialog :message="STRINGS.get('iniciando_sesion')" />
   </section>
@@ -52,7 +55,7 @@ export default {
   },
   mounted () {
     if (AUTH.exists) {
-      this.$router.replace("/tarjetas/");
+      this.$router.replace("/app/");
     }
   },
   methods: {
@@ -68,7 +71,7 @@ export default {
         hideModal("progress-dialog");
         if (!error) {
           form.classList.add("was-validated");
-          this.$router.replace("/tarjetas/");
+          this.$router.replace("/app/");
         }
         else {
           CAPACITOR.showToast(STRINGS.get(error_key), "long");

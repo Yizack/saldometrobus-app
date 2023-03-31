@@ -48,18 +48,22 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-6 d-grid pe-1">
-        <button class="btn btn-primary btn-block">
-          <i class="fas fa-sync-alt" />
-          <span class="ms-2">{{ STRINGS.get("editar") }}</span>
-        </button>
+    <div class="d-flex">
+      <div class="flex-fill">
+        <div class="d-grid">
+          <button class="btn btn-primary btn-block me-2">
+            <i class="fas fa-sync-alt" />
+            <span class="ms-2">{{ STRINGS.get("editar") }}</span>
+          </button>
+        </div>
       </div>
-      <div class="col-6 d-grid ps-1">
-        <button class="btn btn-danger btn-block">
-          <i class="fas fa-sync-alt" />
-          <span class="ms-2">{{ STRINGS.get("eliminar") }}</span>
-        </button>
+      <div class="flex-fill">
+        <div class="d-grid">
+          <button class="btn btn-danger btn-block ms-1">
+            <i class="fas fa-sync-alt" />
+            <span class="ms-2">{{ STRINGS.get("eliminar") }}</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -67,7 +71,7 @@
 
 <script>
 export default {
-  name: "InformationCard",
+  name: "InfoTarjeta",
   props: {
     tarjeta: {
       type: Object,
