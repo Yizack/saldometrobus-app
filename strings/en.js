@@ -101,7 +101,7 @@ export default {
   rango: "Range",
   no_cambio: "There were no changes in the balance.",
   grafica_nota: "Graphs do not include data for the current day.",
-  error_tarjeta: "Invalid card number.",
-  existe_tarjeta: "A card with this number already exists.",
+  error_tarjeta: "Invalid card number",
+  existe_tarjeta: "A card with this number already exists",
   version: "Version"
 };

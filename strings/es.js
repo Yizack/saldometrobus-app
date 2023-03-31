@@ -101,7 +101,7 @@ export default {
   rango: "Rango",
   no_cambio: "No hubo cambios en el saldo.",
   grafica_nota: "Las gráficas no incluyen los datos del día actual.",
-  error_tarjeta: "Número de tarjeta no válido.",
-  existe_tarjeta: "Ya existe una tarjeta con este número.",
+  error_tarjeta: "Número de tarjeta no válido",
+  existe_tarjeta: "Ya existe una tarjeta con este número",
   version: "Versión"
 };
