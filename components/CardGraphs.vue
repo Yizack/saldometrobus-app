@@ -100,8 +100,9 @@ export default {
       const length = template.length;
       const startTime = new Date(template[length - 1].x).getTime();
       const endTime = new Date(template[0].x).getTime();
+      let previous = { x: "", y: 0 };
 
-      this.tarjeta.movimientos.forEach((tarjeta, index) => {
+      this.tarjeta.movimientos.forEach((tarjeta) => {
         const fecha = new Date(Number(tarjeta.fecha) - timeOffSet).toISOString().split("T")[0];
         const fechaTime = new Date(fecha).getTime();
         const condition = this.charts.find(item => item.name === chart).condition(tarjeta.movimiento);
@@ -113,6 +114,11 @@ export default {
               data.push({ x: fecha, y });
             }
           }
+          if (fechaTime < startTime && !previous.y && chart === "cambio") {
+            if (condition) {
+              previous = { x: template[length - 1].x, y };
+            }
+          }
         }
         else if (fecha === this.getDaysBefore[0].x) {
           if (condition) {
@@ -120,24 +126,38 @@ export default {
             data.push({ x: String(hour), y });
           }
         }
+        else if (fecha < this.getDaysBefore[0].x && !previous.y && chart === "cambio") {
+          if (condition) {
+            previous = { x: template[length - 1].x, y };
+          }
+        }
       });
 
       if (chart === "cambio") {
         if (data.length > 0) {
           const ultimo = data[0];
+
+          if (previous.y) {
+            data.push(previous);
+          }
+
           const primero = data[data.length - 1];
           const pad = template.map((item) => {
-            if (item.x < primero.x) {
-              return { x: item.x, y: primero.y };
+            const x = this.daysBefore > 1 ? item.x : Number(item.x);
+            if (x < primero.x) {
+              return { x, y: primero.y };
             }
-            else if (item.x > ultimo.x) {
-              return { x: item.x, y: ultimo.y };
+            else if (x > ultimo.x) {
+              return { x, y: ultimo.y };
             }
-            else if (item.x > primero.x) {
-              const filler = data.find(d => d.x < item.x);
-              return { x: item.x, y: filler.y };
+            else if (x > primero.x) {
+              const filler = data.find((d) => {
+                const dx = this.daysBefore > 1 ? d.x : Number(d.x);
+                return dx < x;
+              });
+              return { x, y: filler.y };
             }
-            return { x: item.x, y: 0 };
+            return { x, y: 0 };
           });
           return data.concat(pad).reverse();
         }
