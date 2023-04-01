@@ -51,7 +51,7 @@
     <div class="d-flex">
       <div class="flex-fill">
         <div class="d-grid">
-          <button class="btn btn-primary btn-block me-2">
+          <button class="btn btn-primary btn-block me-2" role="button" data-bs-toggle="modal" data-bs-target="#edit-dialog">
             <i class="fas fa-sync-alt" />
             <span class="ms-2">{{ STRINGS.get("editar") }}</span>
           </button>
@@ -63,6 +63,33 @@
             <i class="fas fa-sync-alt" />
             <span class="ms-2">{{ STRINGS.get("eliminar") }}</span>
           </button>
+        </div>
+      </div>
+    </div>
+    <!-- Edit Dialog -->
+    <div id="edit-dialog" class="modal fade" tabindex="-1" aria-labelledby="edit-dialog-label" aria-hidden="true" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 id="edit-dialog-label" class="modal-title fs-5 text-primary-emphasis">{{ STRINGS.get("editar_tarjeta") }}</h1>
+          </div>
+          <div class="modal-body text-center">
+            <form ref="edit" novalidate @submit.prevent="editCard()">
+              <div class="mb-3 position-relative">
+                <input v-model="form.nombre" class="form-control" type="text" :placeholder="STRINGS.get('nombre')" required>
+                <div class="invalid-tooltip">
+                  {{ STRINGS.get("obligatorio") }}
+                </div>
+              </div>
+              <div class="mb-3 position-relative">
+                <input class="form-control" type="number" :value="tarjeta.numero" disabled>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-danger me-2" type="button" data-bs-dismiss="modal">{{ STRINGS.get("cancel") }}</button>
+                <input class="btn btn-primary" type="submit" role="button" :value="STRINGS.get('editar')">
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -86,7 +113,10 @@ export default {
         percent: 0,
         color: ""
       },
-      dialog: ""
+      dialog: "",
+      form: {
+        nombre: ""
+      }
     };
   },
   computed: {
@@ -107,7 +137,42 @@ export default {
       }
     }
   },
+  mounted () {
+    this.form.nombre = this.tarjeta.nombre;
+  },
   methods: {
+    async editCard () {
+      const form = this.$refs.edit;
+      if (form.checkValidity()) {
+        hideModal("edit-dialog");
+        this.dialog = STRINGS.get("editando");
+        showModal("progress-dialog");
+        const { error, error_key } = await API.updateTarjeta({
+          email: AUTH.user.email,
+          token: AUTH.user.token,
+          numero: this.tarjeta.numero,
+          nombre: this.form.nombre
+        });
+
+        const { changes } = await DB.updateNombreTarjeta(this.tarjeta.numero, this.form.nombre);
+
+        if (!error && changes > 0) {
+          await CAPACITOR.showToast(`${STRINGS.get("editada")}: ${this.tarjeta.numero}`);
+          await sleep(0.5);
+          hideModal("progress-dialog");
+          this.$router.replace("/app/");
+        }
+        else {
+          await CAPACITOR.showToast(STRINGS.get(error_key));
+          await sleep(0.5);
+          hideModal("progress-dialog");
+        }
+        form.classList.remove("was-validated");
+      }
+      else {
+        form.classList.add("was-validated");
+      }
+    },
     async deleteCard () {
       const confirm = await CAPACITOR.confirm(STRINGS.get("eliminar_tarjeta"), STRINGS.get("eliminar_seguro"));
       if (confirm) {

@@ -66,6 +66,11 @@ class SaldometrobusAPI {
     const response = await CAPACITOR.doPost(this.deleteTarjetaURL, payload);
     return response.status === 200 ? response.data : error_response;
   }
+
+  async updateTarjeta (payload) {
+    const response = await CAPACITOR.doPost(this.updateTarjetaURL, payload);
+    return response.status === 200 ? response.data : error_response;
+  }
 }
 
 export const API = new SaldometrobusAPI();

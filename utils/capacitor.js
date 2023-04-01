@@ -31,6 +31,7 @@ class CapacitorPlugins {
   }
 
   showToast (text, duration, position) {
+    console.info(text);
     return Toast.show({ text, duration, position });
   }
 

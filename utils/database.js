@@ -112,9 +112,11 @@ class Database {
     return this.query(statement);
   }
 
-  updateNombreTarjeta (numero, nombre) {
+  async updateNombreTarjeta (numero, nombre) {
     const statement = `UPDATE tarjetas SET nombre = '${nombre}' WHERE numero = '${numero}'`;
-    return this.query(statement);
+    console.info(`Edited: ${numero}`);
+    const { changes } = await this.execute(statement);
+    return changes;
   }
 
   existsTarjeta (numero) {
@@ -127,7 +129,8 @@ class Database {
       `DELETE FROM tarjetas WHERE numero = '${numero}'`,
       `DELETE FROM movimientos WHERE numero = '${numero}'`
     ];
-    console.info("Deleted", numero);
+
+    console.info(`Deleted: ${numero}`);
 
     const { changes } = await this.execute(statements);
     return changes;

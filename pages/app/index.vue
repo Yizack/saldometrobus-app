@@ -105,7 +105,6 @@ export default {
       const form = this.$refs.add;
       if (form.checkValidity()) {
         hideModal("add-dialog");
-        await sleep(0.5);
         showModal("progress-dialog");
         const { email, token } = AUTH.user;
         const { nombre, numero } = this.form;
