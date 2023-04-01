@@ -5,11 +5,11 @@ class SaldometrobusAPI {
     this.baseURL = "https://saldometrobus.yizack.com";
     this.tarjetasAPI = `${this.baseURL}/api/tarjeta`;
     this.loginURL = `${this.baseURL}/database/v2/login`;
-    this.registroURL = `${this.baseURL}/database/registro`;
+    this.registroURL = `${this.baseURL}/database/v2/registro`;
     this.addTarjetaURL = `${this.baseURL}/database/v2/tarjetas_insert`;
     this.getTarjetasURL = `${this.baseURL}/database/v2/tarjetas_get`;
-    this.updateTarjetaURL = `${this.baseURL}/database/tarjetas_update`;
-    this.deleteTarjetaURL = `${this.baseURL}/database/tarjetas_delete`;
+    this.updateTarjetaURL = `${this.baseURL}/database/v2/tarjetas_update`;
+    this.deleteTarjetaURL = `${this.baseURL}/database/v2/tarjetas_delete`;
   }
 
   async userLogin (payload) {
@@ -60,6 +60,11 @@ class SaldometrobusAPI {
     else {
       return false;
     }
+  }
+
+  async deleteTarjeta (payload) {
+    const response = await CAPACITOR.doPost(this.deleteTarjetaURL, payload);
+    return response.status === 200 ? response.data : error_response;
   }
 }
 

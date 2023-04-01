@@ -59,13 +59,14 @@
       </div>
       <div class="flex-fill">
         <div class="d-grid">
-          <button class="btn btn-danger btn-block ms-1">
+          <button class="btn btn-danger btn-block ms-1" @click="deleteCard()">
             <i class="fas fa-sync-alt" />
             <span class="ms-2">{{ STRINGS.get("eliminar") }}</span>
           </button>
         </div>
       </div>
     </div>
+    <ProgressDialog :message="dialog" />
   </div>
 </template>
 
@@ -84,7 +85,8 @@ export default {
       saldoBar: {
         percent: 0,
         color: ""
-      }
+      },
+      dialog: ""
     };
   },
   computed: {
@@ -102,6 +104,34 @@ export default {
       }
       else {
         return "success";
+      }
+    }
+  },
+  methods: {
+    async deleteCard () {
+      const confirm = await CAPACITOR.confirm(STRINGS.get("eliminar_tarjeta"), STRINGS.get("eliminar_seguro"));
+      if (confirm) {
+        this.dialog = STRINGS.get("eliminando");
+        showModal("progress-dialog");
+        const { error, error_key } = await API.deleteTarjeta({
+          email: AUTH.user.email,
+          token: AUTH.user.token,
+          numero: this.tarjeta.numero
+        });
+
+        const { changes } = await DB.deleteTarjeta(this.tarjeta.numero);
+
+        if (!error && changes > 0) {
+          await CAPACITOR.showToast(`${STRINGS.get("eliminada")}: ${this.tarjeta.numero}`);
+          await sleep(0.5);
+          hideModal("progress-dialog");
+          this.$router.replace("/app/");
+        }
+        else {
+          await CAPACITOR.showToast(STRINGS.get(error_key));
+          await sleep(0.5);
+          hideModal("progress-dialog");
+        }
       }
     }
   }

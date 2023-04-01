@@ -41,10 +41,6 @@ export const hideModal = (id) => {
   }
 };
 
-export const getOffset = (date = new Date()) => {
-  return date.getTimezoneOffset();
-};
-
 export const sleep = (seconds) => {
   return new Promise(resolve => setTimeout(resolve, seconds * 1000));
 };

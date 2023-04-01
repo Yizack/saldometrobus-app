@@ -2,6 +2,7 @@ import { StatusBar, Style } from "@capacitor/status-bar";
 import { Capacitor, CapacitorHttp } from "@capacitor/core";
 import { Preferences } from "@capacitor/preferences";
 import { Toast } from "@capacitor/toast";
+import { Dialog } from "@capacitor/dialog";
 
 class CapacitorPlugins {
   async setStatusBar (isDark) {
@@ -47,9 +48,13 @@ class CapacitorPlugins {
     };
 
     const response = await CapacitorHttp.post(options);
-    response.data = JSON.parse(response.data);
     return response;
   };
+
+  async confirm (title, message) {
+    const { value } = await Dialog.confirm({ title, message, okButtonTitle: "Ok", cancelButtonTitle: STRINGS.get("cancel") });
+    return value;
+  }
 }
 
 export const CAPACITOR = new CapacitorPlugins();

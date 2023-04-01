@@ -62,6 +62,7 @@ export default {
   obligatorio: "This field is required",
   editando: "Editing...",
   eliminando: "Deleting...",
+  eliminada: "Card deleted",
   iniciando_sesion: "Logging in...",
   tarjetas_vinculadas: "Linked cards",
   nota: "If you are not registered, your linked cards will only be stored in your phone's memory and will not be linked to any account. If you change phones, you will have to re-add your cards one by one. Register to link your card to your email.",

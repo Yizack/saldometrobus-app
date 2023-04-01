@@ -112,6 +112,7 @@ export default {
         const { tarjeta } = await API.getTarjeta(numero);
         if (tarjeta) {
           tarjeta.nombre = String(nombre).trim();
+          tarjeta.fecha_added = new Date().toISOString().replace("T", " ").replace("Z", "");
           try {
             const res = await Promise.all([
               DB.insertTarjeta(tarjeta),
@@ -121,15 +122,15 @@ export default {
             const { error, error_key } = res[1];
             if (changes > 0 && !error) {
               await DB.insertMovimientos(tarjeta);
-              this.tarjetas.unshift(tarjeta);
-              CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
+              await CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
+              this.tarjetas = await DB.getTarjetas();
             }
             else {
-              CAPACITOR.showToast(STRINGS.get(error_key));
+              await CAPACITOR.showToast(STRINGS.get(error_key));
             }
           }
           catch (error) {
-            CAPACITOR.showToast(STRINGS.get("error"));
+            await CAPACITOR.showToast(STRINGS.get("error"));
             console.warn(error);
           }
           await sleep(0.5);

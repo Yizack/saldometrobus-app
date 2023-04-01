@@ -122,13 +122,15 @@ class Database {
     return this.query(statement);
   }
 
-  deleteTarjeta (numero) {
+  async deleteTarjeta (numero) {
     const statements = [
       `DELETE FROM tarjetas WHERE numero = '${numero}'`,
       `DELETE FROM movimientos WHERE numero = '${numero}'`
     ];
+    console.info("Deleted", numero);
 
-    return this.execute(statements);
+    const { changes } = await this.execute(statements);
+    return changes;
   }
 
   deleteAll () {

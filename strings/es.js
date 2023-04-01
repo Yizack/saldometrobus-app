@@ -62,6 +62,7 @@ export default {
   obligatorio: "Este campo es obligatorio",
   editando: "Editando...",
   eliminando: "Eliminando...",
+  eliminada: "Tarjeta eliminada",
   iniciando_sesion: "Iniciando sesión...",
   tarjetas_vinculadas: "Tarjetas vinculadas",
   nota: "Si no estás registrado, tus tarjetas vinculadas solamente serán almacenadas en la memoria de tu teléfono y no estarán vinculadas a ninguna cuenta, si cambias de teléfono tendrás que volver a añadir tus tarjetas una por una. Regístrate para vincular tu tarjeta a tu correo electrónico.",
