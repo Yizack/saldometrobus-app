@@ -1,5 +1,4 @@
 import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from "@capacitor-community/sqlite";
-import { defineCustomElement } from "jeep-sqlite/dist/components/jeep-sqlite";
 
 const TABLE = {
   tarjetas: `
@@ -29,6 +28,7 @@ class Database {
     const connection = new SQLiteConnection(CapacitorSQLite);
 
     if (!CAPACITOR.isNative()) {
+      const { defineCustomElement } = await import("jeep-sqlite/dist/components/jeep-sqlite");
       defineCustomElement(window);
       const jeep = document.createElement("jeep-sqlite");
       document.body.appendChild(jeep);

@@ -25,6 +25,7 @@
     "resources": "npx @capacitor/assets generate --android --ios --splashBackgroundColorDark #F8F9FC",
     "versionApp": "node updateVersion.js",
     "trapeze": "npx trapeze run config.yaml -y",
+    "clean": "node cleanOutput.js",
     "sync": "npx cap sync",
     "key": "openssl base64 -A -in saldometrobus.jks -out saldometrobus.jks.txt",
     "patch": "npm version patch",

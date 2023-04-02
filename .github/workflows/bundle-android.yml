@@ -27,12 +27,13 @@ jobs:
       run: npm ci
 
     - name: Build App ⚡
-      run: |
-        npm run generate
+      run: npm run generate
+
+    - name: Clean output 🧹
+      run: npm run clean
 
     - name: Capacitor 📲
-      run: |
-          npm run sync
+      run: npm run sync
 
     - name: Version App 🔢
       run: |
