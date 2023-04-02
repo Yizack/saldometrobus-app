@@ -23,7 +23,7 @@
             <input class="btn btn-primary mb-4" type="submit" role="button" :value="STRINGS.get('registrate')">
           </div>
         </form>
-        <p class="mb-3">{{ STRINGS.get("tiene_cuenta") }} <NuxtLink to="/">{{ STRINGS.get("ingresa") }}</NuxtLink></p>
+        <p class="mb-3">{{ STRINGS.get("tiene_cuenta") }} <NuxtLink class="text-primary" to="/">{{ STRINGS.get("ingresa") }}</NuxtLink></p>
         <p class="mb-3"><small>{{ STRINGS.get("nota2") }}</small></p>
       </div>
     </div>

@@ -14,7 +14,6 @@ export const CONST = {
     light: {
       primary: "#4E73DF",
       primaryDark: "#1f1f1f",
-      background: "#121212",
       text: "#5a5c69",
       dark: "#5D5F6C",
       dark_area: "#5D5F6C33",
@@ -28,10 +27,7 @@ export const CONST = {
     dark: {
       primary: "#4E73DF",
       primaryDark: "#405FB9",
-      secondary: "#FF916B",
       text: "#D5D5DB",
-      background: "#F8F9FC",
-      progressBackground: "#eaecf4",
       dark: "#D5D5DB",
       dark_area: "#D5D5DB33",
       border: "#373737",
