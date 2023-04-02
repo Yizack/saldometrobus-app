@@ -246,3 +246,7 @@ a {
   background-color: var(--nav-hover);
   color: var(--bs-body-color);
 }
+
+.modal {
+  --bs-modal-bg: var(--bs-tertiary-bg);
+}
