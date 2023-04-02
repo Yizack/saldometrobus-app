@@ -49,7 +49,7 @@
     "eslint": "^8.37.0",
     "eslint-plugin-vue": "^9.10.0",
     "jeep-sqlite": "^2.3.3",
-    "nuxt": "^3.3.2",
+    "nuxt": "^3.3.3",
     "nuxt-icon": "^0.3.3",
     "stylelint": "^15.4.0"
   },
