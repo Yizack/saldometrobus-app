@@ -22,7 +22,7 @@
         <div class="d-grid gap-2 mt-5 mt-auto">
           <input class="btn btn-primary mb-4" type="submit" role="button" :value="STRINGS.get('login')">
           <NuxtLink class="btn btn-success" role="button" to="/registro/">{{ STRINGS.get("registrate") }}</NuxtLink>
-          <input class="btn btn-secondary" role="button" to="/app/" :value="STRINGS.get('no_registro')" @click="guestLogin()">
+          <input class="btn btn-secondary" type="button" role="button" to="/app/" :value="STRINGS.get('no_registro')" @click="guestLogin()">
         </div>
       </form>
       <div class="mt-4 small">
