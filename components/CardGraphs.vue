@@ -41,7 +41,7 @@ export default {
           title: STRINGS.get("grafica_gastos"),
           subtitle: STRINGS.get("gasto_total"),
           color: "danger",
-          condition: movimiento => movimiento === "Uso" || movimiento === "Puerta Trasera"
+          condition: movimiento => movimiento === STRINGS.get("uso") || movimiento === STRINGS.get("puerta_trasera")
         },
         {
           name: "cambio",
@@ -60,7 +60,7 @@ export default {
           title: STRINGS.get("grafica_recargas"),
           subtitle: STRINGS.get("recarga_total"),
           color: "success",
-          condition: movimiento => movimiento === "Carga" || movimiento === "Transacción de Carga de Monedero con #RA"
+          condition: movimiento => movimiento === STRINGS.get("carga") || movimiento === STRINGS.get("carga_online")
         }
       ]
     };
