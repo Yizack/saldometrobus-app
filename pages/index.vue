@@ -22,7 +22,7 @@
         <div class="d-grid gap-2 mt-5 mt-auto">
           <input class="btn btn-primary mb-4" type="submit" role="button" :value="STRINGS.get('login')">
           <NuxtLink class="btn btn-success" role="button" to="/registro/">{{ STRINGS.get("registrate") }}</NuxtLink>
-          <NuxtLink class="btn btn-secondary" role="button" to="/app/">{{ STRINGS.get("no_registro") }}</NuxtLink>
+          <input class="btn btn-secondary" role="button" to="/app/" :value="STRINGS.get('no_registro')" @click="guestLogin()">
         </div>
       </form>
       <div class="mt-4 small">
@@ -74,13 +74,17 @@ export default {
           this.$router.replace("/app/");
         }
         else {
-          CAPACITOR.showToast(STRINGS.get(error_key), "long");
+          await CAPACITOR.showToast(STRINGS.get(error_key), "long");
           form.classList.remove("was-validated");
         }
       }
       else {
         form.classList.add("was-validated");
       }
+    },
+    async guestLogin () {
+      await AUTH.guestLogin();
+      this.$router.replace("/app/");
     }
   }
 };

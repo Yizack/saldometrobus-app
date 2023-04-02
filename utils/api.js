@@ -10,6 +10,7 @@ class SaldometrobusAPI {
     this.getTarjetasURL = `${this.baseURL}/database/v2/tarjetas_get`;
     this.updateTarjetaURL = `${this.baseURL}/database/v2/tarjetas_update`;
     this.deleteTarjetaURL = `${this.baseURL}/database/v2/tarjetas_delete`;
+    this.updateURL = `${this.baseURL}/database/v2/update_password`;
   }
 
   async userLogin (payload) {
@@ -19,6 +20,11 @@ class SaldometrobusAPI {
 
   async userRegistro (payload) {
     const response = await CAPACITOR.doPost(this.registroURL, payload);
+    return response.status === 200 ? response.data : error_response;
+  }
+
+  async userPassUpdate (payload) {
+    const response = await CAPACITOR.doPost(this.updateURL, payload);
     return response.status === 200 ? response.data : error_response;
   }
 

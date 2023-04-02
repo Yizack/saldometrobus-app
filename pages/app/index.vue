@@ -83,7 +83,7 @@ export default {
   async mounted () {
     if (AUTH.exists) {
       this.tarjetas = await DB.getTarjetas();
-      if (!AUTH.user.updated && !this.tarjetas.length) {
+      if (!AUTH.user.updated && !this.tarjetas.length && !AUTH.isGuest) {
         this.progress = STRINGS.get("adding_tarjetas");
         await sleep(0.5);
         showModal("progress-dialog");
@@ -118,12 +118,14 @@ export default {
           try {
             const res = await Promise.all([
               DB.insertTarjeta(tarjeta),
-              API.addTarjeta({
-                nombre: tarjeta.nombre,
-                numero: tarjeta.numero,
-                email: AUTH.user.email,
-                token: AUTH.user.token
-              })
+              !AUTH.isGuest
+                ? API.addTarjeta({
+                  nombre: tarjeta.nombre,
+                  numero: tarjeta.numero,
+                  email: AUTH.user.email,
+                  token: AUTH.user.token
+                })
+                : { error: false }
             ]);
             const { changes } = res[0];
             const { error, error_key } = res[1];

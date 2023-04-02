@@ -8,6 +8,9 @@ export const AUTH = defineStore("auth", {
     },
     exists (state) {
       return Object.keys(state.auth).length > 0;
+    },
+    isGuest (state) {
+      return state.auth.guest;
     }
   },
   actions: {
@@ -16,9 +19,19 @@ export const AUTH = defineStore("auth", {
       if (!data.error) {
         this.auth = data.usuario;
         this.auth.updated = false;
+        this.auth.guest = false;
         await CAPACITOR.setPref("auth", JSON.stringify(data.usuario));
       }
       return data;
+    },
+    async guestLogin () {
+      this.auth = {
+        email: STRINGS.get("invitado"),
+        nombre: STRINGS.get("invitado"),
+        updated: true,
+        guest: true
+      };
+      await CAPACITOR.setPref("auth", JSON.stringify(this.auth));
     },
     async setUpdated () {
       this.auth.updated = true;
@@ -29,6 +42,7 @@ export const AUTH = defineStore("auth", {
       if (!data.error) {
         this.auth = data.usuario;
         this.auth.updated = true;
+        this.auth.guest = false;
         await CAPACITOR.setPref("auth", JSON.stringify(data.usuario));
       }
       return data;

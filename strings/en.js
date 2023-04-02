@@ -106,5 +106,11 @@ export default {
   grafica_nota: "Graphs do not include data for the current day.",
   error_tarjeta: "Invalid card number",
   existe_tarjeta: "A card with this number already exists",
-  version: "Version"
+  version: "Version",
+  change_pass: "Update password",
+  current_pass: "Current password",
+  new_pass: "New password",
+  pass_updated: "Password updated",
+  pass_error: "The current password is incorrect",
+  updating_pass: "Updating password..."
 };

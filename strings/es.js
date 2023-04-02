@@ -106,5 +106,11 @@ export default {
   grafica_nota: "Las gráficas no incluyen los datos del día actual.",
   error_tarjeta: "Número de tarjeta no válido",
   existe_tarjeta: "Ya existe una tarjeta con este número",
-  version: "Versión"
+  version: "Versión",
+  change_pass: "Cambiar contraseña",
+  current_pass: "Contraseña actual",
+  new_pass: "Nueva contraseña",
+  pass_updated: "Contraseña actualizada",
+  pass_error: "La contraseña actual es incorrecta",
+  updating_pass: "Actualizando contraseña..."
 };

@@ -4,7 +4,7 @@
     <div class="container-fluid text-center">
       <div class="my-5">
         <form ref="registro" novalidate @submit.prevent="registro()">
-          <div class="mb-3 position-relative">
+          <div class="mb-3">
             <input class="form-control" :class="{'is-valid': isNombreValid}" type="text" :placeholder="STRINGS.get('nombre')" required @input="form.nombre = $event.target.value">
           </div>
           <div class="mb-3 position-relative">
@@ -13,13 +13,13 @@
               {{ STRINGS.get("correo_existe") }}
             </div>
           </div>
-          <div class="mb-3 position-relative">
+          <div class="mb-3">
             <input class="form-control" :class="{'is-valid': isPasswordValid}" type="password" :placeholder="STRINGS.get('password')" autocomplete="new-password" required @input="form.password = $event.target.value">
           </div>
-          <div class="mb-3 position-relative">
+          <div class="mb-3">
             <input class="form-control" :class="{'is-valid': isPasswordCheckValid}" type="password" :placeholder="STRINGS.get('password_check')" autocomplete="off" required @input="form.password_check = $event.target.value">
           </div>
-          <div class="d-grid gap-2 mt-5 mt-auto">
+          <div class="d-grid mt-5 ">
             <input class="btn btn-primary mb-4" type="submit" role="button" :value="STRINGS.get('registrate')">
           </div>
         </form>
@@ -85,7 +85,7 @@ export default {
             const email_input = this.$refs.email;
             email_input.focus();
           }
-          CAPACITOR.showToast(STRINGS.get(error_key), "long");
+          await CAPACITOR.showToast(STRINGS.get(error_key), "long");
         }
       }
     }
