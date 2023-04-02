@@ -6,7 +6,7 @@ node_modules
 .output
 .env
 dist
-ios
 config.yaml
 app-release*
 icons
+*.jks*
