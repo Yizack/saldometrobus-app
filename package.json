@@ -22,10 +22,11 @@
     "prepare": "nuxt prepare",
     "android": "npx cap add android",
     "ios": "npx cap add ios",
-    "resources": "npx @capacitor/assets generate --android --splashBackgroundColorDark #F8F9FC",
+    "resources": "npx @capacitor/assets generate --android --ios --splashBackgroundColorDark #F8F9FC",
     "versionApp": "node updateVersion.js",
     "trapeze": "npx trapeze run config.yaml -y",
     "sync": "npx cap sync",
+    "key": "openssl base64 -A -in saldometrobus.jks -out saldometrobus.jks.txt",
     "patch": "npm version patch",
     "minor": "npm version minor",
     "major": "npm version major"

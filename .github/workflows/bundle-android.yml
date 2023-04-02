@@ -1,0 +1,69 @@
+name: Android Bundle
+
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  # Android Bundle
+  android-bundle:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: Checkout 🛎️
+      uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+
+    - name: Setup Node 🐢
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        
+    - name: Install Dependencies 📦
+      run: npm ci
+
+    - name: Build App ⚡
+      run: |
+        npm run generate
+
+    - name: Capacitor 📲
+      run: |
+          npm run android
+          npm run resources
+          npm run sync
+
+    - name: Version App 🔢
+      run: |
+          npm run versionApp
+          npm run trapeze
+
+    - name: Setup java ☕
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+
+    - name: Bundle Android App 📦
+      run: |
+          cd android
+          chmod +x ./gradlew
+          ./gradlew app:bundleRelease --stacktrace
+
+    - name: Extract Android Signing Key 🔑
+      run: |
+        echo "${{ secrets.RELEASE_KEYSTORE }}" > android/release.jks.base64
+        base64 -d android/release.jks.base64 > android/release.decrypted.jks
+
+    - name: Sign Build 🔐
+      run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -keypass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab howmanytimeslarger
+
+    - name: Upload Bundle 📤
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-release
+        path: android/app/build/outputs/bundle/release/app-release-signed.aab
+        retention-days: 1
