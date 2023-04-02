@@ -9,12 +9,21 @@
           </div>
           <div class="mb-3">
             <input class="form-control" type="email" :placeholder="STRINGS.get('correo')" required>
+            <div class="invalid-tooltip">
+              Please choose a unique and valid username.
+            </div>
           </div>
           <div class="mb-3">
-            <input class="form-control" type="password" :placeholder="STRINGS.get('password')" required>
+            <input class="form-control is-valid" type="password" :placeholder="STRINGS.get('password')" required>
+            <div class="invalid-tooltip">
+              Please choose a unique and valid username.
+            </div>
           </div>
           <div class="mb-3">
-            <input class="form-control" type="password" :placeholder="STRINGS.get('password_check')" required>
+            <input class="form-control is-valid" type="password" :placeholder="STRINGS.get('password_check')" required>
+            <div class="invalid-tooltip">
+              Please choose a unique and valid username.
+            </div>
           </div>
           <div class="d-grid gap-2 mt-5 mt-auto">
             <a class="btn btn-primary mb-4" role="button">{{ STRINGS.get("registrate") }}</a>
@@ -32,7 +41,18 @@ export default {
   name: "SignupPage",
   data () {
     return {
-
+      form: {
+        name: {
+          value: "",
+          error_msg: "",
+          get isValid () {
+            return Boolean(this.value);
+          }
+        },
+        email: "",
+        password: "",
+        password_check: ""
+      }
     };
   }
 };

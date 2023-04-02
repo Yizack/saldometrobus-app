@@ -30,7 +30,6 @@ class Config {
     this.config.dark = dark;
     useHead({ bodyAttrs: { "data-bs-theme": dark ? "dark" : "light" } });
     await CAPACITOR.setPref("dark", dark);
-    await CAPACITOR.setStatusBar(dark);
   }
 }
 

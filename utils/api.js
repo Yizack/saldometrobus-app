@@ -17,6 +17,11 @@ class SaldometrobusAPI {
     return response.status === 200 ? response.data : error_response;
   }
 
+  async userRegistro (payload) {
+    const response = await CAPACITOR.doPost(this.registroURL, payload);
+    return response.status === 200 ? response.data : error_response;
+  }
+
   async addTarjeta (payload) {
     const response = await CAPACITOR.doPost(this.addTarjetaURL, payload);
     return response.status === 200 ? response.data : error_response;
