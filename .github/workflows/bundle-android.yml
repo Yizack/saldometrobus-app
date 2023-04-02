@@ -32,8 +32,6 @@ jobs:
 
     - name: Capacitor 📲
       run: |
-          npm run android
-          npm run resources
           npm run sync
 
     - name: Version App 🔢
