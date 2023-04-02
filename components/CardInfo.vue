@@ -147,14 +147,15 @@ export default {
         hideModal("edit-dialog");
         this.dialog = STRINGS.get("editando");
         showModal("progress-dialog");
+        const nombre_trimmed = this.form.nombre.trim();
         const { error, error_key } = await API.updateTarjeta({
           email: AUTH.user.email,
           token: AUTH.user.token,
           numero: this.tarjeta.numero,
-          nombre: this.form.nombre
+          nombre: nombre_trimmed
         });
 
-        const { changes } = await DB.updateNombreTarjeta(this.tarjeta.numero, this.form.nombre);
+        const { changes } = await DB.updateNombreTarjeta(this.tarjeta.numero, nombre_trimmed);
 
         if (!error && changes > 0) {
           await CAPACITOR.showToast(`${STRINGS.get("editada")}: ${this.tarjeta.numero}`);

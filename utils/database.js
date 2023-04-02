@@ -88,7 +88,7 @@ class Database {
   }
 
   async getTarjetas () {
-    const statement = "SELECT * FROM tarjetas ORDER BY fecha_added DESC";
+    const statement = "SELECT * FROM tarjetas ORDER BY fecha_added ASC";
     const { values } = await this.query(statement);
     if (values.length) {
       values.forEach((tarjeta) => {
@@ -106,10 +106,12 @@ class Database {
     return values;
   }
 
-  updateTarjeta (tarjeta) {
-    const { nombre, numero, saldo, estado, fecha, tipo } = tarjeta;
-    const statement = `UPDATE tarjetas SET nombre = '${nombre}', saldo = '${saldo}', estado = '${estado}', fecha = '${fecha}', tipo = '${tipo}' WHERE numero = '${numero}'`;
-    return this.query(statement);
+  async updateTarjeta (tarjeta) {
+    const { numero, saldo, estado, fecha, tipo } = tarjeta;
+    const statement = `UPDATE tarjetas SET saldo = '${saldo}', estado = '${estado}', fecha = '${fecha}', tipo = '${tipo}' WHERE numero = '${numero}'`;
+    const { changes } = await this.execute(statement);
+    console.info(`Updated: ${numero}`);
+    return changes;
   }
 
   async updateNombreTarjeta (numero, nombre) {
@@ -208,6 +210,11 @@ class Database {
       });
     }
     return values;
+  }
+
+  deleteMovimientos (numero) {
+    const statement = `DELETE FROM movimientos WHERE numero = '${numero}'`;
+    return this.execute(statement);
   }
 
   // Base methods

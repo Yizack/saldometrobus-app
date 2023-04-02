@@ -70,7 +70,7 @@ export default {
         showModal("progress-dialog");
         this.form.submitted = true;
         const { error, error_key } = await AUTH.registro({
-          nombre: this.form.nombre,
+          nombre: this.form.nombre.trim(),
           email: this.form.email,
           password: await sha256(this.form.password)
         });

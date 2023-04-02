@@ -22,7 +22,7 @@ definePageMeta({ layout: "main" });
           <img v-else src="/images/metrobus.webp" class="img-fluid" :width="size" :height="size">
         </div>
         <div class="d-grid gap-2">
-          <button class="btn btn-primary btn-sm" role="button"><Icon name="material-symbols:refresh" width="1.5em" height="1.5em" /></button>
+          <button class="btn btn-primary btn-sm" role="button" @click="$event.stopPropagation(); updateCard(tarjeta.numero)"><Icon name="material-symbols:refresh" width="1.5em" height="1.5em" /></button>
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@ definePageMeta({ layout: "main" });
         </div>
       </div>
     </div>
-    <ProgressDialog :message="STRINGS.get('adding_tarjetas')" />
+    <ProgressDialog :message="progress" />
   </section>
 </template>
 
@@ -76,13 +76,15 @@ export default {
       form: {
         numero: "",
         nombre: ""
-      }
+      },
+      progress: ""
     };
   },
   async mounted () {
     if (AUTH.exists) {
       this.tarjetas = await DB.getTarjetas();
-      if (!AUTH.user.updated) {
+      if (!AUTH.user.updated && !this.tarjetas.length) {
+        this.progress = STRINGS.get("adding_tarjetas");
         await sleep(0.5);
         showModal("progress-dialog");
         const { email, token } = AUTH.user;
@@ -103,11 +105,11 @@ export default {
   },
   methods: {
     async addTarjeta () {
+      this.progress = STRINGS.get("adding_tarjeta");
       const form = this.$refs.add;
       if (form.checkValidity()) {
         hideModal("add-dialog");
         showModal("progress-dialog");
-        const { email, token } = AUTH.user;
         const { nombre, numero } = this.form;
         const { tarjeta } = await API.getTarjeta(numero);
         if (tarjeta) {
@@ -116,7 +118,12 @@ export default {
           try {
             const res = await Promise.all([
               DB.insertTarjeta(tarjeta),
-              API.addTarjeta({ nombre, numero, email, token })
+              API.addTarjeta({
+                nombre: tarjeta.nombre,
+                numero: tarjeta.numero,
+                email: AUTH.user.email,
+                token: AUTH.user.token
+              })
             ]);
             const { changes } = res[0];
             const { error, error_key } = res[1];
@@ -145,6 +152,22 @@ export default {
     },
     openCard (numero) {
       this.$router.push(`${numero}`);
+    },
+    async updateCard (numero) {
+      this.progress = STRINGS.get("actualizando_tarjeta");
+      showModal("progress-dialog");
+      const { tarjeta } = await API.getTarjeta(numero);
+      if (tarjeta) {
+        const { changes } = await DB.updateTarjeta(tarjeta);
+        if (changes > 0) {
+          await DB.deleteMovimientos(numero);
+          await DB.insertMovimientos(tarjeta);
+          await CAPACITOR.showToast(`${STRINGS.get("tarjeta_actualizada")}: ${tarjeta.numero}`);
+          this.tarjetas = await DB.getTarjetas();
+        }
+      }
+      await sleep(0.5);
+      hideModal("progress-dialog");
     }
   }
 };
