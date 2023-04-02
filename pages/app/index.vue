@@ -82,7 +82,7 @@ export default {
   async mounted () {
     if (AUTH.exists) {
       this.tarjetas = await DB.getTarjetas();
-      if (!this.tarjetas.length) {
+      if (!AUTH.user.updated) {
         await sleep(0.5);
         showModal("progress-dialog");
         const { email, token } = AUTH.user;
@@ -95,6 +95,7 @@ export default {
           }
         }
         this.tarjetas = await DB.getTarjetas();
+        await AUTH.setUpdated();
         await sleep(0.5);
         hideModal("progress-dialog");
       }

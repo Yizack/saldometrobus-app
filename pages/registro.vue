@@ -3,36 +3,31 @@
     <NavBar back="/" :title="STRINGS.get('registrate')" />
     <div class="container-fluid text-center">
       <div class="my-5">
-        <form ref="signup_form">
-          <div class="mb-3">
-            <input class="form-control" type="text" :placeholder="STRINGS.get('nombre')" required>
+        <form ref="registro" novalidate @submit.prevent="registro()">
+          <div class="mb-3 position-relative">
+            <input class="form-control" :class="{'is-valid': isNombreValid}" type="text" :placeholder="STRINGS.get('nombre')" required @input="form.nombre = $event.target.value">
           </div>
-          <div class="mb-3">
-            <input class="form-control" type="email" :placeholder="STRINGS.get('correo')" required>
-            <div class="invalid-tooltip">
-              Please choose a unique and valid username.
+          <div class="mb-3 position-relative">
+            <input ref="email" class="form-control" :class="{'is-valid': isEmailValid, 'is-invalid': form.error}" type="email" :placeholder="STRINGS.get('correo')" autocomplete="email" required @input="form.email = $event.target.value" @keyup="form.error = false">
+            <div v-if="form.error" class="invalid-tooltip">
+              {{ STRINGS.get("correo_existe") }}
             </div>
           </div>
-          <div class="mb-3">
-            <input class="form-control is-valid" type="password" :placeholder="STRINGS.get('password')" required>
-            <div class="invalid-tooltip">
-              Please choose a unique and valid username.
-            </div>
+          <div class="mb-3 position-relative">
+            <input class="form-control" :class="{'is-valid': isPasswordValid}" type="password" :placeholder="STRINGS.get('password')" autocomplete="new-password" required @input="form.password = $event.target.value">
           </div>
-          <div class="mb-3">
-            <input class="form-control is-valid" type="password" :placeholder="STRINGS.get('password_check')" required>
-            <div class="invalid-tooltip">
-              Please choose a unique and valid username.
-            </div>
+          <div class="mb-3 position-relative">
+            <input class="form-control" :class="{'is-valid': isPasswordCheckValid}" type="password" :placeholder="STRINGS.get('password_check')" autocomplete="off" required @input="form.password_check = $event.target.value">
           </div>
           <div class="d-grid gap-2 mt-5 mt-auto">
-            <a class="btn btn-primary mb-4" role="button">{{ STRINGS.get("registrate") }}</a>
+            <input class="btn btn-primary mb-4" type="submit" role="button" :value="STRINGS.get('registrate')">
           </div>
         </form>
         <p class="mb-3">{{ STRINGS.get("tiene_cuenta") }} <NuxtLink to="/">{{ STRINGS.get("ingresa") }}</NuxtLink></p>
         <p class="mb-3"><small>{{ STRINGS.get("nota2") }}</small></p>
       </div>
     </div>
+    <ProgressDialog :message="STRINGS.get('iniciando_sesion')" />
   </section>
 </template>
 
@@ -42,18 +37,58 @@ export default {
   data () {
     return {
       form: {
-        name: {
-          value: "",
-          error_msg: "",
-          get isValid () {
-            return Boolean(this.value);
-          }
-        },
+        nombre: "",
         email: "",
         password: "",
-        password_check: ""
+        password_check: "",
+        error: false
       }
     };
+  },
+  computed: {
+    isNombreValid () {
+      const nombre = this.form.nombre.trim();
+      return nombre.length > 0 && nombre.length <= 50;
+    },
+    isPasswordValid () {
+      return this.form.password.length >= 3;
+    },
+    isPasswordCheckValid () {
+      return this.isPasswordValid && this.form.password === this.form.password_check;
+    },
+    isEmailValid () {
+      const input = document.createElement("input");
+      input.type = "email";
+      input.required = true;
+      input.value = this.form.email;
+      return input.checkValidity();
+    }
+  },
+  methods: {
+    async registro () {
+      if (this.isNombreValid && this.isEmailValid && this.isPasswordValid && this.isPasswordCheckValid) {
+        showModal("progress-dialog");
+        this.form.submitted = true;
+        const { error, error_key } = await AUTH.registro({
+          nombre: this.form.nombre,
+          email: this.form.email,
+          password: await sha256(this.form.password)
+        });
+        await sleep(0.5);
+        hideModal("progress-dialog");
+        if (!error) {
+          this.$router.replace("/app/");
+        }
+        else {
+          if (error_key === "correo_existe") {
+            this.form.error = true;
+            const email_input = this.$refs.email;
+            email_input.focus();
+          }
+          CAPACITOR.showToast(STRINGS.get(error_key), "long");
+        }
+      }
+    }
   }
 };
 </script>

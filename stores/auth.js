@@ -15,6 +15,20 @@ export const AUTH = defineStore("auth", {
       const data = await API.userLogin(payload);
       if (!data.error) {
         this.auth = data.usuario;
+        this.auth.updated = false;
+        await CAPACITOR.setPref("auth", JSON.stringify(data.usuario));
+      }
+      return data;
+    },
+    async setUpdated () {
+      this.auth.updated = true;
+      await CAPACITOR.setPref("auth", JSON.stringify(this.auth));
+    },
+    async registro (payload) {
+      const data = await API.userRegistro(payload);
+      if (!data.error) {
+        this.auth = data.usuario;
+        this.auth.updated = true;
         await CAPACITOR.setPref("auth", JSON.stringify(data.usuario));
       }
       return data;
@@ -28,6 +42,7 @@ export const AUTH = defineStore("auth", {
         const auth = await CAPACITOR.getPref("auth");
         if (auth) {
           this.auth = JSON.parse(auth);
+          this.auth.updated = false;
         }
       }
     }
