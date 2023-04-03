@@ -115,20 +115,17 @@ export default {
         if (tarjeta) {
           tarjeta.nombre = String(nombre).trim();
           tarjeta.fecha_added = new Date().toISOString().replace("T", " ").replace("Z", "");
-          try {
-            const res = await Promise.all([
-              DB.insertTarjeta(tarjeta),
-              !AUTH.isGuest
-                ? API.addTarjeta({
-                  nombre: tarjeta.nombre,
-                  numero: tarjeta.numero,
-                  email: AUTH.user.email,
-                  token: AUTH.user.token
-                })
-                : { error: false }
-            ]);
-            const { changes } = res[0];
-            const { error, error_key } = res[1];
+          const tarjetaExists = await DB.tarjetaExists(tarjeta.numero);
+          if (!tarjetaExists) {
+            const { error, error_key } = !AUTH.isGuest
+              ? API.addTarjeta({
+                nombre: tarjeta.nombre,
+                numero: tarjeta.numero,
+                email: AUTH.user.email,
+                token: AUTH.user.token
+              })
+              : { error: false };
+            const { changes } = DB.insertTarjeta(tarjeta);
             if (changes > 0 && !error) {
               await DB.insertMovimientos(tarjeta);
               await CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
@@ -138,9 +135,8 @@ export default {
               await CAPACITOR.showToast(STRINGS.get(error_key));
             }
           }
-          catch (error) {
-            await CAPACITOR.showToast(STRINGS.get("error"));
-            console.warn(error);
+          else {
+            await CAPACITOR.showToast(`${STRINGS.get("existe_tarjeta")}: ${tarjeta.numero}`);
           }
           await sleep(0.5);
           hideModal("progress-dialog");

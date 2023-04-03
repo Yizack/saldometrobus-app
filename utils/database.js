@@ -87,6 +87,11 @@ class Database {
     return tarjeta;
   }
 
+  async tarjetaExists (numero) {
+    const tarjeta = await this.getTarjeta(numero);
+    return Boolean(tarjeta.numero);
+  }
+
   async getTarjetas () {
     const statement = "SELECT * FROM tarjetas ORDER BY fecha_added ASC";
     const { values } = await this.query(statement);
