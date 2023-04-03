@@ -27,7 +27,7 @@
     "trapeze": "npx trapeze run config.yaml -y",
     "clean": "node cleanOutput.js",
     "sync": "npx cap sync",
-    "key": "openssl base64 -A -in saldometrobus.jks -out saldometrobus.jks.txt",
+    "key": "openssl base64 -A -in saldometrobus_key.jks -out saldometrobus_key.jks.txt",
     "patch": "npm version patch",
     "minor": "npm version minor",
     "major": "npm version major"
