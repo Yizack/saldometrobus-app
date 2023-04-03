@@ -118,14 +118,14 @@ export default {
           const tarjetaExists = await DB.tarjetaExists(tarjeta.numero);
           if (!tarjetaExists) {
             const { error, error_key } = !AUTH.isGuest
-              ? API.addTarjeta({
+              ? await API.addTarjeta({
                 nombre: tarjeta.nombre,
                 numero: tarjeta.numero,
                 email: AUTH.user.email,
                 token: AUTH.user.token
               })
               : { error: false };
-            const { changes } = DB.insertTarjeta(tarjeta);
+            const { changes } = await DB.insertTarjeta(tarjeta);
             if (changes > 0 && !error) {
               await DB.insertMovimientos(tarjeta);
               await CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
