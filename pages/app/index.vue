@@ -129,11 +129,11 @@ export default {
             if (changes > 0 && !error) {
               await DB.insertMovimientos(tarjeta);
               await CAPACITOR.showToast(`${STRINGS.get("tarjeta_added")}: ${tarjeta.numero}`);
-              this.tarjetas = await DB.getTarjetas();
             }
             else {
               await CAPACITOR.showToast(STRINGS.get(error_key));
             }
+            this.tarjetas = await DB.getTarjetas();
           }
           else {
             await CAPACITOR.showToast(`${STRINGS.get("existe_tarjeta")}: ${tarjeta.numero}`);
