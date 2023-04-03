@@ -1,4 +1,5 @@
 {
+  "plugins": ["stylelint-order"],
   "rules": {
     "declaration-block-trailing-semicolon": "always",
     "declaration-bang-space-after": "never",
@@ -6,6 +7,7 @@
     "string-quotes": "double",
     "declaration-colon-space-after": "always",
     "length-zero-no-unit": true,
-    "rule-empty-line-before": ["always-multi-line", {"except": ["first-nested"]}]
+    "rule-empty-line-before": ["always-multi-line", {"except": ["first-nested"]}],
+    "order/properties-alphabetical-order": true
   }
 }

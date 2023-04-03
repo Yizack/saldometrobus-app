@@ -52,7 +52,8 @@
     "jeep-sqlite": "^2.3.3",
     "nuxt": "^3.3.3",
     "nuxt-icon": "^0.3.3",
-    "stylelint": "^15.4.0"
+    "stylelint": "^15.4.0",
+    "stylelint-order": "^6.0.3"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.7",

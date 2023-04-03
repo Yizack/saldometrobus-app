@@ -1,8 +1,8 @@
 html, body {
-  font-family: "Nunito";
-  overflow-x: hidden;
-  height: 100%;
   caret-color: var(--bs-secondary);
+  font-family: "Nunito";
+  height: 100%;
+  overflow-x: hidden;
 }
 
 [data-bs-theme=light] {
@@ -70,8 +70,8 @@ html, body {
 }
 
 img {
-  user-select: none;
   pointer-events: none;
+  user-select: none;
 }
 
 .form-check-input:checked {
@@ -80,11 +80,11 @@ img {
 }
 
 .form-control {
-  border-radius: 0;
-  border-top-width: 0;
-  border-right-width: 0;
-  border-left-width: 0;
   border-bottom-width: 2px;
+  border-left-width: 0;
+  border-radius: 0;
+  border-right-width: 0;
+  border-top-width: 0;
 }
 
 .form-check-input:focus, .form-control:focus, .form-select:focus {
@@ -106,9 +106,9 @@ img {
 }
 
 a {
-  text-decoration: none;
-  font-weight: bold;
   color: var(--bs-dark);
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .btn {
@@ -198,12 +198,12 @@ a {
 }
 
 .nav-pills .nav-link {
-  color: #FFF;
   background: var(--bs-primary);
-  padding-top: 1rem;
+  color: #FFF;
   padding-bottom: 1rem;
   padding-left: .5rem;
   padding-right: .5rem;
+  padding-top: 1rem;
 }
 
 .nav-pills .nav-link:hover {
@@ -222,8 +222,8 @@ a {
 }
 
 .table>:not(caption)>*>* {
-  padding-top: 0.2rem;
   padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
 }
 
 .filters button {
@@ -248,9 +248,9 @@ a {
 }
 
 .form-switch .form-check-input {
-  width: 3em;
   height: 1.5em;
   margin: 0;
+  width: 3em;
 }
 
 .dropdown-item.active, .dropdown-item:active {
@@ -260,4 +260,30 @@ a {
 
 .modal {
   --bs-modal-bg: var(--bs-tertiary-bg);
+}
+
+table { 
+  border-collapse: separate;
+  border-left: 0;
+  border-spacing: 0;
+}
+
+thead:first-child tr:first-child th:first-child, tbody:first-child tr:first-child td:first-child {
+  border-radius: 4px 0 0 0;
+}
+
+thead:first-child tr:first-child th:last-child, tbody:first-child tr:first-child td:last-child {
+  border-radius: 0 4px 0 0;
+}
+
+thead:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td:first-child {
+  border-radius: 0 0 0 4px;
+}
+
+thead:last-child tr:last-child th:last-child, tbody:last-child tr:last-child td:last-child {
+  border-radius: 0 0 4px 0;
+}
+
+thead:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td:first-child {
+  border-radius: 0 0 0 4px;
 }
