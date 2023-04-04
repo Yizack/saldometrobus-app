@@ -48,7 +48,6 @@
     "@nuxtjs/eslint-config": "^12.0.0",
     "@trapezedev/configure": "^7.0.8",
     "eslint": "^8.37.0",
-    "eslint-plugin-vue": "^9.10.0",
     "jeep-sqlite": "^2.3.3",
     "nuxt": "^3.3.3",
     "nuxt-icon": "^0.3.3",
