@@ -12,7 +12,7 @@
 #   public *;
 #}
 
--keep class net.sqlcipher.database.** { *; }
+-keep class net.sqlcipher.** { *; }
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
