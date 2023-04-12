@@ -11,3 +11,5 @@ app-release*
 icons
 *.jks*
 release/
+.idea
+.gradle
