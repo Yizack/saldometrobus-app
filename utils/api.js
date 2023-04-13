@@ -1,5 +1,3 @@
-const error_response = { error: true, error_key: "error" };
-
 class SaldometrobusAPI {
   constructor () {
     this.baseURL = "https://saldometrobus.yizack.com";
@@ -13,43 +11,32 @@ class SaldometrobusAPI {
     this.updateURL = `${this.baseURL}/database/v2/update_password`;
   }
 
-  async userLogin (payload) {
-    const response = await CAPACITOR.doPost(this.loginURL, payload);
-    return response.status === 200 ? response.data : error_response;
+  userLogin (payload) {
+    return CAPACITOR.doPost(this.loginURL, payload);
   }
 
-  async userRegistro (payload) {
-    const response = await CAPACITOR.doPost(this.registroURL, payload);
-    return response.status === 200 ? response.data : error_response;
+  userRegistro (payload) {
+    return CAPACITOR.doPost(this.registroURL, payload);
   }
 
-  async userPassUpdate (payload) {
-    const response = await CAPACITOR.doPost(this.updateURL, payload);
-    return response.status === 200 ? response.data : error_response;
+  userPassUpdate (payload) {
+    return CAPACITOR.doPost(this.updateURL, payload);
   }
 
-  async addTarjeta (payload) {
-    const response = await CAPACITOR.doPost(this.addTarjetaURL, payload);
-    return response.status === 200 ? response.data : error_response;
+  addTarjeta (payload) {
+    return CAPACITOR.doPost(this.addTarjetaURL, payload);
   }
 
-  async getTarjetas (payload) {
-    const response = await CAPACITOR.doPost(this.getTarjetasURL, payload);
-    return response.status === 200 ? response.data : error_response;
+  getTarjetas (payload) {
+    return CAPACITOR.doPost(this.getTarjetasURL, payload);
   }
 
   async getTarjeta (numero) {
-    const response = await CAPACITOR.doGet(`${this.tarjetasAPI}/${numero}`);
-    if (response.status === 200) {
-      const data = response.data;
-      if (data.status === "ok") {
-        return data;
-      }
-      return false;
+    const data = await CAPACITOR.doGet(`${this.tarjetasAPI}/${numero}`);
+    if (data.status === "ok") {
+      return data;
     }
-    else {
-      return error_response;
-    }
+    return false;
   }
 
   async getDetallesTarjetas (payload) {
@@ -57,13 +44,10 @@ class SaldometrobusAPI {
     if (!error) {
       const arr = [];
       for (const tarjeta of tarjetas) {
-        const response = await CAPACITOR.doGet(`${this.tarjetasAPI}/${tarjeta.numero}`);
-        if (response.status === 200) {
-          const data = response.data;
-          if (data.status === "ok") {
-            Object.assign(data.tarjeta, tarjeta);
-            arr.push(data.tarjeta);
-          }
+        const data = await CAPACITOR.doGet(`${this.tarjetasAPI}/${tarjeta.numero}`);
+        if (data.status === "ok") {
+          Object.assign(data.tarjeta, tarjeta);
+          arr.push(data.tarjeta);
         }
       }
       return arr;
@@ -73,14 +57,12 @@ class SaldometrobusAPI {
     }
   }
 
-  async deleteTarjeta (payload) {
-    const response = await CAPACITOR.doPost(this.deleteTarjetaURL, payload);
-    return response.status === 200 ? response.data : error_response;
+  deleteTarjeta (payload) {
+    return CAPACITOR.doPost(this.deleteTarjetaURL, payload);
   }
 
-  async updateTarjeta (payload) {
-    const response = await CAPACITOR.doPost(this.updateTarjetaURL, payload);
-    return response.status === 200 ? response.data : error_response;
+  updateTarjeta (payload) {
+    return CAPACITOR.doPost(this.updateTarjetaURL, payload);
   }
 }
 

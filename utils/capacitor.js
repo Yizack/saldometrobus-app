@@ -4,6 +4,8 @@ import { Preferences } from "@capacitor/preferences";
 import { Toast } from "@capacitor/toast";
 import { Dialog } from "@capacitor/dialog";
 
+const error_response = { error: true, error_key: "error" };
+
 class CapacitorPlugins {
   async setStatusBar (isDark) {
     if (Capacitor.getPlatform() === "android" && Capacitor.isPluginAvailable("StatusBar")) {
@@ -36,10 +38,15 @@ class CapacitorPlugins {
   }
 
   doGet (url) {
-    return CapacitorHttp.get({ url });
+    const response = CapacitorHttp.get({ url }).then((response) => {
+      if (response.status === 200) {
+        return response.data;
+      }
+    }).catch(() => error_response);
+    return response;
   };
 
-  async doPost (url, payload) {
+  doPost (url, payload) {
     const options = {
       url,
       headers: {
@@ -48,7 +55,11 @@ class CapacitorPlugins {
       data: new URLSearchParams(payload).toString()
     };
 
-    const response = await CapacitorHttp.post(options);
+    const response = CapacitorHttp.post(options).then((response) => {
+      if (response.status === 200) {
+        return response.data;
+      }
+    }).catch(() => error_response);
     return response;
   };
 
