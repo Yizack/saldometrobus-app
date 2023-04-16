@@ -1,6 +1,6 @@
 {
   "appId": "com.yizack.saldometrobus",
-  "appName": "Saldo Metrobús",
+  "appName": "Saldo Metrobús Panamá",
   "webDir": ".output/public",
   "bundledWebRuntime": false,
   "server": {
