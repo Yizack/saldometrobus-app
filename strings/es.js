@@ -105,7 +105,7 @@ export default {
   no_cambio: "No hubo cambios en el saldo.",
   grafica_nota: "Las gráficas no incluyen los datos del día actual.",
   error_tarjeta: "Número de tarjeta no válido",
-  error_tarjeta_unknown: "Número de tarjeta no válido o no disponible en este momento",
+  error_tarjeta_unknown: "Tarjeta no disponible en este momento",
   existe_tarjeta: "Ya existe una tarjeta con este número",
   version: "Versión",
   change_pass: "Cambiar contraseña",

@@ -22,7 +22,7 @@ definePageMeta({ layout: "main" });
           <img v-else src="/images/metrobus.webp" class="img-fluid" :width="size" :height="size">
         </div>
         <div class="d-grid gap-2">
-          <button class="btn btn-primary btn-sm" role="button" @click="$event.stopPropagation(); updateCard(tarjeta.numero)"><Icon name="material-symbols:refresh" width="1.5em" height="1.5em" /></button>
+          <button class="btn btn-primary btn-sm" role="button" @click="$event.stopPropagation(); updateTarjeta(tarjeta.numero)"><Icon name="material-symbols:refresh" width="1.5em" height="1.5em" /></button>
         </div>
       </div>
     </div>
@@ -141,7 +141,7 @@ export default {
           this.form = { numero: "", nombre: "" };
         }
         else {
-          await CAPACITOR.showToast(t(error_key));
+          await CAPACITOR.showToast(t(error_key), "long");
         }
         await sleep(0.5);
         hideModal("progress-dialog");
@@ -154,7 +154,7 @@ export default {
     openCard (numero) {
       this.$router.push(`${numero}`);
     },
-    async updateCard (numero) {
+    async updateTarjeta (numero) {
       this.progress = t("actualizando_tarjeta");
       showModal("progress-dialog");
       const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero);
@@ -168,7 +168,7 @@ export default {
         }
       }
       else {
-        await CAPACITOR.showToast(t(error_key));
+        await CAPACITOR.showToast(t(error_key), "long");
       }
       await sleep(0.5);
       hideModal("progress-dialog");
