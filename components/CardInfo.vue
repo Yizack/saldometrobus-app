@@ -2,48 +2,48 @@
   <div>
     <h4 class="text-center py-2"><b>{{ tarjeta.nombre }}</b></h4>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow text-center">
-      <img v-if="tarjeta.tipo === STRINGS.get('tarjeta_rapipass')" class="img-fluid" src="/images/rapipass_brand.webp" :width="size" :height="size">
-      <img v-else-if="tarjeta.tipo === STRINGS.get('tarjeta_normal')" class="img-fluid" src="/images/metro_metrobus_brand.webp" :width="size" :height="size">
+      <img v-if="tarjeta.tipo === t('tarjeta_rapipass')" class="img-fluid" src="/images/rapipass_brand.webp" :width="size" :height="size">
+      <img v-else-if="tarjeta.tipo === t('tarjeta_normal')" class="img-fluid" src="/images/metro_metrobus_brand.webp" :width="size" :height="size">
       <img v-else src="/images/metrobus_brand.webp" class="img-fluid" :width="size" :height="size">
       <h3><b>{{ tarjeta.numero }}</b></h3>
     </div>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("saldo") }}</b></h4>
+      <h4 class="text-primary-emphasis m-0"><b>{{ t("saldo") }}</b></h4>
       <div class="m-2">
         <h3><b>B/. {{ tarjeta.saldo }}</b></h3>
       </div>
     </div>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("info_tarjeta") }}</b></h4>
+      <h4 class="text-primary-emphasis m-0"><b>{{ t("info_tarjeta") }}</b></h4>
       <div class="p-2">
         <div class="row">
           <div class="col-6">
-            <p class="m-0"><b>{{ STRINGS.get("numero_tarjeta") }}</b></p>
+            <p class="m-0"><b>{{ t("numero_tarjeta") }}</b></p>
             <p>{{ tarjeta.numero }}</p>
           </div>
           <div class="col-6">
-            <p class=" m-0"><b>{{ STRINGS.get("estado") }}</b></p>
+            <p class=" m-0"><b>{{ t("estado") }}</b></p>
             <p>{{ tarjeta.estado }}</p>
           </div>
           <div class="col-6">
-            <p class="m-0"><b>{{ STRINGS.get("fecha") }}</b></p>
+            <p class="m-0"><b>{{ t("fecha") }}</b></p>
             <p>{{ tarjeta.fecha }}</p>
           </div>
           <div class="col-6">
-            <p class="m-0"><b>{{ STRINGS.get("tipo_tarjeta") }}</b></p>
+            <p class="m-0"><b>{{ t("tipo_tarjeta") }}</b></p>
             <p>{{ tarjeta.tipo }}</p>
           </div>
         </div>
       </div>
     </div>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("balance") }}</b></h4>
+      <h4 class="text-primary-emphasis m-0"><b>{{ t("balance") }}</b></h4>
       <div class="ms-2">
         <div class="d-flex justify-content-between">
           <h4 class="small"><b>Actual: B/. {{ tarjeta.saldo }}</b></h4>
           <h4 class="small"><b>B/. {{ Number(tarjeta.saldo) > 50 ? tarjeta.saldo : "50.00" }}</b></h4>
         </div>
-        <div class="progress" role="progressbar" :aria-label="STRINGS.get('balance')" :aria-valuenow="percent" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress" role="progressbar" :aria-label="t('balance')" :aria-valuenow="percent" aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar" :class="`bg-${color}`" :style="`width: ${percent}%`" />
         </div>
       </div>
@@ -53,7 +53,7 @@
         <div class="d-grid">
           <button class="btn btn-primary btn-block me-2" role="button" data-bs-toggle="modal" data-bs-target="#edit-dialog">
             <i class="fas fa-sync-alt" />
-            <span class="ms-2">{{ STRINGS.get("editar") }}</span>
+            <span class="ms-2">{{ t("editar") }}</span>
           </button>
         </div>
       </div>
@@ -61,7 +61,7 @@
         <div class="d-grid">
           <button class="btn btn-danger btn-block ms-1" @click="deleteCard()">
             <i class="fas fa-sync-alt" />
-            <span class="ms-2">{{ STRINGS.get("eliminar") }}</span>
+            <span class="ms-2">{{ t("eliminar") }}</span>
           </button>
         </div>
       </div>
@@ -71,22 +71,22 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 id="edit-dialog-label" class="modal-title fs-5 text-primary-emphasis">{{ STRINGS.get("editar_tarjeta") }}</h1>
+            <h1 id="edit-dialog-label" class="modal-title fs-5 text-primary-emphasis">{{ t("editar_tarjeta") }}</h1>
           </div>
           <div class="modal-body text-center">
             <form ref="edit" novalidate @submit.prevent="editCard()">
               <div class="mb-3 position-relative">
-                <input v-model="form.nombre" class="form-control" type="text" :placeholder="STRINGS.get('nombre')" required>
+                <input v-model="form.nombre" class="form-control" type="text" :placeholder="t('nombre')" required>
                 <div class="invalid-tooltip">
-                  {{ STRINGS.get("obligatorio") }}
+                  {{ t("obligatorio") }}
                 </div>
               </div>
               <div class="mb-3 position-relative">
                 <input class="form-control" type="number" :value="tarjeta.numero" disabled>
               </div>
               <div class="d-flex justify-content-end">
-                <button class="btn btn-danger me-2" type="button" data-bs-dismiss="modal">{{ STRINGS.get("cancel") }}</button>
-                <input class="btn btn-primary" type="submit" role="button" :value="STRINGS.get('editar')">
+                <button class="btn btn-danger me-2" type="button" data-bs-dismiss="modal">{{ t("cancel") }}</button>
+                <input class="btn btn-primary" type="submit" role="button" :value="t('editar')">
               </div>
             </form>
           </div>
@@ -145,13 +145,13 @@ export default {
       const form = this.$refs.edit;
       if (form.checkValidity()) {
         hideModal("edit-dialog");
-        this.dialog = STRINGS.get("editando");
+        this.dialog = t("editando");
         showModal("progress-dialog");
         const nombre_trimmed = this.form.nombre.trim();
-        const { error, error_key } = !AUTH.isGuest
+        const { error, error_key } = !Auth().isGuest
           ? await API.updateTarjeta({
-            email: AUTH.user.email,
-            token: AUTH.user.token,
+            email: Auth().user.email,
+            token: Auth().user.token,
             numero: this.tarjeta.numero,
             nombre: nombre_trimmed
           })
@@ -160,13 +160,13 @@ export default {
         const { changes } = await DB.updateNombreTarjeta(this.tarjeta.numero, nombre_trimmed);
 
         if (!error && changes > 0) {
-          await CAPACITOR.showToast(`${STRINGS.get("editada")}: ${this.tarjeta.numero}`);
+          await CAPACITOR.showToast(`${t("editada")}: ${this.tarjeta.numero}`);
           await sleep(0.5);
           hideModal("progress-dialog");
           this.$router.replace("/app/");
         }
         else {
-          await CAPACITOR.showToast(STRINGS.get(error_key));
+          await CAPACITOR.showToast(t(error_key));
           await sleep(0.5);
           hideModal("progress-dialog");
         }
@@ -177,14 +177,14 @@ export default {
       }
     },
     async deleteCard () {
-      const confirm = await CAPACITOR.confirm(STRINGS.get("eliminar_tarjeta"), STRINGS.get("eliminar_seguro"));
+      const confirm = await CAPACITOR.confirm(t("eliminar_tarjeta"), t("eliminar_seguro"));
       if (confirm) {
-        this.dialog = STRINGS.get("eliminando");
+        this.dialog = t("eliminando");
         showModal("progress-dialog");
-        const { error, error_key } = !AUTH.isGuest
+        const { error, error_key } = !Auth().isGuest
           ? await API.deleteTarjeta({
-            email: AUTH.user.email,
-            token: AUTH.user.token,
+            email: Auth().user.email,
+            token: Auth().user.token,
             numero: this.tarjeta.numero
           })
           : { error: false };
@@ -192,13 +192,13 @@ export default {
         const { changes } = await DB.deleteTarjeta(this.tarjeta.numero);
 
         if (!error && changes > 0) {
-          await CAPACITOR.showToast(`${STRINGS.get("eliminada")}: ${this.tarjeta.numero}`);
+          await CAPACITOR.showToast(`${t("eliminada")}: ${this.tarjeta.numero}`);
           await sleep(0.5);
           hideModal("progress-dialog");
           this.$router.replace("/app/");
         }
         else {
-          await CAPACITOR.showToast(STRINGS.get(error_key));
+          await CAPACITOR.showToast(t(error_key));
           await sleep(0.5);
           hideModal("progress-dialog");
         }

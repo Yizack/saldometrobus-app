@@ -7,7 +7,7 @@ definePageMeta({ layout: "main" });
     <ul id="tabs" class="nav nav-pills" role="tablist">
       <li v-for="(tab, key) in tabs" :key="key" class="nav-item flex-fill" role="presentation">
         <div class="d-grid gap-2">
-          <a class="nav-link rounded-0 text-uppercase text-center" :class="{ active: tab }" role="button" @click="tabClick(key)">{{ STRINGS.get(key) }}</a>
+          <a class="nav-link rounded-0 text-uppercase text-center" :class="{ active: tab }" role="button" @click="tabClick(key)">{{ t(key) }}</a>
         </div>
       </li>
     </ul>

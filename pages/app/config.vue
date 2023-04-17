@@ -1,10 +1,10 @@
 
 <template>
   <section>
-    <NavBar back="/app/" :title="STRINGS.get('config')" />
+    <NavBar back="/app/" :title="t('config')" />
     <div class="m-2">
       <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-        <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("idioma") }}</b></h4>
+        <h4 class="text-primary-emphasis m-0"><b>{{ t("idioma") }}</b></h4>
         <div class="m-2">
           <select v-model="lang" class="form-select">
             <option value="es">Español</option>
@@ -13,11 +13,11 @@
         </div>
       </div>
       <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-        <h4 class="text-primary-emphasis m-0"><b>{{ STRINGS.get("modo_oscuro") }}</b></h4>
+        <h4 class="text-primary-emphasis m-0"><b>{{ t("modo_oscuro") }}</b></h4>
         <div class="m-2">
           <div class="form-switch text-start p-0 d-flex justify-content-between align-items-center">
             <div class="col-8">
-              <label for="theme">{{ STRINGS.get("dark_mode_desc") }}</label>
+              <label for="theme">{{ t("dark_mode_desc") }}</label>
             </div>
             <input id="theme" v-model="dark" class="form-check-input" type="checkbox" role="switch">
           </div>

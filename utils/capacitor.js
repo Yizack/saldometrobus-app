@@ -3,6 +3,7 @@ import { Capacitor, CapacitorHttp } from "@capacitor/core";
 import { Preferences } from "@capacitor/preferences";
 import { Toast } from "@capacitor/toast";
 import { Dialog } from "@capacitor/dialog";
+import { Network } from "@capacitor/network";
 
 const error_conexion = { error: true, error_key: "error_conexion" };
 const error_response = { error: true, error_key: "error" };
@@ -38,19 +39,25 @@ class CapacitorPlugins {
     return Toast.show({ text, duration, position });
   }
 
-  doGet (url) {
-    const response = CapacitorHttp.get({ url }).then((response) => {
+  async isOnline () {
+    const status = await Network.getStatus();
+    return status.connected;
+  }
+
+  async doGet (url) {
+    const GET = CapacitorHttp.get({ url }).then((response) => {
       if (response.status === 200) {
         return response.data;
       }
       else {
         return error_response;
       }
-    }).catch(() => error_conexion);
-    return response;
+    }).catch(() => error_response);
+
+    return await this.isOnline() ? GET : error_conexion;
   };
 
-  doPost (url, payload) {
+  async doPost (url, payload) {
     const options = {
       url,
       headers: {
@@ -59,19 +66,20 @@ class CapacitorPlugins {
       data: new URLSearchParams(payload).toString()
     };
 
-    const response = CapacitorHttp.post(options).then((response) => {
+    const POST = CapacitorHttp.post(options).then((response) => {
       if (response.status === 200) {
         return response.data;
       }
       else {
         return error_response;
       }
-    }).catch(() => error_conexion);
-    return response;
+    }).catch(() => error_response);
+
+    return await this.isOnline() ? POST : error_conexion;
   };
 
   async confirm (title, message) {
-    const { value } = await Dialog.confirm({ title, message, okButtonTitle: "Ok", cancelButtonTitle: STRINGS.get("cancel") });
+    const { value } = await Dialog.confirm({ title, message, okButtonTitle: "Ok", cancelButtonTitle: t("cancel") });
     return value;
   }
 }

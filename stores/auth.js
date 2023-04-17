@@ -1,4 +1,4 @@
-export const AUTH = defineStore("auth", {
+export const Auth = defineStore("auth", {
   state: () => ({
     auth: {}
   }),
@@ -26,8 +26,8 @@ export const AUTH = defineStore("auth", {
     },
     async guestLogin () {
       this.auth = {
-        email: STRINGS.get("invitado"),
-        nombre: STRINGS.get("invitado"),
+        email: t("invitado"),
+        nombre: t("invitado"),
         updated: true,
         guest: true
       };
@@ -61,10 +61,4 @@ export const AUTH = defineStore("auth", {
       }
     }
   }
-})();
-
-if (!AUTH.exists) {
-  (async () => {
-    await AUTH.restore();
-  })();
-}
+});

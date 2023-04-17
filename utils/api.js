@@ -31,12 +31,17 @@ class SaldometrobusAPI {
     return CAPACITOR.doPost(this.getTarjetasURL, payload);
   }
 
-  async getTarjeta (numero) {
-    const data = await CAPACITOR.doGet(`${this.tarjetasAPI}/${numero}`);
-    if (data.status === "ok") {
-      return data;
+  async getTarjetaAPI (numero) {
+    const { tarjeta, status, error, error_key } = await CAPACITOR.doGet(`${this.tarjetasAPI}/${numero}`);
+    if (!error && status === "ok" && tarjeta) {
+      return { tarjeta };
     }
-    return false;
+    else if (!error && status === "error") {
+      return { error: true, error_key: "error" };
+    }
+    else {
+      return { error, error_key };
+    }
   }
 
   async getDetallesTarjetas (payload) {

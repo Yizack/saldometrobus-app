@@ -1,6 +1,6 @@
 <template>
   <main>
-    <MenuBar :title="STRINGS.get('app_name')" />
+    <MenuBar :title="t('app_name')" />
     <div class="m-2">
       <slot />
     </div>
@@ -11,7 +11,7 @@
 export default {
   name: "MainLayout",
   mounted () {
-    if (!AUTH.exists) {
+    if (!Auth().exists) {
       this.$router.push("/");
     }
   }

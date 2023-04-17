@@ -6,7 +6,7 @@
           <div class="text-center p-3">
             <img class="img-fluid shadow-sm mb-3 p-2 rounded" width="90" height="90" src="/images/logo.webp">
             <div style="white-space: pre-wrap;">
-              {{ STRINGS.get("about_message") }}
+              {{ t("about_message") }}
             </div>
           </div>
         </div>

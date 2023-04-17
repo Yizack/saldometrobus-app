@@ -75,13 +75,13 @@ class Database {
     if (values.length) {
       tarjeta = values[0];
       if (tarjeta.tipo === "Tarjeta Normal al Portador b") {
-        tarjeta.tipo = STRINGS.get("tarjeta_normal");
+        tarjeta.tipo = t("tarjeta_normal");
       }
       else if (tarjeta.tipo === "Tarjeta Rapipass") {
-        tarjeta.tipo = STRINGS.get("tarjeta_rapipass");
+        tarjeta.tipo = t("tarjeta_rapipass");
       }
       if (tarjeta.estado === "Contrato Activo") {
-        tarjeta.estado = STRINGS.get("contrato_activo");
+        tarjeta.estado = t("contrato_activo");
       }
     }
     return tarjeta;
@@ -98,13 +98,13 @@ class Database {
     if (values.length) {
       values.forEach((tarjeta) => {
         if (tarjeta.tipo === "Tarjeta Normal al Portador b") {
-          tarjeta.tipo = STRINGS.get("tarjeta_normal");
+          tarjeta.tipo = t("tarjeta_normal");
         }
         else if (tarjeta.tipo === "Tarjeta Rapipass") {
-          tarjeta.tipo = STRINGS.get("tarjeta_rapipass");
+          tarjeta.tipo = t("tarjeta_rapipass");
         }
         if (tarjeta.estado === "Contrato Activo") {
-          tarjeta.estado = STRINGS.get("contrato_activo");
+          tarjeta.estado = t("contrato_activo");
         }
       });
     }
@@ -180,19 +180,19 @@ class Database {
       const tipos = {
         uso: {
           text: "Uso",
-          translation: STRINGS.get("uso")
+          translation: t("uso")
         },
         carga: {
           text: "Carga",
-          translation: STRINGS.get("carga")
+          translation: t("carga")
         },
         online: {
           text: "Transacción de Carga de Monedero con #RA",
-          translation: STRINGS.get("carga_online")
+          translation: t("carga_online")
         },
         trasera: {
           text: "Puerta Trasera",
-          translation: STRINGS.get("puerta_trasera")
+          translation: t("puerta_trasera")
         }
       };
       values.forEach((mov) => {

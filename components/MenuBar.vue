@@ -6,8 +6,8 @@
       <div class="nav-item dropstart">
         <a class="text-white display-6" role="button" data-bs-toggle="dropdown" aria-expanded="false"><Icon name="ic:baseline-more-vert" /></a>
         <ul class="dropdown-menu m-0 end-0">
-          <li><NuxtLink class="dropdown-item py-3 px-4" to="/app/config/">{{ STRINGS.get("config") }}</NuxtLink></li>
-          <li><a class="dropdown-item py-3 px-4" data-bs-toggle="modal" data-bs-target="#about" role="button">{{ STRINGS.get("acerca") }}</a></li>
+          <li><NuxtLink class="dropdown-item py-3 px-4" to="/app/config/">{{ t("config") }}</NuxtLink></li>
+          <li><a class="dropdown-item py-3 px-4" data-bs-toggle="modal" data-bs-target="#about" role="button">{{ t("acerca") }}</a></li>
         </ul>
       </div>
     </div>
@@ -16,8 +16,8 @@
     <div class="offcanvas-header bg-primary align-items-start">
       <div class="text-white">
         <img class="img-fluid" src="/images/logo2.webp" width="70" height="70">
-        <h5 id="menuLabel" class="offcanvas-title">{{ AUTH.user.nombre }}</h5>
-        <div>{{ AUTH.user.email }}</div>
+        <h5 id="menuLabel" class="offcanvas-title">{{ Auth().user.nombre }}</h5>
+        <div>{{ Auth().user.email }}</div>
       </div>
       <div data-bs-theme="dark">
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
@@ -25,23 +25,19 @@
     </div>
     <div class="offcanvas-body px-0 h-100 w-100 d-flex flex-column">
       <nav class="nav flex-column">
-        <template v-for="(tab, index) in menu" :key="index">
-          <span v-if="!tab.new_section" data-bs-dismiss="offcanvas">
-            <NuxtLink class="nav-link text-dark-emphasis py-3" :to="tab.link">
-              <Icon :name="tab.icon" width="24" height="24" class="me-4" /> {{ tab.name }}
-            </NuxtLink>
-          </span>
-          <template v-else>
-            <hr>
-            <div class="px-3">{{ tab.new_section.name }}</div>
-            <NuxtLink class="nav-link text-dark-emphasis py-3" :to="tab.link">
-              <Icon :name="tab.icon" width="24" height="24" class="me-4" /> {{ tab.name }}
-            </NuxtLink>
-          </template>
-        </template>
+        <span v-for="(tab, index) in menu" :key="index" data-bs-dismiss="offcanvas">
+          <NuxtLink class="nav-link text-dark-emphasis py-3" :to="tab.link">
+            <Icon :name="tab.icon" width="24" height="24" class="me-4" /> {{ tab.name }}
+          </NuxtLink>
+        </span>
+        <hr>
+        <div class="px-3">{{ t("sesion") }}</div>
+        <a class="nav-link text-dark-emphasis py-3" role="button" @click="logout()">
+          <Icon name="material-symbols:power-rounded" width="24" height="24" class="me-4" /> {{ t("salir") }}
+        </a>
       </nav>
       <div class="mt-auto text-center small">
-        <i>{{ STRINGS.get("version") }}: {{ CONST.version }}</i>
+        <i>{{ t("version") }}: {{ CONST.version }}</i>
       </div>
     </div>
   </div>
@@ -61,30 +57,30 @@ export default {
     return {
       menu: [
         {
-          name: STRINGS.get("tarjetas"),
+          name: t("tarjetas"),
           icon: "material-symbols:credit-card-outline",
           link: "/app/"
         },
         {
-          name: STRINGS.get("perfil"),
+          name: t("perfil"),
           icon: "material-symbols:account-circle",
           link: "/app/perfil/"
         },
         {
-          name: STRINGS.get("estado"),
+          name: t("estado"),
           icon: "material-symbols:info",
           link: "https://status.saldometrobus.yizack.com/"
-        },
-        {
-          name: STRINGS.get("salir"),
-          icon: "material-symbols:power-rounded",
-          link: "/",
-          new_section: {
-            name: STRINGS.get("sesion")
-          }
         }
       ]
     };
+  },
+  methods: {
+    async logout () {
+      await DB.deleteAll();
+      await Auth().logout();
+      document.body.removeAttribute("style");
+      this.$router.push("/");
+    }
   }
 };
 </script>

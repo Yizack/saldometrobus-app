@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h4 class="text-center py-2"><b>{{ STRINGS.get("graficas") }}</b></h4>
-    <p>*{{ STRINGS.get("grafica_nota") }}</p>
+    <h4 class="text-center py-2"><b>{{ t("graficas") }}</b></h4>
+    <p>*{{ t("grafica_nota") }}</p>
     <div class="d-flex align-items-center my-3">
-      <span>{{ STRINGS.get("filtrar") }}:</span>
+      <span>{{ t("filtrar") }}:</span>
       <div class="d-flex justify-content-evenly flex-grow-1 filters">
-        <button v-for="(filter, key) in filters" :key="key" class="btn btn-sm rounded-pill text-nowrap" :class="{ 'active': daysBefore === filter, 'btn-outline-dark': !CONFIG.dark, 'btn-outline-light': CONFIG.dark }" @click="daysBefore = filter">{{ STRINGS.get(key) }}</button>
+        <button v-for="(filter, key) in filters" :key="key" class="btn btn-sm rounded-pill text-nowrap" :class="{ 'active': daysBefore === filter, 'btn-outline-dark': !CONFIG.dark, 'btn-outline-light': CONFIG.dark }" @click="daysBefore = filter">{{ t(key) }}</button>
       </div>
     </div>
     <div v-for="(chart, key) in charts" :key="key" class="bg-body-tertiary border rounded p-2 mb-2 shadow">
@@ -38,17 +38,17 @@ export default {
           name: "gastos",
           reduce: true,
           monotone: true,
-          title: STRINGS.get("grafica_gastos"),
-          subtitle: STRINGS.get("gasto_total"),
+          title: t("grafica_gastos"),
+          subtitle: t("gasto_total"),
           color: "danger",
-          condition: movimiento => movimiento === STRINGS.get("uso") || movimiento === STRINGS.get("puerta_trasera")
+          condition: movimiento => movimiento === t("uso") || movimiento === t("puerta_trasera")
         },
         {
           name: "cambio",
           reduce: false,
           monotone: false,
-          title: STRINGS.get("grafica_saldo"),
-          subtitle: STRINGS.get("saldo_hasta"),
+          title: t("grafica_saldo"),
+          subtitle: t("saldo_hasta"),
           stepped: true,
           color: "dark",
           condition: () => true
@@ -57,10 +57,10 @@ export default {
           name: "cargas",
           reduce: true,
           monotone: true,
-          title: STRINGS.get("grafica_recargas"),
-          subtitle: STRINGS.get("recarga_total"),
+          title: t("grafica_recargas"),
+          subtitle: t("recarga_total"),
           color: "success",
-          condition: movimiento => movimiento === STRINGS.get("carga") || movimiento === STRINGS.get("carga_online")
+          condition: movimiento => movimiento === t("carga") || movimiento === t("carga_online")
         }
       ]
     };

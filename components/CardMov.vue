@@ -1,16 +1,16 @@
 <template>
   <div>
-    <h4 class="text-center py-2"><b>{{ STRINGS.get("saldos") }}</b></h4>
-    <p class="m-0">{{ STRINGS.get("mov_4_semanas") }}</p>
+    <h4 class="text-center py-2"><b>{{ t("saldos") }}</b></h4>
+    <p class="m-0">{{ t("mov_4_semanas") }}</p>
     <div class="table-responsive">
       <table v-if="tarjeta.movimientos.length > 0" class="table table-hover shadow small">
         <thead class="bg-primary">
           <tr class="text-white small">
-            <th scope="col">{{ STRINGS.get("tipo") }}</th>
-            <th scope="col">{{ STRINGS.get("fecha_mov") }}</th>
+            <th scope="col">{{ t("tipo") }}</th>
+            <th scope="col">{{ t("fecha_mov") }}</th>
             <th class="pe-0" />
-            <th class="ps-0" scope="col">{{ STRINGS.get("monto") }}</th>
-            <th scope="col">{{ STRINGS.get("saldo") }}</th>
+            <th class="ps-0" scope="col">{{ t("monto") }}</th>
+            <th scope="col">{{ t("saldo") }}</th>
           </tr>
         </thead>
         <tbody class="bg-body-tertiary">
@@ -23,7 +23,7 @@
           </tr>
         </tbody>
       </table>
-      <p v-else class="text-center my-4"><i>{{ STRINGS.get("mov_notfound") }}.</i></p>
+      <p v-else class="text-center my-4"><i>{{ t("mov_notfound") }}.</i></p>
     </div>
   </div>
 </template>

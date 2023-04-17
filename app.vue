@@ -1,9 +1,15 @@
 <script setup>
 scrollBehavior();
+
+if (!Auth().exists) {
+  await Auth().restore();
+}
+
+await CONFIG.load();
+await CAPACITOR.setStatusBar(true);
 </script>
 
 <template>
-  <!--<LoadingPage v-if="loading" />-->
   <NuxtLoadingIndicator :throttle="0" />
   <NuxtLayout>
     <div id="page">
@@ -15,18 +21,6 @@ scrollBehavior();
 <script>
 export default {
   name: "App",
-  data () {
-    return {
-      loading: true
-    };
-  },
-  async beforeMount () {
-    await CONFIG.load();
-    await CAPACITOR.setStatusBar(true);
-    this.$nuxt.hook("page:finish", () => {
-      this.loading = false;
-    });
-  },
   async unmounted () {
     await DB.close();
   }

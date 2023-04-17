@@ -22,7 +22,7 @@ class Config {
 
   async setLang (lang) {
     this.config.lang = lang;
-    STRINGS.setLanguage(lang);
+    LOCALE.setLanguage(lang);
     await CAPACITOR.setPref("lang", lang);
   }
 

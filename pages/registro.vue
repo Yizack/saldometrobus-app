@@ -1,33 +1,33 @@
 <template>
   <section>
-    <NavBar back="/" :title="STRINGS.get('registrate')" />
+    <NavBar back="/" :title="t('registrate')" />
     <div class="container-fluid text-center">
       <div class="my-5">
         <form ref="registro" novalidate @submit.prevent="registro()">
           <div class="mb-3">
-            <input class="form-control" :class="{'is-valid': isNombreValid}" type="text" :placeholder="STRINGS.get('nombre')" required @input="form.nombre = $event.target.value">
+            <input class="form-control" :class="{'is-valid': isNombreValid}" type="text" :placeholder="t('nombre')" required @input="form.nombre = $event.target.value">
           </div>
           <div class="mb-3 position-relative">
-            <input ref="email" class="form-control" :class="{'is-valid': isEmailValid, 'is-invalid': form.error}" type="email" :placeholder="STRINGS.get('correo')" autocomplete="email" required @input="form.email = $event.target.value" @keyup="form.error = false">
+            <input ref="email" class="form-control" :class="{'is-valid': isEmailValid, 'is-invalid': form.error}" type="email" :placeholder="t('correo')" autocomplete="email" required @input="form.email = $event.target.value" @keyup="form.error = false">
             <div v-if="form.error" class="invalid-tooltip">
-              {{ STRINGS.get("correo_existe") }}
+              {{ t("correo_existe") }}
             </div>
           </div>
           <div class="mb-3">
-            <input class="form-control" :class="{'is-valid': isPasswordValid}" type="password" :placeholder="STRINGS.get('password')" autocomplete="new-password" required @input="form.password = $event.target.value">
+            <input class="form-control" :class="{'is-valid': isPasswordValid}" type="password" :placeholder="t('password')" autocomplete="new-password" required @input="form.password = $event.target.value">
           </div>
           <div class="mb-3">
-            <input class="form-control" :class="{'is-valid': isPasswordCheckValid}" type="password" :placeholder="STRINGS.get('password_check')" autocomplete="off" required @input="form.password_check = $event.target.value">
+            <input class="form-control" :class="{'is-valid': isPasswordCheckValid}" type="password" :placeholder="t('password_check')" autocomplete="off" required @input="form.password_check = $event.target.value">
           </div>
           <div class="d-grid mt-5 ">
-            <input class="btn btn-primary mb-4" type="submit" role="button" :value="STRINGS.get('registrate')">
+            <input class="btn btn-primary mb-4" type="submit" role="button" :value="t('registrate')">
           </div>
         </form>
-        <p class="mb-3">{{ STRINGS.get("tiene_cuenta") }} <NuxtLink class="text-primary" to="/">{{ STRINGS.get("ingresa") }}</NuxtLink></p>
-        <p class="mb-3"><small>{{ STRINGS.get("nota2") }}</small></p>
+        <p class="mb-3">{{ t("tiene_cuenta") }} <NuxtLink class="text-primary" to="/">{{ t("ingresa") }}</NuxtLink></p>
+        <p class="mb-3"><small>{{ t("nota2") }}</small></p>
       </div>
     </div>
-    <ProgressDialog :message="STRINGS.get('iniciando_sesion')" />
+    <ProgressDialog :message="t('iniciando_sesion')" />
   </section>
 </template>
 
@@ -69,7 +69,7 @@ export default {
       if (this.isNombreValid && this.isEmailValid && this.isPasswordValid && this.isPasswordCheckValid) {
         showModal("progress-dialog");
         this.form.submitted = true;
-        const { error, error_key } = await AUTH.registro({
+        const { error, error_key } = await Auth().registro({
           nombre: this.form.nombre.trim(),
           email: this.form.email,
           password: await sha256(this.form.password)
@@ -85,7 +85,7 @@ export default {
             const email_input = this.$refs.email;
             email_input.focus();
           }
-          await CAPACITOR.showToast(STRINGS.get(error_key), "long");
+          await CAPACITOR.showToast(t(error_key), "long");
         }
       }
     }
