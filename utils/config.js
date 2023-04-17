@@ -8,8 +8,8 @@ class Config {
       lang: await CAPACITOR.getPref("lang") || "es",
       dark: await CAPACITOR.getPref("dark") || false
     };
-    this.setLang(this.config.lang);
-    this.setDark(this.config.dark);
+    await this.setLang(this.config.lang);
+    await this.setDark(this.config.dark);
   }
 
   get lang () {

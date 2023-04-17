@@ -56,7 +56,7 @@ export default {
   about_message: "\"Metrobus Balance\" is an app for checking balances and transactions for the metro and metrobús cards in Panama, designed and developed by Yizack Rangel. The two different logos were designed by Georlenys Martínez. All card data is obtained from the queries page of www.tarjetametrobus.com.",
   tarjeta_added: "Card added",
   tarjeta_actualizada: "Card updated",
-  error_conexion: "Connection error. Please try again later.",
+  error_conexion: "Connection error, please try again later",
   error: "An error has occurred",
   registrarse: "Sign up",
   tiene_cuenta: "Already have an account?",

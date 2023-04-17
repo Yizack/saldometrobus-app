@@ -4,6 +4,7 @@ import { Preferences } from "@capacitor/preferences";
 import { Toast } from "@capacitor/toast";
 import { Dialog } from "@capacitor/dialog";
 
+const error_conexion = { error: true, error_key: "error_conexion" };
 const error_response = { error: true, error_key: "error" };
 
 class CapacitorPlugins {
@@ -42,7 +43,10 @@ class CapacitorPlugins {
       if (response.status === 200) {
         return response.data;
       }
-    }).catch(() => error_response);
+      else {
+        return error_response;
+      }
+    }).catch(() => error_conexion);
     return response;
   };
 
@@ -59,7 +63,10 @@ class CapacitorPlugins {
       if (response.status === 200) {
         return response.data;
       }
-    }).catch(() => error_response);
+      else {
+        return error_response;
+      }
+    }).catch(() => error_conexion);
     return response;
   };
 

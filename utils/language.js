@@ -1,19 +1,15 @@
-import ES from "~/strings/es.js";
-import EN from "~/strings/en.js";
-
 class Strings {
   constructor (code) {
     this.code = String(code).toLowerCase();
-    this.strings = {};
   }
 
   get (key = "") {
-    return this.strings[key];
+    const { $locale } = useNuxtApp();
+    return $locale(key, this.code);
   }
 
   setLanguage (code) {
     this.code = String(code).toLowerCase();
-    this.strings = this.code === "es" ? ES : EN;
   }
 }
 
