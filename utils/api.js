@@ -37,7 +37,7 @@ class SaldometrobusAPI {
       return { tarjeta };
     }
     else if (!error && status === "error") {
-      return { error: true, error_key: "error" };
+      return { error: true, error_key: "error_tarjeta_unknown" };
     }
     else {
       return { error, error_key };

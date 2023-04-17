@@ -105,6 +105,7 @@ export default {
   no_cambio: "There were no changes in the balance.",
   grafica_nota: "Graphs do not include data for the current day.",
   error_tarjeta: "Invalid card number",
+  error_tarjeta_unknown: "Invalid card number or an error has occurred while adding the card, please try again later",
   existe_tarjeta: "A card with this number already exists",
   version: "Version",
   change_pass: "Update password",
