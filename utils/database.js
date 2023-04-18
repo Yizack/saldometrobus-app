@@ -24,7 +24,7 @@ class Database {
     this.SQLite = SQLite;
   }
 
-  static async Setup (database) {
+  async setup (database) {
     const connection = new SQLiteConnection(CapacitorSQLite);
 
     if (!CAPACITOR.isNative()) {
@@ -39,24 +39,19 @@ class Database {
     const ret = await connection.checkConnectionsConsistency();
     const isConn = (await connection.isConnection(database)).result;
 
-    let SQLite = new SQLiteDBConnection();
     if (ret.result && isConn) {
-      SQLite = await connection.retrieveConnection(database);
+      this.SQLite = await connection.retrieveConnection(database);
     }
     else {
-      SQLite = await connection.createConnection(database, false, "no-encryption", 1);
+      this.SQLite = await connection.createConnection(database, false, "no-encryption", 1);
     }
 
-    await SQLite.open().then(() => {
-      console.info("Opening database");
-    });
+    await this.open();
 
-    await SQLite.executeSet([
+    await this.execute([
       { statement: TABLE.tarjetas, values: [] },
       { statement: TABLE.movimientos, values: [] }
     ]);
-
-    return new Database(SQLite);
   }
 
   // Tarjetas
@@ -174,7 +169,7 @@ class Database {
   }
 
   async getMovimientos (numero) {
-    const statement = `SELECT * FROM movimientos WHERE numero = '${numero}' ORDER BY fecha DESC`;
+    const statement = `SELECT * FROM movimientos WHERE numero = '${numero}' ORDER BY fecha DESC, saldo ASC`;
     const { values } = await this.query(statement);
     if (values.length) {
       const tipos = {
@@ -249,16 +244,17 @@ class Database {
     }
   }
 
+  async open () {
+    await this.SQLite.open().then(() => {
+      console.info("Database opened");
+    });
+  }
+
   async close () {
-    console.info("Closing database");
-    await this.SQLite.close();
+    await this.SQLite.close().then(() => {
+      console.info("Database closed");
+    });
   }
 }
 
-// eslint-disable-next-line import/no-mutable-exports
-let DB = new Database();
-(async () => {
-  DB = await Database.Setup("saldometrobus.db");
-})();
-
-export { DB };
+export const DB = new Database();

@@ -26,11 +26,11 @@ export const formatFecha = (fecha, format = "datetime", locale = "es") => {
   const date = new Date(fecha);
   switch (format) {
   case "datetime":
-    return date.toLocaleDateString(locale, { month: "2-digit", day: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "America/Panama" });
+    return date.toLocaleDateString(locale, { month: "2-digit", day: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
   case "chart":
-    return new Date(date.getTime() + timeOffSet).toLocaleString(locale, { month: "short", day: "numeric", timeZone: "America/Panama" });
+    return new Date(date.getTime() + timeOffSet).toLocaleString(locale, { month: "short", day: "numeric" });
   case "long":
-    return date.toLocaleString(locale, { month: "long", day: "numeric", weekday: "long", year: "numeric", hour: "numeric", minute: "numeric", hour12: true, timeZone: "America/Panama" });
+    return date.toLocaleString(locale, { month: "long", day: "numeric", weekday: "long", year: "numeric", hour: "numeric", minute: "numeric", hour12: true });
   }
 };
 
@@ -55,6 +55,15 @@ export const fixed = (n = 0, d = 0) => {
 };
 
 export const timeOffSet = new Date().getTimezoneOffset() * 60 * 1000;
+
+export const PanamaDate = () => {
+  const d = new Date();
+  const localTime = d.getTime();
+  const utc = localTime + timeOffSet;
+  const offset = -5;
+  const PA = utc + (3600000 * offset);
+  return new Date(PA);
+};
 
 export const formatHour = (hour) => {
   return `${hour}h`;

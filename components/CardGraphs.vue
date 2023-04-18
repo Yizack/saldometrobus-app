@@ -67,10 +67,10 @@ export default {
   },
   computed: {
     getDaysBefore () {
-      const today_timestamp = new Date() - timeOffSet;
+      const today_timestamp = PanamaDate().getTime();
       const days = [];
-      for (let i = 1; i <= this.daysBefore; i++) {
-        const day = new Date(today_timestamp - (i * 24 * 60 * 60 * 1000));
+      for (let i = this.daysBefore; i > 0; i--) {
+        const day = new Date(today_timestamp - timeOffSet - (i * 24 * 60 * 60 * 1000));
         const day_iso = day.toISOString().split("T")[0];
         days.push({ x: day_iso, y: 0 });
       }
@@ -78,7 +78,7 @@ export default {
     },
     get24hours () {
       const days = [];
-      for (let i = 23; i >= 0; i--) {
+      for (let i = 0; i < 24; i++) {
         days.push({ x: String(i), y: 0 });
       }
       return days;
@@ -98,9 +98,9 @@ export default {
       const data = [];
       const template = this.daysBefore > 1 ? this.getDaysBefore : this.get24hours;
       const length = template.length;
-      const startTime = new Date(template[length - 1].x).getTime();
-      const endTime = new Date(template[0].x).getTime();
-      let previous = { x: "", y: 0 };
+      const endTime = new Date(template[length - 1].x).getTime();
+      const startTime = new Date(template[0].x).getTime();
+      let previous_day = { x: "", y: 0 };
 
       this.tarjeta.movimientos.forEach((tarjeta) => {
         const fecha = new Date(Number(tarjeta.fecha) - timeOffSet).toISOString().split("T")[0];
@@ -111,37 +111,46 @@ export default {
           if (fechaTime > startTime && fechaTime <= endTime) {
             const condition = this.charts.find(item => item.name === chart).condition(tarjeta.movimiento);
             if (condition) {
-              data.push({ x: fecha, y });
+              if (chart === "cambio") {
+                data.unshift({ x: fecha, y });
+              }
+              else {
+                data.push({ x: fecha, y });
+              }
             }
           }
-          if (fechaTime < startTime && !previous.y && chart === "cambio") {
+          if (fechaTime < startTime && !previous_day.y && chart === "cambio") {
             if (condition) {
-              previous = { x: template[length - 1].x, y };
+              previous_day = { x: template[0].x, y };
             }
           }
         }
         else if (fecha === this.getDaysBefore[0].x) {
           if (condition) {
             const hour = new Date(Number(tarjeta.fecha)).getHours();
-            data.push({ x: String(hour), y });
+            if (chart === "cambio") {
+              data.unshift({ x: String(hour), y });
+            }
+            else {
+              data.push({ x: String(hour), y });
+            }
           }
         }
-        else if (fecha < this.getDaysBefore[0].x && !previous.y && chart === "cambio") {
+        else if (fecha < this.getDaysBefore[0].x && !previous_day.y && chart === "cambio") {
           if (condition) {
-            previous = { x: template[length - 1].x, y };
+            previous_day = { x: template[0].x, y };
           }
         }
       });
 
       if (chart === "cambio") {
         if (data.length > 0) {
-          const ultimo = data[0];
-
-          if (previous.y) {
-            data.push(previous);
+          if (previous_day.y) {
+            data.unshift(previous_day);
           }
+          const primero = data[0];
+          const ultimo = data[data.length - 1];
 
-          const primero = data[data.length - 1];
           const pad = template.map((item) => {
             const x = this.daysBefore > 1 ? item.x : Number(item.x);
             if (x < primero.x) {
@@ -151,7 +160,7 @@ export default {
               return { x, y: ultimo.y };
             }
             else if (x > primero.x) {
-              const filler = data.find((d) => {
+              const filler = data.findLast((d) => {
                 const dx = this.daysBefore > 1 ? d.x : Number(d.x);
                 return dx < x;
               });
@@ -159,11 +168,11 @@ export default {
             }
             return { x, y: 0 };
           });
-          return data.concat(pad).reverse();
+          return pad.concat(data);
         }
         return template.map(item => ({ x: item.x, y: Number(this.tarjeta.saldo) }));
       }
-      return data.concat(template).reverse();
+      return template.concat(data);
     },
     render () {
       this.charts.forEach((chart, index) => {

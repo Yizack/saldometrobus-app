@@ -1,6 +1,8 @@
 <script setup>
 scrollBehavior();
 
+await DB.setup(CONST.database);
+
 if (!Auth().exists) {
   await Auth().restore();
 }
