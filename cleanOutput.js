@@ -1,9 +1,18 @@
-import { readdirSync, unlinkSync } from "fs";
+import { readdirSync, unlinkSync, rmSync } from "fs";
 
-const path = "./.output/public/_app/";
+const public_path = "./.output/public/";
+const nuxt_path = public_path + "_app/";
+
 const regex = [/jeep-sqlite.*.js/, /web.*.js/];
 
-const files = readdirSync(path).filter(f => regex.find(r => r.test(f)));
-files.map(f => unlinkSync(path + f));
+try {
+  const files = readdirSync(nuxt_path).filter(f => regex.find(r => r.test(f)));
+  files.map(f => unlinkSync(nuxt_path + f));
 
-console.info(`Cleaned: ${files.join(", ")}`);
+  const dirs = ["assets"];
+  dirs.map(d => rmSync(public_path + d + "/", { recursive: true }));
+  console.info(`Cleaned: ${files.join(", ") + ", " + dirs.join(", ")}`);
+}
+catch (e) {
+  console.warn(e);
+}
