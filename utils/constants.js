@@ -7,6 +7,10 @@ export const CONST = {
     name: "Yizack Rangel",
     url: "https://yizack.com"
   },
+  bgeneral: {
+    numero: "0425978180593",
+    tipo: "Cuenta de Ahorros"
+  },
   url: "https://saldometrobus.yizack.com",
   email: "saldometrobus@yizack.com",
   database: "saldometrobus.db",

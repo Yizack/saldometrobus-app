@@ -4,6 +4,8 @@ import { Preferences } from "@capacitor/preferences";
 import { Toast } from "@capacitor/toast";
 import { Dialog } from "@capacitor/dialog";
 import { Network } from "@capacitor/network";
+import { Browser } from "@capacitor/browser";
+import { Clipboard } from "@capacitor/clipboard";
 
 const error_conexion = { error: true, error_key: "error_conexion" };
 const error_response = { error: true, error_key: "error" };
@@ -82,6 +84,16 @@ class CapacitorPlugins {
     const { value } = await Dialog.confirm({ title, message, okButtonTitle: "Ok", cancelButtonTitle: t("cancel") });
     return value;
   }
+
+  async openBrowser (url = "") {
+    await Browser.open({ url, toolbarColor: CONST.colors.light.primary });
+  }
+
+  writeToClipboard (string = "") {
+    Clipboard.write({ string }).then(() => {
+      this.showToast(t("copied"));
+    });
+  };
 }
 
 export const CAPACITOR = new CapacitorPlugins();

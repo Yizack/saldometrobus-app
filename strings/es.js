@@ -113,5 +113,14 @@ export default {
   new_pass: "Nueva contraseña",
   pass_updated: "Contraseña actualizada",
   pass_error: "La contraseña actual es incorrecta",
-  updating_pass: "Actualizando contraseña..."
+  updating_pass: "Actualizando contraseña...",
+  donar: "Donar",
+  donacion: "Realiza una donación",
+  donar_desc: "Si disfrutas usando esta app y quieres ayudar a mantenerla en línea, considera hacer una donación para ayudar con el desarrollo y los costos del servidor y base de datos. Cualquier cantidad que puedas donar será muy apreciada y ayudará a seguir ofreciendo esta app a todos de forma gratuita y sin anuncios. ¡Gracias por tu apoyo!",
+  n_cuenta: "Número de cuenta",
+  donar_bgeneral: "Utiliza la siguiente información para realizar tu donación a través de transferencia bancaria a terceros dentro de la app de la banca en línea.",
+  donar_nequi: "Utiliza el siguiente código QR haciendo una captura de pantalla o descargando la imagen para realizar tu donación a través de la app de Nequi.",
+  copied: "Copiado al portapapeles",
+  copiar_n: "Copiar número",
+  download_qr: "Descargar QR"
 };

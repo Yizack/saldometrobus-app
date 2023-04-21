@@ -26,9 +26,12 @@
     <div class="offcanvas-body px-0 h-100 w-100 d-flex flex-column">
       <nav class="nav flex-column">
         <span v-for="(tab, index) in menu" :key="index" data-bs-dismiss="offcanvas">
-          <NuxtLink class="nav-link text-dark-emphasis py-3" :to="tab.link">
+          <NuxtLink v-if="!tab.external" class="nav-link text-dark-emphasis py-3" :to="tab.link">
             <Icon :name="tab.icon" width="24" height="24" class="me-4" /> {{ tab.name }}
           </NuxtLink>
+          <a v-else class="nav-link text-dark-emphasis py-3" role="button" @click="CAPACITOR.openBrowser(tab.link)">
+            <Icon :name="tab.icon" width="24" height="24" class="me-4" /> {{ tab.name }}
+          </a>
         </span>
         <hr>
         <div class="px-3">{{ t("sesion") }}</div>
@@ -59,17 +62,26 @@ export default {
         {
           name: t("tarjetas"),
           icon: "material-symbols:credit-card-outline",
-          link: "/app/"
+          link: "/app/",
+          external: false
         },
         {
           name: t("perfil"),
           icon: "material-symbols:account-circle",
-          link: "/app/perfil/"
+          link: "/app/perfil/",
+          external: false
         },
         {
           name: t("estado"),
           icon: "material-symbols:info",
-          link: "https://status.saldometrobus.yizack.com/"
+          link: "https://status.saldometrobus.yizack.com/",
+          external: true
+        },
+        {
+          name: t("donar"),
+          icon: "material-symbols:shield-with-heart-outline",
+          link: "/app/donar/",
+          external: false
         }
       ]
     };

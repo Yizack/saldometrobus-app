@@ -1,4 +1,12 @@
 export default defineNuxtRouteMiddleware((to, from) => {
+  const modals = document.querySelectorAll(".modal");
+
+  if (modals) {
+    modals.forEach(({ id }) => {
+      hideModal(id);
+    });
+  }
+
   const getDepth = (path) => {
     return path.split("/").filter(seg => seg.length > 0).length;
   };
