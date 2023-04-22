@@ -54,7 +54,7 @@ definePageMeta({ layout: "main" });
               <img class="img-fluid rounded" src="/images/nequi_qr.webp">
             </div>
             <div class="d-grid">
-              <a class="btn btn-primary" :href="`${CONST.url}/images/nequi_qr.png`" target="_blank">{{ t("download_qr") }}</a>
+              <a class="btn btn-primary" role="button" @click="CAPACITOR.openBrowser(`${CONST.url}/images/nequi_qr.png`)">{{ t("download_qr") }}</a>
             </div>
           </div>
         </div>

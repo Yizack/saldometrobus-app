@@ -1,6 +1,9 @@
+<script setup>
+definePageMeta({ layout: "back", nav_title: "registrate" });
+</script>
+
 <template>
   <section>
-    <NavBar back="/" :title="t('registrate')" />
     <div class="container-fluid text-center">
       <div class="my-5">
         <form ref="registro" novalidate @submit.prevent="registro()">

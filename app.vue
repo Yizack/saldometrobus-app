@@ -1,21 +1,8 @@
-<script setup>
-scrollBehavior();
-
-await DB.setup(CONST.database);
-
-if (!Auth().exists) {
-  await Auth().restore();
-}
-
-await CONFIG.load();
-await CAPACITOR.setStatusBar(true);
-</script>
-
 <template>
   <NuxtLoadingIndicator :throttle="0" />
   <NuxtLayout>
     <div id="page">
-      <NuxtPage />
+      <NuxtPage class="p-2" />
     </div>
   </NuxtLayout>
 </template>
@@ -23,6 +10,18 @@ await CAPACITOR.setStatusBar(true);
 <script>
 export default {
   name: "App",
+  async setup () {
+    scrollBehavior();
+
+    await DB.setup(CONST.database);
+
+    if (!Auth().exists) {
+      await Auth().restore();
+    }
+
+    await CONFIG.load();
+    await CAPACITOR.setStatusBar(true);
+  },
   async unmounted () {
     await DB.close();
   }
@@ -38,6 +37,9 @@ export default {
   left: 0;
   right: 0;
   height: 100%;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: stretch;
   transition: all 0.3s linear;
 }
 .page-left-enter-from, .page-right-leave-to {

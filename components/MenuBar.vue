@@ -1,12 +1,12 @@
 <template>
-  <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top shadow">
+  <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top shadow-sm">
     <div class="container-fluid">
       <a class="text-white pe-4 display-6" data-bs-toggle="offcanvas" href="#menu" role="button" aria-controls="menu"><Icon class="d-flex" name="material-symbols:menu" /></a>
       <span class="navbar-brand me-auto">{{ title }}</span>
       <div class="nav-item dropstart">
         <a class="text-white display-6" role="button" data-bs-toggle="dropdown" aria-expanded="false"><Icon name="ic:baseline-more-vert" /></a>
         <ul class="dropdown-menu m-0 end-0">
-          <li><NuxtLink class="dropdown-item py-3 px-4" to="/app/config/">{{ t("config") }}</NuxtLink></li>
+          <li><NuxtLink class="dropdown-item py-3 px-4" to="/app/prefs/config/">{{ t("config") }}</NuxtLink></li>
           <li><a class="dropdown-item py-3 px-4" data-bs-toggle="modal" data-bs-target="#about" role="button">{{ t("acerca") }}</a></li>
         </ul>
       </div>

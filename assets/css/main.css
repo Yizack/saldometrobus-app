@@ -1,4 +1,4 @@
-html, body {
+body {
   caret-color: var(--bs-secondary);
   font-family: "Nunito";
   height: 100%;
@@ -82,7 +82,9 @@ img {
 .form-control {
   border-bottom-width: 2px;
   border-left-width: 0;
-  border-radius: 0;
+  border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   border-right-width: 0;
   border-top-width: 0;
 }

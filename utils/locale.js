@@ -9,7 +9,7 @@ class Locale {
   }
 
   get (key = "") {
-    return locales[this.code][key];
+    return locales[this.code][key] || locales.en[key];
   }
 
   setLanguage (code = "es") {
