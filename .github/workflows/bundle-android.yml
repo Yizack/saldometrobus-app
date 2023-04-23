@@ -29,6 +29,12 @@ jobs:
     - name: Build App ⚡
       run: npm run generate
 
+    - name: Deploy Web Demo 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages
+        folder: .output/public
+
     - name: Clean output 🧹
       run: npm run clean
 
