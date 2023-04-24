@@ -19,14 +19,12 @@ const TABLE = {
       saldo TEXT)`
 };
 
-const database = "saldometrobus.db";
-
 class Database {
   constructor (SQLite = new SQLiteDBConnection()) {
     this.SQLite = SQLite;
   }
 
-  async setup () {
+  async setup (database) {
     const connection = new SQLiteConnection(CapacitorSQLite);
 
     if (!CAPACITOR.isNative()) {
