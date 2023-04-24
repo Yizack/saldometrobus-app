@@ -13,7 +13,7 @@ export default {
   async setup () {
     scrollBehavior();
 
-    await DB.setup(CONST.database);
+    await DB.setup();
 
     if (!Auth().exists) {
       await Auth().restore();

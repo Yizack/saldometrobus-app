@@ -13,7 +13,6 @@ export const CONST = {
   },
   url: "https://saldometrobus.yizack.com",
   email: "saldometrobus@yizack.com",
-  database: "saldometrobus.db",
   dark: false,
   colors: {
     light: {
