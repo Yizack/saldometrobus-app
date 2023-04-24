@@ -152,15 +152,15 @@ class Database {
   insertMovimientos (tarjeta) {
     const statements = [];
     const { numero, movimientos } = tarjeta;
-    let size = movimientos.movimiento.length;
+    let size = movimientos.length;
     if (!size) {
       return false;
     };
     while (size--) {
-      const movimiento = movimientos.movimiento[size];
-      const fecha = convertToTime(movimientos.fecha_hora[size]);
-      const monto = movimientos.monto[size];
-      const saldo = movimientos.saldo_tarjeta[size];
+      const movimiento = movimientos[size].tipo;
+      const fecha = convertToTime(movimientos[size].fecha_hora);
+      const monto = movimientos[size].monto;
+      const saldo = movimientos[size].saldo_tarjeta;
       const statement = "INSERT INTO movimientos VALUES (?, ?, ?, ?, ?)";
       const values = [numero, movimiento, fecha, monto, saldo];
       statements.push({ statement, values });

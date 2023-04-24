@@ -1,7 +1,7 @@
 class SaldometrobusAPI {
   constructor () {
     this.baseURL = "https://saldometrobus.yizack.com";
-    this.tarjetasAPI = `${this.baseURL}/api/tarjeta`;
+    this.tarjetasAPI = `${this.baseURL}/api/v2/tarjeta`;
     this.loginURL = `${this.baseURL}/database/v2/login`;
     this.registroURL = `${this.baseURL}/database/v2/registro`;
     this.addTarjetaURL = `${this.baseURL}/database/v2/tarjetas_insert`;
