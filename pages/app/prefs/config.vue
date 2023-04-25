@@ -7,7 +7,7 @@ definePageMeta({ layout: "back", nav_title: "config" });
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
       <h4 class="text-primary-emphasis m-0"><b>{{ t("idioma") }}</b></h4>
       <div class="m-2">
-        <select v-model="lang" class="form-select">
+        <select v-model="lang" class="form-select py-2">
           <option value="es">Español</option>
           <option value="en">English</option>
         </select>

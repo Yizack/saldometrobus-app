@@ -91,7 +91,7 @@ export default {
       await DB.deleteAll();
       await Auth().logout();
       document.body.removeAttribute("style");
-      this.$router.push("/");
+      this.$router.replace("/");
     }
   }
 };

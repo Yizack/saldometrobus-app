@@ -34,6 +34,7 @@ export default {
   registrate: "Sign up",
   no_registro: "Enter without registering",
   enter_email_password: "Enter your email and password",
+  enter_account_info: "Enter your information to create an account",
   eliminar: "Delete",
   eliminar_tarjeta: "Delete card",
   eliminar_seguro: "Are you sure you want to delete this card?",
@@ -122,5 +123,10 @@ export default {
   donar_nequi: "Use the following QR code by taking a screenshot or downloading the image to make your donation through the Nequi app.",
   copied: "Copied to clipboard",
   copiar_n: "Copy account number",
-  download_qr: "Download QR code"
+  download_qr: "Download QR code",
+  delete_account: "Delete account",
+  no_tarjetas: "No cards linked to this account yet.",
+  delete_account_sure: "Are you sure you want to delete your account? This action cannot be undone and all your information will be permanently deleted.",
+  deleting_account: "Deleting account...",
+  account_id: "Account identifier"
 };

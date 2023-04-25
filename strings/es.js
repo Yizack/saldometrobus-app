@@ -25,7 +25,7 @@ export default {
   adding_tarjeta: "Agregando tarjeta...",
   login: "Iniciar sesión",
   login_error: "El correo electrónico o la contraseña son incorrectos. ¡Vuelve a intentarlo!",
-  correo: "Correo",
+  correo: "Correo electrónico",
   password: "Contraseña",
   password_check: "Confirmar contraseña",
   password_check_error: "Las contraseñas no coinciden",
@@ -34,6 +34,7 @@ export default {
   registrate: "Regístrate",
   no_registro: "Entrar sin registrarse",
   enter_email_password: "Introduce tu correo y contraseña",
+  enter_account_info: "Introduzca su información para crear una cuenta",
   eliminar: "Eliminar",
   eliminar_tarjeta: "Eliminar tarjeta",
   eliminar_seguro: "¿Estás seguro que deseas eliminar esta tarjeta?",
@@ -122,5 +123,10 @@ export default {
   donar_nequi: "Utiliza el siguiente código QR haciendo una captura de pantalla o descargando la imagen para realizar tu donación a través de la app de Nequi.",
   copied: "Copiado al portapapeles",
   copiar_n: "Copiar número",
-  download_qr: "Descargar QR"
+  download_qr: "Descargar QR",
+  delete_account: "Eliminar cuenta",
+  no_tarjetas: "No existen tarjetas vinculadas a esta cuenta aún.",
+  delete_account_sure: "¿Estás seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer y toda la información de tu cuenta será eliminada permanentemente.",
+  deleting_account: "Eliminando cuenta...",
+  account_id: "Identificador de cuenta"
 };

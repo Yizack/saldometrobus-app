@@ -1,14 +1,18 @@
 class SaldometrobusAPI {
   constructor () {
-    this.baseURL = "https://saldometrobus.yizack.com";
-    this.tarjetasAPI = `${this.baseURL}/api/v2/tarjeta`;
-    this.loginURL = `${this.baseURL}/database/v2/login`;
-    this.registroURL = `${this.baseURL}/database/v2/registro`;
-    this.addTarjetaURL = `${this.baseURL}/database/v2/tarjetas_insert`;
-    this.getTarjetasURL = `${this.baseURL}/database/v2/tarjetas_get`;
-    this.updateTarjetaURL = `${this.baseURL}/database/v2/tarjetas_update`;
-    this.deleteTarjetaURL = `${this.baseURL}/database/v2/tarjetas_delete`;
-    this.updateURL = `${this.baseURL}/database/v2/update_password`;
+    this.base = "https://saldometrobus.yizack.com";
+    this.version = "v2";
+    this.baseAPI = `${this.base}/api/${this.version}`;
+    this.baseDB = `${this.base}/database/${this.version}`;
+    this.tarjetasAPI = `${this.baseAPI}/tarjeta`;
+    this.loginURL = `${this.baseDB}/login`;
+    this.registroURL = `${this.baseDB}/registro`;
+    this.addTarjetaURL = `${this.baseDB}/tarjetas_insert`;
+    this.getTarjetasURL = `${this.baseDB}/tarjetas_get`;
+    this.updateTarjetaURL = `${this.baseDB}/tarjetas_update`;
+    this.deleteTarjetaURL = `${this.baseDB}/tarjetas_delete`;
+    this.updateURL = `${this.baseDB}/update_password`;
+    this.deleteAccountURL = `${this.baseDB}/delete_account`;
   }
 
   userLogin (payload) {
@@ -68,6 +72,10 @@ class SaldometrobusAPI {
 
   updateTarjeta (payload) {
     return CAPACITOR.doPost(this.updateTarjetaURL, payload);
+  }
+
+  deleteAccount (payload) {
+    return CAPACITOR.doPost(this.deleteAccountURL, payload);
   }
 }
 

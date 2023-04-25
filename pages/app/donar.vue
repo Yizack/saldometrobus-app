@@ -29,12 +29,12 @@ definePageMeta({ layout: "main" });
             <p class="m-0">{{ t("donar_bgeneral") }}</p>
             <div class="my-3">
               <div v-for="(field, key) in donate_options.bgeneral.info" :key="key" class="form-floating mb-2">
-                <input type="text" class="form-control" :value="field" readonly>
+                <input ref="bgeneral" type="text" class="form-control" :value="field" readonly>
                 <label>{{ t(key) }}</label>
               </div>
             </div>
             <div class="d-grid">
-              <button class="btn btn-primary" @click="CAPACITOR.writeToClipboard(donate_options.bgeneral.info.n_cuenta)">{{ t("copiar_n") }}</button>
+              <button class="btn btn-primary" @click="copyBgeneral()">{{ t("copiar_n") }}</button>
             </div>
           </div>
         </div>
@@ -85,6 +85,12 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    copyBgeneral () {
+      this.$refs.bgeneral[1].focus();
+      CAPACITOR.writeToClipboard(this.donate_options.bgeneral.info.n_cuenta);
+    }
   }
 };
 </script>

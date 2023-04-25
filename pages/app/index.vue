@@ -41,14 +41,16 @@ definePageMeta({ layout: "main" });
           </div>
           <div class="modal-body text-center">
             <form ref="add" novalidate @submit.prevent="addTarjeta()">
-              <div class="mb-3 position-relative">
+              <div class="mb-3 position-relative form-floating">
                 <input v-model="form.nombre" class="form-control" type="text" :placeholder="t('nombre')" required>
+                <label>{{ t("nombre") }}</label>
                 <div class="invalid-tooltip">
                   {{ t("obligatorio") }}
                 </div>
               </div>
-              <div class="mb-3 position-relative">
+              <div class="mb-3 position-relative form-floating">
                 <input v-model="form.numero" class="form-control" type="number" pattern="[0-9]" :placeholder="t('numero_tarjeta')" required>
+                <label>{{ t("numero_tarjeta") }}</label>
                 <div class="invalid-tooltip">
                   {{ t("error_tarjeta") }}
                 </div>

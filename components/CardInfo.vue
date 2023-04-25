@@ -75,14 +75,16 @@
           </div>
           <div class="modal-body text-center">
             <form ref="edit" novalidate @submit.prevent="editCard()">
-              <div class="mb-3 position-relative">
+              <div class="mb-3 position-relative form-floating">
                 <input v-model="form.nombre" class="form-control" type="text" :placeholder="t('nombre')" required>
+                <label>{{ t("nombre") }}</label>
                 <div class="invalid-tooltip">
                   {{ t("obligatorio") }}
                 </div>
               </div>
-              <div class="mb-3 position-relative">
-                <input class="form-control" type="number" :value="tarjeta.numero" disabled>
+              <div class="mb-3 position-relative form-floating">
+                <input class="form-control" type="number" :value="tarjeta.numero" :placeholder="t('numero_tarjeta')" disabled>
+                <label disabled>{{ t("numero_tarjeta") }}</label>
               </div>
               <div class="d-flex justify-content-end">
                 <button class="btn btn-danger me-2" type="button" data-bs-dismiss="modal">{{ t("cancel") }}</button>

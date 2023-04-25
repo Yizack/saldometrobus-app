@@ -1,20 +1,22 @@
 <template>
   <section>
     <div class="container-fluid text-center">
-      <div class="my-5">
-        <img class="img-fluid shadow-sm my-3 p-2 rounded" width="90" height="90" src="/images/logo.webp">
+      <div class="py-4">
+        <img class="img-fluid shadow-sm my-3 p-2 rounded bg-body" width="90" height="90" src="/images/logo.webp">
         <h1><b>{{ t("app_name") }}</b></h1>
         <p>{{ t("enter_email_password") }}</p>
       </div>
       <form ref="login" novalidate @submit.prevent="login()">
-        <div class="mb-3 position-relative">
+        <div class="mb-3 position-relative form-floating">
           <input v-model="form.email" class="form-control" type="email" :placeholder="t('correo')" name="email" autocomplete="email" required>
+          <label>{{ t("correo") }}</label>
           <div class="invalid-tooltip">
             {{ t("correo_incorrecto") }}
           </div>
         </div>
-        <div class="mb-3 position-relative">
+        <div class="mb-3 position-relative form-floating">
           <input v-model="form.password" class="form-control" type="password" :placeholder="t('password')" name="password" autocomplete="current-password" minlength="3" required>
+          <label>{{ t("password") }}</label>
           <div class="invalid-tooltip">
             {{ t("password_limit") }}
           </div>
