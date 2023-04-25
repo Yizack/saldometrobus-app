@@ -57,7 +57,7 @@ definePageMeta({ layout: "main" });
               </div>
               <div class="d-flex justify-content-end">
                 <button class="btn btn-danger me-2" type="button" data-bs-dismiss="modal">{{ t("cancel") }}</button>
-                <input class="btn btn-primary" type="submit" role="button" :value="t('add')">
+                <button class="btn btn-primary" type="submit" role="button">{{ t("add") }}</button>
               </div>
             </form>
           </div>

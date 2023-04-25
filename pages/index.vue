@@ -22,9 +22,9 @@
           </div>
         </div>
         <div class="d-grid gap-2 mt-5 mt-auto">
-          <input class="btn btn-primary mb-4" type="submit" role="button" :value="t('login')">
+          <button class="btn btn-primary mb-4" type="submit" role="button">{{ t("login") }}</button>
           <NuxtLink class="btn btn-success" role="button" to="/registro/">{{ t("registrate") }}</NuxtLink>
-          <input class="btn btn-secondary" type="button" role="button" to="/app/" :value="t('no_registro')" @click="guestLogin()">
+          <button class="btn btn-secondary" type="button" role="button" @click="guestLogin()">{{ t("no_registro") }}</button>
         </div>
       </form>
       <div class="mt-4 small">

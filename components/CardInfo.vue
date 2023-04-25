@@ -88,7 +88,7 @@
               </div>
               <div class="d-flex justify-content-end">
                 <button class="btn btn-danger me-2" type="button" data-bs-dismiss="modal">{{ t("cancel") }}</button>
-                <input class="btn btn-primary" type="submit" role="button" :value="t('editar')">
+                <button class="btn btn-primary" type="submit" role="button">{{ t("editar") }}</button>
               </div>
             </form>
           </div>
