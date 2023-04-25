@@ -144,6 +144,7 @@ export default {
         if (!error) {
           await DB.deleteAll();
           await Auth().logout();
+          await CAPACITOR.showToast(`${t("account_deleted")}`);
           await sleep(0.5);
           hideModal("progress-dialog");
           this.$router.replace("/");

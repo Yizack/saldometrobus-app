@@ -128,5 +128,6 @@ export default {
   no_tarjetas: "No existen tarjetas vinculadas a esta cuenta aún.",
   delete_account_sure: "¿Estás seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer y toda la información de tu cuenta será eliminada permanentemente.",
   deleting_account: "Eliminando cuenta...",
+  account_deleted: "Cuenta eliminada",
   account_id: "Identificador de cuenta"
 };

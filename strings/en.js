@@ -128,5 +128,6 @@ export default {
   no_tarjetas: "No cards linked to this account yet.",
   delete_account_sure: "Are you sure you want to delete your account? This action cannot be undone and all your information will be permanently deleted.",
   deleting_account: "Deleting account...",
+  account_deleted: "Account deleted",
   account_id: "Account identifier"
 };
