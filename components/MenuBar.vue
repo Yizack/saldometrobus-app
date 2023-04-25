@@ -15,7 +15,7 @@
   <div id="menu" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="menuLabel">
     <div class="offcanvas-header bg-primary align-items-start">
       <div class="text-white">
-        <img class="img-fluid" src="/images/logo2.webp" width="70" height="70">
+        <img class="img-fluid rounded-circle bg-white" src="/images/logo2.webp" width="70" height="70">
         <h5 id="menuLabel" class="offcanvas-title">{{ Auth().user.nombre }}</h5>
         <div>{{ Auth().user.email }}</div>
       </div>
