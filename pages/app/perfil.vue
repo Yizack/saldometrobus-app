@@ -137,12 +137,22 @@ export default {
       if (confirm) {
         this.dialog = t("deleting_account");
         showModal("progress-dialog");
-        // TODO: delete account action
-        await DB.deleteAll();
-        await Auth().logout();
-        await sleep(0.5);
-        hideModal("progress-dialog");
-        this.$router.replace("/");
+        const { error, error_key } = await API.deleteAccount({
+          email: Auth().user.email,
+          token: Auth().user.token
+        });
+        if (!error) {
+          await DB.deleteAll();
+          await Auth().logout();
+          await sleep(0.5);
+          hideModal("progress-dialog");
+          this.$router.replace("/");
+        }
+        else {
+          await CAPACITOR.showToast(t(error_key));
+          await sleep(0.5);
+          hideModal("progress-dialog");
+        }
       }
     }
   }
