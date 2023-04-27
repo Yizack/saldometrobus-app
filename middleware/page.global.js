@@ -1,4 +1,12 @@
-export default defineNuxtRouteMiddleware((to, from) => {
+export default defineNuxtRouteMiddleware(async (to, from) => {
+  if (!Auth().exists) {
+    await Auth().restore();
+    if (Auth().exists && to.path === "/") {
+      const { $router } = useNuxtApp();
+      $router.replace("/app/");
+    }
+  }
+
   const modals = document.querySelectorAll(".modal");
 
   if (modals) {

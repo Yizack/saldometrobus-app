@@ -47,11 +47,6 @@ export default {
       }
     };
   },
-  mounted () {
-    if (Auth().exists) {
-      this.$router.replace("/app/");
-    }
-  },
   methods: {
     async login () {
       const form = this.$refs.login;

@@ -1,3 +1,4 @@
+import { App } from "@capacitor/app";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { Capacitor, CapacitorHttp } from "@capacitor/core";
 import { Preferences } from "@capacitor/preferences";
@@ -17,6 +18,10 @@ class CapacitorPlugins {
       await StatusBar.setStyle({ style: isDark ? Style.Dark : Style.Light });
       await StatusBar.setBackgroundColor({ color: isDark ? dark.primary : light.primary });
     }
+  }
+
+  isAndroid () {
+    return Capacitor.getPlatform() === "android";
   }
 
   isNative () {
@@ -94,6 +99,14 @@ class CapacitorPlugins {
       this.showToast(t("copied"));
     });
   };
+
+  exit () {
+    App.exitApp();
+  }
+
+  onBack (callback = () => {}) {
+    App.addListener("backButton", ({ canGoBack }) => callback(canGoBack));
+  }
 }
 
 export const CAPACITOR = new CapacitorPlugins();

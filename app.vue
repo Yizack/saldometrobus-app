@@ -15,12 +15,19 @@ export default {
 
     await DB.setup(CONST.database);
 
-    if (!Auth().exists) {
-      await Auth().restore();
-    }
-
     await CONFIG.load();
     await CAPACITOR.setStatusBar(true);
+    const { $router } = useNuxtApp();
+    CAPACITOR.onBack((canGoBack) => {
+      if (CAPACITOR.isAndroid()) {
+        if (!canGoBack) {
+          CAPACITOR.exit();
+        }
+        else {
+          $router.back();
+        }
+      }
+    });
   },
   async unmounted () {
     await DB.close();
