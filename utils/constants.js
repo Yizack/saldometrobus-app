@@ -12,8 +12,10 @@ export const CONST = {
     tipo: "Cuenta de Ahorros"
   },
   url: "https://saldometrobus.yizack.com",
+  status_url: "https://status.saldometrobus.yizack.com",
   email: "saldometrobus@yizack.com",
   database: "saldometrobus.db",
+  paypal: "https://www.paypal.com/donate/?hosted_button_id=ZDRU9XGJHPN5U",
   dark: false,
   colors: {
     light: {

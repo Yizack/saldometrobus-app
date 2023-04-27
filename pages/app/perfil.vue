@@ -53,7 +53,7 @@ definePageMeta({ layout: "main" });
     <div v-if="!Auth().isGuest" class="bg-body-tertiary border rounded p-2 shadow">
       <h4 class="text-primary-emphasis m-0"><b>{{ t("account_id") }}</b></h4>
       <div class="m-2">
-        <input :value="readonly.token" class="form-control form-control-sm py-2" type="text" readonly @click="copyToken($event)">
+        <input :value="readonly.token" class="form-control py-2" type="text" readonly @click="copyToken($event)">
       </div>
     </div>
     <div v-if="!Auth().isGuest" class="d-grid">

@@ -129,5 +129,6 @@ export default {
   delete_account_sure: "¿Estás seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer y toda la información de tu cuenta será eliminada permanentemente.",
   deleting_account: "Eliminando cuenta...",
   account_deleted: "Cuenta eliminada",
-  account_id: "Identificador de cuenta"
+  account_id: "Identificador de cuenta",
+  olvido_pass: "¿Olvidaste tu contraseña?"
 };

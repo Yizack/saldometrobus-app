@@ -10,7 +10,7 @@ definePageMeta({ layout: "main" });
     </div>
     <div class="donate-buttons">
       <template v-for="(donate, name) in donate_options" :key="name">
-        <div v-if="donate.external" class="donate-option rounded-pill shadow mb-2" :class="name" @click="CAPACITOR.openBrowser('https://www.paypal.com/donate/?hosted_button_id=ZDRU9XGJHPN5U')">
+        <div v-if="donate.external" class="donate-option rounded-pill shadow mb-2" :class="name" @click="CAPACITOR.openBrowser(donate.link)">
           <img class="img-fluid" :src="`/images/${name}.svg`">
         </div>
         <div v-else class="donate-option rounded-pill shadow mb-2" :class="name" data-bs-toggle="modal" :data-bs-target="`#${name}`">
@@ -81,7 +81,7 @@ export default {
         },
         paypal: {
           external: true,
-          link: "https://www.paypal.com/donate/?hosted_button_id=ZDRU9XGJHPN5U"
+          link: CONST.paypal
         }
       }
     };

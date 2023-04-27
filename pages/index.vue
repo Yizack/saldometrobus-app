@@ -22,7 +22,8 @@
           </div>
         </div>
         <div class="d-grid gap-2 mt-5 mt-auto">
-          <button class="btn btn-primary mb-4" type="submit" role="button">{{ t("login") }}</button>
+          <button class="btn btn-primary" type="submit" role="button">{{ t("login") }}</button>
+          <a class="text-primary my-2" role="button" @click="CAPACITOR.openBrowser(`${CONST.url}/cuenta?s=restaurar`)">{{ t("olvido_pass") }}</a>
           <NuxtLink class="btn btn-success" role="button" to="/registro/">{{ t("registrate") }}</NuxtLink>
           <button class="btn btn-secondary" type="button" role="button" @click="guestLogin()">{{ t("no_registro") }}</button>
         </div>

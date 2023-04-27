@@ -74,7 +74,7 @@ export default {
         {
           name: t("estado"),
           icon: "material-symbols:info",
-          link: "https://status.saldometrobus.yizack.com/",
+          link: CONST.status_url,
           external: true
         },
         {
