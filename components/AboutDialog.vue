@@ -6,9 +6,7 @@
           <button type="button" class="btn-close position-absolute end-0 pe-4" data-bs-dismiss="modal" aria-label="Close" />
           <div class="text-center p-2">
             <img class="img-fluid shadow-sm mb-3 p-2 rounded" width="90" height="90" src="/images/logo.webp">
-            <div style="white-space: pre-wrap;">
-              {{ t("about_message") }}
-            </div>
+            <div class="small" style="white-space: pre-wrap;">{{ t("about_message") }}</div>
           </div>
         </div>
       </div>

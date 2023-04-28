@@ -1,7 +1,7 @@
 // Language strings for English
 export default {
-  lang: "Spanish",
-  lang_code: "es",
+  lang: "English",
+  lang_code: "en",
   app_name: "Metrobus Balance",
   invitado: "[Guest]",
   config: "Settings",
@@ -46,7 +46,7 @@ export default {
   estado_contrato: "Contract status",
   tipo_tarjeta: "Card type",
   balance: "Card Balance",
-  privacidad: "Privacy policies",
+  privacidad: "Privacy policy",
   acerca: "About",
   idioma: "Language",
   modo_oscuro: "Dark mode",
@@ -54,7 +54,7 @@ export default {
   languages: ["Spanish", "English"],
   guardar: "Save changes",
   dark_mode_desc: "Reduce glare and improve night vision",
-  about_message: "\"Metrobus Balance\" is an app for checking balances and transactions for the metro and metrobús cards in Panama, designed and developed by Yizack Rangel. The two different logos were designed by Georlenys Martínez. All card data is obtained from the queries page of www.tarjetametrobus.com.",
+  about_message: "\"Metrobus Balance\" is an app for checking balances and transactions for the metro and metrobús cards in Panama, designed and developed by Yizack Rangel. The two different logos were designed by Georlenys Martínez.\n\nBalance update may take up to 15 or 30 minutes to be reflected from the last transaction or action made with your card due to the update delay imposed by official sources.\n\nAll card data is obtained from the official source of the service on the consults site www.tarjetametrobus.com which offers this information throughout Panama. This app is unofficial, is not owned or endorsed by any government affiliation.",
   tarjeta_added: "Card added",
   tarjeta_actualizada: "Card updated",
   error_conexion: "Error, check your internet connection and try again",

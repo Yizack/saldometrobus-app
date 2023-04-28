@@ -14,6 +14,7 @@ export const CONST = {
   url: "https://saldometrobus.yizack.com",
   status_url: "https://status.saldometrobus.yizack.com",
   email: "saldometrobus@yizack.com",
+  privacy: lang => `https://yizack.com/legal/saldometrobus/${lang}/privacy.html`,
   database: "saldometrobus.db",
   paypal: "https://www.paypal.com/donate/?hosted_button_id=ZDRU9XGJHPN5U",
   dark: false,
