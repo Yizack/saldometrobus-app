@@ -17,17 +17,18 @@ export default {
 
     await CONFIG.load();
     await CAPACITOR.setStatusBar(true);
-    const { $router } = useNuxtApp();
-    CAPACITOR.onBack((canGoBack) => {
-      if (CAPACITOR.isAndroid()) {
+
+    if (CAPACITOR.isAndroid()) {
+      const { $router } = useNuxtApp();
+      CAPACITOR.onBack((canGoBack) => {
         if (!canGoBack) {
           CAPACITOR.exit();
         }
         else {
           $router.back();
         }
-      }
-    });
+      });
+    }
   },
   async unmounted () {
     await DB.close();
