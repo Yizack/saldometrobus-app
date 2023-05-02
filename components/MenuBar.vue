@@ -73,6 +73,12 @@ export default {
           external: false
         },
         {
+          name: t("rutas"),
+          icon: "material-symbols:directions-bus-outline",
+          link: "/app/mibus/",
+          external: false
+        },
+        {
           name: t("estado"),
           icon: "material-symbols:info",
           link: CONST.status_url,

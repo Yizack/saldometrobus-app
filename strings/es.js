@@ -130,5 +130,9 @@ export default {
   deleting_account: "Eliminando cuenta...",
   account_deleted: "Cuenta eliminada",
   account_id: "Identificador de cuenta",
-  olvido_pass: "¿Olvidaste tu contraseña?"
+  olvido_pass: "¿Olvidaste tu contraseña?",
+  rutas: "Rutas MiBus",
+  rutas_corredores: "Rutas Corredores",
+  rutas_troncales: "Rutas Troncales",
+  rutas_complementarias: "Rutas Complementarias"
 };

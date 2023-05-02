@@ -26,6 +26,9 @@ jobs:
     - name: Install Dependencies 📦
       run: npm ci
 
+    - name: MiBus Rutas 🚌
+      run: npm run mibus
+
     - name: Build App ⚡
       run: npm run generate
 

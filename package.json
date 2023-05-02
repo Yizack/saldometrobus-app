@@ -30,7 +30,8 @@
     "key": "openssl base64 -A -in saldometrobus_key.jks -out saldometrobus_key.jks.txt",
     "patch": "npm version patch",
     "minor": "npm version minor",
-    "major": "npm version major"
+    "major": "npm version major",
+    "mibus": "node miBusRutas.js"
   },
   "devDependencies": {
     "@capacitor-community/sqlite": "^4.6.3-4",
@@ -52,7 +53,7 @@
     "@trapezedev/configure": "^7.0.8",
     "eslint": "^8.39.0",
     "jeep-sqlite": "^2.3.3",
-    "nuxt": "^3.4.2",
+    "nuxt": "^3.4.3",
     "nuxt-icon": "^0.4.0",
     "stylelint": "^15.6.0",
     "stylelint-order": "^6.0.3"
