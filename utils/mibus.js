@@ -7,6 +7,10 @@ class RutasMiBus {
     }
     return rutas.filter(ruta => ruta.type === name);
   }
+
+  getRuta (id = "") {
+    return rutas.find(ruta => ruta.route_id === id);
+  }
 }
 
 export const MIBUS = new RutasMiBus();

@@ -134,5 +134,9 @@ export default {
   rutas: "Rutas MiBus",
   rutas_corredores: "Rutas Corredores",
   rutas_troncales: "Rutas Troncales",
-  rutas_complementarias: "Rutas Complementarias"
+  rutas_complementarias: "Rutas Complementarias",
+  info_ruta: "Información de la ruta",
+  id: "Identificador",
+  direccion: "Dirección",
+  axis: "Eje"
 };

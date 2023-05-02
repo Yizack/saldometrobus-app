@@ -1,10 +1,12 @@
 import { writeFileSync } from "fs";
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
-const result = await fetch("https://www.mibus.com.pa/wp-content/uploads/web-maps/routes.js");
-const response = await result.text();
-const routes = JSON.parse(response.replace("const datamap = ", "").replace(";", ""));
-console.info("Rutas MiBus: ", routes.length);
-writeFileSync("./assets/rutas.json", JSON.stringify(routes));
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 1;
+try {
+  const result = await fetch("https://saldometrobus.yizack.com/mibus/rutas.json");
+  const response = await result.text();
+  const rutas = JSON.parse(response);
+  writeFileSync("./assets/rutas.json", response);
+  console.info("Rutas MiBus:", rutas.length);
+}
+catch (error) {
+  console.warn(error);
+}
