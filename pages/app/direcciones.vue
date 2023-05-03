@@ -111,8 +111,8 @@ export default {
   methods: {
     getDirections () {
       if (CAPACITOR.isOnline()) {
-        const origin = this.form.origin.trim();
-        const destination = this.form.destination.trim();
+        this.form.origin = this.form.origin.trim();
+        this.form.destination = this.form.destination.trim();
 
         const loader = new Loader({
           apiKey: CONST.maps_key,
@@ -122,8 +122,8 @@ export default {
         loader.load().then((google) => {
           const directionsService = new google.maps.DirectionsService();
           const options = {
-            origin,
-            destination,
+            origin: this.form.origin,
+            destination: this.form.destination,
             travelMode: "TRANSIT",
             unitSystem: google.maps.UnitSystem.METRIC,
             region: "pa",
