@@ -5,7 +5,6 @@ definePageMeta({ layout: "main" });
 
 <template>
   <section>
-    <h4 class="text-center p-2"><b>{{ t("direcciones") }}</b></h4>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
       <form @submit.prevent="getDirections()">
         <div class="form-floating">
@@ -13,7 +12,7 @@ definePageMeta({ layout: "main" });
           <label>{{ t("location") }}</label>
         </div>
         <div class="form-floating">
-          <input v-model="form.destination" class="form-control rounded-bottom rounded-top-0" :placeholder="t('destino')" required>
+          <input v-model="form.destination" class="form-control rounded-top-0" :placeholder="t('destino')" required>
           <label>{{ t("destino") }}</label>
         </div>
         <div class="d-grid mt-2">
@@ -22,7 +21,7 @@ definePageMeta({ layout: "main" });
       </form>
     </div>
     <template v-if="directions.routes.length">
-      <iframe class="rounded border" :src="`https://www.google.com/maps/embed/v1/directions?origin=place_id:${directions.geocoded_waypoints[0].place_id}&destination=place_id:${directions.geocoded_waypoints[1].place_id}&mode=transit&units=metric&language=${t('lang_code')}&region=pa&key=${CONST.maps_key}`" width="100%" height="400px" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" />
+      <iframe class="rounded border" :src="`https://www.google.com/maps/embed/v1/directions?origin=place_id:${directions.geocoded_waypoints[0].place_id}&destination=place_id:${directions.geocoded_waypoints[1].place_id}&mode=transit&units=metric&language=${t('lang_code')}&region=pa&key=${apiKey}`" width="100%" height="400px" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" />
       <div v-for="(route, route_i) in directions.routes" :key="route_i" class="mb-2" role="button" @click="selectRoute(route_i)">
         <div class="d-flex rutas-mibus bg-body-tertiary border rounded rounded p-2">
           <div v-for="(leg, legs_i) in route.legs" :key="legs_i" class="flex-grow-1">
@@ -50,7 +49,7 @@ definePageMeta({ layout: "main" });
           </div>
           <div class="text-end">
             <h4 class="text-primary fw-bold m-0">{{ route.legs[0].duration.text }}</h4>
-            <p class="small m-0 me-2">({{ route.legs[0].distance.text }})</p>
+            <p class="small m-0">({{ route.legs[0].distance.text }})</p>
           </div>
         </div>
         <Transition name="t" mode="out-in">
@@ -72,7 +71,7 @@ definePageMeta({ layout: "main" });
                   </div>
                   <div v-if="step.transit">
                     <div class="my-2 d-flex align-items-center">
-                      <div class="p-1 rounded shadow-sm fw-bold me-2" :style="{backgroundColor: step.transit.line.color, color: step.transit.line.text_color }">{{ step.transit.line.short_name }}</div>
+                      <div class="p-1 rounded shadow-sm fw-bold me-2" :style="{ backgroundColor: step.transit.line.color, color: step.transit.line.text_color }">{{ step.transit.line.short_name }}</div>
                       <div class="border-start ps-2">
                         <div class="fw-bold">{{ step.transit.line.name }}</div>
                         <div class="small">
@@ -97,6 +96,7 @@ definePageMeta({ layout: "main" });
 export default {
   data () {
     return {
+      apiKey: "",
       form: {
         origin: "",
         destination: ""
@@ -109,13 +109,14 @@ export default {
     };
   },
   methods: {
-    getDirections () {
+    async getDirections () {
       if (CAPACITOR.isOnline()) {
+        this.apiKey = !this.apiKey ? await API.googleKey() : this.apiKey;
         this.form.origin = this.form.origin.trim();
         this.form.destination = this.form.destination.trim();
 
         const loader = new Loader({
-          apiKey: CONST.maps_key,
+          apiKey: this.apiKey,
           version: "weekly"
         });
 
@@ -127,7 +128,8 @@ export default {
             travelMode: "TRANSIT",
             unitSystem: google.maps.UnitSystem.METRIC,
             region: "pa",
-            provideRouteAlternatives: true
+            provideRouteAlternatives: true,
+            language: t("lang_code")
           };
 
           directionsService.route(options, (response, status) => {
