@@ -32,7 +32,7 @@ definePageMeta({ layout: "main" });
         </div>
       </div>
     </div>
-    <iframe class="rounded border shadow" :src="`https://saldometrobus-app.yizack.com/_mibus/maps/${ruta.route_id}.html`" width="100%" height="500px" />
+    <iframe class="rounded border shadow" :src="`https://saldometrobus-app.yizack.com/_mibus/maps/${ruta.route_id}.html`" width="100%" height="500px" loading="lazy" allowfullscreen />
   </section>
 </template>
 
