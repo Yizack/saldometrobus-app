@@ -62,6 +62,7 @@ body {
   --nav-hover: #1D1D1D;
   --nav-active: #1f1f1f;
   --border: #373737;
+  --icon-fix: invert(1);
 }
 
 ::selection {
@@ -304,5 +305,9 @@ thead:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td
 }
 
 .rutas-mibus:hover {
-  background: var(--nav-hover);
+  background: var(--nav-hover)!important;
+}
+
+.travel_icon {
+  filter: var(--icon-fix);
 }

@@ -59,4 +59,14 @@ export default {
 .page-left-enter-to, .page-right-enter-to {
   transform: translateX(0);
 }
+
+.t-enter-active,
+.t-leave-active {
+  transition: all 0.2s;
+}
+.t-enter-from,
+.t-leave-to {
+  opacity: 0;
+  transform: translate(0, -10px);
+}
 </style>

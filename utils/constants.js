@@ -15,6 +15,7 @@ export const CONST = {
   status_url: "https://status.saldometrobus.yizack.com",
   email: "saldometrobus@yizack.com",
   privacy: lang => `https://yizack.com/legal/saldometrobus/${lang}/privacy.html`,
+  maps_key: "AIzaSyA60VM-yC8g350aJYKEzmlAR-9kRbp5SEc",
   database: "saldometrobus.db",
   paypal: "https://www.paypal.com/donate/?hosted_button_id=ZDRU9XGJHPN5U",
   dark: false,

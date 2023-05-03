@@ -138,5 +138,10 @@ export default {
   info_ruta: "Información de la ruta",
   id: "Identificador",
   direccion: "Dirección",
-  axis: "Eje"
+  axis: "Eje",
+  departure: "Salida",
+  arrival: "Llegada",
+  location: "Ubicación",
+  destino: "Destino",
+  direcciones: "Direcciones"
 };

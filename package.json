@@ -59,6 +59,7 @@
     "stylelint-order": "^6.0.3"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.15.1",
     "@pinia/nuxt": "^0.4.9",
     "bootstrap": "^5.3.0-alpha3",
     "chart.js": "^4.3.0"

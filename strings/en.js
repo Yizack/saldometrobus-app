@@ -138,5 +138,10 @@ export default {
   info_ruta: "Route information",
   id: "ID",
   direccion: "Direction",
-  axis: "Axis"
+  axis: "Axis",
+  departure: "Departure",
+  arrival: "Arrival",
+  location: "Location",
+  destino: "Destination",
+  direcciones: "Directions"
 };

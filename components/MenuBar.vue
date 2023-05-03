@@ -79,6 +79,12 @@ export default {
           external: false
         },
         {
+          name: t("direcciones"),
+          icon: "material-symbols:directions",
+          link: "/app/direcciones/",
+          external: false
+        },
+        {
           name: t("estado"),
           icon: "material-symbols:info",
           link: CONST.status_url,

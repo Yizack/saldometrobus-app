@@ -1,0 +1,1441 @@
+{
+  "geocoded_waypoints" : [
+     {
+        "geocoder_status" : "OK",
+        "place_id" : "ChIJJ7EbBKSorI8RwZUg8in_azw",
+        "types" : [ "establishment", "point_of_interest", "shopping_mall" ]
+     },
+     {
+        "geocoder_status" : "OK",
+        "place_id" : "ChIJ8RBdAKuprI8R0fVNuWAj9ZM",
+        "types" : [ "route" ]
+     }
+  ],
+  "routes" : [
+     {
+        "bounds" : {
+           "northeast" : {
+              "lat" : 9.004433299999999,
+              "lng" : -79.51205379999999
+           },
+           "southwest" : {
+              "lat" : 8.9713753,
+              "lng" : -79.55210769999999
+           }
+        },
+        "copyrights" : "Map data \u00a92023 Google",
+        "fare" : {
+           "currency" : "USD",
+           "text" : "0,00\u00a0US$",
+           "value" : 0
+        },
+        "legs" : [
+           {
+              "arrival_time" : {
+                 "text" : "9:00",
+                 "time_zone" : "America/Panama",
+                 "value" : 1683122400
+              },
+              "departure_time" : {
+                 "text" : "8:20",
+                 "time_zone" : "America/Panama",
+                 "value" : 1683120018
+              },
+              "distance" : {
+                 "text" : "12,5 km",
+                 "value" : 12530
+              },
+              "duration" : {
+                 "text" : "40 min",
+                 "value" : 2382
+              },
+              "end_address" : "V\u00eda Espa\u00f1a, Panam\u00e1",
+              "end_location" : {
+                 "lat" : 9.004433299999999,
+                 "lng" : -79.51205379999999
+              },
+              "start_address" : "Marginal, Avenida Roosevelt, Panam\u00e1",
+              "start_location" : {
+                 "lat" : 8.9713753,
+                 "lng" : -79.5519355
+              },
+              "steps" : [
+                 {
+                    "distance" : {
+                       "text" : "0,3 km",
+                       "value" : 296
+                    },
+                    "duration" : {
+                       "text" : "4 min",
+                       "value" : 226
+                    },
+                    "end_location" : {
+                       "lat" : 8.973223299999999,
+                       "lng" : -79.5518297
+                    },
+                    "html_instructions" : "Camina hasta Albrook - Bahia A",
+                    "polyline" : {
+                       "points" : "cfwu@rnpdN_A\\MBI?I?c@CoCKb@ETE@Q@MKBUD[?Y?_AE"
+                    },
+                    "start_location" : {
+                       "lat" : 8.9713753,
+                       "lng" : -79.5519355
+                    },
+                    "steps" : [
+                       {
+                          "distance" : {
+                             "text" : "0,2 km",
+                             "value" : 159
+                          },
+                          "duration" : {
+                             "text" : "2 min",
+                             "value" : 118
+                          },
+                          "end_location" : {
+                             "lat" : 8.972769999999999,
+                             "lng" : -79.5520308
+                          },
+                          "html_instructions" : "Dir\u00edgete hacia el \u003cb\u003enoroeste\u003c/b\u003e",
+                          "polyline" : {
+                             "points" : "cfwu@rnpdN_A\\MBI?I?c@CoCK"
+                          },
+                          "start_location" : {
+                             "lat" : 8.9713753,
+                             "lng" : -79.5519355
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "33 m",
+                             "value" : 33
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 25
+                          },
+                          "end_location" : {
+                             "lat" : 8.9724802,
+                             "lng" : -79.55196979999999
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003ederecha\u003c/b\u003e",
+                          "maneuver" : "turn-sharp-right",
+                          "polyline" : {
+                             "points" : "ynwu@dopdNb@ETE"
+                          },
+                          "start_location" : {
+                             "lat" : 8.972769999999999,
+                             "lng" : -79.5520308
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "18 m",
+                             "value" : 18
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 14
+                          },
+                          "end_location" : {
+                             "lat" : 8.972459799999999,
+                             "lng" : -79.55180589999999
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003eizquierda\u003c/b\u003e en \u003cb\u003eSolo Buses\u003c/b\u003e",
+                          "maneuver" : "turn-left",
+                          "polyline" : {
+                             "points" : "_mwu@xnpdN@Q@M"
+                          },
+                          "start_location" : {
+                             "lat" : 8.9724802,
+                             "lng" : -79.55196979999999
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "86 m",
+                             "value" : 86
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 69
+                          },
+                          "end_location" : {
+                             "lat" : 8.973223299999999,
+                             "lng" : -79.5518297
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003eizquierda\u003c/b\u003e.\u003cdiv style=\"font-size:0.9em\"\u003eEl destino est\u00e1 a la derecha.\u003c/div\u003e",
+                          "maneuver" : "turn-left",
+                          "polyline" : {
+                             "points" : "{lwu@xmpdNKBUD[?Y?_AE"
+                          },
+                          "start_location" : {
+                             "lat" : 8.972459799999999,
+                             "lng" : -79.55180589999999
+                          },
+                          "travel_mode" : "WALKING"
+                       }
+                    ],
+                    "travel_mode" : "WALKING"
+                 },
+                 {
+                    "distance" : {
+                       "text" : "12,2 km",
+                       "value" : 12209
+                    },
+                    "duration" : {
+                       "text" : "36 min",
+                       "value" : 2133
+                    },
+                    "end_location" : {
+                       "lat" : 9.0043367,
+                       "lng" : -79.51225169999999
+                    },
+                    "html_instructions" : "Autobus en direcci\u00f3n a ZP Metro Pedregal B - Puerta 15",
+                    "polyline" : {
+                       "points" : "sqwu@pmpdN?@Ad@_CIOAuEQSAwBIC?e@CC?QIOMOYKYWgBN_@bC}A{@kA`Ao@aEkCE`DLdBgHtCeBb@w@yF?CqAwGu@kBoAcAgCc@cAO_@Mo@o@C_@AWGo@K_BRs@Lo@@G@A?C@??AFDJa@@KDG@IDINWR[\\a@VURMZUHEFCFEFCFEHCFCFEHCFCFE@?FCFCHCDA@AHCFCHAFAHCHAHAHAF?HAF?@?B?DAH?HAF?L?T?V?T@B?L?T@NBRBD@N@NDVFRDTH`@NVLPHPJPLp@h@d@\\LJLHj@`@j@ZNHJDRHNFB@VHr@RdA\\HDDDBBBF@H@H?HAHEPIX@JAB@H?D@F?BBBBBB@B?B@DAB?BCBABEBCFOBGBK?EBI@M?K?K?IAECICEACEEIIqBk@e@MSGc@OYMOGOIgAs@UOOKaCaBMKYM]MKEQEWISEOCQEb@uETcCDe@`@cEJs@Hg@FYJ]DMBIFMFOFI@AFKHKHKJIHKJIBCRQTOTO`@_@DADAFCDAD@F@@@B@B@BFBDB@BBFBHHLLPJNF\\FjHhApBZ`@mCj@wDqDg@wBYMCy@MsCi@_Ei@}@MaAOo@KSEgAQQSEIEM?G?E?GBELUBEDKFI?ABEBG@E?A?CAG^y@T]XmAJWPi@Zm@JWFKN[DK\\q@DMXk@FMFMj@PZJf@J^JdATx@Tl@ZJGDEBC@C@GBc@LeAJeADW?IFa@DUH]t@}EaDa@sAS]Eq@KcDm@QEoDg@]E?CAU?E]wC?EIo@AGCKMgAQmACWSuAM_AACMaAACMcAAECIAKIo@Gg@AKGa@AKIq@EWCQEYGe@ESAQIa@CME[EQCKEKKS[o@]o@EI]o@GMUe@GQ_@y@ACAC_@{@EKEIGMEGi@w@AACE?CACACU_@?AOWAEg@{@EKQ_@]u@EEsAwCCCa@}@CGq@uAOWeAuBEIq@oAIKWg@IOgAyBUe@Wg@CECGYo@IMg@_AGMIOACWe@Wg@CGKUO_@Q[GOIQKS_@u@]m@Uc@y@cBIMIOGMAAIMCEGKMOIMGEKMQMSOMKGGQIQKAAa@OIEGAGA[Im@QEAAAA?GCCIAEAGAE?CAE@C@G@A@ABC@ADAf@EZB^BT?N@n@Cf@GHAj@IBAbASX?`@ALAP?LBHBJDJDNLJJTTr@l@FNBF@B@D?F?FAHADEDGFIFKDCDGD_@LA?ODE@KDu@Rs@PMDc@VYJQFaA\\_@N[Jc@NGBE@MJk@L]J[Lu@VUHYJmA`@a@NaBj@]Lg@XSNKLORGLEHCHQr@I`@QCKj@WrAIXGVs@dDsAdFABGFIDQ?QMg@Y_C{@aC}@Qf@qB`ESHMB]@oBy@[MABa@KWG{AO_@GG?iAOu@Ic@EOC}@KC?w@Oo@KQEa@KMCSGUGo@U{@]ME[KuAs@_DsAw@[cAc@SIc@SMGw@]e@SaBs@q@[MEu@[g@SSI[OOG_@QYMUIm@W[OQKMGYUCA[YY[Wa@KSIQEKEOESEWE]?KCSJ{GAWCYCU?GDA"
+                    },
+                    "start_location" : {
+                       "lat" : 8.973217,
+                       "lng" : -79.55176999999999
+                    },
+                    "transit_details" : {
+                       "arrival_stop" : {
+                          "location" : {
+                             "lat" : 9.0043367,
+                             "lng" : -79.51225169999999
+                          },
+                          "name" : "Ipa-r"
+                       },
+                       "arrival_time" : {
+                          "text" : "8:59",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683122378
+                       },
+                       "departure_stop" : {
+                          "location" : {
+                             "lat" : 8.973217,
+                             "lng" : -79.55176999999999
+                          },
+                          "name" : "Albrook - Bahia A"
+                       },
+                       "departure_time" : {
+                          "text" : "8:24",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683120245
+                       },
+                       "headsign" : "ZP Metro Pedregal B - Puerta 15",
+                       "line" : {
+                          "agencies" : [
+                             {
+                                "name" : "TRANSPORTE MASIVO DE PANAMA - MiBus",
+                                "url" : "http://www.mibus.com.pa/"
+                             }
+                          ],
+                          "color" : "#f2b248",
+                          "name" : "Via Espana-Directo-Metro Pedregal",
+                          "short_name" : "V531",
+                          "text_color" : "#ffffff",
+                          "vehicle" : {
+                             "icon" : "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png",
+                             "name" : "Autobus",
+                             "type" : "BUS"
+                          }
+                       },
+                       "num_stops" : 17,
+                       "trip_short_name" : "V531 Via Espana-Directo-Metro Pedregal"
+                    },
+                    "travel_mode" : "TRANSIT"
+                 },
+                 {
+                    "distance" : {
+                       "text" : "25 m",
+                       "value" : 25
+                    },
+                    "duration" : {
+                       "text" : "1 min",
+                       "value" : 22
+                    },
+                    "end_location" : {
+                       "lat" : 9.004433299999999,
+                       "lng" : -79.51205379999999
+                    },
+                    "html_instructions" : "Camina hasta V\u00eda Espa\u00f1a, Panam\u00e1",
+                    "polyline" : {
+                       "points" : "}s}u@pvhdNWg@"
+                    },
+                    "start_location" : {
+                       "lat" : 9.004312799999999,
+                       "lng" : -79.5122461
+                    },
+                    "steps" : [
+                       {
+                          "distance" : {
+                             "text" : "25 m",
+                             "value" : 25
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 22
+                          },
+                          "end_location" : {
+                             "lat" : 9.004433299999999,
+                             "lng" : -79.51205379999999
+                          },
+                          "polyline" : {
+                             "points" : "}s}u@pvhdNWg@"
+                          },
+                          "start_location" : {
+                             "lat" : 9.004312799999999,
+                             "lng" : -79.5122461
+                          },
+                          "travel_mode" : "WALKING"
+                       }
+                    ],
+                    "travel_mode" : "WALKING"
+                 }
+              ],
+              "traffic_speed_entry" : [],
+              "via_waypoint" : []
+           }
+        ],
+        "overview_polyline" : {
+           "points" : "cfwu@rnpdNmA`@S?sDOx@KB_@a@Hu@?_AE?KAf@oCKeJ]i@Ca@W[s@WgBN_@bC}A{@kA`Ao@aEkCE`DLdBgHtCeBb@w@}FqAwGu@kBoAcAgCc@cAO_@Mo@o@C_@IgAK_BRs@Nw@BE?AFDJa@FSFSb@s@t@w@x@i@^S|@_@XKb@KbAK`BC|@Bx@JpA\\x@\\b@ThBtAZTvA|@~@`@tC|@NJFJBRAROj@?NBZNHPCR[Jc@@o@EOEIOOwCy@w@Wi@U}ByAoCmBw@[iA[a@Ix@yIf@iFT{A\\oAXi@f@m@l@k@j@_@`@_@DALEJ?PFNRp@f@l@N|KdBlAeIiHaAgAQsCi@_Ei@_C]cAQgAQQSKW?MBM^q@HU?EAG^y@T]XmA\\aA~@mBbAwBN[fA\\fEbAl@ZJGHIBKPiBPgBlAsHeIgAuDs@mEm@AY]}COiAwAmKq@eFk@mEY}AIWg@cAiAwB_AuBm@uAy@oAo@qA}A}C_C_FkCkFyAmCkDcH{@aB_AkBs@}A_B{CuAoCWa@k@q@{@q@gAg@u@Sw@UGCCICMASHOFCf@EZBt@B~@A`BUbASX?n@C^BTH|@t@r@l@FNDJ@LAPGJQNOJGD_@LQDQFiBd@q@\\mC`AmA`@MJk@Ly@XsDnAcCz@]Lg@X_@\\ORMVU|@I`@QCc@~BQp@s@dDsAdFIJ[Dy@g@aGyBQf@qB`Ea@L]@oBy@[MABy@S{BWkD_@iC_@qBa@i@OkBs@i@QuAs@_DsA{B_Aw@]mEmB}CqAyEsB}@k@u@u@c@u@Um@Kk@Ei@FoHEq@C]JAWg@"
+        },
+        "summary" : "",
+        "warnings" : [
+           "Las rutas a pie est\u00e1n en versi\u00f3n beta. Ten cuidado. \u2013  En esta ruta puede que no haya aceras o pasos para peatones."
+        ],
+        "waypoint_order" : []
+     },
+     {
+        "bounds" : {
+           "northeast" : {
+              "lat" : 9.004433299999999,
+              "lng" : -79.51205379999999
+           },
+           "southwest" : {
+              "lat" : 8.9614818,
+              "lng" : -79.55210769999999
+           }
+        },
+        "copyrights" : "Map data \u00a92023 Google",
+        "fare" : {
+           "currency" : "USD",
+           "text" : "0,35\u00a0US$",
+           "value" : 0.35
+        },
+        "legs" : [
+           {
+              "arrival_time" : {
+                 "text" : "8:47",
+                 "time_zone" : "America/Panama",
+                 "value" : 1683121620
+              },
+              "departure_time" : {
+                 "text" : "8:14",
+                 "time_zone" : "America/Panama",
+                 "value" : 1683119653
+              },
+              "distance" : {
+                 "text" : "8,7 km",
+                 "value" : 8736
+              },
+              "duration" : {
+                 "text" : "33 min",
+                 "value" : 1967
+              },
+              "end_address" : "V\u00eda Espa\u00f1a, Panam\u00e1",
+              "end_location" : {
+                 "lat" : 9.004433299999999,
+                 "lng" : -79.51205379999999
+              },
+              "start_address" : "Marginal, Avenida Roosevelt, Panam\u00e1",
+              "start_location" : {
+                 "lat" : 8.9713753,
+                 "lng" : -79.5519355
+              },
+              "steps" : [
+                 {
+                    "distance" : {
+                       "text" : "0,7 km",
+                       "value" : 690
+                    },
+                    "duration" : {
+                       "text" : "9 min",
+                       "value" : 532
+                    },
+                    "end_location" : {
+                       "lat" : 8.9733511,
+                       "lng" : -79.5495804
+                    },
+                    "html_instructions" : "Camina hasta Estaci\u00f3n Albrook",
+                    "polyline" : {
+                       "points" : "cfwu@rnpdN_A\\MBI?I?c@CoCKb@ETE@Q@MKBUD[?Y?kBIa@C{BMC?JkB?EV_Ad@eBj@{B@?@AB?h@HJ_@"
+                    },
+                    "start_location" : {
+                       "lat" : 8.9713753,
+                       "lng" : -79.5519355
+                    },
+                    "steps" : [
+                       {
+                          "distance" : {
+                             "text" : "0,2 km",
+                             "value" : 159
+                          },
+                          "duration" : {
+                             "text" : "2 min",
+                             "value" : 118
+                          },
+                          "end_location" : {
+                             "lat" : 8.972769999999999,
+                             "lng" : -79.5520308
+                          },
+                          "html_instructions" : "Dir\u00edgete hacia el \u003cb\u003enoroeste\u003c/b\u003e",
+                          "polyline" : {
+                             "points" : "cfwu@rnpdN_A\\MBI?I?c@CoCK"
+                          },
+                          "start_location" : {
+                             "lat" : 8.9713753,
+                             "lng" : -79.5519355
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "33 m",
+                             "value" : 33
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 25
+                          },
+                          "end_location" : {
+                             "lat" : 8.9724802,
+                             "lng" : -79.55196979999999
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003ederecha\u003c/b\u003e",
+                          "maneuver" : "turn-sharp-right",
+                          "polyline" : {
+                             "points" : "ynwu@dopdNb@ETE"
+                          },
+                          "start_location" : {
+                             "lat" : 8.972769999999999,
+                             "lng" : -79.5520308
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "18 m",
+                             "value" : 18
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 14
+                          },
+                          "end_location" : {
+                             "lat" : 8.972459799999999,
+                             "lng" : -79.55180589999999
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003eizquierda\u003c/b\u003e en \u003cb\u003eSolo Buses\u003c/b\u003e",
+                          "maneuver" : "turn-left",
+                          "polyline" : {
+                             "points" : "_mwu@xnpdN@Q@M"
+                          },
+                          "start_location" : {
+                             "lat" : 8.9724802,
+                             "lng" : -79.55196979999999
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "0,2 km",
+                             "value" : 201
+                          },
+                          "duration" : {
+                             "text" : "3 min",
+                             "value" : 169
+                          },
+                          "end_location" : {
+                             "lat" : 8.9742549,
+                             "lng" : -79.5517193
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003eizquierda\u003c/b\u003e.",
+                          "maneuver" : "turn-left",
+                          "polyline" : {
+                             "points" : "{lwu@xmpdNKBUD[?Y?kBIa@C{BMC?"
+                          },
+                          "start_location" : {
+                             "lat" : 8.972459799999999,
+                             "lng" : -79.55180589999999
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "0,3 km",
+                             "value" : 279
+                          },
+                          "duration" : {
+                             "text" : "3 min",
+                             "value" : 206
+                          },
+                          "end_location" : {
+                             "lat" : 8.9733511,
+                             "lng" : -79.5495804
+                          },
+                          "html_instructions" : "Toma el paso elevado para peatones",
+                          "polyline" : {
+                             "points" : "axwu@fmpdNJkB?EV_Ad@eBj@{B@?@AB?h@HJ_@"
+                          },
+                          "start_location" : {
+                             "lat" : 8.9742549,
+                             "lng" : -79.5517193
+                          },
+                          "travel_mode" : "WALKING"
+                       }
+                    ],
+                    "travel_mode" : "WALKING"
+                 },
+                 {
+                    "distance" : {
+                       "text" : "6,5 km",
+                       "value" : 6497
+                    },
+                    "duration" : {
+                       "text" : "11 min",
+                       "value" : 680
+                    },
+                    "end_location" : {
+                       "lat" : 8.996397099999999,
+                       "lng" : -79.5196648
+                    },
+                    "html_instructions" : "Metro en direcci\u00f3n a Estacion San Isidro",
+                    "polyline" : {
+                       "points" : "}qwu@``pdNBE|Bl@vBh@j@D`A?R?n@Iv@Qj@Uz@a@d@[\\i@r@}@x@uAbBeDd@i@T[NW\\a@j@o@lAuAFI~AkBV[z@aA^Wj@YxEsBv@m@PMHGl@o@pAqA`@SvASj@Gr@ETC\\Ij@Qf@WJEZM`@QFCl@Un@YNMNSFQ?[?]C[M}@_@uAAEKi@EUIe@CSAKAECEAESYCGSYIMqCiEW_@U[uAyBGIEEECCCkB}@_Bw@QKsBaAuBcAsBiAk@UmAc@_A_@ICu@_@UIaAa@c@KwBcA}Ay@WOgBw@SKqAm@e@Sm@]aAi@_@OyAo@_Aa@w@_@cAe@[OSKe@k@_Aq@qCu@EAyCe@OCcBYq@Ks@MwB_@CA_AMwCi@]EwBYECMa@c@_BIQ_AaBe@w@U_@{@}Aa@[i@_@wBqAUS]UsAa@g@W_By@_@SyAw@WAMG{AkA}BoAyBsAiBgAeA{@c@m@EGWc@Y_@o@o@{@o@g@YqA_@aAWEAa@IGC_A[s@[kBw@o@Y{Am@YOe@Sq@]aAk@_CsAc@W}A}@wBkAyBgAWKKEWQUMc@Uu@_@aAc@a@EgAQm@Go@EOAO@G@yB~@c@NGBAE"
+                    },
+                    "start_location" : {
+                       "lat" : 8.9732658,
+                       "lng" : -79.54961089999999
+                    },
+                    "transit_details" : {
+                       "arrival_stop" : {
+                          "location" : {
+                             "lat" : 8.996397099999999,
+                             "lng" : -79.5196648
+                          },
+                          "name" : "Estaci\u00f3n Fern\u00e1ndez de C\u00f3rdoba"
+                       },
+                       "arrival_time" : {
+                          "text" : "8:34",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683120865
+                       },
+                       "departure_stop" : {
+                          "location" : {
+                             "lat" : 8.9732658,
+                             "lng" : -79.54961089999999
+                          },
+                          "name" : "Estaci\u00f3n Albrook"
+                       },
+                       "departure_time" : {
+                          "text" : "8:23",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683120185
+                       },
+                       "headsign" : "Estacion San Isidro",
+                       "line" : {
+                          "agencies" : [
+                             {
+                                "name" : "Metro de Panama",
+                                "phone" : "011 507 504-7200",
+                                "url" : "http://www.elmetrodepanama.com/"
+                             }
+                          ],
+                          "name" : "Albrook-san Isidro",
+                          "short_name" : "L1-V1",
+                          "vehicle" : {
+                             "icon" : "//maps.gstatic.com/mapfiles/transit/iw2/6/subway2.png",
+                             "name" : "Metro",
+                             "type" : "SUBWAY"
+                          }
+                       },
+                       "num_stops" : 6,
+                       "trip_short_name" : "ALB-SIS"
+                    },
+                    "travel_mode" : "TRANSIT"
+                 },
+                 {
+                    "distance" : {
+                       "text" : "0,2 km",
+                       "value" : 220
+                    },
+                    "duration" : {
+                       "text" : "3 min",
+                       "value" : 157
+                    },
+                    "end_location" : {
+                       "lat" : 8.996216499999999,
+                       "lng" : -79.51903469999999
+                    },
+                    "html_instructions" : "Camina hasta Carrasquilla-R",
+                    "polyline" : {
+                       "points" : "sa|u@fejdNRIfBw@PGPGLGDCFGiAOu@Ic@EOC"
+                    },
+                    "start_location" : {
+                       "lat" : 8.996260099999999,
+                       "lng" : -79.51972069999999
+                    },
+                    "steps" : [
+                       {
+                          "distance" : {
+                             "text" : "0,1 km",
+                             "value" : 119
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 77
+                          },
+                          "end_location" : {
+                             "lat" : 8.9953211,
+                             "lng" : -79.519206
+                          },
+                          "html_instructions" : "Dir\u00edgete al \u003cb\u003esureste\u003c/b\u003e por \u003cb\u003eAv Fern\u00e1ndez de C\u00f3rdoba\u003c/b\u003e/\u003cwbr/\u003e\u003cb\u003eV\u00eda Fern\u00e1ndez de C\u00f3rdoba\u003c/b\u003e hacia \u003cb\u003eAv. Central Espa\u00f1a\u003c/b\u003e/\u003cwbr/\u003e\u003cb\u003eV\u00eda Espa\u00f1a\u003c/b\u003e",
+                          "polyline" : {
+                             "points" : "sa|u@fejdNRIfBw@PGPGLGDCFG"
+                          },
+                          "start_location" : {
+                             "lat" : 8.996260099999999,
+                             "lng" : -79.51972069999999
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "0,1 km",
+                             "value" : 101
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 80
+                          },
+                          "end_location" : {
+                             "lat" : 8.996216499999999,
+                             "lng" : -79.51903469999999
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003eizquierda\u003c/b\u003e hacia \u003cb\u003eAv. Central Espa\u00f1a\u003c/b\u003e/\u003cwbr/\u003e\u003cb\u003eV\u00eda Espa\u00f1a\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003eEl destino est\u00e1 a la derecha.\u003c/div\u003e",
+                          "maneuver" : "turn-left",
+                          "polyline" : {
+                             "points" : "w{{u@`bjdNiAOu@Ic@EOC"
+                          },
+                          "start_location" : {
+                             "lat" : 8.9953211,
+                             "lng" : -79.519206
+                          },
+                          "travel_mode" : "WALKING"
+                       }
+                    ],
+                    "travel_mode" : "WALKING"
+                 },
+                 {
+                    "distance" : {
+                       "text" : "1,3 km",
+                       "value" : 1304
+                    },
+                    "duration" : {
+                       "text" : "3 min",
+                       "value" : 190
+                    },
+                    "end_location" : {
+                       "lat" : 9.0043367,
+                       "lng" : -79.51225169999999
+                    },
+                    "html_instructions" : "Autobus en direcci\u00f3n a Zona Paga 5 de Mayo - Puerta 13",
+                    "polyline" : {
+                       "points" : "ia|u@t`jdNAF}@KC?w@Oo@KQEa@KMCSGUGo@U{@]ME[KuAs@_DsAw@[cAc@SIc@SMGw@]e@SaBs@q@[MEu@[g@SSI[OOG_@QYMUIm@W[OQKMGYUCA[YY[Wa@KSIQEKEOESEWE]?KCSJ{GAWCYCU?GDA"
+                    },
+                    "start_location" : {
+                       "lat" : 8.9962067,
+                       "lng" : -79.5189862
+                    },
+                    "transit_details" : {
+                       "arrival_stop" : {
+                          "location" : {
+                             "lat" : 9.0043367,
+                             "lng" : -79.51225169999999
+                          },
+                          "name" : "Ipa-r"
+                       },
+                       "arrival_time" : {
+                          "text" : "8:46",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683121598
+                       },
+                       "departure_stop" : {
+                          "location" : {
+                             "lat" : 8.9962067,
+                             "lng" : -79.5189862
+                          },
+                          "name" : "Carrasquilla-R"
+                       },
+                       "departure_time" : {
+                          "text" : "8:43",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683121408
+                       },
+                       "headsign" : "Zona Paga 5 de Mayo - Puerta 13",
+                       "line" : {
+                          "agencies" : [
+                             {
+                                "name" : "TRANSPORTE MASIVO DE PANAMA - MiBus",
+                                "url" : "http://www.mibus.com.pa/"
+                             }
+                          ],
+                          "color" : "#87838a",
+                          "name" : "Via Espana-Ernesto T Lefevre-Av Balboa-ZP 5 de Mayo",
+                          "short_name" : "C938",
+                          "text_color" : "#ffffff",
+                          "vehicle" : {
+                             "icon" : "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png",
+                             "name" : "Autobus",
+                             "type" : "BUS"
+                          }
+                       },
+                       "num_stops" : 3,
+                       "trip_short_name" : "C938 Via Espana-Ernesto T Lefevre-Av Balboa-ZP 5 de Mayo"
+                    },
+                    "travel_mode" : "TRANSIT"
+                 },
+                 {
+                    "distance" : {
+                       "text" : "25 m",
+                       "value" : 25
+                    },
+                    "duration" : {
+                       "text" : "1 min",
+                       "value" : 22
+                    },
+                    "end_location" : {
+                       "lat" : 9.004433299999999,
+                       "lng" : -79.51205379999999
+                    },
+                    "html_instructions" : "Camina hasta V\u00eda Espa\u00f1a, Panam\u00e1",
+                    "polyline" : {
+                       "points" : "}s}u@pvhdNWg@"
+                    },
+                    "start_location" : {
+                       "lat" : 9.004312799999999,
+                       "lng" : -79.5122461
+                    },
+                    "steps" : [
+                       {
+                          "distance" : {
+                             "text" : "25 m",
+                             "value" : 25
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 22
+                          },
+                          "end_location" : {
+                             "lat" : 9.004433299999999,
+                             "lng" : -79.51205379999999
+                          },
+                          "polyline" : {
+                             "points" : "}s}u@pvhdNWg@"
+                          },
+                          "start_location" : {
+                             "lat" : 9.004312799999999,
+                             "lng" : -79.5122461
+                          },
+                          "travel_mode" : "WALKING"
+                       }
+                    ],
+                    "travel_mode" : "WALKING"
+                 }
+              ],
+              "traffic_speed_entry" : [],
+              "via_waypoint" : []
+           }
+        ],
+        "overview_polyline" : {
+           "points" : "cfwu@rnpdNmA`@S?sDOx@KB_@a@Hu@?mCM_CMJqBjBaH@Al@HJ_@NDBE|Bl@vBh@j@DtA?fB[fBw@d@[\\i@r@}@x@uAbBeDd@i@d@s@~CqDvBgCz@aA^WdGmChA{@v@w@pAqA`@SbC[hAIhA[r@]rBy@n@YNMVe@?y@QyAa@{AQ_AQkA]m@aIwLuE}BeCmAiFmCyBy@iAc@kAi@aAa@c@KuE}B_CgAeBy@sAq@aBy@yCqAkDaBe@k@_Aq@wCw@_IoAoF}@uDo@wBYECq@aCiAsB{@wA{@}Aa@[aDqBs@i@sAa@g@W_CmAyAw@WAiBsAwFcDiBgAeA{@i@u@q@cAo@o@{@o@g@YqA_@gAYi@MsBw@{CqAuB}@wAq@cIuEqFsCc@QgCuAaAc@a@EuBY_AGWB}CnAGBAEZJRIxB_A^OLKsDc@@GAFaAK{Cm@gBi@iAc@[KuAs@wEoBwAm@oCmA_IgD}BaAm@[g@]_@[q@}@a@aAESKu@C_@HsHGo@?GDAD?Wg@"
+        },
+        "summary" : "",
+        "warnings" : [
+           "Las rutas a pie est\u00e1n en versi\u00f3n beta. Ten cuidado. \u2013  En esta ruta puede que no haya aceras o pasos para peatones."
+        ],
+        "waypoint_order" : []
+     },
+     {
+        "bounds" : {
+           "northeast" : {
+              "lat" : 9.004433299999999,
+              "lng" : -79.51205379999999
+           },
+           "southwest" : {
+              "lat" : 8.9713753,
+              "lng" : -79.55210769999999
+           }
+        },
+        "copyrights" : "Map data \u00a92023 Google",
+        "fare" : {
+           "currency" : "USD",
+           "text" : "0,00\u00a0US$",
+           "value" : 0
+        },
+        "legs" : [
+           {
+              "arrival_time" : {
+                 "text" : "9:12",
+                 "time_zone" : "America/Panama",
+                 "value" : 1683123120
+              },
+              "departure_time" : {
+                 "text" : "8:32",
+                 "time_zone" : "America/Panama",
+                 "value" : 1683120738
+              },
+              "distance" : {
+                 "text" : "12,5 km",
+                 "value" : 12530
+              },
+              "duration" : {
+                 "text" : "40 min",
+                 "value" : 2382
+              },
+              "end_address" : "V\u00eda Espa\u00f1a, Panam\u00e1",
+              "end_location" : {
+                 "lat" : 9.004433299999999,
+                 "lng" : -79.51205379999999
+              },
+              "start_address" : "Marginal, Avenida Roosevelt, Panam\u00e1",
+              "start_location" : {
+                 "lat" : 8.9713753,
+                 "lng" : -79.5519355
+              },
+              "steps" : [
+                 {
+                    "distance" : {
+                       "text" : "0,3 km",
+                       "value" : 296
+                    },
+                    "duration" : {
+                       "text" : "4 min",
+                       "value" : 226
+                    },
+                    "end_location" : {
+                       "lat" : 8.973223299999999,
+                       "lng" : -79.5518297
+                    },
+                    "html_instructions" : "Camina hasta Albrook - Bahia A",
+                    "polyline" : {
+                       "points" : "cfwu@rnpdN_A\\MBI?I?c@CoCKb@ETE@Q@MKBUD[?Y?_AE"
+                    },
+                    "start_location" : {
+                       "lat" : 8.9713753,
+                       "lng" : -79.5519355
+                    },
+                    "steps" : [
+                       {
+                          "distance" : {
+                             "text" : "0,2 km",
+                             "value" : 159
+                          },
+                          "duration" : {
+                             "text" : "2 min",
+                             "value" : 118
+                          },
+                          "end_location" : {
+                             "lat" : 8.972769999999999,
+                             "lng" : -79.5520308
+                          },
+                          "html_instructions" : "Dir\u00edgete hacia el \u003cb\u003enoroeste\u003c/b\u003e",
+                          "polyline" : {
+                             "points" : "cfwu@rnpdN_A\\MBI?I?c@CoCK"
+                          },
+                          "start_location" : {
+                             "lat" : 8.9713753,
+                             "lng" : -79.5519355
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "33 m",
+                             "value" : 33
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 25
+                          },
+                          "end_location" : {
+                             "lat" : 8.9724802,
+                             "lng" : -79.55196979999999
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003ederecha\u003c/b\u003e",
+                          "maneuver" : "turn-sharp-right",
+                          "polyline" : {
+                             "points" : "ynwu@dopdNb@ETE"
+                          },
+                          "start_location" : {
+                             "lat" : 8.972769999999999,
+                             "lng" : -79.5520308
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "18 m",
+                             "value" : 18
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 14
+                          },
+                          "end_location" : {
+                             "lat" : 8.972459799999999,
+                             "lng" : -79.55180589999999
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003eizquierda\u003c/b\u003e en \u003cb\u003eSolo Buses\u003c/b\u003e",
+                          "maneuver" : "turn-left",
+                          "polyline" : {
+                             "points" : "_mwu@xnpdN@Q@M"
+                          },
+                          "start_location" : {
+                             "lat" : 8.9724802,
+                             "lng" : -79.55196979999999
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "86 m",
+                             "value" : 86
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 69
+                          },
+                          "end_location" : {
+                             "lat" : 8.973223299999999,
+                             "lng" : -79.5518297
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003eizquierda\u003c/b\u003e.\u003cdiv style=\"font-size:0.9em\"\u003eEl destino est\u00e1 a la derecha.\u003c/div\u003e",
+                          "maneuver" : "turn-left",
+                          "polyline" : {
+                             "points" : "{lwu@xmpdNKBUD[?Y?_AE"
+                          },
+                          "start_location" : {
+                             "lat" : 8.972459799999999,
+                             "lng" : -79.55180589999999
+                          },
+                          "travel_mode" : "WALKING"
+                       }
+                    ],
+                    "travel_mode" : "WALKING"
+                 },
+                 {
+                    "distance" : {
+                       "text" : "12,2 km",
+                       "value" : 12209
+                    },
+                    "duration" : {
+                       "text" : "36 min",
+                       "value" : 2133
+                    },
+                    "end_location" : {
+                       "lat" : 9.0043367,
+                       "lng" : -79.51225169999999
+                    },
+                    "html_instructions" : "Autobus en direcci\u00f3n a ZP Metro Pedregal B - Puerta 15",
+                    "polyline" : {
+                       "points" : "sqwu@pmpdN?@Ad@_CIOAuEQSAwBIC?e@CC?QIOMOYKYWgBN_@bC}A{@kA`Ao@aEkCE`DLdBgHtCeBb@w@yF?CqAwGu@kBoAcAgCc@cAO_@Mo@o@C_@AWGo@K_BRs@Lo@@G@A?C@??AFDJa@@KDG@IDINWR[\\a@VURMZUHEFCFEFCFEHCFCFEHCFCFE@?FCFCHCDA@AHCFCHAFAHCHAHAHAF?HAF?@?B?DAH?HAF?L?T?V?T@B?L?T@NBRBD@N@NDVFRDTH`@NVLPHPJPLp@h@d@\\LJLHj@`@j@ZNHJDRHNFB@VHr@RdA\\HDDDBBBF@H@H?HAHEPIX@JAB@H?D@F?BBBBBB@B?B@DAB?BCBABEBCFOBGBK?EBI@M?K?K?IAECICEACEEIIqBk@e@MSGc@OYMOGOIgAs@UOOKaCaBMKYM]MKEQEWISEOCQEb@uETcCDe@`@cEJs@Hg@FYJ]DMBIFMFOFI@AFKHKHKJIHKJIBCRQTOTO`@_@DADAFCDAD@F@@@B@B@BFBDB@BBFBHHLLPJNF\\FjHhApBZ`@mCj@wDqDg@wBYMCy@MsCi@_Ei@}@MaAOo@KSEgAQQSEIEM?G?E?GBELUBEDKFI?ABEBG@E?A?CAG^y@T]XmAJWPi@Zm@JWFKN[DK\\q@DMXk@FMFMj@PZJf@J^JdATx@Tl@ZJGDEBC@C@GBc@LeAJeADW?IFa@DUH]t@}EaDa@sAS]Eq@KcDm@QEoDg@]E?CAU?E]wC?EIo@AGCKMgAQmACWSuAM_AACMaAACMcAAECIAKIo@Gg@AKGa@AKIq@EWCQEYGe@ESAQIa@CME[EQCKEKKS[o@]o@EI]o@GMUe@GQ_@y@ACAC_@{@EKEIGMEGi@w@AACE?CACACU_@?AOWAEg@{@EKQ_@]u@EEsAwCCCa@}@CGq@uAOWeAuBEIq@oAIKWg@IOgAyBUe@Wg@CECGYo@IMg@_AGMIOACWe@Wg@CGKUO_@Q[GOIQKS_@u@]m@Uc@y@cBIMIOGMAAIMCEGKMOIMGEKMQMSOMKGGQIQKAAa@OIEGAGA[Im@QEAAAA?GCCIAEAGAE?CAE@C@G@A@ABC@ADAf@EZB^BT?N@n@Cf@GHAj@IBAbASX?`@ALAP?LBHBJDJDNLJJTTr@l@FNBF@B@D?F?FAHADEDGFIFKDCDGD_@LA?ODE@KDu@Rs@PMDc@VYJQFaA\\_@N[Jc@NGBE@MJk@L]J[Lu@VUHYJmA`@a@NaBj@]Lg@XSNKLORGLEHCHQr@I`@QCKj@WrAIXGVs@dDsAdFABGFIDQ?QMg@Y_C{@aC}@Qf@qB`ESHMB]@oBy@[MABa@KWG{AO_@GG?iAOu@Ic@EOC}@KC?w@Oo@KQEa@KMCSGUGo@U{@]ME[KuAs@_DsAw@[cAc@SIc@SMGw@]e@SaBs@q@[MEu@[g@SSI[OOG_@QYMUIm@W[OQKMGYUCA[YY[Wa@KSIQEKEOESEWE]?KCSJ{GAWCYCU?GDA"
+                    },
+                    "start_location" : {
+                       "lat" : 8.973217,
+                       "lng" : -79.55176999999999
+                    },
+                    "transit_details" : {
+                       "arrival_stop" : {
+                          "location" : {
+                             "lat" : 9.0043367,
+                             "lng" : -79.51225169999999
+                          },
+                          "name" : "Ipa-r"
+                       },
+                       "arrival_time" : {
+                          "text" : "9:11",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683123098
+                       },
+                       "departure_stop" : {
+                          "location" : {
+                             "lat" : 8.973217,
+                             "lng" : -79.55176999999999
+                          },
+                          "name" : "Albrook - Bahia A"
+                       },
+                       "departure_time" : {
+                          "text" : "8:36",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683120965
+                       },
+                       "headsign" : "ZP Metro Pedregal B - Puerta 15",
+                       "line" : {
+                          "agencies" : [
+                             {
+                                "name" : "TRANSPORTE MASIVO DE PANAMA - MiBus",
+                                "url" : "http://www.mibus.com.pa/"
+                             }
+                          ],
+                          "color" : "#f2b248",
+                          "name" : "Via Espana-Directo-Metro Pedregal",
+                          "short_name" : "V531",
+                          "text_color" : "#ffffff",
+                          "vehicle" : {
+                             "icon" : "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png",
+                             "name" : "Autobus",
+                             "type" : "BUS"
+                          }
+                       },
+                       "num_stops" : 17,
+                       "trip_short_name" : "V531 Via Espana-Directo-Metro Pedregal"
+                    },
+                    "travel_mode" : "TRANSIT"
+                 },
+                 {
+                    "distance" : {
+                       "text" : "25 m",
+                       "value" : 25
+                    },
+                    "duration" : {
+                       "text" : "1 min",
+                       "value" : 22
+                    },
+                    "end_location" : {
+                       "lat" : 9.004433299999999,
+                       "lng" : -79.51205379999999
+                    },
+                    "html_instructions" : "Camina hasta V\u00eda Espa\u00f1a, Panam\u00e1",
+                    "polyline" : {
+                       "points" : "}s}u@pvhdNWg@"
+                    },
+                    "start_location" : {
+                       "lat" : 9.004312799999999,
+                       "lng" : -79.5122461
+                    },
+                    "steps" : [
+                       {
+                          "distance" : {
+                             "text" : "25 m",
+                             "value" : 25
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 22
+                          },
+                          "end_location" : {
+                             "lat" : 9.004433299999999,
+                             "lng" : -79.51205379999999
+                          },
+                          "polyline" : {
+                             "points" : "}s}u@pvhdNWg@"
+                          },
+                          "start_location" : {
+                             "lat" : 9.004312799999999,
+                             "lng" : -79.5122461
+                          },
+                          "travel_mode" : "WALKING"
+                       }
+                    ],
+                    "travel_mode" : "WALKING"
+                 }
+              ],
+              "traffic_speed_entry" : [],
+              "via_waypoint" : []
+           }
+        ],
+        "overview_polyline" : {
+           "points" : "cfwu@rnpdNmA`@S?sDOx@KB_@a@Hu@?_AE?KAf@oCKeJ]i@Ca@W[s@WgBN_@bC}A{@kA`Ao@aEkCE`DLdBgHtCeBb@w@}FqAwGu@kBoAcAgCc@cAO_@Mo@o@C_@IgAK_BRs@Nw@BE?AFDJa@FSFSb@s@t@w@x@i@^S|@_@XKb@KbAK`BC|@Bx@JpA\\x@\\b@ThBtAZTvA|@~@`@tC|@NJFJBRAROj@?NBZNHPCR[Jc@@o@EOEIOOwCy@w@Wi@U}ByAoCmBw@[iA[a@Ix@yIf@iFT{A\\oAXi@f@m@l@k@j@_@`@_@DALEJ?PFNRp@f@l@N|KdBlAeIiHaAgAQsCi@_Ei@_C]cAQgAQQSKW?MBM^q@HU?EAG^y@T]XmA\\aA~@mBbAwBN[fA\\fEbAl@ZJGHIBKPiBPgBlAsHeIgAuDs@mEm@AY]}COiAwAmKq@eFk@mEY}AIWg@cAiAwB_AuBm@uAy@oAo@qA}A}C_C_FkCkFyAmCkDcH{@aB_AkBs@}A_B{CuAoCWa@k@q@{@q@gAg@u@Sw@UGCCICMASHOFCf@EZBt@B~@A`BUbASX?n@C^BTH|@t@r@l@FNDJ@LAPGJQNOJGD_@LQDQFiBd@q@\\mC`AmA`@MJk@Ly@XsDnAcCz@]Lg@X_@\\ORMVU|@I`@QCc@~BQp@s@dDsAdFIJ[Dy@g@aGyBQf@qB`Ea@L]@oBy@[MABy@S{BWkD_@iC_@qBa@i@OkBs@i@QuAs@_DsA{B_Aw@]mEmB}CqAyEsB}@k@u@u@c@u@Um@Kk@Ei@FoHEq@C]JAWg@"
+        },
+        "summary" : "",
+        "warnings" : [
+           "Las rutas a pie est\u00e1n en versi\u00f3n beta. Ten cuidado. \u2013  En esta ruta puede que no haya aceras o pasos para peatones."
+        ],
+        "waypoint_order" : []
+     },
+     {
+        "bounds" : {
+           "northeast" : {
+              "lat" : 9.004433299999999,
+              "lng" : -79.51205379999999
+           },
+           "southwest" : {
+              "lat" : 8.9595685,
+              "lng" : -79.55749729999999
+           }
+        },
+        "copyrights" : "Map data \u00a92023 Google",
+        "fare" : {
+           "currency" : "USD",
+           "text" : "0,00\u00a0US$",
+           "value" : 0
+        },
+        "legs" : [
+           {
+              "arrival_time" : {
+                 "text" : "9:05",
+                 "time_zone" : "America/Panama",
+                 "value" : 1683122734
+              },
+              "departure_time" : {
+                 "text" : "8:16",
+                 "time_zone" : "America/Panama",
+                 "value" : 1683119778
+              },
+              "distance" : {
+                 "text" : "14,9 km",
+                 "value" : 14890
+              },
+              "duration" : {
+                 "text" : "49 min",
+                 "value" : 2956
+              },
+              "end_address" : "V\u00eda Espa\u00f1a, Panam\u00e1",
+              "end_location" : {
+                 "lat" : 9.004433299999999,
+                 "lng" : -79.51205379999999
+              },
+              "start_address" : "Marginal, Avenida Roosevelt, Panam\u00e1",
+              "start_location" : {
+                 "lat" : 8.9713753,
+                 "lng" : -79.5519355
+              },
+              "steps" : [
+                 {
+                    "distance" : {
+                       "text" : "0,3 km",
+                       "value" : 296
+                    },
+                    "duration" : {
+                       "text" : "4 min",
+                       "value" : 226
+                    },
+                    "end_location" : {
+                       "lat" : 8.973223299999999,
+                       "lng" : -79.5518297
+                    },
+                    "html_instructions" : "Camina hasta Albrook - Bahia A",
+                    "polyline" : {
+                       "points" : "cfwu@rnpdN_A\\MBI?I?c@CoCKb@ETE@Q@MKBUD[?Y?_AE"
+                    },
+                    "start_location" : {
+                       "lat" : 8.9713753,
+                       "lng" : -79.5519355
+                    },
+                    "steps" : [
+                       {
+                          "distance" : {
+                             "text" : "0,2 km",
+                             "value" : 159
+                          },
+                          "duration" : {
+                             "text" : "2 min",
+                             "value" : 118
+                          },
+                          "end_location" : {
+                             "lat" : 8.972769999999999,
+                             "lng" : -79.5520308
+                          },
+                          "html_instructions" : "Dir\u00edgete hacia el \u003cb\u003enoroeste\u003c/b\u003e",
+                          "polyline" : {
+                             "points" : "cfwu@rnpdN_A\\MBI?I?c@CoCK"
+                          },
+                          "start_location" : {
+                             "lat" : 8.9713753,
+                             "lng" : -79.5519355
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "33 m",
+                             "value" : 33
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 25
+                          },
+                          "end_location" : {
+                             "lat" : 8.9724802,
+                             "lng" : -79.55196979999999
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003ederecha\u003c/b\u003e",
+                          "maneuver" : "turn-sharp-right",
+                          "polyline" : {
+                             "points" : "ynwu@dopdNb@ETE"
+                          },
+                          "start_location" : {
+                             "lat" : 8.972769999999999,
+                             "lng" : -79.5520308
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "18 m",
+                             "value" : 18
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 14
+                          },
+                          "end_location" : {
+                             "lat" : 8.972459799999999,
+                             "lng" : -79.55180589999999
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003eizquierda\u003c/b\u003e en \u003cb\u003eSolo Buses\u003c/b\u003e",
+                          "maneuver" : "turn-left",
+                          "polyline" : {
+                             "points" : "_mwu@xnpdN@Q@M"
+                          },
+                          "start_location" : {
+                             "lat" : 8.9724802,
+                             "lng" : -79.55196979999999
+                          },
+                          "travel_mode" : "WALKING"
+                       },
+                       {
+                          "distance" : {
+                             "text" : "86 m",
+                             "value" : 86
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 69
+                          },
+                          "end_location" : {
+                             "lat" : 8.973223299999999,
+                             "lng" : -79.5518297
+                          },
+                          "html_instructions" : "Gira a la \u003cb\u003eizquierda\u003c/b\u003e.\u003cdiv style=\"font-size:0.9em\"\u003eEl destino est\u00e1 a la derecha.\u003c/div\u003e",
+                          "maneuver" : "turn-left",
+                          "polyline" : {
+                             "points" : "{lwu@xmpdNKBUD[?Y?_AE"
+                          },
+                          "start_location" : {
+                             "lat" : 8.972459799999999,
+                             "lng" : -79.55180589999999
+                          },
+                          "travel_mode" : "WALKING"
+                       }
+                    ],
+                    "travel_mode" : "WALKING"
+                 },
+                 {
+                    "distance" : {
+                       "text" : "7,5 km",
+                       "value" : 7451
+                    },
+                    "duration" : {
+                       "text" : "18 min",
+                       "value" : 1068
+                    },
+                    "end_location" : {
+                       "lat" : 8.967521,
+                       "lng" : -79.535748
+                    },
+                    "html_instructions" : "Autobus en direcci\u00f3n a ZP Metro Los Andes-R - Puerta 3",
+                    "polyline" : {
+                       "points" : "sqwu@pmpdNAXg@Cc@CcAGeAEC?oCIg@CgBGu@MOUGIESQm@CQEw@BGDGFEVOFE`@Y\\UBAd@Yf@WZO^KZKJELAJAJ?VDp@HB?@@b@Lp@RjA\\xEpAxGjBpCdAjCrAv@n@fA|@ZXZXdB|AzBpBl@j@^T^VZPb@Jd@JL@LBD@H@XBZB\\@bCQX?J?f@Bh@HVLTJ\\JZXNVNZDRBND\\@X?VC\\E^K\\e@fAIZEPGRCPAL@PBPBDBHHLLNLHD@HDJBN@L?PCNCRITS\\g@b@e@HUVu@J_@Nk@Do@Bi@Ae@?s@A[A_@Ea@E]ACK[QY]c@IIu@s@oCaCmAcAw@k@o@k@g@g@U[Wa@MYQ_@Oc@AIMi@Ek@Ak@?KAeDAyABwB@qBBuDCi@Aa@IcAAACYC@G[Ko@E_@Ca@@g@Ny@Lo@Pg@Ja@DW?ADWFa@Jc@Rg@Va@lA_Bt@mAj@m@PSLILGNGPCFCDAH?@AF?D@XLNHLHHNDP@NGRKJQFQ?OEIGIKEMAY@YDY@EDSH]L[PWPMPIZKd@O\\Mn@YZSXWBCJOHQJa@DQBGHQNYNSROjBiAb@W`Ak@vAy@XQPOPSPUf@{An@kBCKAAIIA?KAA?OB]tAm@hBIXKVOP}AeCyAaCoBlA|@vAZd@BVNVTf@APGLIDOHg@w@W_@Wa@Wc@_@k@JIJGHED@\\j@OJNKV^T^@?V`@b@r@GLIDOHg@w@W_@Wa@Wc@_@k@JIJGHED@VH^f@L?Zd@@BzA`CcBbASJwAz@SNwAyB_@m@_AwAqCaEkB_Au@]EJe@S]OqBgAwA}@UMaC_AoBaACAy@_@DI"
+                    },
+                    "start_location" : {
+                       "lat" : 8.973217,
+                       "lng" : -79.55176999999999
+                    },
+                    "transit_details" : {
+                       "arrival_stop" : {
+                          "location" : {
+                             "lat" : 8.967521,
+                             "lng" : -79.535748
+                          },
+                          "name" : "Metro Loteria"
+                       },
+                       "arrival_time" : {
+                          "text" : "8:37",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683121073
+                       },
+                       "departure_stop" : {
+                          "location" : {
+                             "lat" : 8.973217,
+                             "lng" : -79.55176999999999
+                          },
+                          "name" : "Albrook - Bahia A"
+                       },
+                       "departure_time" : {
+                          "text" : "8:20",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683120005
+                       },
+                       "headsign" : "ZP Metro Los Andes-R - Puerta 3",
+                       "line" : {
+                          "agencies" : [
+                             {
+                                "name" : "TRANSPORTE MASIVO DE PANAMA - MiBus",
+                                "url" : "http://www.mibus.com.pa/"
+                             }
+                          ],
+                          "color" : "#f2b248",
+                          "name" : "Via Espana-Metro Los Andes",
+                          "short_name" : "V180",
+                          "text_color" : "#ffffff",
+                          "vehicle" : {
+                             "icon" : "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png",
+                             "name" : "Autobus",
+                             "type" : "BUS"
+                          }
+                       },
+                       "num_stops" : 5,
+                       "trip_short_name" : "V180 Via Espana-Metro Los Andes"
+                    },
+                    "travel_mode" : "TRANSIT"
+                 },
+                 {
+                    "distance" : {
+                       "text" : "7,1 km",
+                       "value" : 7118
+                    },
+                    "duration" : {
+                       "text" : "22 min",
+                       "value" : 1291
+                    },
+                    "end_location" : {
+                       "lat" : 9.0043367,
+                       "lng" : -79.51225169999999
+                    },
+                    "html_instructions" : "Autobus en direcci\u00f3n a ZP Metro Pedregal B - Puerta 15",
+                    "polyline" : {
+                       "points" : "_nvu@limdNEHaAa@SM{@i@_@SyB}@MGeBeAkAi@q@YsBcAwBkAqB_A}@_@y@_@oBgAy@_@w@_@GCaAYKE{@UaDa@sAS]Eq@KcDm@QEoDg@]E?CAU?E]wC?EIo@AGCKMgAQmACWSuAM_AACMaAACMcAAECIAKIo@Gg@AKGa@AKIq@EWCQEYGe@ESAQIa@CME[EQCKEKKS[o@]o@EI]o@GMUe@GQ_@y@ACAC_@{@EKEIGMEGi@w@AACE?CACACU_@?AOWAEg@{@EKQ_@]u@EEsAwCCCa@}@CGq@uAOWeAuBEIq@oAIKWg@IOgAyBUe@Wg@CECGYo@IMg@_AGMIOACWe@Wg@CGKUO_@Q[GOIQKS_@u@]m@Uc@y@cBIMIOGMAAIMCEGKMOIMGEKMQMSOMKGGQIQKAAa@OIEGAGA[Im@QEAAAA?GCCIAEAGAE?CAE@C@G@A@ABC@ADAf@EZB^BT?N@n@Cf@GHAj@IBAbASX?`@ALAP?LBHBJDJDNLJJTTr@l@FNBF@B@D?F?FAHADEDGFIFKDCDGD_@LA?ODE@KDu@Rs@PMDc@VYJQFaA\\_@N[Jc@NGBE@MJk@L]J[Lu@VUHYJmA`@a@NaBj@]Lg@XSNKLORGLEHCHQr@I`@QCKj@WrAIXGVs@dDsAdFABGFIDQ?QMg@Y_C{@aC}@Qf@qB`ESHMB]@oBy@[MABa@KWG{AO_@GG?iAOu@Ic@EOC}@KC?w@Oo@KQEa@KMCSGUGo@U{@]ME[KuAs@_DsAw@[cAc@SIc@SMGw@]e@SaBs@q@[MEu@[g@SSI[OOG_@QYMUIm@W[OQKMGYUCA[YY[Wa@KSIQEKEOESEWE]?KCSJ{GAWCYCU?GDA"
+                    },
+                    "start_location" : {
+                       "lat" : 8.967521,
+                       "lng" : -79.535748
+                    },
+                    "transit_details" : {
+                       "arrival_stop" : {
+                          "location" : {
+                             "lat" : 9.0043367,
+                             "lng" : -79.51225169999999
+                          },
+                          "name" : "Ipa-r"
+                       },
+                       "arrival_time" : {
+                          "text" : "9:05",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683122712
+                       },
+                       "departure_stop" : {
+                          "location" : {
+                             "lat" : 8.967521,
+                             "lng" : -79.535748
+                          },
+                          "name" : "Metro Loteria"
+                       },
+                       "departure_time" : {
+                          "text" : "8:43",
+                          "time_zone" : "America/Panama",
+                          "value" : 1683121421
+                       },
+                       "headsign" : "ZP Metro Pedregal B - Puerta 15",
+                       "line" : {
+                          "agencies" : [
+                             {
+                                "name" : "TRANSPORTE MASIVO DE PANAMA - MiBus",
+                                "url" : "http://www.mibus.com.pa/"
+                             }
+                          ],
+                          "color" : "#f2b248",
+                          "name" : "ZP 5 de Mayo-Via Espana-Metro Pedregal",
+                          "short_name" : "V532",
+                          "text_color" : "#ffffff",
+                          "vehicle" : {
+                             "icon" : "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png",
+                             "name" : "Autobus",
+                             "type" : "BUS"
+                          }
+                       },
+                       "num_stops" : 15,
+                       "trip_short_name" : "V532 ZP 5 de Mayo-Via Espana-Metro Pedregal"
+                    },
+                    "travel_mode" : "TRANSIT"
+                 },
+                 {
+                    "distance" : {
+                       "text" : "25 m",
+                       "value" : 25
+                    },
+                    "duration" : {
+                       "text" : "1 min",
+                       "value" : 22
+                    },
+                    "end_location" : {
+                       "lat" : 9.004433299999999,
+                       "lng" : -79.51205379999999
+                    },
+                    "html_instructions" : "Camina hasta V\u00eda Espa\u00f1a, Panam\u00e1",
+                    "polyline" : {
+                       "points" : "}s}u@pvhdNWg@"
+                    },
+                    "start_location" : {
+                       "lat" : 9.004312799999999,
+                       "lng" : -79.5122461
+                    },
+                    "steps" : [
+                       {
+                          "distance" : {
+                             "text" : "25 m",
+                             "value" : 25
+                          },
+                          "duration" : {
+                             "text" : "1 min",
+                             "value" : 22
+                          },
+                          "end_location" : {
+                             "lat" : 9.004433299999999,
+                             "lng" : -79.51205379999999
+                          },
+                          "polyline" : {
+                             "points" : "}s}u@pvhdNWg@"
+                          },
+                          "start_location" : {
+                             "lat" : 9.004312799999999,
+                             "lng" : -79.5122461
+                          },
+                          "travel_mode" : "WALKING"
+                       }
+                    ],
+                    "travel_mode" : "WALKING"
+                 }
+              ],
+              "traffic_speed_entry" : [],
+              "via_waypoint" : []
+           }
+        ],
+        "overview_polyline" : {
+           "points" : "cfwu@rnpdNmA`@S?sDOx@KB_@a@Hu@?_AE?KAXg@CgBKaGSgBGu@MW_@WaAIiAHO^UjAw@lAq@ZO^Kf@QXCxANbD`ArN|DpCdAjCrA~BlBv@r@`FnEl@j@^Tz@h@hAVj@Ht@F\\@bCQd@?pALl@X\\JZX^r@Hb@Fv@Ct@Q|@o@bBMd@E^Db@FNV\\RJTH\\@`@Gh@]`AmA`@kAZkAHyAEuCK_AM_@o@}@_A}@}EeEgBwA}@cAe@{@a@cAOs@GwAAqD@qEDgHEkAKeACYC@SkAIaA@g@Ny@Lo@Pg@Py@DYReAj@iAlA_Bt@mA|@aAZQn@QJAL@h@VVXF`@GRKJQFQ?YMOYAY@YF_@DSVy@b@e@pBs@jAm@\\[Ta@Ps@LY^m@dF}CpBkAb@c@PUf@{An@kBCKKKMAQBkA~DUp@OP}AeCyAaCoBlAxA|BBVNVTf@APQROHg@w@o@aAw@oAVQHED@\\j@OJNKV^V^z@tAQROHg@w@o@aAw@oAVQHED@VH^f@L?Zd@|AdCwBnAkBjAwBgDqEyGaD}AEJe@SoCwAmBkAaC_AoBaA}@a@DIEHuAo@{A}@gCeAeBeAkAi@eD}AiFkCwB_AiDgB_Ac@mA_@{@UaDa@qBYuEy@aEm@]E?CA[i@uEg@yDgAsHo@gFm@cEI]Q_@}AyCoBoEMWo@_AGOiBkDcFkKgC{E_CwEy@eBcAkBu@yAu@aBwDoHWc@g@o@_Aw@m@_@{@YqA_@ICEOEWFODEl@Gz@Fd@@vAKt@KfAUz@A^AVFVJZXhAbAJVBXCNMLa@Xw@TcCp@}@b@sAd@gBn@SLiAXaCz@oFjB{@h@[`@Q`@[tAQCKj@a@lB{@|DuAhFQLQ?QMg@Y_C{@aC}@Qf@qB`ESHk@DkCgAABa@KsBWgDa@uBU{Cm@gBi@iAc@[KuAs@wEoBwAm@oCmA_IgD}BaAm@[g@]_@[q@}@a@aAESKu@C_@HsHGo@?GDAD?Wg@"
+        },
+        "summary" : "",
+        "warnings" : [
+           "Las rutas a pie est\u00e1n en versi\u00f3n beta. Ten cuidado. \u2013  En esta ruta puede que no haya aceras o pasos para peatones."
+        ],
+        "waypoint_order" : []
+     }
+  ],
+  "status" : "OK"
+}
