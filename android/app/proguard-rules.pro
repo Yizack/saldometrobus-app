@@ -14,6 +14,7 @@
 
 -keep class net.sqlcipher.** { *; }
 -keep public class * extends com.getcapacitor.Plugin
+
 -dontwarn com.google.errorprone.annotations.CanIgnoreReturnValue
 -dontwarn com.google.errorprone.annotations.CheckReturnValue
 -dontwarn com.google.errorprone.annotations.Immutable
