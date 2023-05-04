@@ -10,7 +10,7 @@ definePageMeta({ layout: "back", nav_title: "creditos" });
       </a>
       <div class="small mx-2">
         <p class="text-muted m-0">{{ t("version") }}: {{ String(credito.version).replace("^", "") }}</p>
-        <p class="m-0">{{ credito.description }}</p>
+        <p class="m-0">{{ credito.description }}.</p>
       </div>
     </div>
   </section>
