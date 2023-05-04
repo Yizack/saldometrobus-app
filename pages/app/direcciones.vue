@@ -1,5 +1,6 @@
 <script setup>
 import { Loader } from "@googlemaps/js-api-loader";
+import { OpenStreetMapProvider } from "leaflet-geosearch";
 definePageMeta({ layout: "main" });
 </script>
 
@@ -7,12 +8,14 @@ definePageMeta({ layout: "main" });
   <section>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
       <form @submit.prevent="getDirections()">
-        <div class="form-floating">
-          <input v-model="form.origin" class="form-control rounded-top" :placeholder="t('location')" required>
+        <div class="form-floating position-relative">
+          <input v-model="form.origin" class="form-control rounded-top" :placeholder="t('location')" required @keyup="searchPlace($event.target.value, 'origin')">
+          <AutocompleteList v-if="search.origin" :loading="loading" :array="autocomplete" :select="selectResultOrigin" property="label" />
           <label>{{ t("location") }}</label>
         </div>
-        <div class="form-floating">
-          <input v-model="form.destination" class="form-control rounded-top-0" :placeholder="t('destino')" required>
+        <div class="form-floating position-relative">
+          <input v-model="form.destination" class="form-control rounded-top-0" :placeholder="t('destino')" required @keyup="searchPlace($event.target.value, 'destination')">
+          <AutocompleteList v-if="search.destination" :loading="loading" :array="autocomplete" :select="selectResultDestination" property="label" />
           <label>{{ t("destino") }}</label>
         </div>
         <div class="d-grid mt-2">
@@ -105,10 +108,52 @@ export default {
         geocoded_waypoints: [],
         routes: []
       },
-      selected: null
+      selected: null,
+      provider: new OpenStreetMapProvider({
+        params: {
+          countrycodes: "pa", // limit search results to Panama
+          email: Auth().user.email
+        }
+      }),
+      search: {
+        origin: false,
+        destination: false
+      },
+      autocomplete: [],
+      debounce: null,
+      loading: false
     };
   },
   methods: {
+    selectResultOrigin (result) {
+      this.selectResult(result, "origin");
+    },
+    selectResultDestination (result) {
+      this.selectResult(result, "destination");
+    },
+    selectResult (result, field) {
+      this.form[field] = result.label;
+      this.search[field] = false;
+    },
+    searchPlace (input, field) {
+      this.search[field] = true;
+      this.loading = true;
+      if (this.debounce) {
+        clearTimeout(this.debounce);
+        this.debounce = null;
+      }
+      if (input) {
+        this.debounce = setTimeout(async () => {
+          this.autocomplete = await this.provider.search({ query: input });
+          this.loading = false;
+        }, 2000);
+      }
+      else {
+        this.autocomplete = [];
+        this.search[field] = false;
+        this.loading = false;
+      }
+    },
     async getDirections () {
       if (CAPACITOR.isOnline()) {
         this.apiKey = !this.apiKey ? await API.googleKey() : this.apiKey;

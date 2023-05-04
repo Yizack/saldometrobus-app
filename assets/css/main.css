@@ -304,10 +304,17 @@ thead:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td
   --bs-accordion-bg: var(--bg-body-tertiary);
 }
 
-.rutas-mibus:hover {
+.rutas-mibus:hover, .hover:hover {
   background: var(--nav-hover)!important;
 }
 
 .travel_icon {
   filter: var(--icon-fix);
+}
+
+.autocomplete-list {
+  list-style-type: none;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 10;
 }
