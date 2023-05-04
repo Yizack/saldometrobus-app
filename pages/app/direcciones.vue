@@ -10,12 +10,12 @@ definePageMeta({ layout: "main" });
       <form @submit.prevent="getDirections()">
         <div class="form-floating position-relative">
           <input v-model="form.origin" class="form-control rounded-top" :placeholder="t('location')" required @keyup="searchPlace($event.target.value, 'origin')">
-          <AutocompleteList v-if="search.origin" :loading="loading" :array="autocomplete" :select="selectResultOrigin" property="label" />
+          <AutocompleteList v-if="search.origin && !search.destination" :loading="loading" :array="autocomplete" :select="selectResultOrigin" property="label" />
           <label>{{ t("location") }}</label>
         </div>
         <div class="form-floating position-relative">
           <input v-model="form.destination" class="form-control rounded-top-0" :placeholder="t('destino')" required @keyup="searchPlace($event.target.value, 'destination')">
-          <AutocompleteList v-if="search.destination" :loading="loading" :array="autocomplete" :select="selectResultDestination" property="label" />
+          <AutocompleteList v-if="search.destination && !search.origin" :loading="loading" :array="autocomplete" :select="selectResultDestination" property="label" />
           <label>{{ t("destino") }}</label>
         </div>
         <div class="d-grid mt-2">
@@ -25,6 +25,9 @@ definePageMeta({ layout: "main" });
     </div>
     <template v-if="directions.routes.length">
       <iframe class="rounded border" :src="`https://www.google.com/maps/embed/v1/directions?origin=place_id:${directions.geocoded_waypoints[0].place_id}&destination=place_id:${directions.geocoded_waypoints[1].place_id}&mode=transit&units=metric&language=${t('lang_code')}&region=pa&key=${apiKey}`" width="100%" height="400px" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" />
+      <div class="d-grid">
+        <button class="btn btn-primary mb-2" type="button" @click="CAPACITOR.openBrowser(`https://www.google.com/maps/dir/?api=1&origin=${form.origin}&origin_place_id=${directions.geocoded_waypoints[0].place_id}&destination=${form.destination}&destination_place_id=${directions.geocoded_waypoints[1].place_id}&travelmode=transit`)">{{ t("open_map") }}</button>
+      </div>
       <div v-for="(route, route_i) in directions.routes" :key="route_i" class="mb-2" role="button" @click="selectRoute(route_i)">
         <div class="d-flex rutas-mibus bg-body-tertiary border rounded rounded p-2">
           <div v-for="(leg, legs_i) in route.legs" :key="legs_i" class="flex-grow-1">
@@ -84,6 +87,13 @@ definePageMeta({ layout: "main" });
                       </div>
                     </div>
                   </div>
+                  <ul v-if="step.steps && step.steps.length > 1" class="list-group list-group-flush small pt-2">
+                    <li v-for="(in_step, in_key) in step.steps" :key="in_key" class="list-group-item bg-body-tertiary">
+                      <!-- eslint-disable-next-line vue/no-v-html -->
+                      <div v-html="in_step.instructions" />
+                      <div class="small"> ({{ in_step.distance.text }})</div>
+                    </li>
+                  </ul>
                   <hr v-if="key < leg.steps.length - 1">
                 </div>
               </div>
@@ -92,6 +102,9 @@ definePageMeta({ layout: "main" });
         </Transition>
       </div>
     </template>
+    <div class="text-center mt-3">
+      <p class="small m-0"><small>{{ t("aviso_dir") }}</small></p>
+    </div>
   </section>
 </template>
 
@@ -165,7 +178,8 @@ export default {
           version: "weekly"
         });
 
-        loader.load().then((google) => {
+        try {
+          const google = await loader.load();
           const directionsService = new google.maps.DirectionsService();
           const options = {
             origin: this.form.origin,
@@ -181,13 +195,17 @@ export default {
             if (status === google.maps.DirectionsStatus.OK) {
               this.directions = response;
             }
+            else if (status === google.maps.DirectionsStatus.ZERO_RESULTS) {
+              CAPACITOR.showToast(t("no_direcciones"));
+            }
           });
-        }).catch((e) => {
-          CAPACITOR.showToast({ message: e.message });
-        });
+        }
+        catch {
+          CAPACITOR.showToast(t("error"));
+        }
       }
       else {
-        CAPACITOR.showToast({ message: t("error_conexion") });
+        CAPACITOR.showToast(t("error_conexion"));
       }
     },
     selectRoute (route_i) {

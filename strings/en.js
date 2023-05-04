@@ -143,5 +143,9 @@ export default {
   arrival: "Arrival",
   location: "Location",
   destino: "Destination",
-  direcciones: "Directions"
+  direcciones: "Directions",
+  no_direcciones: "No available directions found",
+  results_notfound: "No results found",
+  open_map: "Open in Google Maps",
+  aviso_dir: "Please note that the directions may not be 100% accurate, so it is recommended to check the routes on the map before following the steps."
 };
