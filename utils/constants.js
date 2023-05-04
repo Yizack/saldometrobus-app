@@ -1,8 +1,10 @@
-import { version } from "~/package.json";
+import { version, devDependencies, dependencies } from "~/package.json";
 
 export const CONST = {
   name: "Saldo Metrobús",
   version,
+  devDependencies,
+  dependencies,
   dev: {
     name: "Yizack Rangel",
     url: "https://yizack.com"

@@ -9,6 +9,7 @@
           <li><NuxtLink class="dropdown-item py-3 px-4" to="/app/prefs/config/">{{ t("config") }}</NuxtLink></li>
           <li><a class="dropdown-item py-3 px-4" data-bs-toggle="modal" data-bs-target="#about" role="button">{{ t("acerca") }}</a></li>
           <li><a class="dropdown-item py-3 px-4" role="button" @click="CAPACITOR.openBrowser(CONST.privacy(t('lang_code')))">{{ t("privacidad") }}</a></li>
+          <li><NuxtLink class="dropdown-item py-3 px-4" to="/app/prefs/creditos">{{ t("creditos") }}</NuxtLink></li>
         </ul>
       </div>
     </div>

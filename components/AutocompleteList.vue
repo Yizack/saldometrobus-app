@@ -2,7 +2,7 @@
   <ul class="autocomplete-list position-absolute rounded-bottom border bg-body-tertiary py-2 px-0 shadow w-100 m-0">
     <template v-if="loading">
       <div class="text-center">
-        <div class="spinner-border text-primary spinner-border-sm" role="status">
+        <div class="spinner-border text-primary-emphasis spinner-border-sm" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>

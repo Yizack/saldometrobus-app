@@ -54,7 +54,7 @@ definePageMeta({ layout: "main" });
             </div>
           </div>
           <div class="text-end">
-            <h4 class="text-primary fw-bold m-0">{{ route.legs[0].duration.text }}</h4>
+            <h4 class="text-primary-emphasis fw-bold m-0">{{ route.legs[0].duration.text }}</h4>
             <p class="small m-0">({{ route.legs[0].distance.text }})</p>
           </div>
         </div>

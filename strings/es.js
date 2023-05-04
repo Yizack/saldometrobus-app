@@ -148,5 +148,6 @@ export default {
   results_notfound: "No se encontraron resultados",
   open_map: "Abrir en Google Maps",
   aviso_dir: "Ten en cuenta que las direcciones pueden no ser 100% precisas, por lo que se recomienda verificar las rutas en el mapa antes de seguir los pasos.",
-  nueva_busqueda: "Nueva búsqueda"
+  nueva_busqueda: "Nueva búsqueda",
+  creditos: "Créditos"
 };
