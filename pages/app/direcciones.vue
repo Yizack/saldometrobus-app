@@ -149,7 +149,9 @@ export default {
       this.search[field] = false;
     },
     searchPlace (input, field) {
-      this.search[field] = true;
+      Object.keys(this.search).forEach((key) => {
+        this.search[key] = key === field;
+      });
       this.loading = true;
       if (this.debounce) {
         clearTimeout(this.debounce);
