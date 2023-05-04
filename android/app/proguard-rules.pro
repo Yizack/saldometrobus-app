@@ -13,6 +13,13 @@
 #}
 
 -keep class net.sqlcipher.** { *; }
+-keep public class * extends com.getcapacitor.Plugin
+-dontwarn com.google.errorprone.annotations.CanIgnoreReturnValue
+-dontwarn com.google.errorprone.annotations.CheckReturnValue
+-dontwarn com.google.errorprone.annotations.Immutable
+-dontwarn com.google.errorprone.annotations.RestrictedApi
+-dontwarn javax.annotation.Nullable
+-dontwarn javax.annotation.concurrent.GuardedBy
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
