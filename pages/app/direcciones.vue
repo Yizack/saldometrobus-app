@@ -9,17 +9,17 @@ definePageMeta({ layout: "main" });
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
       <form @submit.prevent="getDirections()">
         <div class="form-floating position-relative">
-          <input v-model="form.origin" class="form-control rounded-top" :placeholder="t('location')" required @keyup="searchPlace($event.target.value, 'origin')">
+          <input v-model="form.origin" class="form-control rounded-top" :placeholder="t('location')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'origin')">
           <AutocompleteList v-if="search.origin && !search.destination" :loading="loading" :array="autocomplete" :select="selectResultOrigin" property="label" />
           <label>{{ t("location") }}</label>
         </div>
         <div class="form-floating position-relative">
-          <input v-model="form.destination" class="form-control rounded-top-0" :placeholder="t('destino')" required @keyup="searchPlace($event.target.value, 'destination')">
+          <input v-model="form.destination" class="form-control rounded-top-0" :placeholder="t('destino')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'destination')">
           <AutocompleteList v-if="search.destination && !search.origin" :loading="loading" :array="autocomplete" :select="selectResultDestination" property="label" />
           <label>{{ t("destino") }}</label>
         </div>
         <div class="d-grid mt-2">
-          <button class="btn btn-primary" type="submit">{{ t("buscar") }}</button>
+          <button class="btn btn-primary" type="submit">{{ directions.routes.length ? t("nueva_busqueda") : t("buscar") }}</button>
         </div>
       </form>
     </div>
@@ -169,39 +169,47 @@ export default {
     },
     async getDirections () {
       if (CAPACITOR.isOnline()) {
-        this.apiKey = !this.apiKey ? await API.googleKey() : this.apiKey;
-        this.form.origin = this.form.origin.trim();
-        this.form.destination = this.form.destination.trim();
+        if (!this.directions.routes.length) {
+          this.apiKey = !this.apiKey ? await API.googleKey() : this.apiKey;
+          this.form.origin = this.form.origin.trim();
+          this.form.destination = this.form.destination.trim();
 
-        const loader = new Loader({
-          apiKey: this.apiKey,
-          version: "weekly"
-        });
-
-        try {
-          const google = await loader.load();
-          const directionsService = new google.maps.DirectionsService();
-          const options = {
-            origin: this.form.origin,
-            destination: this.form.destination,
-            travelMode: "TRANSIT",
-            unitSystem: google.maps.UnitSystem.METRIC,
-            region: "pa",
-            provideRouteAlternatives: true,
-            language: t("lang_code")
-          };
-
-          directionsService.route(options, (response, status) => {
-            if (status === google.maps.DirectionsStatus.OK) {
-              this.directions = response;
-            }
-            else if (status === google.maps.DirectionsStatus.ZERO_RESULTS) {
-              CAPACITOR.showToast(t("no_direcciones"));
-            }
+          const loader = new Loader({
+            apiKey: this.apiKey,
+            version: "weekly"
           });
+
+          try {
+            const google = await loader.load();
+            const directionsService = new google.maps.DirectionsService();
+            const options = {
+              origin: this.form.origin,
+              destination: this.form.destination,
+              travelMode: "TRANSIT",
+              unitSystem: google.maps.UnitSystem.METRIC,
+              region: "pa",
+              provideRouteAlternatives: true,
+              language: t("lang_code")
+            };
+
+            directionsService.route(options, (response, status) => {
+              if (status === google.maps.DirectionsStatus.OK) {
+                this.directions = response;
+              }
+              else if (status === google.maps.DirectionsStatus.ZERO_RESULTS) {
+                CAPACITOR.showToast(t("no_direcciones"));
+              }
+            });
+          }
+          catch {
+            CAPACITOR.showToast(t("error"));
+          }
         }
-        catch {
-          CAPACITOR.showToast(t("error"));
+        else {
+          this.form.origin = "";
+          this.form.destination = "";
+          this.directions.routes = [];
+          this.directions.geocoded_waypoints = [];
         }
       }
       else {

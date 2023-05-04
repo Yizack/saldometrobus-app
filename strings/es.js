@@ -147,5 +147,6 @@ export default {
   no_direcciones: "No se encontraron direcciones disponibles",
   results_notfound: "No se encontraron resultados",
   open_map: "Abrir en Google Maps",
-  aviso_dir: "Ten en cuenta que las direcciones pueden no ser 100% precisas, por lo que se recomienda verificar las rutas en el mapa antes de seguir los pasos."
+  aviso_dir: "Ten en cuenta que las direcciones pueden no ser 100% precisas, por lo que se recomienda verificar las rutas en el mapa antes de seguir los pasos.",
+  nueva_busqueda: "Nueva búsqueda"
 };
