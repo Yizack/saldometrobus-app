@@ -1,3 +1,41 @@
+## 2.3.0 (2023-05-05)
+
+* chore: add new changelog ([737dd95](https://github.com/Yizack/saldometrobus-app/commit/737dd95))
+* chore: credits as constants ([ad48868](https://github.com/Yizack/saldometrobus-app/commit/ad48868))
+* chore: embed dedicated key ([9bf2664](https://github.com/Yizack/saldometrobus-app/commit/9bf2664))
+* chore: move own scripts to a scripts folder ([a8b9d69](https://github.com/Yizack/saldometrobus-app/commit/a8b9d69))
+* chore: post validate user to get key ([fd4ee8b](https://github.com/Yizack/saldometrobus-app/commit/fd4ee8b))
+* chore: push tag script ([ab9c407](https://github.com/Yizack/saldometrobus-app/commit/ab9c407))
+* chore: set up commitlint and changelog ([ea5779c](https://github.com/Yizack/saldometrobus-app/commit/ea5779c))
+* chore: update constants ([9a6e305](https://github.com/Yizack/saldometrobus-app/commit/9a6e305))
+* style: add margin top to card tabs titles ([d4a85bd](https://github.com/Yizack/saldometrobus-app/commit/d4a85bd))
+* style: adjust dark mode hovers ([a0472df](https://github.com/Yizack/saldometrobus-app/commit/a0472df))
+* fix: credit descriptions language ([468267e](https://github.com/Yizack/saldometrobus-app/commit/468267e))
+* 2.2.6 ([e2bf0a3](https://github.com/Yizack/saldometrobus-app/commit/e2bf0a3))
+* 2.3.0 ([fcf98ca](https://github.com/Yizack/saldometrobus-app/commit/fcf98ca))
+* Add end dot ([b323c9f](https://github.com/Yizack/saldometrobus-app/commit/b323c9f))
+* Autocomplete debounce handle with leaflet-geosearch ([06fe10b](https://github.com/Yizack/saldometrobus-app/commit/06fe10b))
+* bump ([b8de3d9](https://github.com/Yizack/saldometrobus-app/commit/b8de3d9))
+* Bump chartjs ([a4c0489](https://github.com/Yizack/saldometrobus-app/commit/a4c0489))
+* capacitor 5 ([e088add](https://github.com/Yizack/saldometrobus-app/commit/e088add))
+* Capacitor proguard rules ([499d9ac](https://github.com/Yizack/saldometrobus-app/commit/499d9ac))
+* Créditos ([0225618](https://github.com/Yizack/saldometrobus-app/commit/0225618))
+* directions ([bdc7525](https://github.com/Yizack/saldometrobus-app/commit/bdc7525))
+* directions test file ([e6677d2](https://github.com/Yizack/saldometrobus-app/commit/e6677d2))
+* fix multi search ([0394066](https://github.com/Yizack/saldometrobus-app/commit/0394066))
+* Fix toasts, RC directions ([1ac647a](https://github.com/Yizack/saldometrobus-app/commit/1ac647a))
+* lazy loading, allowfullscreen ([3581d88](https://github.com/Yizack/saldometrobus-app/commit/3581d88))
+* Limit directions use ([6f54afd](https://github.com/Yizack/saldometrobus-app/commit/6f54afd))
+* maps using dlcontent on server and cf redirect ([8625310](https://github.com/Yizack/saldometrobus-app/commit/8625310))
+* Print routes length ([93d9347](https://github.com/Yizack/saldometrobus-app/commit/93d9347))
+* Proguard temporal fix ([9fcad8d](https://github.com/Yizack/saldometrobus-app/commit/9fcad8d))
+* remove asterisk ([570ff18](https://github.com/Yizack/saldometrobus-app/commit/570ff18))
+* Rutas MiBus ([bba4b57](https://github.com/Yizack/saldometrobus-app/commit/bba4b57))
+* trim state vars ([d3394e8](https://github.com/Yizack/saldometrobus-app/commit/d3394e8))
+* Update proguard-rules.pro ([77d31a4](https://github.com/Yizack/saldometrobus-app/commit/77d31a4))
+
+
+
 ## <small>2.2.6 (2023-04-28)</small>
 
 * 2.2.5 ([cb0de61](https://github.com/Yizack/saldometrobus-app/commit/cb0de61))
@@ -173,6 +211,3 @@
 ## 2.0.0 (2023-03-15)
 
 * Initial commit ([c63a53c](https://github.com/Yizack/saldometrobus-app/commit/c63a53c))
-
-
-
