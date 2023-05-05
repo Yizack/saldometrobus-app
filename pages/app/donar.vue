@@ -50,7 +50,7 @@ definePageMeta({ layout: "main" });
           <div class="modal-body">
             <p>{{ t("donar_nequi") }}</p>
             <div class="nequi rounded p-4 text-center mb-2">
-              <h5 class="text-white text-uppercase mb-3">{{ CONST.dev.name }}</h5>
+              <h5 class="text-white text-uppercase mb-3">{{ CONST.dev.legal_name }}</h5>
               <img class="img-fluid rounded" src="/images/nequi_qr.webp">
             </div>
             <div class="d-grid">
@@ -72,8 +72,8 @@ export default {
           external: false,
           info: {
             nombre: CONST.dev.name,
-            n_cuenta: CONST.bgeneral.numero,
-            tipo: CONST.bgeneral.tipo
+            n_cuenta: CONST.dev.bgeneral.numero,
+            tipo: CONST.dev.bgeneral.tipo
           }
         },
         nequi: {
@@ -81,7 +81,7 @@ export default {
         },
         paypal: {
           external: true,
-          link: CONST.paypal
+          link: CONST.dev.paypal
         }
       }
     };
