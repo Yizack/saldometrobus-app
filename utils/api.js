@@ -13,6 +13,7 @@ class SaldometrobusAPI {
     this.deleteTarjetaURL = `${this.baseDB}/tarjetas_delete`;
     this.updateURL = `${this.baseDB}/update_password`;
     this.deleteAccountURL = `${this.baseDB}/delete_account`;
+    this.updateNameURL = `${this.baseDB}/update_name`;
   }
 
   userLogin (payload) {
@@ -76,6 +77,10 @@ class SaldometrobusAPI {
 
   deleteAccount (payload) {
     return CAPACITOR.doPost(this.deleteAccountURL, payload);
+  }
+
+  updateName (payload) {
+    return CAPACITOR.doPost(this.updateNameURL, payload);
   }
 
   getGoogleKey (payload) {

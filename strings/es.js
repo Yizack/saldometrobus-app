@@ -150,5 +150,6 @@ export default {
   aviso_dir: "Ten en cuenta que las direcciones pueden no ser 100% precisas, por lo que se recomienda verificar las rutas en el mapa antes de seguir los pasos.",
   nueva_busqueda: "Nueva búsqueda",
   creditos: "Créditos",
-  opensrc_credits: "Librerías Open Source que hacen posible y facilitan el desarrollo de esta app y sus servicios"
+  opensrc_credits: "Librerías Open Source que hacen posible y facilitan el desarrollo de esta app y sus servicios",
+  name_updated: "Nombre actualizado"
 };

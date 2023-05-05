@@ -150,5 +150,6 @@ export default {
   aviso_dir: "Please note that the directions may not be 100% accurate, so it is recommended to check the routes on the map before following the steps.",
   nueva_busqueda: "New search",
   creditos: "Credits",
-  opensrc_credits: "Open source libraries that make this app possible and its development easier."
+  opensrc_credits: "Open source libraries that make this app possible and its development easier.",
+  name_updated: "Name updated"
 };

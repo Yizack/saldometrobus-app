@@ -59,6 +59,10 @@ export const Auth = defineStore("auth", {
           this.auth.updated = false;
         }
       }
+    },
+    updateName (name) {
+      this.auth.nombre = name;
+      CAPACITOR.setPref("auth", JSON.stringify(this.auth));
     }
   }
 });

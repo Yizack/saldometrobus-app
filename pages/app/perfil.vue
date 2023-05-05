@@ -6,21 +6,25 @@ definePageMeta({ layout: "main" });
   <section>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
       <h4 class="text-primary-emphasis m-0"><b>{{ t("nombre") }}</b></h4>
-      <div class="m-2">
-        <input :value="readonly.nombre" class="form-control py-2" type="text" readonly>
+      <div class="input-group p-2">
+        <input ref="nombre" v-model="user.nombre" class="form-control py-2" type="text" readonly>
+        <button class="btn btn-sm" :class="edit.nombre ? 'btn-success' : 'btn-primary'" @click="editName()">
+          <Icon v-if="edit.nombre" name="mdi:check-bold" width="24" height="24" />
+          <Icon v-else name="material-symbols:edit" width="24" height="24" />
+        </button>
       </div>
     </div>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
       <h4 class="text-primary-emphasis m-0"><b>{{ t("correo") }}</b></h4>
       <div class="m-2">
-        <input :value="readonly.email" class="form-control py-2" type="text" readonly>
+        <input :value="user.email" class="form-control py-2" type="text" readonly>
       </div>
     </div>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
       <h4 class="text-primary-emphasis m-0"><b>{{ t("tarjetas_vinculadas") }}</b></h4>
       <div class="m-2">
-        <template v-if="readonly.tarjetas.length">
-          <p v-for="tarjeta in readonly.tarjetas" :key="tarjeta.numero" class="m-0"><Icon name="material-symbols:credit-card-outline" /> {{ tarjeta.numero }} ({{ tarjeta.nombre }})</p>
+        <template v-if="user.tarjetas.length">
+          <p v-for="tarjeta in user.tarjetas" :key="tarjeta.numero" class="m-0"><Icon name="material-symbols:credit-card-outline" /> {{ tarjeta.numero }} ({{ tarjeta.nombre }})</p>
         </template>
         <p v-else class="m-0">{{ t("no_tarjetas") }}</p>
       </div>
@@ -53,7 +57,7 @@ definePageMeta({ layout: "main" });
     <div v-if="!Auth().isGuest" class="bg-body-tertiary border rounded p-2 shadow">
       <h4 class="text-primary-emphasis m-0"><b>{{ t("account_id") }}</b></h4>
       <div class="m-2">
-        <input :value="readonly.token" class="form-control py-2" type="text" readonly @click="copyToken($event)">
+        <input :value="user.token" class="form-control py-2" type="text" readonly @click="copyToken($event)">
       </div>
     </div>
     <div v-if="!Auth().isGuest" class="d-grid">
@@ -71,7 +75,10 @@ export default {
   data () {
     return {
       dialog: "",
-      readonly: {
+      edit: {
+        nombre: false
+      },
+      user: {
         nombre: Auth().user.nombre,
         email: Auth().user.email,
         token: Auth().user.token,
@@ -94,9 +101,35 @@ export default {
     }
   },
   async mounted () {
-    this.readonly.tarjetas = await DB.getTarjetas();
+    this.user.tarjetas = await DB.getTarjetas();
   },
   methods: {
+    async editName () {
+      this.edit.nombre = !this.edit.nombre;
+      const input = this.$refs.nombre;
+      if (this.edit.nombre) {
+        input.focus();
+        input.removeAttribute("readonly");
+      }
+      else {
+        const { error, error_key } = await API.updateName({
+          nombre: this.user.nombre,
+          email: Auth().user.email,
+          token: Auth().user.token
+        });
+
+        if (!error) {
+          Auth().updateName(this.user.nombre);
+          await CAPACITOR.showToast(t("name_updated"));
+        }
+        else {
+          this.user.nombre = Auth().user.nombre;
+          await CAPACITOR.showToast(t(error_key));
+        }
+        input.setAttribute("readonly", true);
+        input.blur();
+      }
+    },
     async updatePass () {
       if (this.isPasswordValid && this.isPasswordCheckValid) {
         this.dialog = t("updating_pass");
@@ -130,7 +163,7 @@ export default {
     copyToken (event) {
       const input = event.target;
       input.select();
-      CAPACITOR.writeToClipboard(this.readonly.token);
+      CAPACITOR.writeToClipboard(this.user.token);
     },
     async deleteAccount () {
       const confirm = await CAPACITOR.confirm(t("delete_account"), t("delete_account_sure"));
