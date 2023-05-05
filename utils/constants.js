@@ -18,6 +18,7 @@ export const CONST = {
   email: "saldometrobus@yizack.com",
   privacy: lang => `https://yizack.com/legal/saldometrobus/${lang}/privacy.html`,
   database: "saldometrobus.db",
+  mapsEmbedKey: "AIzaSyD_qEcAuuJ1Arg-MgaaphTlnG8CXVjHaII",
   dark: false,
   colors: {
     light: {
