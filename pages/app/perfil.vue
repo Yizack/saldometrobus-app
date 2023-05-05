@@ -112,19 +112,21 @@ export default {
         input.removeAttribute("readonly");
       }
       else {
-        const { error, error_key } = await API.updateName({
-          nombre: this.user.nombre,
-          email: Auth().user.email,
-          token: Auth().user.token
-        });
+        if (this.user.nombre !== Auth().user.nombre) {
+          const { error, error_key } = await API.updateName({
+            nombre: this.user.nombre,
+            email: Auth().user.email,
+            token: Auth().user.token
+          });
 
-        if (!error) {
-          Auth().updateName(this.user.nombre);
-          await CAPACITOR.showToast(t("name_updated"));
-        }
-        else {
-          this.user.nombre = Auth().user.nombre;
-          await CAPACITOR.showToast(t(error_key));
+          if (!error) {
+            Auth().updateName(this.user.nombre);
+            await CAPACITOR.showToast(t("name_updated"));
+          }
+          else {
+            this.user.nombre = Auth().user.nombre;
+            await CAPACITOR.showToast(t(error_key));
+          }
         }
         input.setAttribute("readonly", true);
         input.blur();
