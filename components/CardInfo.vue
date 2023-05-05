@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="text-center py-2"><b>{{ tarjeta.nombre }}</b></h4>
+    <h4 class="text-center mt-1 py-2"><b>{{ tarjeta.nombre }}</b></h4>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow text-center">
       <img v-if="tarjeta.tipo === t('tarjeta_rapipass')" class="img-fluid" src="/images/rapipass_brand.webp" :width="size" :height="size">
       <img v-else-if="tarjeta.tipo === t('tarjeta_normal')" class="img-fluid" src="/images/metro_metrobus_brand.webp" :width="size" :height="size">

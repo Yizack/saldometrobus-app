@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="text-center py-2"><b>{{ t("saldos") }}</b></h4>
+    <h4 class="text-center mt-1 py-2"><b>{{ t("saldos") }}</b></h4>
     <p class="m-0">{{ t("mov_4_semanas") }}</p>
     <div class="table-responsive">
       <table v-if="tarjeta.movimientos.length > 0" class="table table-hover shadow small">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="text-center py-2"><b>{{ t("graficas") }}</b></h4>
+    <h4 class="text-center mt-1 py-2"><b>{{ t("graficas") }}</b></h4>
     <p>*{{ t("grafica_nota") }}</p>
     <div class="d-flex align-items-center my-3">
       <span>{{ t("filtrar") }}:</span>
