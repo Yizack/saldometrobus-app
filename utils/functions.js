@@ -69,3 +69,7 @@ export const PanamaDate = () => {
 export const formatHour = (hour) => {
   return `${hour}h`;
 };
+
+export const openInNewTab = (url) => {
+  window.open(url, "_blank");
+};
