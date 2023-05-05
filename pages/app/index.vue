@@ -29,7 +29,7 @@ definePageMeta({ layout: "main" });
     <div v-if="tarjetas.length" class="text-center mt-3">
       <p class="small m-0"><small>{{ t("tarjetas_note") }}</small></p>
     </div>
-    <div class="position-absolute bottom-0 end-0 m-3">
+    <div class="position-fixed bottom-0 end-0 m-3">
       <button class="btn btn-primary rounded-circle p-1 shadow" role="button" data-bs-toggle="modal" data-bs-target="#add-dialog"><Icon name="material-symbols:add" width="3em" height="3em" /></button>
     </div>
     <!-- Add Dialog -->
