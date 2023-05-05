@@ -18,20 +18,23 @@
     "dev": "nuxt dev --port=5173",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "prepare": "nuxt prepare",
+    "postinstall": "nuxt prepare && npm run husky:install && npm run husky:msg",
     "android": "npx cap add android",
     "ios": "npx cap add ios",
     "resources": "npx @capacitor/assets generate --android --ios --splashBackgroundColorDark #F8F9FC",
-    "versionApp": "node updateVersion.js",
-    "trapeze": "npx trapeze run config.yaml -y",
-    "clean": "node cleanOutput.js",
     "sync": "npx cap sync",
-    "key": "openssl base64 -A -in saldometrobus_key.jks -out saldometrobus_key.jks.txt",
-    "patch": "npm version patch",
-    "minor": "npm version minor",
-    "major": "npm version major",
-    "mibus": "node miBusRutas.js"
+    "app:clean": "node cleanOutput.js",
+    "app:mibus": "node miBusRutas.js",
+    "app:version": "node updateVersion.js",
+    "app:android:key": "openssl base64 -A -in saldometrobus_key.jks -out saldometrobus_key.jks.txt",
+    "trapeze": "npx trapeze run config.yaml -y",
+    "husky:install": "husky install",
+    "husky:msg": "husky add .husky/commit-msg  \"npx --no -- commitlint --edit ${1}\"",
+    "changelog": "npx conventional-changelog-cli -i 'CHANGELOG.md' -s -t v -p angular",
+    "changelog:new": "npx conventional-changelog-cli -i 'CHANGELOG.md' -s -r 0",
+    "patch": "npm version patch && git push --tags",
+    "minor": "npm version minor && git push --tags",
+    "major": "npm version major && git push --tags"
   },
   "devDependencies": {
     "@capacitor-community/sqlite": "^5.0.0-beta.1",
@@ -49,9 +52,13 @@
     "@capacitor/splash-screen": "^5.0.0",
     "@capacitor/status-bar": "^5.0.0",
     "@capacitor/toast": "^5.0.0",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
     "@nuxtjs/eslint-config": "^12.0.0",
     "@trapezedev/configure": "^7.0.8",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.39.0",
+    "husky": "^8.0.3",
     "jeep-sqlite": "^2.3.3",
     "nuxt": "^3.4.3",
     "nuxt-icon": "^0.4.0",
@@ -67,5 +74,15 @@
   },
   "overrides": {
     "vue": "latest"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }

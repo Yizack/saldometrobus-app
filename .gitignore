@@ -14,3 +14,4 @@ release/
 .idea
 .gradle
 assets/rutas.json
+.husky

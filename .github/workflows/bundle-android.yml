@@ -27,7 +27,7 @@ jobs:
       run: npm ci
 
     - name: MiBus Rutas 🚌
-      run: npm run mibus
+      run: npm run app:mibus
 
     - name: Build App ⚡
       run: npm run generate
@@ -39,14 +39,14 @@ jobs:
         folder: .output/public
 
     - name: Clean output 🧹
-      run: npm run clean
+      run: npm run app:clean
 
     - name: Capacitor 📲
       run: npm run sync
 
     - name: Version App 🔢
       run: |
-          npm run versionApp
+          npm run app:version
           npm run trapeze
 
     - name: Setup java ☕
