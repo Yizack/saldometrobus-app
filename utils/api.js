@@ -78,9 +78,8 @@ class SaldometrobusAPI {
     return CAPACITOR.doPost(this.deleteAccountURL, payload);
   }
 
-  async googleKey () {
-    const { key } = await CAPACITOR.doGet(`${this.base}/maps/key`);
-    return key;
+  getGoogleKey (payload) {
+    return CAPACITOR.doPost(`${this.base}/maps/key`, payload);
   }
 }
 
