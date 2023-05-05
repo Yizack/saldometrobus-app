@@ -2,7 +2,7 @@ import { writeFileSync } from "fs";
 import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
-const packageJson = require("./package.json");
+const packageJson = require("./../package.json");
 
 const generateVersionCode = (version) => {
   const [major, minor, patch] = version.split(".");
