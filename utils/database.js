@@ -64,8 +64,8 @@ class Database {
   }
 
   async getTarjeta (numero) {
-    const statement = `SELECT * FROM tarjetas WHERE numero = '${numero}'`;
-    const { values } = await this.query(statement);
+    const statement = "SELECT * FROM tarjetas WHERE numero = ?";
+    const { values } = await this.query(statement, [numero]);
     let tarjeta = {};
     if (values.length) {
       tarjeta = values[0];
@@ -108,33 +108,26 @@ class Database {
 
   async updateTarjeta (tarjeta) {
     const { numero, saldo, estado, fecha, tipo } = tarjeta;
-    const statement = `UPDATE tarjetas SET saldo = '${saldo}', estado = '${estado}', fecha = '${fecha}', tipo = '${tipo}' WHERE numero = '${numero}'`;
-    const { changes } = await this.execute(statement);
+    const statement = "UPDATE tarjetas SET saldo = ?, estado = ?, fecha = ?, tipo = ? WHERE numero = ?";
+    const { changes } = await this.run(statement, [saldo, estado, fecha, tipo, numero]);
     console.info(`Updated: ${numero}`);
     return changes;
   }
 
   async updateNombreTarjeta (numero, nombre) {
-    const statement = `UPDATE tarjetas SET nombre = '${nombre}' WHERE numero = '${numero}'`;
+    const statement = "UPDATE tarjetas SET nombre = ? WHERE numero = ?";
+    const { changes } = await this.run(statement, [nombre, numero]);
     console.info(`Edited: ${numero}`);
-    const { changes } = await this.execute(statement);
     return changes;
   }
 
-  existsTarjeta (numero) {
-    const statement = `SELECT * FROM tarjetas WHERE numero = '${numero}'`;
-    return this.query(statement);
-  }
-
   async deleteTarjeta (numero) {
-    const statements = [
-      `DELETE FROM tarjetas WHERE numero = '${numero}'`,
-      `DELETE FROM movimientos WHERE numero = '${numero}'`
+    const set = [
+      { statement: "DELETE FROM tarjetas WHERE numero = ?", values: [numero] },
+      { statement: "DELETE FROM movimientos WHERE numero = ?", values: [numero] }
     ];
 
-    console.info(`Deleted: ${numero}`);
-
-    const { changes } = await this.execute(statements);
+    const { changes } = await this.execute(set);
     return changes;
   }
 
@@ -213,13 +206,13 @@ class Database {
   }
 
   deleteMovimientos (numero) {
-    const statement = `DELETE FROM movimientos WHERE numero = '${numero}'`;
-    return this.execute(statement);
+    const statement = "DELETE FROM movimientos WHERE numero = ?";
+    return this.run(statement, [numero]);
   }
 
   // Base methods
-  query (statement) {
-    return this.SQLite.query(statement);
+  query (statement, values) {
+    return this.SQLite.query(statement, values);
   }
 
   run (statement, values) {
