@@ -218,6 +218,42 @@ export const CONST = {
         es: "Mensajes de commit convencionales cli"
       },
       version: devDependencies["cz-conventional-changelog"]
+    },
+    {
+      name: "GitHub Actions: Checkout",
+      link: "https://github.com/actions/checkout",
+      description: {
+        en: "GitHub Action for checking out a repo",
+        es: "Acción de GitHub para revisar un repositorio"
+      },
+      version: 3
+    },
+    {
+      name: "GitHub Actions: Setup Node",
+      link: "https://github.com/actions/setup-node",
+      description: {
+        en: "Set up your GitHub Actions workflow with a specific version of node.js",
+        es: "Configure su flujo de trabajo de GitHub Actions con una versión específica de node.js"
+      },
+      version: 3
+    },
+    {
+      name: "GitHub Actions: Setup Java",
+      link: "https://github.com/actions/setup-java",
+      description: {
+        en: "Set up your GitHub Actions workflow with a specific version of Java",
+        es: "Configure su flujo de trabajo de GitHub Actions con una versión específica de Java"
+      },
+      version: 3
+    },
+    {
+      name: "GitHub Actions: Upload Artifact",
+      link: "https://github.com/actions/upload-artifact",
+      description: {
+        en: "Upload a file or directory as a separate artifact for a workflow run",
+        es: "Cargue un archivo o directorio como un artefacto separado para una ejecución de flujo de trabajo"
+      },
+      version: 3
     }
   ]
 };
