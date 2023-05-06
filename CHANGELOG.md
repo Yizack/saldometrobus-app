@@ -1,3 +1,21 @@
+## [2.3.1](https://github.com/Yizack/saldometrobus-app/compare/v2.3.0...v2.3.1) (2023-05-06)
+
+
+### Bug Fixes
+
+* add button position on landscape mode ([de64e54](https://github.com/Yizack/saldometrobus-app/commit/de64e54bc3af8ba38763c22bde0529c5f3a30343))
+* added translation for the word "Buscar" ([a9f0d2c](https://github.com/Yizack/saldometrobus-app/commit/a9f0d2c393f71ac2ea46ab0b6619040d7ec75eb3))
+* send update name request only if changed ([9ac8a69](https://github.com/Yizack/saldometrobus-app/commit/9ac8a69eaf675a1c3793b938f31cfa45660011ed))
+* sqlite secure statements ([ca6dc32](https://github.com/Yizack/saldometrobus-app/commit/ca6dc329fd8f907d35470c4d4541faa112bf876f))
+
+
+### Features
+
+* added button to edit account name ([e38670f](https://github.com/Yizack/saldometrobus-app/commit/e38670f1bb4bb7a409269f48a7356165b354c90b))
+* search routes by long and short name ([bc03048](https://github.com/Yizack/saldometrobus-app/commit/bc03048ca9834bce1bd49b2bf3186b5e37e554a0))
+
+
+
 ## 2.3.0 (2023-05-05)
 
 * chore: add new changelog ([737dd95](https://github.com/Yizack/saldometrobus-app/commit/737dd95))
