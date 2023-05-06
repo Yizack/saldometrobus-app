@@ -11,7 +11,7 @@ definePageMeta({ layout: "main" });
     <div id="accordionFlushRutas" class="accordion accordion-flush bg-body-tertiary border rounded shadow">
       <div v-for="(tipo, i) in tiposFiltered" :key="i" class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse${i}`" aria-expanded="false" :aria-controls="`flush-collapse${i}`">
+          <button class="accordion-button" :class="{'collapsed': !buscar.input}" type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse${i}`" :aria-expanded="Boolean(buscar.input)" :aria-controls="`flush-collapse${i}`">
             <b>{{ tipo.nombre }}</b>
           </button>
         </h2>
