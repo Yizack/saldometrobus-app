@@ -206,7 +206,7 @@ export const CONST = {
       link: "https://commitlint.js.org",
       description: {
         en: "Lint commit messages",
-        es: "Lint mensajes commit"
+        es: "Herramienta de lint para mensajes de commits"
       },
       version: devDependencies["@commitlint/cli"]
     },
