@@ -4,15 +4,22 @@ definePageMeta({ layout: "main" });
 
 <template>
   <section>
-    <div id="accordionFlushRutas" class="accordion accordion-flush bg-body-tertiary border rounded mb-2 shadow">
-      <div v-for="(tipo, i) in tipos" :key="i" class="accordion-item">
+    <div class="form-floating mb-2">
+      <input class="form-control border bg-body-tertiary rounded shadow-sm" type="text" :placeholder="t('buscar')" @keyup="buscar.input = $event.target.value">
+      <label>{{ t("buscar") }}</label>
+    </div>
+    <div id="accordionFlushRutas" class="accordion accordion-flush bg-body-tertiary border rounded shadow">
+      <div v-for="(tipo, i) in tiposFiltered" :key="i" class="accordion-item">
         <h2 class="accordion-header">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse${i}`" aria-expanded="false" :aria-controls="`flush-collapse${i}`">
             <b>{{ tipo.nombre }}</b>
           </button>
         </h2>
-        <div :id="`flush-collapse${i}`" class="accordion-collapse collapse" data-bs-parent="#accordionFlushRutas">
-          <div v-for="ruta in tipo.rutas" :key="ruta.route_id">
+        <div :id="`flush-collapse${i}`" class="accordion-collapse collapse" :class="{'show': buscar.input}">
+          <div v-if="tipo.rutas.length === 0" class="text-center p-2 border-top">
+            <p class="m-0">{{ t("results_notfound") }}</p>
+          </div>
+          <div v-for="ruta in tipo.rutas" :key="ruta.route_id" class="border-top">
             <div class="d-flex align-items-center p-2 rutas-mibus" role="button" @click="openRoute(ruta.route_id)">
               <p class="p-2 m-0 text-white rounded small text-center" :style="{ backgroundColor: `#${ruta.route_color}`, minWidth: '3.7rem'} ">{{ ruta.route_short_name }}</p>
               <p class="p-2 m-0">{{ ruta.route_long_name }}</p>
@@ -28,12 +35,38 @@ definePageMeta({ layout: "main" });
 export default {
   data () {
     return {
+      buscar: {
+        input: "",
+        results: []
+      },
       tipos: [
         { nombre: t("rutas_corredores"), rutas: MIBUS.getRutas("Corredor") },
         { nombre: t("rutas_troncales"), rutas: MIBUS.getRutas("Troncal") },
         { nombre: t("rutas_complementarias"), rutas: MIBUS.getRutas("Complementaria") }
       ]
     };
+  },
+  computed: {
+    tiposFiltered () {
+      if (!this.buscar.input) {
+        return this.tipos;
+      }
+
+      const filterRuta = (rutas) => {
+        const busqueda = String(this.buscar.input).trim().toLowerCase();
+        return rutas.filter((ruta) => {
+          const wordsMatch = busqueda.split(" ").map(str => String(ruta.route_long_name.toLowerCase()).includes(str)).every(Boolean);
+          const idMatch = String(ruta.route_short_name.toLowerCase()).includes(busqueda);
+          return wordsMatch || idMatch;
+        });
+      };
+
+      const tipos = this.tipos.map((tipo) => {
+        const rutas = filterRuta(tipo.rutas);
+        return { ...tipo, rutas };
+      });
+      return tipos;
+    }
   },
   methods: {
     openRoute (route_id) {
