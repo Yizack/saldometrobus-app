@@ -151,5 +151,6 @@ export default {
   nueva_busqueda: "Nueva búsqueda",
   creditos: "Créditos",
   opensrc_credits: "Librerías Open Source que hacen posible y facilitan el desarrollo de esta app y sus servicios",
-  name_updated: "Nombre actualizado"
+  name_updated: "Nombre actualizado",
+  buscar: "Buscar"
 };
