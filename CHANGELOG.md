@@ -1,3 +1,9 @@
+## <small>2.3.5 (2023-05-07)</small>
+
+* fix: autocomplete destination use ([ab9bcc9](https://github.com/Yizack/saldometrobus-app/commit/ab9bcc9))
+
+
+
 ## <small>2.3.4 (2023-05-07)</small>
 
 * chore: limit search within panama ([72cfc18](https://github.com/Yizack/saldometrobus-app/commit/72cfc18))

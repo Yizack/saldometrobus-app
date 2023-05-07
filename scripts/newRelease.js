@@ -4,10 +4,11 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const { version } = require("./../package.json");
 
-
 const tag = execSync(`git tag -l v${version}`).toString();
 if (!tag) {
-  console.log(`v${version}`);
+  console.info(`v${version}`);
+  execSync("npm run app:version");
+  execSync("npm run trapeze");
   execSync("npm run changelog");
   execSync("git add .");
   execSync(`git commit -m "chore: release v${version}"`);
