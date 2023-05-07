@@ -165,7 +165,11 @@ export default {
     },
     searchPlace (input, field) {
       Object.keys(this.search).forEach((key) => {
-        this.search[key] = key === field;
+        const current = key === field;
+        this.search[key] = current;
+        if (current) {
+          this.form[key] = input;
+        }
       });
       this.loading = true;
       if (this.debounce) {
