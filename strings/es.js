@@ -153,5 +153,6 @@ export default {
   opensrc_credits: "Librerías Open Source que hacen posible y facilitan el desarrollo de esta app y sus servicios",
   name_updated: "Nombre actualizado",
   buscar: "Buscar",
-  use: "Usar"
+  use: "Usar",
+  panama: "Panamá"
 };
