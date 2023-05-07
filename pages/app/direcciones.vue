@@ -159,8 +159,14 @@ export default {
       }
       if (input) {
         this.debounce = setTimeout(async () => {
-          this.autocomplete = await this.provider.search({ query: input });
-          this.loading = false;
+          try {
+            this.autocomplete = await this.provider.search({ query: input });
+            this.loading = false;
+          }
+          catch {
+            CAPACITOR.showToast(t("error"));
+            this.search[field] = false;
+          }
         }, 2000);
       }
       else {
