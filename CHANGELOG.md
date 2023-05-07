@@ -1,18 +1,25 @@
-## [2.3.1](https://github.com/Yizack/saldometrobus-app/compare/v2.3.0...v2.3.1) (2023-05-06)
+## <small>2.3.2 (2023-05-07)</small>
+
+* style: icons and style changes ([ca6885b](https://github.com/Yizack/saldometrobus-app/commit/ca6885b))
+* fix: close autocomplete loading when connection error ([31a5d8d](https://github.com/Yizack/saldometrobus-app/commit/31a5d8d))
 
 
-### Bug Fixes
 
-* add button position on landscape mode ([de64e54](https://github.com/Yizack/saldometrobus-app/commit/de64e54bc3af8ba38763c22bde0529c5f3a30343))
-* added translation for the word "Buscar" ([a9f0d2c](https://github.com/Yizack/saldometrobus-app/commit/a9f0d2c393f71ac2ea46ab0b6619040d7ec75eb3))
-* send update name request only if changed ([9ac8a69](https://github.com/Yizack/saldometrobus-app/commit/9ac8a69eaf675a1c3793b938f31cfa45660011ed))
-* sqlite secure statements ([ca6dc32](https://github.com/Yizack/saldometrobus-app/commit/ca6dc329fd8f907d35470c4d4541faa112bf876f))
+## <small>2.3.1 (2023-05-06)</small>
 
-
-### Features
-
-* added button to edit account name ([e38670f](https://github.com/Yizack/saldometrobus-app/commit/e38670f1bb4bb7a409269f48a7356165b354c90b))
-* search routes by long and short name ([bc03048](https://github.com/Yizack/saldometrobus-app/commit/bc03048ca9834bce1bd49b2bf3186b5e37e554a0))
+* chore: add github actions credits ([3dcee2c](https://github.com/Yizack/saldometrobus-app/commit/3dcee2c))
+* chore: bump capacitor dependencies ([9330f4e](https://github.com/Yizack/saldometrobus-app/commit/9330f4e))
+* chore: bump version ([a5cccb4](https://github.com/Yizack/saldometrobus-app/commit/a5cccb4))
+* chore: collapsed if not searching ([7a12528](https://github.com/Yizack/saldometrobus-app/commit/7a12528))
+* chore: don't show edit button to guests ([0bd6a3a](https://github.com/Yizack/saldometrobus-app/commit/0bd6a3a))
+* chore: edit comitlint cli es description ([0021c8f](https://github.com/Yizack/saldometrobus-app/commit/0021c8f))
+* chore: release v2.3.1 ([40e991e](https://github.com/Yizack/saldometrobus-app/commit/40e991e))
+* feat: added button to edit account name ([e38670f](https://github.com/Yizack/saldometrobus-app/commit/e38670f))
+* feat: search routes by long and short name ([bc03048](https://github.com/Yizack/saldometrobus-app/commit/bc03048))
+* fix: add button position on landscape mode ([de64e54](https://github.com/Yizack/saldometrobus-app/commit/de64e54))
+* fix: added translation for the word "Buscar" ([a9f0d2c](https://github.com/Yizack/saldometrobus-app/commit/a9f0d2c))
+* fix: send update name request only if changed ([9ac8a69](https://github.com/Yizack/saldometrobus-app/commit/9ac8a69))
+* fix: sqlite secure statements ([ca6dc32](https://github.com/Yizack/saldometrobus-app/commit/ca6dc32))
 
 
 
@@ -24,6 +31,7 @@
 * chore: move own scripts to a scripts folder ([a8b9d69](https://github.com/Yizack/saldometrobus-app/commit/a8b9d69))
 * chore: post validate user to get key ([fd4ee8b](https://github.com/Yizack/saldometrobus-app/commit/fd4ee8b))
 * chore: push tag script ([ab9c407](https://github.com/Yizack/saldometrobus-app/commit/ab9c407))
+* chore: release v2.3.0 ([9dc1a64](https://github.com/Yizack/saldometrobus-app/commit/9dc1a64))
 * chore: set up commitlint and changelog ([ea5779c](https://github.com/Yizack/saldometrobus-app/commit/ea5779c))
 * chore: update constants ([9a6e305](https://github.com/Yizack/saldometrobus-app/commit/9a6e305))
 * style: add margin top to card tabs titles ([d4a85bd](https://github.com/Yizack/saldometrobus-app/commit/d4a85bd))
