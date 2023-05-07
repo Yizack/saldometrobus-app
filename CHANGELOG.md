@@ -1,3 +1,9 @@
+## <small>2.3.6 (2023-05-07)</small>
+
+* fix: update use option correctly ([9283199](https://github.com/Yizack/saldometrobus-app/commit/9283199))
+
+
+
 ## <small>2.3.5 (2023-05-07)</small>
 
 * fix: autocomplete destination use ([ab9bcc9](https://github.com/Yizack/saldometrobus-app/commit/ab9bcc9))
