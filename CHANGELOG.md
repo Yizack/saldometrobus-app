@@ -1,3 +1,9 @@
+## <small>2.3.3 (2023-05-07)</small>
+
+* fix: use written direction ([a783b40](https://github.com/Yizack/saldometrobus-app/commit/a783b40))
+
+
+
 ## <small>2.3.2 (2023-05-07)</small>
 
 * style: icons and style changes ([ca6885b](https://github.com/Yizack/saldometrobus-app/commit/ca6885b))
