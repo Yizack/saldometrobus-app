@@ -152,5 +152,6 @@ export default {
   creditos: "Credits",
   opensrc_credits: "Open source libraries that make this app possible and its development easier.",
   name_updated: "Name updated",
-  buscar: "Search"
+  buscar: "Search",
+  use: "Use"
 };

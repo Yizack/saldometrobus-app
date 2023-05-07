@@ -11,7 +11,7 @@
       <li v-for="(result, index) in array" :key="index" role="button" class="py-2 px-3 hover border-bottom" @click="select(result)">
         {{ result[property] }}
       </li>
-      <li v-if="!array.length" class="py-2 px-3"><i>{{ t("results_notfound") }}</i></li>
+      <li role="button" class="py-2 px-3 hover border-bottom" @click="select({ label: text })">{{ t("use") }}: <strong>{{ text }}</strong></li>
     </template>
   </ul>
 </template>
@@ -19,6 +19,10 @@
 <script>
 export default {
   props: {
+    text: {
+      type: String,
+      required: true
+    },
     loading: {
       type: Boolean,
       default: false
