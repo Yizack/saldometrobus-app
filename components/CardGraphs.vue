@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4 class="text-center mt-1 py-2"><b>{{ t("graficas") }}</b></h4>
-    <p>*{{ t("grafica_nota") }}</p>
+    <p>{{ t("grafica_nota") }}</p>
     <div class="d-flex align-items-center my-3">
       <span>{{ t("filtrar") }}:</span>
       <div class="d-flex justify-content-evenly flex-grow-1 filters">

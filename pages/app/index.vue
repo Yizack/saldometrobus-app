@@ -22,7 +22,7 @@ definePageMeta({ layout: "main" });
           <img v-else src="/images/metrobus.webp" class="img-fluid" :width="size" :height="size">
         </div>
         <div class="d-grid gap-2">
-          <button class="btn btn-primary btn-sm" role="button" @click="$event.stopPropagation(); updateTarjeta(tarjeta.numero)"><Icon name="material-symbols:refresh" width="1.5em" height="1.5em" /></button>
+          <button class="btn btn-primary btn-sm" role="button" @click="$event.stopPropagation(); updateTarjeta(tarjeta.numero)"><Icon name="refresh" width="1.5em" height="1.5em" /></button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@ definePageMeta({ layout: "main" });
       <p class="small m-0"><small>{{ t("tarjetas_note") }}</small></p>
     </div>
     <div class="position-fixed bottom-0 end-0 m-3">
-      <button class="btn btn-primary rounded-circle p-1 shadow" role="button" data-bs-toggle="modal" data-bs-target="#add-dialog"><Icon name="material-symbols:add" width="3em" height="3em" /></button>
+      <button class="btn btn-primary rounded-circle p-1 shadow" role="button" data-bs-toggle="modal" data-bs-target="#add-dialog"><Icon name="plus" width="3rem" height="3rem" /></button>
     </div>
     <!-- Add Dialog -->
     <div id="add-dialog" class="modal fade" tabindex="-1" aria-labelledby="add-dialog-label" aria-hidden="true" data-bs-backdrop="static">

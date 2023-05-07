@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top shadow-sm">
     <div class="container-fluid">
-      <a class="text-white pe-4 display-6" role="button" @click="$router.back()"><Icon class="d-flex" name="material-symbols:arrow-back-sharp" /></a>
+      <a class="text-white pe-4 display-6" role="button" @click="$router.back()"><Icon class="d-flex" name="left" /></a>
       <span class="navbar-brand me-auto">{{ title }}</span>
     </div>
   </nav>

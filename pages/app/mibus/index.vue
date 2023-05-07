@@ -4,9 +4,14 @@ definePageMeta({ layout: "main" });
 
 <template>
   <section>
-    <div class="form-floating mb-2">
-      <input class="form-control border bg-body-tertiary rounded shadow-sm" type="text" :placeholder="t('buscar')" @keyup="buscar.input = $event.target.value">
-      <label>{{ t("buscar") }}</label>
+    <div class="input-group mb-2 rounded shadow-sm">
+      <span class="text-primary-emphasis input-group-text border border-end-0">
+        <Icon name="search" width="1rem" height="1rem" />
+      </span>
+      <div class="form-floating mb">
+        <input class="form-control bg-body-tertiary rounded-end border border-start-0 shadow-none" type="text" :placeholder="t('buscar')" @keyup="buscar.input = $event.target.value">
+        <label>{{ t("buscar") }}</label>
+      </div>
     </div>
     <div id="accordionFlushRutas" class="accordion accordion-flush bg-body-tertiary border rounded shadow">
       <div v-for="(tipo, i) in tiposFiltered" :key="i" class="accordion-item">

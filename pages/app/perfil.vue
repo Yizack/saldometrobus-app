@@ -9,8 +9,8 @@ definePageMeta({ layout: "main" });
       <div class="input-group p-2">
         <input ref="nombre" v-model="user.nombre" class="form-control py-2" type="text" readonly>
         <button v-if="!Auth().isGuest" class="btn btn-sm" :class="edit.nombre ? 'btn-success' : 'btn-primary'" @click="editName()">
-          <Icon v-if="edit.nombre" name="mdi:check-bold" width="24" height="24" />
-          <Icon v-else name="material-symbols:edit" width="24" height="24" />
+          <Icon v-if="edit.nombre" name="check" />
+          <Icon v-else name="edit" />
         </button>
       </div>
     </div>
@@ -24,7 +24,10 @@ definePageMeta({ layout: "main" });
       <h4 class="text-primary-emphasis m-0"><b>{{ t("tarjetas_vinculadas") }}</b></h4>
       <div class="m-2">
         <template v-if="user.tarjetas.length">
-          <p v-for="tarjeta in user.tarjetas" :key="tarjeta.numero" class="m-0"><Icon name="material-symbols:credit-card-outline" /> {{ tarjeta.numero }} ({{ tarjeta.nombre }})</p>
+          <div v-for="tarjeta in user.tarjetas" :key="tarjeta.numero" class="d-flex align-items-center">
+            <Icon name="card" />
+            <p class="ms-2 my-0">{{ tarjeta.numero }} ({{ tarjeta.nombre }})</p>
+          </div>
         </template>
         <p v-else class="m-0">{{ t("no_tarjetas") }}</p>
       </div>

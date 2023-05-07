@@ -5,7 +5,7 @@ definePageMeta({ layout: "main" });
 <template>
   <section>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><Icon class="me-1 text-danger" name="material-symbols:shield-with-heart-outline" /><b>{{ t("donacion") }}</b></h4>
+      <h4 class="text-primary-emphasis m-0"><Icon class="me-1 text-danger" name="donate" /><b>{{ t("donacion") }}</b></h4>
       <div class="m-2">{{ t("donar_desc") }}</div>
     </div>
     <div class="donate-buttons">

@@ -6,25 +6,40 @@ definePageMeta({ layout: "main" });
 
 <template>
   <section>
-    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <form @submit.prevent="getDirections()">
-        <div class="form-floating position-relative">
-          <input v-model="form.origin" class="form-control rounded-top" :placeholder="t('location')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'origin')">
+    <form class="mb-2" @submit.prevent="getDirections()">
+      <div class="position-relative">
+        <div class="input-group mb-1 shadow-sm rounded position-relative">
+          <span class="text-primary-emphasis input-group-text border border-end-0" :class="{'bg-disabled' : directions.routes.length}">
+            <Icon name="location" width="1rem" height="1rem" />
+          </span>
+          <div class="form-floating">
+            <input v-model="form.origin" class="form-control rounded-end border border-start-0 shadow-none" :class="directions.routes.length ? 'bg-disabled' : 'bg-body-tertiary'" :placeholder="t('location')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'origin')">
+            <label>{{ t("location") }}</label>
+          </div>
           <AutocompleteList v-if="search.origin && !search.destination" :loading="loading" :array="autocomplete" :select="selectResultOrigin" property="label" />
-          <label>{{ t("location") }}</label>
         </div>
-        <div class="form-floating position-relative">
-          <input v-model="form.destination" class="form-control rounded-top-0" :placeholder="t('destino')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'destination')">
+        <div class="input-group shadow-sm rounded position-relative">
+          <span class="text-primary-emphasis input-group-text border border-end-0" :class="{'bg-disabled' : directions.routes.length}">
+            <Icon name="destination" width="1rem" height="1rem" />
+          </span>
+          <div class="form-floating">
+            <input v-model="form.destination" class="form-control rounded-end border border-start-0 shadow-none" :class="directions.routes.length ? 'bg-disabled' : 'bg-body-tertiary'" :placeholder="t('destino')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'destination')">
+            <label>{{ t("destino") }}</label>
+          </div>
           <AutocompleteList v-if="search.destination && !search.origin" :loading="loading" :array="autocomplete" :select="selectResultDestination" property="label" />
-          <label>{{ t("destino") }}</label>
         </div>
-        <div class="d-grid mt-2">
-          <button class="btn btn-primary" type="submit">{{ directions.routes.length ? t("nueva_busqueda") : t("buscar") }}</button>
-        </div>
-      </form>
-    </div>
+        <Transition name="fade">
+          <button v-if="!search.origin && !search.destination && !directions.routes.length" type="button" class="btn btn-primary position-absolute end-0 top-50 translate-middle-y rounded-pill rounded-end-0 shadow-sm pe-2 z-10" @click="swapDirections()">
+            <Icon name="sort" width="24" height="24" />
+          </button>
+        </Transition>
+      </div>
+      <div class="d-grid mt-2">
+        <button class="btn btn-primary" type="submit">{{ directions.routes.length ? t("nueva_busqueda") : t("buscar") }}</button>
+      </div>
+    </form>
     <template v-if="directions.routes.length">
-      <iframe class="rounded border" :src="`https://www.google.com/maps/embed/v1/directions?origin=place_id:${directions.geocoded_waypoints[0].place_id}&destination=place_id:${directions.geocoded_waypoints[1].place_id}&mode=transit&units=metric&language=${t('lang_code')}&region=pa&key=${CONST.mapsEmbedKey}`" width="100%" height="400px" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" />
+      <iframe class="rounded border-0 shadow-sm" :src="`https://www.google.com/maps/embed/v1/directions?origin=place_id:${directions.geocoded_waypoints[0].place_id}&destination=place_id:${directions.geocoded_waypoints[1].place_id}&mode=transit&units=metric&language=${t('lang_code')}&region=pa&key=${CONST.mapsEmbedKey}`" width="100%" height="400px" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" />
       <div class="d-grid">
         <button class="btn btn-primary mb-2" type="button" @click="CAPACITOR.openBrowser(`https://www.google.com/maps/dir/?api=1&origin=${form.origin}&origin_place_id=${directions.geocoded_waypoints[0].place_id}&destination=${form.destination}&destination_place_id=${directions.geocoded_waypoints[1].place_id}&travelmode=transit`)">{{ t("open_map") }}</button>
       </div>
@@ -48,7 +63,7 @@ definePageMeta({ layout: "main" });
                       </div>
                     </div>
                   </template>
-                  <Icon v-if="key < leg.steps.length - 2" name="material-symbols:chevron-right" />
+                  <Icon v-if="key < leg.steps.length - 2" name="right_chevron" width="1rem" height="1rem" />
                 </template>
               </div>
             </div>
@@ -67,8 +82,8 @@ definePageMeta({ layout: "main" });
                     <div v-if="step.travel_mode === 'WALKING'" class="me-2 rounded position-absolute bg-primary" :style="{ width: '10px', left: '3px', bottom: 0, top: '1.5rem', height: 'calc(100% - 1.5rem)' }" />
                     <div v-if="step.travel_mode === 'TRANSIT'" class="me-2 rounded position-absolute" :style="{ backgroundColor: step.transit.line.color || 'var(--border)', width: '10px', left: '3px', bottom: 0, top: '1.5rem', height: 'calc(100% - 1.5rem)' }" />
                   </template>
-                  <Icon v-if="key < leg.steps.length - 1" name="ic:outline-circle" />
-                  <Icon v-else name="ic:baseline-radio-button-checked" />
+                  <Icon v-if="key < leg.steps.length - 1" name="step" width="1rem" height="1rem" />
+                  <Icon v-else name="step_end" width="1rem" height="1rem" />
                 </div>
                 <div class="w-100">
                   <div>
@@ -244,6 +259,11 @@ export default {
     },
     selectRoute (route_i) {
       this.selected = this.selected !== route_i ? route_i : null;
+    },
+    swapDirections () {
+      const origin = this.form.origin;
+      this.form.origin = this.form.destination;
+      this.form.destination = origin;
     }
   }
 };

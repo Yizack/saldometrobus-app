@@ -318,3 +318,11 @@ thead:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td
   overflow-y: auto;
   z-index: 10;
 }
+
+.z-10 {
+  z-index: 10;
+}
+
+.bg-disabled {
+  background-color: var(--bs-secondary-bg);
+}
