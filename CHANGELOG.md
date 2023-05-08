@@ -1,3 +1,10 @@
+## <small>2.3.7 (2023-05-08)</small>
+
+* chore: add bus info route type ([d108c5b](https://github.com/Yizack/saldometrobus-app/commit/d108c5b))
+* fix: trim input ([fa138b2](https://github.com/Yizack/saldometrobus-app/commit/fa138b2))
+
+
+
 ## <small>2.3.6 (2023-05-07)</small>
 
 * fix: update use option correctly ([9283199](https://github.com/Yizack/saldometrobus-app/commit/9283199))
