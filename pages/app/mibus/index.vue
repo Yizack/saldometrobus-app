@@ -26,12 +26,18 @@ definePageMeta({ layout: "main" });
           </div>
           <div v-for="ruta in tipo.rutas" :key="ruta.route_id" class="border-top">
             <div class="d-flex align-items-center p-2 rutas-mibus" role="button" @click="openRoute(ruta.route_id)">
-              <p class="p-2 m-0 text-white rounded small text-center" :style="{ backgroundColor: `#${ruta.route_color}`, minWidth: '3.7rem'} ">{{ ruta.route_short_name }}</p>
-              <p class="p-2 m-0">{{ ruta.route_long_name }}</p>
+              <p class="p-2 m-0 text-white rounded small text-center fw-bold shadow-sm" :style="{ backgroundColor: `#${ruta.route_color}`, minWidth: '3.7rem'} ">{{ ruta.route_short_name }}</p>
+              <div class="p-2">
+                <p class="text-muted mb-0"><small>{{ ruta.route_type }}</small></p>
+                <p class="mb-0 fw-bold">{{ ruta.route_long_name }}</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="text-center mt-3">
+      <p class="small m-0"><small>{{ t("mibus_info") }}: <a class="text-primary fw-bold" href="https://www.mibus.com.pa/red-de-rutas/" target="_blank">mibus.com.pa/red-de-rutas/</a></small></p>
     </div>
   </section>
 </template>

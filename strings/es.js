@@ -154,5 +154,6 @@ export default {
   name_updated: "Nombre actualizado",
   buscar: "Buscar",
   use: "Usar",
-  panama: "Panamá"
+  panama: "Panamá",
+  mibus_info: "Toda la información de la red de rutas es recopilada de la página web de MiBus"
 };
