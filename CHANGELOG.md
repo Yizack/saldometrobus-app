@@ -1,3 +1,11 @@
+## <small>2.3.8 (2023-05-08)</small>
+
+* feat: own icons with nuxt-icons approach ([7b17710](https://github.com/Yizack/saldometrobus-app/commit/7b17710))
+* style: remove border route map ([d97d164](https://github.com/Yizack/saldometrobus-app/commit/d97d164))
+* style: small shadow below card tabs ([8ae03ad](https://github.com/Yizack/saldometrobus-app/commit/8ae03ad))
+
+
+
 ## <small>2.3.7 (2023-05-08)</small>
 
 * chore: add bus info route type ([d108c5b](https://github.com/Yizack/saldometrobus-app/commit/d108c5b))
