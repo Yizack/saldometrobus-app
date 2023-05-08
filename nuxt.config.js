@@ -26,7 +26,7 @@ export default {
     "~/assets/css/main.css"
   ],
   modules: [
-    "nuxt-icon",
+    "nuxt-icons",
     "@pinia/nuxt"
   ],
   pinia: {

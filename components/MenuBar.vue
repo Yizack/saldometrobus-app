@@ -1,15 +1,39 @@
 <template>
   <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top shadow-sm">
     <div class="container-fluid">
-      <a class="text-white pe-4 display-6" data-bs-toggle="offcanvas" href="#menu" role="button" aria-controls="menu"><Icon class="d-flex" name="menu" /></a>
+      <a class="text-white pe-4 display-6 d-flex" data-bs-toggle="offcanvas" href="#menu" role="button" aria-controls="menu">
+        <Icon name="menu" />
+      </a>
       <span class="navbar-brand me-auto">{{ title }}</span>
       <div class="nav-item dropstart">
-        <a class="text-white display-6" role="button" data-bs-toggle="dropdown" aria-expanded="false"><Icon name="more" /></a>
+        <a class="text-white display-6 d-flex" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <Icon name="more" />
+        </a>
         <ul class="dropdown-menu m-0 end-0">
-          <li><NuxtLink class="dropdown-item py-3 px-4" to="/app/prefs/config/">{{ t("config") }}</NuxtLink></li>
-          <li><a class="dropdown-item py-3 px-4" data-bs-toggle="modal" data-bs-target="#about" role="button">{{ t("acerca") }}</a></li>
-          <li><a class="dropdown-item py-3 px-4" role="button" @click="CAPACITOR.openBrowser(CONST.privacy(t('lang_code')))">{{ t("privacidad") }}</a></li>
-          <li><NuxtLink class="dropdown-item py-3 px-4" to="/app/prefs/creditos">{{ t("creditos") }}</NuxtLink></li>
+          <li>
+            <NuxtLink class="dropdown-item py-3 px-4 hover d-flex align-items-center" to="/app/prefs/config/">
+              <Icon name="settings" />
+              <span class="ms-1">{{ t("config") }}</span>
+            </NuxtLink>
+          </li>
+          <li>
+            <a class="dropdown-item py-3 px-4 hover d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#about" role="button">
+              <Icon name="about" />
+              <span class="ms-1">{{ t("acerca") }}</span>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item py-3 px-4 hover d-flex align-items-center" role="button" @click="CAPACITOR.openBrowser(CONST.privacy(t('lang_code')))">
+              <Icon name="privacy" />
+              <span class="ms-1">{{ t("privacidad") }}</span>
+            </a>
+          </li>
+          <li>
+            <NuxtLink class="dropdown-item py-3 px-4 hover d-flex align-items-center" to="/app/prefs/creditos">
+              <Icon name="credits" />
+              <span class="ms-1">{{ t("creditos") }}</span>
+            </NuxtLink>
+          </li>
         </ul>
       </div>
     </div>
@@ -29,16 +53,16 @@
       <nav class="nav flex-column">
         <span v-for="(tab, index) in menu" :key="index" data-bs-dismiss="offcanvas">
           <NuxtLink v-if="!tab.external" class="nav-link text-dark-emphasis py-3" :to="tab.link">
-            <Icon :name="tab.icon" width="24" height="24" class="me-4" /> {{ tab.name }}
+            <Icon :name="tab.icon" class="me-4" /> {{ tab.name }}
           </NuxtLink>
           <a v-else class="nav-link text-dark-emphasis py-3" role="button" @click="CAPACITOR.openBrowser(tab.link)">
-            <Icon :name="tab.icon" width="24" height="24" class="me-4" /> {{ tab.name }}
+            <Icon :name="tab.icon" class="me-4" /> {{ tab.name }}
           </a>
         </span>
         <hr>
         <div class="px-3">{{ t("sesion") }}</div>
         <a class="nav-link text-dark-emphasis py-3" role="button" @click="logout()">
-          <Icon name="logout" width="24" height="24" class="me-4" /> {{ t("salir") }}
+          <Icon name="logout" class="me-4" /> {{ t("salir") }}
         </a>
       </nav>
       <div class="mt-auto text-center small">

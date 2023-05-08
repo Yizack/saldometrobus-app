@@ -63,7 +63,7 @@
     "husky": "^8.0.3",
     "jeep-sqlite": "^2.3.3",
     "nuxt": "^3.4.3",
-    "nuxt-icon": "^0.4.0",
+    "nuxt-icons": "^3.2.1",
     "stylelint": "^15.6.1",
     "stylelint-order": "^6.0.3"
   },

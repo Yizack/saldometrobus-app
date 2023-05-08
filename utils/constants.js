@@ -77,13 +77,13 @@ export const CONST = {
       version: dependencies.bootstrap
     },
     {
-      name: "Nuxt Icon",
-      link: "https://github.com/nuxt-modules/icon",
+      name: "Nuxt Icons",
+      link: "https://github.com/gitFoxCode/nuxt-icons",
       description: {
-        en: "Nuxt module to easily add icons to your nuxt project",
-        es: "Módulo Nuxt para agregar fácilmente iconos a su proyecto nuxt"
+        en: "A module for Nuxt 3 that allows you to use your own SVG icons quickly and enjoyably",
+        es: "Un módulo para Nuxt 3 que te permite usar tus propios iconos SVG de forma rápida y agradable"
       },
-      version: devDependencies["nuxt-icon"]
+      version: devDependencies["nuxt-icons"]
     },
     {
       name: "ESLint",
