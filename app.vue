@@ -60,12 +60,12 @@ export default {
   transform: translateX(0);
 }
 
-.t-enter-active,
-.t-leave-active {
+.tab-enter-active,
+.tab-leave-active {
   transition: all 0.2s;
 }
-.t-enter-from,
-.t-leave-to {
+.tab-enter-from,
+.tab-leave-to {
   opacity: 0;
   transform: translate(0, -10px);
 }

@@ -73,7 +73,7 @@ definePageMeta({ layout: "main" });
             <p class="small m-0">({{ route.legs[0].distance.text }})</p>
           </div>
         </div>
-        <Transition name="t" mode="out-in">
+        <Transition name="tab" mode="out-in">
           <div v-if="route_i === selected">
             <div v-for="(leg, legs_i) in route.legs" :key="legs_i" class="bg-body-tertiary rounded border shadow p-3 mt-1">
               <div v-for="(step, key) in leg.steps" :key="key" class="d-flex position-relative">

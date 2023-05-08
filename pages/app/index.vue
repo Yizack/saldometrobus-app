@@ -4,28 +4,30 @@ definePageMeta({ layout: "main" });
 
 <template>
   <section>
-    <div v-for="tarjeta in tarjetas" :key="tarjeta.numero" class="bg-body-tertiary border rounded d-flex p-2 mb-2 shadow" role="button" @click="openCard(tarjeta.numero)">
-      <div class="flex-grow-1">
-        <h4 class="text-primary-emphasis m-0"><b>{{ tarjeta.nombre }}</b></h4>
-        <div class="info mx-2 small">
-          <p class="m-0">{{ t("numero") }}: {{ tarjeta.numero }}</p>
-          <p class="m-0">{{ t("estado") }}: {{ tarjeta.estado }}</p>
-          <p class="m-0">{{ t("tipo") }}: {{ tarjeta.tipo }}</p>
-          <p class="m-0">{{ t("fecha") }}: {{ tarjeta.fecha }}</p>
-          <h3><b>{{ t("saldo") }}: B/. {{ tarjeta.saldo }}</b></h3>
+    <TransitionGroup name="tab">
+      <div v-for="tarjeta in tarjetas" :key="tarjeta.numero" class="bg-body-tertiary border rounded d-flex p-2 mb-2 shadow" role="button" @click="openCard(tarjeta.numero)">
+        <div class="flex-grow-1">
+          <h4 class="text-primary-emphasis m-0"><b>{{ tarjeta.nombre }}</b></h4>
+          <div class="info mx-2 small">
+            <p class="m-0">{{ t("numero") }}: {{ tarjeta.numero }}</p>
+            <p class="m-0">{{ t("estado") }}: {{ tarjeta.estado }}</p>
+            <p class="m-0">{{ t("tipo") }}: {{ tarjeta.tipo }}</p>
+            <p class="m-0">{{ t("fecha") }}: {{ tarjeta.fecha }}</p>
+            <h3 class="text-nowrap"><b>{{ t("saldo") }}: B/. {{ tarjeta.saldo }}</b></h3>
+          </div>
+        </div>
+        <div class="actions d-flex flex-column">
+          <div class="image mb-2 mt-2">
+            <img v-if="tarjeta.tipo === t('tarjeta_rapipass')" class="img-fluid" src="/images/rapipass.webp" :width="size" :height="size">
+            <img v-else-if="tarjeta.tipo === t('tarjeta_normal')" class="img-fluid" src="/images/metro_metrobus.webp" :width="size" :height="size">
+            <img v-else src="/images/metrobus.webp" class="img-fluid" :width="size" :height="size">
+          </div>
+          <div class="d-grid">
+            <button class="btn btn-primary btn-sm" role="button" @click="$event.stopPropagation(); updateTarjeta(tarjeta.numero)"><Icon name="refresh" size="md" /></button>
+          </div>
         </div>
       </div>
-      <div class="actions">
-        <div class="image">
-          <img v-if="tarjeta.tipo === t('tarjeta_rapipass')" class="img-fluid" src="/images/rapipass.webp" :width="size" :height="size">
-          <img v-else-if="tarjeta.tipo === t('tarjeta_normal')" class="img-fluid" src="/images/metro_metrobus.webp" :width="size" :height="size">
-          <img v-else src="/images/metrobus.webp" class="img-fluid" :width="size" :height="size">
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-primary btn-sm" role="button" @click="$event.stopPropagation(); updateTarjeta(tarjeta.numero)"><Icon name="refresh" size="md" /></button>
-        </div>
-      </div>
-    </div>
+    </TransitionGroup>
     <div v-if="tarjetas.length" class="text-center mt-3">
       <p class="small m-0"><small>{{ t("tarjetas_note") }}</small></p>
     </div>

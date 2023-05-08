@@ -59,15 +59,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.tab-enter-active,
-.tab-leave-active {
-  transition: all 0.2s;
-}
-.tab-enter-from,
-.tab-leave-to {
-  opacity: 0;
-  transform: translate(0, -10px);
-}
-</style>

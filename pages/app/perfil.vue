@@ -8,9 +8,11 @@ definePageMeta({ layout: "main" });
       <h4 class="text-primary-emphasis m-0"><b>{{ t("nombre") }}</b></h4>
       <div class="input-group p-2">
         <input ref="nombre" v-model="user.nombre" class="form-control py-2" type="text" readonly>
-        <button v-if="!Auth().isGuest" class="btn btn-sm" :class="edit.nombre ? 'btn-success' : 'btn-primary'" @click="editName()">
-          <Icon v-if="edit.nombre" name="check" />
-          <Icon v-else name="edit" />
+        <button v-if="!Auth().isGuest" class="btn btn-sm" :class="edit.nombre ? 'btn-success' : 'btn-primary'" :style="{ width: '3rem' }" @click="editName()">
+          <Transition name="tab" mode="out-in">
+            <Icon v-if="edit.nombre" name="check" />
+            <Icon v-else name="edit" />
+          </Transition>
         </button>
       </div>
     </div>
