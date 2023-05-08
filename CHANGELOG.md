@@ -1,3 +1,9 @@
+## <small>2.3.9 (2023-05-08)</small>
+
+* style: trim cards, add transitions ([1a74fab](https://github.com/Yizack/saldometrobus-app/commit/1a74fab))
+
+
+
 ## <small>2.3.8 (2023-05-08)</small>
 
 * feat: own icons with nuxt-icons approach ([7b17710](https://github.com/Yizack/saldometrobus-app/commit/7b17710))
