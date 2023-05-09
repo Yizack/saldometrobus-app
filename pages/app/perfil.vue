@@ -114,6 +114,8 @@ export default {
       this.user.nombre = this.user.nombre.trim();
       const input = this.$refs.nombre;
       if (this.edit.nombre) {
+        const end = this.user.nombre.length;
+        input.setSelectionRange(end, end);
         input.focus();
         input.removeAttribute("readonly");
       }
