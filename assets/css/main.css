@@ -112,6 +112,7 @@ a {
   color: var(--bs-dark);
   font-weight: bold;
   text-decoration: none;
+  -webkit-user-drag: none;
 }
 
 .btn {
