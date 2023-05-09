@@ -10,7 +10,6 @@ config.yaml
 app-release*
 *.jks*
 release/
-.idea
 .gradle
 assets/rutas.json
 .husky
