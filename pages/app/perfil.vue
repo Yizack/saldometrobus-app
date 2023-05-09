@@ -111,6 +111,7 @@ export default {
   methods: {
     async editName () {
       this.edit.nombre = !this.edit.nombre;
+      this.user.nombre = this.user.nombre.trim();
       const input = this.$refs.nombre;
       if (this.edit.nombre) {
         input.focus();
