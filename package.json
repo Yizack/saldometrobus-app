@@ -21,7 +21,7 @@
     "postinstall": "nuxt prepare && npm run husky:install && npm run husky:msg",
     "android": "npx cap add android",
     "ios": "npx cap add ios",
-    "resources": "npx @capacitor/assets generate --android --ios --splashBackgroundColorDark #F8F9FC",
+    "resources": "npx @capacitor/assets generate --android --iconBackgroundColor #F8F9FC --splashBackgroundColorDark #F8F9FC --splashBackgroundColor #F8F9FC",
     "sync": "npx cap sync",
     "app:clean": "node scripts/cleanOutput.js",
     "app:mibus": "node scripts/miBusRutas.js",

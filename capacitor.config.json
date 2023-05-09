@@ -12,20 +12,13 @@
       "enabled": true
     },
     "SplashScreen": {
-      "launchShowDuration": 500,
+      "launchShowDuration": 1000,
       "launchAutoHide": true,
       "launchFadeOutDuration": 200,
-      "backgroundColor": "#F8F9FC",
-      "androidSplashResourceName": "splash",
       "androidScaleType": "CENTER_CROP",
-      "showSpinner": true,
-      "androidSpinnerStyle": "large",
-      "iosSpinnerStyle": "small",
-      "spinnerColor": "#F8F9FC",
-      "splashFullScreen": true,
-      "splashImmersive": true,
-      "layoutName": "launch_screen",
-      "useDialog": false
+      "splashFullScreen": false,
+      "splashImmersive": false,
+      "backgroundColor": "#F8F9FC"
     },
     "CapacitorSQLite": {
       "iosDatabaseLocation": "Library/CapacitorDatabase",
