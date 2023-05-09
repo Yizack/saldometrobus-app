@@ -1,3 +1,15 @@
+## 2.4.0 (2023-05-09)
+
+* fix: android splash, app icon ([9a2832f](https://github.com/Yizack/saldometrobus-app/commit/9a2832f))
+* fix: no draggable links ([d7b145e](https://github.com/Yizack/saldometrobus-app/commit/d7b145e))
+* chore: .idea folder ([45fa57f](https://github.com/Yizack/saldometrobus-app/commit/45fa57f))
+* chore: bump versions ([064ab90](https://github.com/Yizack/saldometrobus-app/commit/064ab90))
+* chore: move cursor to the last character of name ([08491dc](https://github.com/Yizack/saldometrobus-app/commit/08491dc))
+* chore: no scalable app ([4dd228f](https://github.com/Yizack/saldometrobus-app/commit/4dd228f))
+* chore: trim name ([d424509](https://github.com/Yizack/saldometrobus-app/commit/d424509))
+
+
+
 ## <small>2.3.9 (2023-05-08)</small>
 
 * style: trim cards, add transitions ([1a74fab](https://github.com/Yizack/saldometrobus-app/commit/1a74fab))
