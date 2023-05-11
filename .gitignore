@@ -13,3 +13,4 @@ release/
 .gradle
 assets/rutas.json
 .husky
+coverage
