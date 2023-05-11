@@ -90,9 +90,6 @@
     }
   },
   "jest": {
-    "globals": {
-      "CAPACITOR": true
-    },
     "coverageProvider": "v8",
     "moduleNameMapper": {
       "^~/(.*)$": "<rootDir>/$1"
