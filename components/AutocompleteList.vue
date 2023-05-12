@@ -9,9 +9,9 @@
     </template>
     <template v-else>
       <li v-for="(result, index) in array" :key="index" role="button" class="py-2 px-3 hover border-bottom" @click="select(result)">
-        {{ result[property] }}
+        {{ result[prop] }} <template v-if="descprop">({{ result[descprop] }})</template>
       </li>
-      <li role="button" class="py-2 px-3 hover border-bottom" @click="select({ label: `${text.trim()}, ${t('panama')}` })">{{ t("use") }}: <strong>{{ text }}</strong></li>
+      <li v-if="text" role="button" class="py-2 px-3 hover border-bottom" @click="selectText(text)">{{ t("use") }}: <strong>{{ text }}</strong></li>
     </template>
   </ul>
 </template>
@@ -20,24 +20,35 @@
 export default {
   props: {
     text: {
-      type: String,
+      type: [String, Number],
       required: true
     },
     loading: {
       type: Boolean,
       default: false
     },
-    select: {
-      type: Function,
-      required: true
-    },
     array: {
       type: Array,
       required: true
     },
-    property: {
+    prop: {
       type: String,
       required: true
+    },
+    descprop: {
+      type: String,
+      default: null
+    }
+  },
+  emits: ["select"],
+  methods: {
+    select (result) {
+      this.$emit("select", result);
+    },
+    selectText (text) {
+      const obj = {};
+      obj[this.prop] = String(text).trim();
+      this.$emit("select", obj);
     }
   }
 };

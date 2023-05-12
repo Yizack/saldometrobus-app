@@ -16,7 +16,7 @@ definePageMeta({ layout: "main" });
             <input v-model="form.origin" class="form-control rounded-end border border-start-0 shadow-none" :class="directions.routes.length ? 'bg-disabled' : 'bg-body-tertiary'" :placeholder="t('location')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'origin')">
             <label>{{ t("location") }}</label>
           </div>
-          <AutocompleteList v-if="search.origin && !search.destination" :text="form.origin" :loading="loading" :array="autocomplete" :select="selectResultOrigin" property="label" />
+          <AutocompleteList v-if="search.origin && !search.destination" :text="form.origin" :loading="loading" :array="autocomplete" prop="label" @select="selectResult($event, 'origin')" />
         </div>
         <div class="input-group shadow-sm rounded position-relative">
           <span class="text-primary-emphasis input-group-text border border-end-0" :class="{'bg-disabled' : directions.routes.length}">
@@ -26,7 +26,7 @@ definePageMeta({ layout: "main" });
             <input v-model="form.destination" class="form-control rounded-end border border-start-0 shadow-none" :class="directions.routes.length ? 'bg-disabled' : 'bg-body-tertiary'" :placeholder="t('destino')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'destination')">
             <label>{{ t("destino") }}</label>
           </div>
-          <AutocompleteList v-if="search.destination && !search.origin" :text="form.destination" :loading="loading" :array="autocomplete" :select="selectResultDestination" property="label" />
+          <AutocompleteList v-if="search.destination && !search.origin" :text="form.destination" :loading="loading" :array="autocomplete" prop="label" @select="selectResult($event, 'destination')" />
         </div>
         <Transition name="fade">
           <button v-if="!search.origin && !search.destination && !directions.routes.length" type="button" class="btn btn-primary position-absolute end-0 top-50 translate-middle-y rounded-pill rounded-end-0 shadow-sm pe-2 z-10" @click="swapDirections()">
@@ -153,14 +153,8 @@ export default {
     };
   },
   methods: {
-    selectResultOrigin (result) {
-      this.selectResult(result, "origin");
-    },
-    selectResultDestination (result) {
-      this.selectResult(result, "destination");
-    },
     selectResult (result, field) {
-      this.form[field] = result.label;
+      this.form[field] = `${result.label}, ${t("panama")}`;
       this.search[field] = false;
     },
     searchPlace (input, field) {
