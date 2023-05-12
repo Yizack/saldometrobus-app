@@ -158,5 +158,6 @@ export default {
   mibus_info: "All information on the route network is collected from the MiBus website",
   recargar: "Top up card",
   buy: "Buy",
-  recargar_info: "Remember that to activate your purchased funds and travel you must go through a Self Service Terminal, totem."
+  recargar_info: "Remember that to activate your purchased funds and travel you must go through a Self Service Terminal, totem.",
+  rate: "Rate app"
 };

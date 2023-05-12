@@ -10,28 +10,18 @@
           <Icon name="more" />
         </a>
         <ul class="dropdown-menu m-0 end-0">
-          <li>
-            <NuxtLink class="dropdown-item py-3 px-4 hover d-flex align-items-center" to="/app/prefs/config/">
-              <Icon name="settings" />
-              <span class="ms-1">{{ t("config") }}</span>
-            </NuxtLink>
-          </li>
-          <li>
-            <a class="dropdown-item py-3 px-4 hover d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#about" role="button">
-              <Icon name="about" />
-              <span class="ms-1">{{ t("acerca") }}</span>
+          <li v-for="(option, index) of more" :key="index">
+            <a v-if="option.external" class="dropdown-item py-3 px-4 hover d-flex align-items-center" role="button" @click="CAPACITOR.openBrowser(option.link)">
+              <Icon :name="option.icon" />
+              <span class="ms-1">{{ option.name }}</span>
             </a>
-          </li>
-          <li>
-            <a class="dropdown-item py-3 px-4 hover d-flex align-items-center" role="button" @click="CAPACITOR.openBrowser(CONST.privacy(t('lang_code')))">
-              <Icon name="privacy" />
-              <span class="ms-1">{{ t("privacidad") }}</span>
+            <a v-else-if="option.modal" class="dropdown-item py-3 px-4 hover d-flex align-items-center" data-bs-toggle="modal" :data-bs-target="`#${option.modal}`" role="button">
+              <Icon :name="option.icon" />
+              <span class="ms-1">{{ option.name }}</span>
             </a>
-          </li>
-          <li>
-            <NuxtLink class="dropdown-item py-3 px-4 hover d-flex align-items-center" to="/app/prefs/creditos">
-              <Icon name="credits" />
-              <span class="ms-1">{{ t("creditos") }}</span>
+            <NuxtLink v-else class="dropdown-item py-3 px-4 hover d-flex align-items-center" :to="option.link">
+              <Icon :name="option.icon" />
+              <span class="ms-1">{{ option.name }}</span>
             </NuxtLink>
           </li>
         </ul>
@@ -125,6 +115,38 @@ export default {
           name: t("donar"),
           icon: "donate",
           link: "/app/donar/",
+          external: false
+        }
+      ],
+      more: [
+        {
+          name: t("config"),
+          icon: "settings",
+          link: "/app/prefs/config/",
+          external: false
+        },
+        {
+          name: t("acerca"),
+          icon: "about",
+          modal: "about",
+          external: false
+        },
+        {
+          name: t("privacidad"),
+          icon: "privacy",
+          link: CONST.privacy(t("lang_code")),
+          external: true
+        },
+        {
+          name: t("rate"),
+          icon: "star",
+          link: CONST.googlePlay,
+          external: true
+        },
+        {
+          name: t("creditos"),
+          icon: "credits",
+          link: "/app/prefs/creditos/",
           external: false
         }
       ]
