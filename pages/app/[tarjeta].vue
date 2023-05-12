@@ -4,7 +4,7 @@ definePageMeta({ layout: "main" });
 
 <template>
   <section>
-    <ul class="nav nav-pills shadow-sm" role="tablist">
+    <ul class="tabs nav nav-pills shadow-sm" role="tablist">
       <li v-for="(tab, key) in tabs" :key="key" class="nav-item flex-fill" role="presentation">
         <a class="nav-link rounded-0 text-uppercase text-center py-1" :class="{ active: tab.active }" role="button" @click="tabClick(key)">
           <Icon :name="tab.icon" />
