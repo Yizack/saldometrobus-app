@@ -1,0 +1,1 @@
+import{_ as t}from"./nuxt-icon.vue.07a6c634.js";import{a as _,o,c}from"./entry.979ecf64.js";const s={props:{name:{type:String,required:!0},size:{type:String,default:"24"}}};function a(r,i,e,m,p,u){const n=t;return o(),c(n,{name:e.name,size:e.size,filled:""},null,8,["name","size"])}const d=_(s,[["render",a]]);export{d as _};
