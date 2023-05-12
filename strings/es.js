@@ -157,5 +157,6 @@ export default {
   panama: "Panamá",
   mibus_info: "Toda la información de la red de rutas es recopilada de la página web de MiBus",
   recargar: "Recargar saldo",
-  buy: "Comprar"
+  buy: "Comprar",
+  recargar_info: "Recuerde que para activar su recarga comprada y viajar debe pasar por un Terminal de Auto Servicio, tótem."
 };

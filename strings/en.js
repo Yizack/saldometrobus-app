@@ -157,5 +157,6 @@ export default {
   panama: "Panama",
   mibus_info: "All information on the route network is collected from the MiBus website",
   recargar: "Top up card",
-  buy: "Buy"
+  buy: "Buy",
+  recargar_info: "Remember that to activate your purchased funds and travel you must go through a Self Service Terminal, totem."
 };
