@@ -1,0 +1,30 @@
+table { 
+  border-collapse: separate;
+  border-left: 0;
+  border-spacing: 0;
+}
+
+.table>:not(caption)>*>* {
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
+}
+
+thead:first-child tr:first-child th:first-child, tbody:first-child tr:first-child td:first-child {
+  border-radius: 4px 0 0 0;
+}
+
+thead:first-child tr:first-child th:last-child, tbody:first-child tr:first-child td:last-child {
+  border-radius: 0 4px 0 0;
+}
+
+thead:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td:first-child {
+  border-radius: 0 0 0 4px;
+}
+
+thead:last-child tr:last-child th:last-child, tbody:last-child tr:last-child td:last-child {
+  border-radius: 0 0 4px 0;
+}
+
+thead:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td:first-child {
+  border-radius: 0 0 0 4px;
+}

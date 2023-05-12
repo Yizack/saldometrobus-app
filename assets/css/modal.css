@@ -1,0 +1,7 @@
+.modal {
+  --bs-modal-bg: var(--bs-tertiary-bg);
+}
+
+.modal-header h1 {
+  color: var(--bs-primary);
+}

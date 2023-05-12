@@ -1,0 +1,29 @@
+[data-bs-theme=light] {
+  --bs-dark: #5a5c69;
+  --bs-dark-rgb: 90, 92, 105;
+  --bs-primary: #4E73DF;
+  --bs-primary-rgb: 78, 115, 223;
+  --primary-hover: #3963e0;
+  --primary-dark: #405FB9;
+  --bs-primary-text-emphasis: var(--bs-primary);
+  --bs-success: #1cc889;
+  --success-hover: #18b37a;
+  --bs-success-rgb: 28, 200, 137;
+  --bs-secondary: rgb(255, 144, 107);
+  --secondary-hover: #ff7a46;
+  --bs-secondary-rgb: 255, 145, 107;
+  --bs-danger: #e74a3b;
+  --danger-hover: #ca473b;
+  --bs-danger-rgb: 231, 74, 59;
+  --bs-warning: #eebb3b;
+  --bs-warning-rgb: 246, 194, 62;
+  --bs-body-color: #5a5c69;
+  --bs-dark-text-emphasis: var(--bs-body-color);
+  --bs-body-bg: #F8F9FC;
+  --bs-body-bg-rgb: 248, 249, 252;
+  --bs-tertiary-bg: #FFFFFF;
+  --bs-tertiary-bg-rgb: 255, 255, 255;
+  --nav-hover: #eaecf4;
+  --nav-active: #e3e6f0;
+  --border: #e3e6f0;
+}

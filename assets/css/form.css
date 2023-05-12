@@ -1,0 +1,46 @@
+.form-check-input:checked {
+  background-color: var(--bs-secondary);
+  border-color: var(--bs-secondary);
+}
+
+.form-control {
+  border-bottom-width: 2px;
+  border-left-width: 0;
+  border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+}
+
+.form-check-input:focus, .form-control:focus, .form-select:focus {
+  border-color: var(--bs-secondary);
+  outline: 0;
+}
+
+.form-control:focus {
+  box-shadow: 0 0.25rem 0 0 rgb(255, 144, 107, 0.25);
+}
+
+.form-check-input:focus, .form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgb(255, 144, 107, 0.25);
+}
+
+.form-switch .form-check-input:focus {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffc1ad'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input:checked {
+  background-position: right center;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input {
+  height: 1.5em;
+  margin: 0;
+  width: 3em;
+}
+
+.form-floating>::after {
+  background-color: transparent!important;
+}

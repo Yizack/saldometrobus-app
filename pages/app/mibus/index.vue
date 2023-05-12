@@ -25,7 +25,7 @@ definePageMeta({ layout: "main" });
             <p class="m-0">{{ t("results_notfound") }}</p>
           </div>
           <div v-for="ruta in tipo.rutas" :key="ruta.route_id" class="border-top">
-            <div class="d-flex align-items-center p-2 rutas-mibus" role="button" @click="openRoute(ruta.route_id)">
+            <div class="d-flex align-items-center p-2 hover" role="button" @click="openRoute(ruta.route_id)">
               <p class="p-2 m-0 text-white rounded small text-center fw-bold shadow-sm" :style="{ backgroundColor: `#${ruta.route_color}`, minWidth: '3.7rem'} ">{{ ruta.route_short_name }}</p>
               <div class="p-2">
                 <p class="text-muted mb-0"><small>{{ ruta.route_type }}</small></p>

@@ -1,0 +1,32 @@
+[data-bs-theme=dark] {
+  --bs-dark: #5a5c69;
+  --bs-dark-rgb: 90, 92, 105;
+  --bs-primary: #4e73df;
+  --bs-primary-rgb: 78, 115, 223;
+  --primary-hover: #617fd6;
+  --primary-dark: #405FB9;
+  --bs-primary-text-emphasis: #FFFFFF;
+  --bs-success: #1cc88a;
+  --success-hover: #18b37a;
+  --bs-success-rgb: 28, 200, 138;
+  --bs-secondary: #ff916b;
+  --secondary-hover: #e26c3d;
+  --bs-secondary-rgb: 255, 145, 107;
+  --bs-danger: #ff6662;
+  --danger-hover: #ca473b;
+  --bs-danger-rgb: 255, 102, 98;
+  --bs-warning: #f6c23e;
+  --bs-warning-rgb: 246, 194, 62;
+  --bs-body-color: #D5D5DB;
+  --bs-dark-text-emphasis: var(--bs-body-color);
+  --bs-body-bg: #121212;
+  --bs-tertiary-bg: #1d1d1d;
+  --bs-tertiary-bg-rgb: 29, 29, 29;
+  --nav-hover: #19191a;
+  --nav-active: #1f1f1f;
+  --border: #373737;
+}
+
+[data-bs-theme=dark] .travel_icon {
+  filter: invert(1);
+}

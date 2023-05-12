@@ -23,7 +23,15 @@ export default {
   },
   css: [
     "bootstrap/dist/css/bootstrap.min.css",
-    "~/assets/css/main.css"
+    "~/assets/css/transitions.css",
+    "~/assets/css/main.css",
+    "~/assets/css/light.css",
+    "~/assets/css/dark.css",
+    "~/assets/css/button.css",
+    "~/assets/css/form.css",
+    "~/assets/css/modal.css",
+    "~/assets/css/table.css",
+    "~/assets/css/nav.css"
   ],
   modules: [
     "nuxt-icons",
