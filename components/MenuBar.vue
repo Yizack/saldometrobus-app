@@ -110,6 +110,12 @@ export default {
           external: false
         },
         {
+          name: t("recargar"),
+          icon: "money",
+          link: "/app/recargar/",
+          external: false
+        },
+        {
           name: t("estado"),
           icon: "status",
           link: CONST.status_url,

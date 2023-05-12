@@ -155,5 +155,7 @@ export default {
   buscar: "Search",
   use: "Use",
   panama: "Panama",
-  mibus_info: "All information on the route network is collected from the MiBus website"
+  mibus_info: "All information on the route network is collected from the MiBus website",
+  recargar: "Top up card",
+  buy: "Buy"
 };
