@@ -154,7 +154,7 @@ export default {
   },
   methods: {
     selectResult (result, field) {
-      this.form[field] = `${result.label}, ${t("panama")}`;
+      this.form[field] = result.label === this.form[field].trim() ? `${result.label}, ${t("panama")}` : result.label;
       this.search[field] = false;
     },
     searchPlace (input, field) {
