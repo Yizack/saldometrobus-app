@@ -1,7 +1,7 @@
-import "bootstrap/js/dist/offcanvas";
 import "bootstrap/js/dist/dropdown";
 import "bootstrap/js/dist/tooltip";
 import "bootstrap/js/dist/collapse";
+import OffCanvas from "bootstrap/js/dist/offcanvas";
 import Modal from "bootstrap/js/dist/modal";
 
 export const sha256 = async (message) => {
@@ -42,6 +42,13 @@ export const showModal = (id) => {
 
 export const hideModal = (id) => {
   const instance = Modal.getInstance("#" + id);
+  if (instance) {
+    instance.hide();
+  }
+};
+
+export const closeOffCanvas = (id) => {
+  const instance = OffCanvas.getInstance("#" + id);
   if (instance) {
     instance.hide();
   }

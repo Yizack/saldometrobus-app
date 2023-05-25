@@ -28,7 +28,7 @@
       </div>
     </div>
   </nav>
-  <div id="menu" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="menuLabel">
+  <div id="menu" ref="offcanvas" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="menuLabel">
     <div class="offcanvas-header bg-primary align-items-start">
       <div class="text-white">
         <img class="img-fluid rounded-circle bg-white" src="/images/logo2.webp" width="70" height="70">
@@ -143,8 +143,28 @@ export default {
           link: "/app/prefs/creditos/",
           external: false
         }
-      ]
+      ],
+      touch: {
+        startX: 0,
+        endX: 0
+      }
     };
+  },
+  mounted () {
+    this.$refs.offcanvas.addEventListener("touchstart", (event) => {
+      this.touch.startX = event.changedTouches[0].screenX;
+    }, false);
+
+    this.$refs.offcanvas.addEventListener("touchend", (event) => {
+      this.touch.endX = event.changedTouches[0].screenX;
+      if (this.touch.endX < this.touch.startX) {
+        closeOffCanvas("menu");
+      }
+    }, false);
+  },
+  beforeUnmount () {
+    this.$refs.offcanvas.removeEventListener("touchstart", () => {}, false);
+    this.$refs.offcanvas.removeEventListener("touchend", () => {}, false);
   },
   methods: {
     async logout () {
