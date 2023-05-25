@@ -15,22 +15,41 @@ jobs:
     steps:
     - name: Checkout 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
     - name: Setup Node 🐢
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+
+    - name: PNPM Setup 🟨
+      uses: pnpm/action-setup@v2
+      id: pnpm-install
+      with:
+        version: 7
+        run_install: false
+
+    - name: Get pnpm store directory 📁
+      id: pnpm-cache
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache@v3
+      name: Setup pnpm Cache ☁️
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
         
     - name: Install Dependencies 📦
-      run: npm ci
+      run: pnpm install
 
     - name: MiBus Rutas 🚌
-      run: npm run app:mibus
+      run: pnpm app:mibus
 
     - name: Build App ⚡
-      run: npm run generate
+      run: pnpm generate
 
     - name: Deploy Web Demo 🚀
       uses: JamesIves/github-pages-deploy-action@v4
@@ -39,15 +58,15 @@ jobs:
         folder: .output/public
 
     - name: Clean output 🧹
-      run: npm run app:clean
+      run: pnpm app:clean
 
     - name: Capacitor 📲
-      run: npm run sync
+      run: pnpm sync
 
     - name: Version App 🔢
       run: |
-          npm run app:version
-          npm run trapeze
+          pnpm app:version
+          pnpm trapeze
 
     - name: Setup java ☕
       uses: actions/setup-java@v3

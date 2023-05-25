@@ -213,13 +213,13 @@ export const CONST = {
       version: devDependencies["@commitlint/cli"]
     },
     {
-      name: "Commitizen: conventional-changelog",
-      link: "https://github.com/commitizen/cz-conventional-changelog",
+      name: "Changelogen",
+      link: "https://github.com/unjs/changelogen",
       description: {
-        en: "Conventional commit messages cli",
-        es: "Mensajes de commit convencionales cli"
+        en: "Beautiful Changelogs using Conventional Commits",
+        es: "Changelogs hermosos usando Conventional Commits"
       },
-      version: devDependencies["cz-conventional-changelog"]
+      version: devDependencies.changelogen
     },
     {
       name: "GitHub Actions: Checkout",

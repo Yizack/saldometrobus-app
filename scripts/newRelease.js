@@ -7,11 +7,9 @@ const { version } = require("./../package.json");
 const tag = execSync(`git tag -l v${version}`).toString();
 if (!tag) {
   console.info(`v${version}`);
-  execSync("npm run app:version");
-  execSync("npm run trapeze");
+  execSync("pnpm app:version");
+  execSync("pnpm trapeze");
   console.info("Trapeze: updated native files");
-  execSync("npm run changelog");
-  console.info("updated CHANGELOG.md");
   execSync("git add .");
   execSync(`git commit -m "chore: release v${version}"`);
   console.info(`commit - "chore: release v${version}"`);

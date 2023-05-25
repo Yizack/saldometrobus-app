@@ -12,5 +12,5 @@ app-release*
 release/
 .gradle
 assets/rutas.json
-.husky
+.husky/_
 coverage
