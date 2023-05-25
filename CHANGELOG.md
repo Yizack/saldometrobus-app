@@ -1,5 +1,50 @@
 # Changelog
 
+## v2.4.1
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.0...v2.4.1)
+
+
+### 🚀 Enhancements
+
+  - Top up card (DISCARDED) ([53b4445](https://github.com/Yizack/saldometrobus-app/commit/53b4445))
+
+### 🩹 Fixes
+
+  - Tabs ([2b8ca92](https://github.com/Yizack/saldometrobus-app/commit/2b8ca92))
+  - Close menu on swipe left ([43c309f](https://github.com/Yizack/saldometrobus-app/commit/43c309f))
+
+### 💅 Refactors
+
+  - Split css files ([6c45a2a](https://github.com/Yizack/saldometrobus-app/commit/6c45a2a))
+
+### 🏡 Chore
+
+  - Bump deps ([8cdc2f3](https://github.com/Yizack/saldometrobus-app/commit/8cdc2f3))
+  - No need to declare globals ([ad056bf](https://github.com/Yizack/saldometrobus-app/commit/ad056bf))
+  - Optimize autocomplete ([eda5e41](https://github.com/Yizack/saldometrobus-app/commit/eda5e41))
+  - Topup redirect and info ([922da27](https://github.com/Yizack/saldometrobus-app/commit/922da27))
+  - Add Panama only if text used ([fa7b8ef](https://github.com/Yizack/saldometrobus-app/commit/fa7b8ef))
+  - Add rate app more option ([53aa766](https://github.com/Yizack/saldometrobus-app/commit/53aa766))
+  - Discard top up option for now ([c85c2af](https://github.com/Yizack/saldometrobus-app/commit/c85c2af))
+  - Remove directions data test file ([7ee87f3](https://github.com/Yizack/saldometrobus-app/commit/7ee87f3))
+  - Nuxt upgrade ([6283e7b](https://github.com/Yizack/saldometrobus-app/commit/6283e7b))
+  - Migrate to pnpm ([182e5f1](https://github.com/Yizack/saldometrobus-app/commit/182e5f1))
+  - Update lock ([623a45a](https://github.com/Yizack/saldometrobus-app/commit/623a45a))
+  - Move changelogen to dev ([cf2ecc1](https://github.com/Yizack/saldometrobus-app/commit/cf2ecc1))
+
+### ✅ Tests
+
+  - Added some tests ([376d5ef](https://github.com/Yizack/saldometrobus-app/commit/376d5ef))
+
+### 🎨 Styles
+
+  - Update store screenshots ([e2df0c1](https://github.com/Yizack/saldometrobus-app/commit/e2df0c1))
+
+### ❤️  Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.4.0
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.3.9...v2.4.0)

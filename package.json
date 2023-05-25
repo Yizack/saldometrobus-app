@@ -1,6 +1,6 @@
 {
   "name": "saldometrobus-app",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Saldo Metrobús es un sitio de consultas de saldo y movimientos para las tarjetas de metro y metrobús de Panamá a cualquier hora del día.",
   "author": "Yizack Rangel",
   "license": "MIT",
@@ -31,6 +31,7 @@
     "husky:install": "husky install",
     "husky:msg": "husky add .husky/commit-msg  \"npx --no -- commitlint --edit ${1}\"",
     "release": "pnpm changelogen --bump && node scripts/newRelease.js && pnpm changelogen gh release",
+    "release:patch": "pnpm changelogen --bump --patch && node scripts/newRelease.js && pnpm changelogen gh release",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --coverage"
   },
   "devDependencies": {

@@ -11,8 +11,8 @@ if (!tag) {
   execSync("pnpm trapeze");
   console.info("Trapeze: updated native files");
   execSync("git add .");
-  execSync(`git commit -m "chore: release v${version}"`);
-  console.info(`commit - "chore: release v${version}"`);
+  execSync(`git commit -m "chore(release): v${version}"`);
+  console.info(`commit - "chore(release): v${version}"`);
   execSync(`git tag v${version}`);
   console.info(`tag - "v${version}"`);
 }
