@@ -46,5 +46,6 @@ export default {
   imports: {
     dirs: ["stores"]
   },
-  ssr: false
+  ssr: false,
+  spaLoadingTemplate: false
 };
