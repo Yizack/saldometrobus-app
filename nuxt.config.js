@@ -46,13 +46,5 @@ export default {
   imports: {
     dirs: ["stores"]
   },
-  ssr: false,
-  experimental: {
-    payloadExtraction: false
-  },
-  nitro: {
-    prerender: {
-      crawlLinks: false
-    }
-  }
+  ssr: false
 };
