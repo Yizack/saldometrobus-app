@@ -103,7 +103,7 @@ export const CONST = {
         en: "ESLint shareable config for Nuxt.js",
         es: "Configuración compartida de ESLint para Nuxt.js"
       },
-      version: devDependencies["@nuxtjs/eslint-config"]
+      version: devDependencies["@nuxt/eslint-config"]
     },
     {
       name: "Stylelint",
