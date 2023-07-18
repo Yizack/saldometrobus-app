@@ -1,4 +1,4 @@
-export default {
+export default defineNuxtConfig({
   app: {
     rootId: "app",
     buildAssetsDir: "/_app/",
@@ -48,4 +48,4 @@ export default {
   },
   ssr: false,
   spaLoadingTemplate: false
-};
+});
