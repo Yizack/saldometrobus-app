@@ -1,0 +1,1 @@
+import{_ as t,o as _,G as o,a5 as s}from"./entry.81b4d21f.js";const c={props:{name:{type:String,required:!0},size:{type:String,default:"24"}}};function a(r,i,e,p,u,m){const n=s;return _(),o(n,{name:e.name,size:e.size,filled:""},null,8,["name","size"])}const f=t(c,[["render",a]]);export{f as _};
