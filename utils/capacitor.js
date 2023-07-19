@@ -62,7 +62,7 @@ class CapacitorPlugins {
     }).catch(() => error_response);
 
     return await this.isOnline() ? GET : error_conexion;
-  };
+  }
 
   async doPost (url, payload) {
     const options = {
@@ -83,7 +83,7 @@ class CapacitorPlugins {
     }).catch(() => error_response);
 
     return await this.isOnline() ? POST : error_conexion;
-  };
+  }
 
   async confirm (title, message) {
     const { value } = await Dialog.confirm({ title, message, okButtonTitle: "Ok", cancelButtonTitle: t("cancel") });
@@ -98,7 +98,7 @@ class CapacitorPlugins {
     Clipboard.write({ string }).then(() => {
       this.showToast(t("copied"));
     });
-  };
+  }
 
   exit () {
     App.exitApp();
