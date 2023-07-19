@@ -24,55 +24,55 @@ dependencies:
 devDependencies:
   '@capacitor-community/sqlite':
     specifier: ^5.0.5
-    version: 5.0.5(@capacitor/core@5.2.1)
+    version: 5.0.5(@capacitor/core@5.2.2)
   '@capacitor/android':
-    specifier: ^5.2.1
-    version: 5.2.1(@capacitor/core@5.2.1)
+    specifier: ^5.2.2
+    version: 5.2.2(@capacitor/core@5.2.2)
   '@capacitor/app':
     specifier: ^5.0.6
-    version: 5.0.6(@capacitor/core@5.2.1)
+    version: 5.0.6(@capacitor/core@5.2.2)
   '@capacitor/assets':
     specifier: ^2.0.4
     version: 2.0.4(@types/node@20.2.3)(typescript@5.0.4)
   '@capacitor/browser':
     specifier: ^5.0.6
-    version: 5.0.6(@capacitor/core@5.2.1)
+    version: 5.0.6(@capacitor/core@5.2.2)
   '@capacitor/cli':
-    specifier: ^5.2.1
-    version: 5.2.1
+    specifier: ^5.2.2
+    version: 5.2.2
   '@capacitor/clipboard':
     specifier: ^5.0.6
-    version: 5.0.6(@capacitor/core@5.2.1)
+    version: 5.0.6(@capacitor/core@5.2.2)
   '@capacitor/core':
-    specifier: ^5.2.1
-    version: 5.2.1
+    specifier: ^5.2.2
+    version: 5.2.2
   '@capacitor/dialog':
     specifier: ^5.0.6
-    version: 5.0.6(@capacitor/core@5.2.1)
+    version: 5.0.6(@capacitor/core@5.2.2)
   '@capacitor/ios':
-    specifier: ^5.2.1
-    version: 5.2.1(@capacitor/core@5.2.1)
+    specifier: ^5.2.2
+    version: 5.2.2(@capacitor/core@5.2.2)
   '@capacitor/network':
     specifier: ^5.0.6
-    version: 5.0.6(@capacitor/core@5.2.1)
+    version: 5.0.6(@capacitor/core@5.2.2)
   '@capacitor/preferences':
     specifier: ^5.0.6
-    version: 5.0.6(@capacitor/core@5.2.1)
+    version: 5.0.6(@capacitor/core@5.2.2)
   '@capacitor/splash-screen':
     specifier: ^5.0.6
-    version: 5.0.6(@capacitor/core@5.2.1)
+    version: 5.0.6(@capacitor/core@5.2.2)
   '@capacitor/status-bar':
     specifier: ^5.0.6
-    version: 5.0.6(@capacitor/core@5.2.1)
+    version: 5.0.6(@capacitor/core@5.2.2)
   '@capacitor/toast':
     specifier: ^5.0.6
-    version: 5.0.6(@capacitor/core@5.2.1)
+    version: 5.0.6(@capacitor/core@5.2.2)
   '@commitlint/cli':
-    specifier: ^17.6.6
-    version: 17.6.6
+    specifier: ^17.6.7
+    version: 17.6.7
   '@commitlint/config-conventional':
-    specifier: ^17.6.6
-    version: 17.6.6
+    specifier: ^17.6.7
+    version: 17.6.7
   '@nuxt/eslint-config':
     specifier: ^0.1.1
     version: 0.1.1(eslint@8.45.0)
@@ -95,17 +95,17 @@ devDependencies:
     specifier: ^29.6.1
     version: 29.6.1(@types/node@20.2.3)(ts-node@10.9.1)
   nuxt:
-    specifier: ^3.6.3
-    version: 3.6.3(@types/node@20.2.3)(eslint@8.45.0)(stylelint@15.10.1)(typescript@5.0.4)
+    specifier: ^3.6.4
+    version: 3.6.4(@types/node@20.2.3)(eslint@8.45.0)(stylelint@15.10.2)(typescript@5.0.4)
   nuxt-icons:
     specifier: ^3.2.1
     version: 3.2.1
   stylelint:
-    specifier: ^15.10.1
-    version: 15.10.1
+    specifier: ^15.10.2
+    version: 15.10.2
   stylelint-order:
     specifier: ^6.0.3
-    version: 6.0.3(stylelint@15.10.1)
+    version: 6.0.3(stylelint@15.10.2)
 
 packages:
 
@@ -514,29 +514,29 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@capacitor-community/sqlite@5.0.5(@capacitor/core@5.2.1):
+  /@capacitor-community/sqlite@5.0.5(@capacitor/core@5.2.2):
     resolution: {integrity: sha512-l2rUj0gpPgFNveLDNG25b+GPo9PArspqwouupLffz5Z+gCA9PCGbrx/+4vTAw6I2lUQ+SaLDLLLzPmweQUphtQ==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
       jeep-sqlite: 2.3.9
     dev: true
 
-  /@capacitor/android@5.2.1(@capacitor/core@5.2.1):
-    resolution: {integrity: sha512-KtalBSaWCLSubqp78TrLiodLhlunTnzgydz/5HanioVQ8RR81pjdlYhckW0AiA0mVVLhA1/bFCCGsynksFkTfQ==}
+  /@capacitor/android@5.2.2(@capacitor/core@5.2.2):
+    resolution: {integrity: sha512-2kx5C2lJ/DSwPWS7fKvextWhg4AK3SQvQnHgp8+WX6SDYgphBNlGUh45N/qBoMeVM7lqjANJFGQDCk0FjimlWQ==}
     peerDependencies:
       '@capacitor/core': ^5.2.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
     dev: true
 
-  /@capacitor/app@5.0.6(@capacitor/core@5.2.1):
+  /@capacitor/app@5.0.6(@capacitor/core@5.2.2):
     resolution: {integrity: sha512-6ZXVdnNmaYILasC/RjQw+yfTmq2ZO7Q3v5lFcDVfq3PFGnybyYQh+RstBrYri+376OmXOXxBD7E6UxBhrMzXGA==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
     dev: true
 
   /@capacitor/assets@2.0.4(@types/node@20.2.3)(typescript@5.0.4):
@@ -565,12 +565,12 @@ packages:
       - typescript
     dev: true
 
-  /@capacitor/browser@5.0.6(@capacitor/core@5.2.1):
+  /@capacitor/browser@5.0.6(@capacitor/core@5.2.2):
     resolution: {integrity: sha512-wEI7Na6PVzSP/00ud7pjbBwXwVG7HywCdy2fJT/hzF6yuHn4tDirbOvbr1JKd9LZqKs2Xn+TapV38JhBRhX6YA==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
     dev: true
 
   /@capacitor/cli@3.9.0:
@@ -598,8 +598,8 @@ packages:
       - supports-color
     dev: true
 
-  /@capacitor/cli@5.2.1:
-    resolution: {integrity: sha512-VnihoWKTRZRVcTU5IW3Yl3gDm9WQ+ALCS66d8yGBBl7ym0C7VWx/b2M8Y5b2/JN23cx6zEefYfV6UM2PPrb+nQ==}
+  /@capacitor/cli@5.2.2:
+    resolution: {integrity: sha512-h/cefX3sefLcmd4VI2h+fNIYKWH1QCUACWAH8bkdJ+aEL+x2xYbGlqeW6Belb3E2Uvu9OA+cz7YVDnNRcjyQyw==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
@@ -624,74 +624,74 @@ packages:
       - supports-color
     dev: true
 
-  /@capacitor/clipboard@5.0.6(@capacitor/core@5.2.1):
+  /@capacitor/clipboard@5.0.6(@capacitor/core@5.2.2):
     resolution: {integrity: sha512-VsokRAn+0HVWj6riSRdspczEfqFoHbrhS/XRhGoEPsj0uvYPSufy0Kb2dpnSqkeeElhh2Jvn8jmVAzII2XeR9w==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
     dev: true
 
-  /@capacitor/core@5.2.1:
-    resolution: {integrity: sha512-v7nzTQZj9l99Sp0v8C7Zq8QX6Cg5ljq7ASneWk/Hc5nBR5LOj/k3a+yEx/RoclWtkxJfs89Y5k+KJTFFQ6cLoA==}
+  /@capacitor/core@5.2.2:
+    resolution: {integrity: sha512-3jKECZC5+YD2rljMZm1e/K3AYyoxUmLDZCyofTPbRYPBSI0wJh5ZCkX+XIGzNM0o/Wokl3Voa1JB8xsLC0MPxA==}
     dependencies:
       tslib: 2.5.2
     dev: true
 
-  /@capacitor/dialog@5.0.6(@capacitor/core@5.2.1):
+  /@capacitor/dialog@5.0.6(@capacitor/core@5.2.2):
     resolution: {integrity: sha512-/F9aSADswh+5pBE5810vD/N+Ox3KmahLXn1rMqisao8gNVI/Lk4YanWSPqDJCauHwOfZyeZscmDsETizAlSLFA==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
     dev: true
 
-  /@capacitor/ios@5.2.1(@capacitor/core@5.2.1):
-    resolution: {integrity: sha512-a69zJt4woD642BHqvIoD4cLgJoSYgy2AEaBw11Hi/hW/t8dZ/TzPv3wtj/lk6RLj0zPq9rn7bI7qaFQzLxPVHQ==}
+  /@capacitor/ios@5.2.2(@capacitor/core@5.2.2):
+    resolution: {integrity: sha512-6nNhB+G9tamJFMdvPOIATEPIXlh3GNXMq8eeY3xrFO72bBTmQpXdbDQmMJeBbpVlkEnFoVUXiSxAu6O0E9x9Lw==}
     peerDependencies:
       '@capacitor/core': ^5.2.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
     dev: true
 
-  /@capacitor/network@5.0.6(@capacitor/core@5.2.1):
+  /@capacitor/network@5.0.6(@capacitor/core@5.2.2):
     resolution: {integrity: sha512-E//cq9NEvFFiLyptK0ha4B8OytdWpSqvtUo5L2uiqcoADWUnl5d7aK45M09eyd347HchICeEdIkO31n6CNxyYA==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
     dev: true
 
-  /@capacitor/preferences@5.0.6(@capacitor/core@5.2.1):
+  /@capacitor/preferences@5.0.6(@capacitor/core@5.2.2):
     resolution: {integrity: sha512-aDe4wGTVSAIue6XXdUFgyz7SGszxK/Ptt/iWTydMpzc1PlZXw1XTTnciM+S+SLLNZFzXlkpXT3wMnh9t0DojUA==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
     dev: true
 
-  /@capacitor/splash-screen@5.0.6(@capacitor/core@5.2.1):
+  /@capacitor/splash-screen@5.0.6(@capacitor/core@5.2.2):
     resolution: {integrity: sha512-9B8wSm89D+LlshFw8B+mjPU8pJNf1WOx2mkMjMvcH0/EqxNaE+ZaO8lPCX+9WvWSEZs3O3l11qiSnOFHeK0t9A==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
     dev: true
 
-  /@capacitor/status-bar@5.0.6(@capacitor/core@5.2.1):
+  /@capacitor/status-bar@5.0.6(@capacitor/core@5.2.2):
     resolution: {integrity: sha512-7od8CxsBnot1XMK3IeOkproFL4hgoKoWAc3pwUvmDOkQsXoxwQm4SR9mLwQavv1XfxtHbFV9Ukd7FwMxOPSViw==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
     dev: true
 
-  /@capacitor/toast@5.0.6(@capacitor/core@5.2.1):
+  /@capacitor/toast@5.0.6(@capacitor/core@5.2.2):
     resolution: {integrity: sha512-djkRHVT8YtLJC1vvOnDU3EfAHfQYqAD7LYEXmSmhYuTnXRIggX93m/NkazwLnnpr95kDbs2VVPM/J6dqqYuJng==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.2.1
+      '@capacitor/core': 5.2.2
     dev: true
 
   /@cloudflare/kv-asset-handler@0.3.0:
@@ -700,14 +700,14 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@commitlint/cli@17.6.6:
-    resolution: {integrity: sha512-sTKpr2i/Fjs9OmhU+beBxjPavpnLSqZaO6CzwKVq2Tc4UYVTMFgpKOslDhUBVlfAUBfjVO8ParxC/MXkIOevEA==}
+  /@commitlint/cli@17.6.7:
+    resolution: {integrity: sha512-nzZmfO5KIOupYppn1MsnYX/80I+KDlxiwkks3CJT0XT+t34UgqGi3eSyEuzgcIjPlORk5/GMaAEiys78iLfGMg==}
     engines: {node: '>=v14'}
     hasBin: true
     dependencies:
       '@commitlint/format': 17.4.4
-      '@commitlint/lint': 17.6.6
-      '@commitlint/load': 17.5.0
+      '@commitlint/lint': 17.6.7
+      '@commitlint/load': 17.6.7
       '@commitlint/read': 17.5.1
       '@commitlint/types': 17.4.4
       execa: 5.1.1
@@ -720,23 +720,23 @@ packages:
       - '@swc/wasm'
     dev: true
 
-  /@commitlint/config-conventional@17.6.6:
-    resolution: {integrity: sha512-phqPz3BDhfj49FUYuuZIuDiw+7T6gNAEy7Yew1IBHqSohVUCWOK2FXMSAExzS2/9X+ET93g0Uz83KjiHDOOFag==}
+  /@commitlint/config-conventional@17.6.7:
+    resolution: {integrity: sha512-4oTpEUC0HRM54QRHBPMOJW1pETp7usxXn9RuNYNWHcmu8wi1mpws95hvS20u2n6HtIkTn0jfn7vHioCm4AGUTw==}
     engines: {node: '>=v14'}
     dependencies:
       conventional-changelog-conventionalcommits: 5.0.0
     dev: true
 
-  /@commitlint/config-validator@17.4.4:
-    resolution: {integrity: sha512-bi0+TstqMiqoBAQDvdEP4AFh0GaKyLFlPPEObgI29utoKEYoPQTvF0EYqIwYYLEoJYhj5GfMIhPHJkTJhagfeg==}
+  /@commitlint/config-validator@17.6.7:
+    resolution: {integrity: sha512-vJSncmnzwMvpr3lIcm0I8YVVDJTzyjy7NZAeXbTXy+MPUdAr9pKyyg7Tx/ebOQ9kqzE6O9WT6jg2164br5UdsQ==}
     engines: {node: '>=v14'}
     dependencies:
       '@commitlint/types': 17.4.4
       ajv: 8.12.0
     dev: true
 
-  /@commitlint/ensure@17.4.4:
-    resolution: {integrity: sha512-AHsFCNh8hbhJiuZ2qHv/m59W/GRE9UeOXbkOqxYMNNg9pJ7qELnFcwj5oYpa6vzTSHtPGKf3C2yUFNy1GGHq6g==}
+  /@commitlint/ensure@17.6.7:
+    resolution: {integrity: sha512-mfDJOd1/O/eIb/h4qwXzUxkmskXDL9vNPnZ4AKYKiZALz4vHzwMxBSYtyL2mUIDeU9DRSpEUins8SeKtFkYHSw==}
     engines: {node: '>=v14'}
     dependencies:
       '@commitlint/types': 17.4.4
@@ -760,31 +760,31 @@ packages:
       chalk: 4.1.2
     dev: true
 
-  /@commitlint/is-ignored@17.6.6:
-    resolution: {integrity: sha512-4Fw875faAKO+2nILC04yW/2Vy/wlV3BOYCSQ4CEFzriPEprc1Td2LILmqmft6PDEK5Sr14dT9tEzeaZj0V56Gg==}
+  /@commitlint/is-ignored@17.6.7:
+    resolution: {integrity: sha512-vqyNRqtbq72P2JadaoWiuoLtXIs9SaAWDqdtef6G2zsoXqKFc7vqj1f+thzVgosXG3X/5K9jNp+iYijmvOfc/g==}
     engines: {node: '>=v14'}
     dependencies:
       '@commitlint/types': 17.4.4
       semver: 7.5.2
     dev: true
 
-  /@commitlint/lint@17.6.6:
-    resolution: {integrity: sha512-5bN+dnHcRLkTvwCHYMS7Xpbr+9uNi0Kq5NR3v4+oPNx6pYXt8ACuw9luhM/yMgHYwW0ajIR20wkPAFkZLEMGmg==}
+  /@commitlint/lint@17.6.7:
+    resolution: {integrity: sha512-TW+AozfuOFMrHn+jdwtz0IWu8REKFp0eryOvoBp2r8IXNc4KihKB1spAiUB6SFyHD6hVVeolz12aHnJ3Mb+xVQ==}
     engines: {node: '>=v14'}
     dependencies:
-      '@commitlint/is-ignored': 17.6.6
-      '@commitlint/parse': 17.6.5
-      '@commitlint/rules': 17.6.5
+      '@commitlint/is-ignored': 17.6.7
+      '@commitlint/parse': 17.6.7
+      '@commitlint/rules': 17.6.7
       '@commitlint/types': 17.4.4
     dev: true
 
-  /@commitlint/load@17.5.0:
-    resolution: {integrity: sha512-l+4W8Sx4CD5rYFsrhHH8HP01/8jEP7kKf33Xlx2Uk2out/UKoKPYMOIRcDH5ppT8UXLMV+x6Wm5osdRKKgaD1Q==}
+  /@commitlint/load@17.6.7:
+    resolution: {integrity: sha512-QZ2rJTbX55BQdYrCm/p6+hh/pFBgC9nTJxfsrK6xRPe2thiQzHN0AQDBqBwAirn6gIkHrjIbCbtAE6kiDYLjrw==}
     engines: {node: '>=v14'}
     dependencies:
-      '@commitlint/config-validator': 17.4.4
+      '@commitlint/config-validator': 17.6.7
       '@commitlint/execute-rule': 17.4.0
-      '@commitlint/resolve-extends': 17.4.4
+      '@commitlint/resolve-extends': 17.6.7
       '@commitlint/types': 17.4.4
       '@types/node': 20.2.3
       chalk: 4.1.2
@@ -806,8 +806,8 @@ packages:
     engines: {node: '>=v14'}
     dev: true
 
-  /@commitlint/parse@17.6.5:
-    resolution: {integrity: sha512-0zle3bcn1Hevw5Jqpz/FzEWNo2KIzUbc1XyGg6WrWEoa6GH3A1pbqNF6MvE6rjuy6OY23c8stWnb4ETRZyN+Yw==}
+  /@commitlint/parse@17.6.7:
+    resolution: {integrity: sha512-ibO03BgEns+JJpohpBZYD49mCdSNMg6fTv7vA5yqzEFWkBQk5NWhEBw2yG+Z1UClStIRkMkAYyI2HzoQG9tCQQ==}
     engines: {node: '>=v14'}
     dependencies:
       '@commitlint/types': 17.4.4
@@ -826,11 +826,11 @@ packages:
       minimist: 1.2.8
     dev: true
 
-  /@commitlint/resolve-extends@17.4.4:
-    resolution: {integrity: sha512-znXr1S0Rr8adInptHw0JeLgumS11lWbk5xAWFVno+HUFVN45875kUtqjrI6AppmD3JI+4s0uZlqqlkepjJd99A==}
+  /@commitlint/resolve-extends@17.6.7:
+    resolution: {integrity: sha512-PfeoAwLHtbOaC9bGn/FADN156CqkFz6ZKiVDMjuC2N5N0740Ke56rKU7Wxdwya8R8xzLK9vZzHgNbuGhaOVKIg==}
     engines: {node: '>=v14'}
     dependencies:
-      '@commitlint/config-validator': 17.4.4
+      '@commitlint/config-validator': 17.6.7
       '@commitlint/types': 17.4.4
       import-fresh: 3.3.0
       lodash.mergewith: 4.6.2
@@ -838,11 +838,11 @@ packages:
       resolve-global: 1.0.0
     dev: true
 
-  /@commitlint/rules@17.6.5:
-    resolution: {integrity: sha512-uTB3zSmnPyW2qQQH+Dbq2rekjlWRtyrjDo4aLFe63uteandgkI+cc0NhhbBAzcXShzVk0qqp8SlkQMu0mgHg/A==}
+  /@commitlint/rules@17.6.7:
+    resolution: {integrity: sha512-x/SDwDTN3w3Gr5xkhrIORu96rlKCc8ZLYEMXRqi9+MB33st2mKcGvKa5uJuigHlbl3xm75bAAubATrodVrjguQ==}
     engines: {node: '>=v14'}
     dependencies:
-      '@commitlint/ensure': 17.4.4
+      '@commitlint/ensure': 17.6.7
       '@commitlint/message': 17.4.2
       '@commitlint/to-lines': 17.4.0
       '@commitlint/types': 17.4.4
@@ -1845,11 +1845,11 @@ packages:
       - rollup
       - supports-color
 
-  /@nuxt/kit@3.6.3:
-    resolution: {integrity: sha512-Eq+2whSIsZ+2IdB9J3okYOc+nZHassjt13vJZowxO3dw0rsXTnWGFHx40IX+wrBYE6eiOHjU/cXQ1XHdiU2GyQ==}
+  /@nuxt/kit@3.6.4:
+    resolution: {integrity: sha512-srQtbItceteVzX9o0RaFHqQN3uMIZkkikJW55MKCXs1xKstvsI1pzTb1T2WR5v7G1ofBIF+j4EvjweocUUqiQQ==}
     engines: {node: ^14.18.0 || >=16.10.0}
     dependencies:
-      '@nuxt/schema': 3.6.3
+      '@nuxt/schema': 3.6.4
       c12: 1.4.2
       consola: 3.2.3
       defu: 6.1.2
@@ -1888,8 +1888,8 @@ packages:
       - rollup
       - supports-color
 
-  /@nuxt/schema@3.6.3:
-    resolution: {integrity: sha512-ZkcDt1DbgKX4Zv6Y+uLdn4Zt2WUDsZy+cuVx9XTRPoGVaG9PXZEgQr1XYoVH1vBMH/8VgDApvjok/Vzo+x+Nrg==}
+  /@nuxt/schema@3.6.4:
+    resolution: {integrity: sha512-ipVMYc4hfzwpi781uInaKcW20CJi9revxs/cxD2SvZ8Lg6WsNNjiljad90ds935CdPjj+q/YI+L7hm7yJKV76A==}
     engines: {node: ^14.18.0 || >=16.10.0}
     dependencies:
       defu: 6.1.2
@@ -1910,7 +1910,7 @@ packages:
     resolution: {integrity: sha512-7kr2VDirYIXqyTHqaiWCrfQLgUjAa4qAHzykJOspMCFJWalHU9SVfnv+cTOKGqoXQ4TWOCd09tEd7sLlMFTEqw==}
     hasBin: true
     dependencies:
-      '@nuxt/kit': 3.6.3
+      '@nuxt/kit': 3.6.4
       chalk: 5.3.0
       ci-info: 3.8.0
       consola: 3.2.3
@@ -1938,13 +1938,13 @@ packages:
     resolution: {integrity: sha512-MSZza7dxccNb/p7nuzGF8/m4POaFpHzVhNdR7f4xahOpH7Ja02lFeYR+rHtoHIJC0yym4qriqv0mQ+Qf/R61bQ==}
     dev: true
 
-  /@nuxt/vite-builder@3.6.3(@types/node@20.2.3)(eslint@8.45.0)(stylelint@15.10.1)(typescript@5.0.4)(vue@3.3.4):
-    resolution: {integrity: sha512-VWxuZ/GKp3IYMSW34yl+K8rEiDjb6gFt2avU1y9oNjkW/ONBLtBP5P7SFVtlzqs3Oxlk9zWAQc8D1dubBC3fEQ==}
+  /@nuxt/vite-builder@3.6.4(@types/node@20.2.3)(eslint@8.45.0)(stylelint@15.10.2)(typescript@5.0.4)(vue@3.3.4):
+    resolution: {integrity: sha512-6gEo1V/2k1PPdfj7lMLD5uwAk3KPZRSRyl5pTOkTinVTmBetaZ9yZsrqC6esUc9St9OAJx+8Q7kHbV42A523VA==}
     engines: {node: ^14.18.0 || >=16.10.0}
     peerDependencies:
       vue: ^3.3.4
     dependencies:
-      '@nuxt/kit': 3.6.3
+      '@nuxt/kit': 3.6.4
       '@rollup/plugin-replace': 5.0.2(rollup@3.26.2)
       '@vitejs/plugin-vue': 4.2.3(vite@4.3.9)(vue@3.3.4)
       '@vitejs/plugin-vue-jsx': 3.0.1(vite@4.3.9)(vue@3.3.4)
@@ -1977,7 +1977,7 @@ packages:
       unplugin: 1.3.2
       vite: 4.3.9(@types/node@20.2.3)
       vite-node: 0.33.0(@types/node@20.2.3)
-      vite-plugin-checker: 0.6.1(eslint@8.45.0)(stylelint@15.10.1)(typescript@5.0.4)(vite@4.3.9)
+      vite-plugin-checker: 0.6.1(eslint@8.45.0)(stylelint@15.10.2)(typescript@5.0.4)(vite@4.3.9)
       vue: 3.3.4
       vue-bundle-renderer: 1.0.3
     transitivePeerDependencies:
@@ -3901,8 +3901,8 @@ packages:
       postcss: 8.4.24
     dev: true
 
-  /css-functions-list@3.1.0:
-    resolution: {integrity: sha512-/9lCvYZaUbBGvYUgYGFJ4dcYiyqdhSjG7IPVluoV8A1ILjkF7ilmhp1OGUz8n+nmBcu0RNrQAzgD8B6FJbrt2w==}
+  /css-functions-list@3.2.0:
+    resolution: {integrity: sha512-d/jBMPyYybkkLVypgtGv12R+pIFw4/f/IHtCTxWpZc8ofTYOPigIgmA6vu5rMHartZC+WuXhBUHfnyNUIQSYrg==}
     engines: {node: '>=12.22'}
     dev: true
 
@@ -6931,8 +6931,8 @@ packages:
       boolbase: 1.0.0
     dev: true
 
-  /nuxi@3.6.3:
-    resolution: {integrity: sha512-UVokD+9Pq0EoPp2nmkS5K96g/P1BWYEpYCmtX4XW5oZqvkPlEBBdellOWPEb9wgSCBjWYVNpxA2uIRb4yhg1Nw==}
+  /nuxi@3.6.4:
+    resolution: {integrity: sha512-Bd8scRiNEsBJ+gVumqClZjWTuj+CAMxKFKzrmD76uzGuJBdzK+rxAhRqgB+xby9wv7ONT1mb14an4EmumwpVbg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
     optionalDependencies:
@@ -6948,8 +6948,8 @@ packages:
       - supports-color
     dev: true
 
-  /nuxt@3.6.3(@types/node@20.2.3)(eslint@8.45.0)(stylelint@15.10.1)(typescript@5.0.4):
-    resolution: {integrity: sha512-FiD2Ok81wPvQjNBO61h1fA7aqL0EloNspDC05eoQZl13kCthn7103esJNS+KAZNlPcXOYruEe3rGt066Sb/TwA==}
+  /nuxt@3.6.4(@types/node@20.2.3)(eslint@8.45.0)(stylelint@15.10.2)(typescript@5.0.4):
+    resolution: {integrity: sha512-FmI3UJ/0Ak8UyfF7UPtAJFf+R4HV0jgffCMVy0+deja15ymMA4Z9ySkCNBMJ6DaXP3kofWT6UeRmJLhgatQHSg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
     peerDependencies:
@@ -6960,11 +6960,11 @@ packages:
         optional: true
     dependencies:
       '@nuxt/devalue': 2.0.2
-      '@nuxt/kit': 3.6.3
-      '@nuxt/schema': 3.6.3
+      '@nuxt/kit': 3.6.4
+      '@nuxt/schema': 3.6.4
       '@nuxt/telemetry': 2.3.1
       '@nuxt/ui-templates': 1.2.0
-      '@nuxt/vite-builder': 3.6.3(@types/node@20.2.3)(eslint@8.45.0)(stylelint@15.10.1)(typescript@5.0.4)(vue@3.3.4)
+      '@nuxt/vite-builder': 3.6.4(@types/node@20.2.3)(eslint@8.45.0)(stylelint@15.10.2)(typescript@5.0.4)(vue@3.3.4)
       '@types/node': 20.2.3
       '@unhead/ssr': 1.1.30
       '@unhead/vue': 1.1.30(vue@3.3.4)
@@ -6990,7 +6990,7 @@ packages:
       magic-string: 0.30.1
       mlly: 1.4.0
       nitropack: 2.5.2
-      nuxi: 3.6.3
+      nuxi: 3.6.4
       nypm: 0.2.2
       ofetch: 1.1.1
       ohash: 1.1.2
@@ -7657,13 +7657,13 @@ packages:
     resolution: {integrity: sha512-HvExULSwLqHLgUy1rl3ANIqCsvMS0WHss2UOsXhXnQaZ9VCc2oBvIpXrl00IUFT5ZDITME0o6oiXeiHr2SAIfw==}
     dev: true
 
-  /postcss-safe-parser@6.0.0(postcss@8.4.24):
+  /postcss-safe-parser@6.0.0(postcss@8.4.26):
     resolution: {integrity: sha512-FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.3.3
     dependencies:
-      postcss: 8.4.24
+      postcss: 8.4.26
     dev: true
 
   /postcss-selector-parser@6.0.13:
@@ -7736,6 +7736,15 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
+
+  /postcss@8.4.26:
+    resolution: {integrity: sha512-jrXHFF8iTloAenySjM/ob3gSj7pCu0Ji49hnjqzsgSRa50hkWCKD0HQ+gMNJkW38jBI68MpAAg7ZWwHwX8NMMw==}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      nanoid: 3.3.6
+      picocolors: 1.0.0
+      source-map-js: 1.0.2
+    dev: true
 
   /prebuild-install@7.1.1:
     resolution: {integrity: sha512-jAXscXWMcCK8GgCoHOfIr0ODh5ai8mj63L2nWrjuAgXE6tDyYGnx4/8o/rCgU+B4JSyZBKbeZqzhtwtC3ovxjw==}
@@ -8534,18 +8543,18 @@ packages:
       postcss-selector-parser: 6.0.13
     dev: true
 
-  /stylelint-order@6.0.3(stylelint@15.10.1):
+  /stylelint-order@6.0.3(stylelint@15.10.2):
     resolution: {integrity: sha512-1j1lOb4EU/6w49qZeT2SQVJXm0Ht+Qnq9GMfUa3pMwoyojIWfuA+JUDmoR97Bht1RLn4ei0xtLGy87M7d29B1w==}
     peerDependencies:
       stylelint: ^14.0.0 || ^15.0.0
     dependencies:
       postcss: 8.4.23
       postcss-sorting: 8.0.2(postcss@8.4.23)
-      stylelint: 15.10.1
+      stylelint: 15.10.2
     dev: true
 
-  /stylelint@15.10.1:
-    resolution: {integrity: sha512-CYkzYrCFfA/gnOR+u9kJ1PpzwG10WLVnoxHDuBA/JiwGqdM9+yx9+ou6SE/y9YHtfv1mcLo06fdadHTOx4gBZQ==}
+  /stylelint@15.10.2:
+    resolution: {integrity: sha512-UxqSb3hB74g4DTO45QhUHkJMjKKU//lNUAOWyvPBVPZbCknJ5HjOWWZo+UDuhHa9FLeVdHBZXxu43eXkjyIPWg==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -8556,7 +8565,7 @@ packages:
       balanced-match: 2.0.0
       colord: 2.9.3
       cosmiconfig: 8.2.0
-      css-functions-list: 3.1.0
+      css-functions-list: 3.2.0
       css-tree: 2.3.1
       debug: 4.3.4
       fast-glob: 3.3.0
@@ -8576,9 +8585,9 @@ packages:
       micromatch: 4.0.5
       normalize-path: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.24
+      postcss: 8.4.26
       postcss-resolve-nested-selector: 0.1.1
-      postcss-safe-parser: 6.0.0(postcss@8.4.24)
+      postcss-safe-parser: 6.0.0(postcss@8.4.26)
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -9246,7 +9255,7 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-checker@0.6.1(eslint@8.45.0)(stylelint@15.10.1)(typescript@5.0.4)(vite@4.3.9):
+  /vite-plugin-checker@0.6.1(eslint@8.45.0)(stylelint@15.10.2)(typescript@5.0.4)(vite@4.3.9):
     resolution: {integrity: sha512-4fAiu3W/IwRJuJkkUZlWbLunSzsvijDf0eDN6g/MGh6BUK4SMclOTGbLJCPvdAcMOQvVmm8JyJeYLYd4//8CkA==}
     engines: {node: '>=14.16'}
     peerDependencies:
@@ -9290,7 +9299,7 @@ packages:
       npm-run-path: 4.0.1
       semver: 7.5.3
       strip-ansi: 6.0.1
-      stylelint: 15.10.1
+      stylelint: 15.10.2
       tiny-invariant: 1.3.1
       typescript: 5.0.4
       vite: 4.3.9(@types/node@20.2.3)
