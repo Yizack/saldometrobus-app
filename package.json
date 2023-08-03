@@ -29,7 +29,6 @@
     "app:android:key": "openssl base64 -A -in saldometrobus_key.jks -out saldometrobus_key.jks.txt",
     "trapeze": "npx trapeze run config.yaml -y",
     "husky:install": "husky install",
-    "husky:msg": "husky add .husky/commit-msg  \"npx --no -- commitlint --edit ${1}\"",
     "release": "pnpm changelogen --bump && node scripts/newRelease.js && pnpm changelogen gh release",
     "release:patch": "pnpm changelogen --bump --patch && node scripts/newRelease.js && pnpm changelogen gh release",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --coverage"
