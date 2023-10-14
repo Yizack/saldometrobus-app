@@ -1,5 +1,43 @@
 # Changelog
 
+## v2.4.2
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.1...v2.4.2)
+
+### 🩹 Fixes
+
+- Limit fetch 4 cards limit ([a994d54](https://github.com/Yizack/saldometrobus-app/commit/a994d54))
+- Table heder color and bg ([0bb3fe6](https://github.com/Yizack/saldometrobus-app/commit/0bb3fe6))
+
+### 🏡 Chore
+
+- Update pnpm ([a974f3a](https://github.com/Yizack/saldometrobus-app/commit/a974f3a))
+- Update dependencies ([1327790](https://github.com/Yizack/saldometrobus-app/commit/1327790))
+- Dependency updates ([319f4ea](https://github.com/Yizack/saldometrobus-app/commit/319f4ea))
+- Updates ([7eca9bd](https://github.com/Yizack/saldometrobus-app/commit/7eca9bd))
+- Update lock ([0c4275b](https://github.com/Yizack/saldometrobus-app/commit/0c4275b))
+- No spa ([0ee8602](https://github.com/Yizack/saldometrobus-app/commit/0ee8602))
+- Update deps ([5a8cf21](https://github.com/Yizack/saldometrobus-app/commit/5a8cf21))
+- Update dependencies ([dc7d9c8](https://github.com/Yizack/saldometrobus-app/commit/dc7d9c8))
+- Change nuxt eslint config ([5c9d414](https://github.com/Yizack/saldometrobus-app/commit/5c9d414))
+- @nuxt/eslint-config ([f9f8b6e](https://github.com/Yizack/saldometrobus-app/commit/f9f8b6e))
+- DefineNuxtConfig ([c6e61c4](https://github.com/Yizack/saldometrobus-app/commit/c6e61c4))
+- Lint ([573c713](https://github.com/Yizack/saldometrobus-app/commit/573c713))
+- Dep updates ([29b3b01](https://github.com/Yizack/saldometrobus-app/commit/29b3b01))
+- Updates ([cd423d6](https://github.com/Yizack/saldometrobus-app/commit/cd423d6))
+- Updates and adjustments ([5bae6bf](https://github.com/Yizack/saldometrobus-app/commit/5bae6bf))
+- Remove ios folder ([fb6184a](https://github.com/Yizack/saldometrobus-app/commit/fb6184a))
+- Updates ([05790a5](https://github.com/Yizack/saldometrobus-app/commit/05790a5))
+- Lint ([6fedc5e](https://github.com/Yizack/saldometrobus-app/commit/6fedc5e))
+- Hash on server ([69b686d](https://github.com/Yizack/saldometrobus-app/commit/69b686d))
+- Updates ([095a8ac](https://github.com/Yizack/saldometrobus-app/commit/095a8ac))
+- Package updates ([22e33ad](https://github.com/Yizack/saldometrobus-app/commit/22e33ad))
+- Update desc ([131acd6](https://github.com/Yizack/saldometrobus-app/commit/131acd6))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.4.1
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.0...v2.4.1)
