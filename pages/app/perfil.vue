@@ -145,8 +145,8 @@ export default {
         this.dialog = t("updating_pass");
         showModal("progress-dialog");
         const { error, error_key } = await API.userPassUpdate({
-          current_password: await sha256(this.form.current_password),
-          new_password: await sha256(this.form.new_password),
+          current_password: this.form.current_password,
+          new_password: this.form.new_password,
           email: Auth().user.email,
           token: Auth().user.token
         });

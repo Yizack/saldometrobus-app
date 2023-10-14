@@ -81,7 +81,7 @@ export default {
         const { error, error_key } = await Auth().registro({
           nombre: this.form.nombre.trim(),
           email: this.form.email,
-          password: await sha256(this.form.password)
+          password: this.form.password
         });
         await sleep(0.5);
         hideModal("progress-dialog");

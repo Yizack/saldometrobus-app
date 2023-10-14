@@ -54,7 +54,7 @@ export default {
         showModal("progress-dialog");
         const { error, error_key } = await Auth().login({
           email: this.form.email,
-          password: await sha256(this.form.password)
+          password: this.form.password
         });
         await sleep(0.5);
         hideModal("progress-dialog");
