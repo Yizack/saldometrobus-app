@@ -7,16 +7,18 @@
 
 .nav-pills {
   --bs-nav-pills-link-active-color: #fff;
+
   font-size: 0.80rem;
 }
 
 .nav-pills .nav-link {
   background: var(--bs-primary);
   color: #FFF;
-  padding-bottom: 1rem;
-  padding-left: .5rem;
-  padding-right: .5rem;
-  padding-top: 1rem;
+  padding: 1rem .5rem;
+}
+
+.nav-link:hover {
+  background: var(--nav-hover);
 }
 
 .nav-pills .nav-link:hover {
@@ -25,8 +27,4 @@
 
 .nav-pills .nav-link.active {
   background: var(--primary-dark)!important;
-}
-
-.nav-link:hover {
-  background: var(--nav-hover);
 }

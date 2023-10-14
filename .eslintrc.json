@@ -43,6 +43,7 @@
     "vue/no-multiple-template-root": ["off"]
   },
   "ignorePatterns": [
+    "android/**/*",
     "node_modules/**/*",
     ".nuxt/**/*",
     "dist/**/*",

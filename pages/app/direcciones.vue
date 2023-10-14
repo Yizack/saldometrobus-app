@@ -51,11 +51,11 @@ definePageMeta({ layout: "main" });
               <div v-for="(step, key) in leg.steps" :key="key" class="d-flex align-items-center flex-wrap">
                 <template v-if="key < leg.steps.length - 1">
                   <template v-if="step.travel_mode === 'WALKING'">
-                    <img class="travel_icon" src="https://maps.gstatic.com/mapfiles/transit/iw2/6/walk.png" width="20" height="20">
+                    <img class="travel-icon" src="https://maps.gstatic.com/mapfiles/transit/iw2/6/walk.png" width="20" height="20">
                   </template>
                   <template v-if="step.travel_mode === 'TRANSIT'">
                     <div class="d-flex align-items-center flex-wrap">
-                      <img class="travel_icon" :src="step.transit.line.vehicle.icon" width="20" height="20">
+                      <img class="travel-icon" :src="step.transit.line.vehicle.icon" width="20" height="20">
                       <div v-if="step.transit">
                         <div class="my-2 small">
                           <span class="px-1 rounded shadow-sm" :style="{backgroundColor: step.transit.line.color, color: step.transit.line.text_color }">{{ step.transit.line.short_name }}</span>

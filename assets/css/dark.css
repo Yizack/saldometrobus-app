@@ -1,11 +1,11 @@
-[data-bs-theme=dark] {
+[data-bs-theme="dark"] {
   --bs-dark: #5a5c69;
   --bs-dark-rgb: 90, 92, 105;
   --bs-primary: #4e73df;
   --bs-primary-rgb: 78, 115, 223;
   --primary-hover: #617fd6;
   --primary-dark: #405FB9;
-  --bs-primary-text-emphasis: #FFFFFF;
+  --bs-primary-text-emphasis: #FFF;
   --bs-success: #1cc88a;
   --success-hover: #18b37a;
   --bs-success-rgb: 28, 200, 138;
@@ -27,6 +27,6 @@
   --border: #373737;
 }
 
-[data-bs-theme=dark] .travel_icon {
+[data-bs-theme="dark"] .travel-icon {
   filter: invert(1);
 }

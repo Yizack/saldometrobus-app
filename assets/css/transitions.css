@@ -3,8 +3,8 @@
 .page-left-leave-active,
 .page-right-leave-active {
   height: 100%;
-  height: -moz-available;
-  height: -webkit-fill-available;
+  height: available;
+  height: fill-available;
   height: stretch;
   left: 0;
   position: fixed;

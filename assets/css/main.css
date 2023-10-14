@@ -1,6 +1,6 @@
 body {
   caret-color: var(--bs-secondary);
-  font-family: "Nunito";
+  font-family: Nunito, sans-serif;
   height: 100%;
   overflow-x: hidden;
 }
@@ -29,7 +29,7 @@ a {
 
 .nuxt-loading-indicator {
   background: repeating-linear-gradient(to right, var(--primary-hover) 0%, var(--bs-secondary) 50%,var(--primary-hover) 100%)!important;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgb(255 255 255 / 50%);
 }
 
 .router-link-active.router-link-exact-active.nav-link {

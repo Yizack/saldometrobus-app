@@ -6,6 +6,7 @@
     "rule-empty-line-before": ["always-multi-line", {"except": ["first-nested"]}]
   },
   "ignoreFiles": [
+    "android/**/*",
     "node_modules/**/*",
     ".nuxt/**/*",
     "dist/**/*",
