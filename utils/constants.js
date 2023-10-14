@@ -261,8 +261,8 @@ export const CONST = {
       name: "Wrangler",
       link: "https://github.com/cloudflare/workers-sdk",
       description: {
-        en: "Home to Wrangler, the CLI for Cloudflare Workers",
-        es: "Hogar de Wrangler, la CLI para Cloudflare Workers"
+        en: "The CLI for Cloudflare Workers",
+        es: "La CLI para Cloudflare Workers"
       },
       version: "3.13.1"
     },
