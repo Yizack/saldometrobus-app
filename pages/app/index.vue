@@ -67,6 +67,7 @@ definePageMeta({ layout: "main" });
       </div>
     </div>
     <ProgressDialog :message="progress" />
+    <LimitDialog />
   </section>
 </template>
 
@@ -77,12 +78,19 @@ export default {
     return {
       tarjetas: [],
       size: 100,
+      fetched: 0,
+      fetchLimit: 4,
       form: {
         numero: "",
         nombre: ""
       },
       progress: ""
     };
+  },
+  computed: {
+    isFetchLimited () {
+      return this.fetched > this.fetchLimit;
+    }
   },
   async mounted () {
     if (Auth().exists) {
@@ -92,18 +100,47 @@ export default {
         await sleep(0.5);
         showModal("progress-dialog");
         const { email, token } = Auth().user;
-        const tarjetas_api = await API.getDetallesTarjetas({ email, token }) || [];
-        for (const tarjeta of tarjetas_api) {
-          const { changes } = await DB.insertTarjeta(tarjeta);
-          await DB.insertMovimientos(tarjeta);
-          if (changes > 0) {
-            await CAPACITOR.showToast(`${t("tarjeta_added")}: ${tarjeta.numero}`);
+        const { error, error_key, tarjetas } = await API.getTarjetas({ email, token }) || [];
+        let tarjetasApi = [];
+
+        if (error) {
+          await CAPACITOR.showToast(t(error_key), "long");
+        }
+
+        if (tarjetas) {
+          this.fetched = tarjetas.length;
+          if (this.isFetchLimited) {
+            tarjetasApi = tarjetas || [];
+          }
+          else {
+            tarjetasApi = await API.getDetallesTarjetas({ email, token }) || [];
           }
         }
-        this.tarjetas = await DB.getTarjetas();
+
+        for (const tarjeta of tarjetasApi) {
+          const { changes } = await DB.insertTarjeta(tarjeta);
+          if (changes > 0 && !this.isFetchLimited) {
+            await DB.insertMovimientos(tarjeta);
+          }
+        }
+
+        const getTarjetas = await DB.getTarjetas();
+        const entries = (getTarjetas).entries();
+
+        for (const [i, tarjeta] of entries) {
+          this.tarjetas.push(tarjeta);
+          await CAPACITOR.showToast(`${t("tarjeta_added")}: ${tarjeta.numero}`);
+          if (getTarjetas.length - 1 === i) break;
+          await sleep(0.5);
+        }
+
         await Auth().setUpdated();
         await sleep(0.5);
         hideModal("progress-dialog");
+        if (this.isFetchLimited) {
+          await sleep(0.5);
+          showModal("limit-dialog");
+        }
       }
     }
   },
