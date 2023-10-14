@@ -4,8 +4,8 @@
     <p class="m-0">{{ t("mov_4_semanas") }}</p>
     <div class="table-responsive">
       <table v-if="tarjeta.movimientos.length > 0" class="table table-hover shadow small">
-        <thead class="bg-primary">
-          <tr class="text-white small">
+        <thead class="table-primary">
+          <tr class="small">
             <th scope="col">{{ t("tipo") }}</th>
             <th scope="col">{{ t("fecha_mov") }}</th>
             <th class="pe-0" />
