@@ -1,6 +1,6 @@
 class SaldometrobusAPI {
   constructor () {
-    this.base = "https://saldometrobus.yizack.com";
+    this.base = process.dev ? "http://localhost:5173" : "https://saldometrobus.yizack.com";
     this.version = "v2";
     this.baseAPI = `${this.base}/api/${this.version}`;
     this.baseDB = `${this.base}/database/${this.version}`;

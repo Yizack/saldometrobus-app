@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port=5173",
+    "dev": "nuxt dev --port=5174",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare && pnpm husky:install",
@@ -34,7 +34,8 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --coverage",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint --ext .ts,.js,.vue --fix --ignore-path .gitignore .",
-    "lint:stylelint": "stylelint \"**/*.css\" --fix"
+    "lint:stylelint": "stylelint \"**/*.css\" --fix",
+    "dev:build": "pnpm app:mibus && pnpm generate && pnpm app:clean && pnpm sync"
   },
   "devDependencies": {
     "@capacitor-community/sqlite": "^5.4.1",
