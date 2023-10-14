@@ -178,20 +178,20 @@ export const CONST = {
       version: devDependencies["@trapezedev/configure"]
     },
     {
-      name: "PHP Mailer",
-      link: "https://github.com/PHPMailer/PHPMailer",
+      name: "drizzle-orm",
+      link: "https://github.com/drizzle-team/drizzle-orm",
       description: {
-        en: "PHPMailer is a full-featured email creation and transfer class for PHP",
-        es: "PHPMailer es una clase de creación y transferencia de correo electrónico con todas las funciones para PHP"
+        en: "TypeScript ORM that feels like writing SQL",
+        es: "ORM de TypeScript que se siente como escribir SQL"
       },
-      version: "6.8.0"
+      version: "0.28.6"
     },
     {
-      name: "pgAdmin",
-      link: "https://www.pgadmin.org",
+      name: "better-sqlite3",
+      link: "https://github.com/WiseLibs/better-sqlite3",
       description: {
-        en: "The Open Source Administration and Development Platform for PostgreSQL",
-        es: "La plataforma de administración y desarrollo de código abierto para PostgreSQL"
+        en: "The fastest and simplest library for SQLite3 in Node.js",
+        es: "La biblioteca más rápida y simple para SQLite3 en Node.js"
       }
     },
     {
@@ -256,6 +256,24 @@ export const CONST = {
         es: "Cargue un archivo o directorio como un artefacto separado para una ejecución de flujo de trabajo"
       },
       version: 3
+    },
+    {
+      name: "Wrangler",
+      link: "https://github.com/cloudflare/workers-sdk",
+      description: {
+        en: "Home to Wrangler, the CLI for Cloudflare Workers",
+        es: "Hogar de Wrangler, la CLI para Cloudflare Workers"
+      },
+      version: "3.13.1"
+    },
+    {
+      name: "Mustache",
+      link: "https://github.com/janl/mustache.js",
+      description: {
+        en: "Minimal templating with {{mustaches}} in JavaScript",
+        es: "Plantillas con {{mustaches}} en JavaScript"
+      },
+      version: "4.2.0"
     }
   ]
 };
