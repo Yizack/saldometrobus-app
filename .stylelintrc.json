@@ -1,13 +1,14 @@
 {
-  "plugins": ["stylelint-order"],
+  "extends": "stylelint-config-standard",
   "rules": {
-    "declaration-block-trailing-semicolon": "always",
-    "declaration-bang-space-after": "never",
-    "block-opening-brace-space-before": "always",
-    "string-quotes": "double",
-    "declaration-colon-space-after": "always",
     "length-zero-no-unit": true,
-    "rule-empty-line-before": ["always-multi-line", {"except": ["first-nested"]}],
-    "order/properties-alphabetical-order": true
-  }
+    "property-no-vendor-prefix": null,
+    "rule-empty-line-before": ["always-multi-line", {"except": ["first-nested"]}]
+  },
+  "ignoreFiles": [
+    "node_modules/**/*",
+    ".nuxt/**/*",
+    "dist/**/*",
+    ".output/**/*"
+  ]
 }

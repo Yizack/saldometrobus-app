@@ -148,7 +148,7 @@ class Database {
     let size = movimientos.length;
     if (!size) {
       return false;
-    };
+    }
     while (size--) {
       const movimiento = movimientos[size].tipo;
       const fecha = convertToTime(movimientos[size].fecha_hora);
