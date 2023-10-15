@@ -49,22 +49,16 @@ class SaldometrobusAPI {
     }
   }
 
-  async getDetallesTarjetas (payload) {
-    const { error, tarjetas } = await this.getTarjetas(payload);
-    if (!error) {
-      const arr = [];
-      for (const tarjeta of tarjetas) {
-        const data = await CAPACITOR.doGet(`${this.tarjetasAPI}/${tarjeta.numero}`);
-        if (data.status === "ok") {
-          Object.assign(data.tarjeta, tarjeta);
-          arr.push(data.tarjeta);
-        }
+  async getDetallesTarjetas (tarjetas) {
+    const arr = [];
+    for (const tarjeta of tarjetas) {
+      const data = await CAPACITOR.doGet(`${this.tarjetasAPI}/${tarjeta.numero}`).catch(() => ({}));
+      if (data.status === "ok") {
+        Object.assign(data.tarjeta, tarjeta);
+        arr.push(data.tarjeta);
       }
-      return arr;
     }
-    else {
-      return false;
-    }
+    return arr;
   }
 
   deleteTarjeta (payload) {

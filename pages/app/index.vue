@@ -113,7 +113,7 @@ export default {
             tarjetasApi = tarjetas || [];
           }
           else {
-            tarjetasApi = await API.getDetallesTarjetas({ email, token }) || [];
+            tarjetasApi = await API.getDetallesTarjetas(tarjetas) || [];
           }
         }
 
