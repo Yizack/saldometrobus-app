@@ -1,5 +1,5 @@
 <template>
-  <!-- Progress Dialog -->
+  <!-- Limit Dialog -->
   <div id="limit-dialog" class="modal fade" tabindex="-1" aria-labelledby="progress-dialog-label" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
