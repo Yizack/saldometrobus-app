@@ -1,5 +1,21 @@
 # Changelog
 
+## v2.4.3
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.2...v2.4.3)
+
+### 🩹 Fixes
+
+- No double fetch db tarjetas ([89d52d6](https://github.com/Yizack/saldometrobus-app/commit/89d52d6))
+
+### 🏡 Chore
+
+- Comment ([d51225f](https://github.com/Yizack/saldometrobus-app/commit/d51225f))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.4.2
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.1...v2.4.2)
