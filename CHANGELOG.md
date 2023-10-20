@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.5.3
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.5.2...v2.5.3)
+
+### 🩹 Fixes
+
+- InstallStatus ([9a9afb9](https://github.com/Yizack/saldometrobus-app/commit/9a9afb9))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.5.2
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.5.1...v2.5.2)
