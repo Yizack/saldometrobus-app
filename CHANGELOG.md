@@ -1,5 +1,18 @@
 # Changelog
 
+## v2.4.5
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.4...v2.4.5)
+
+### 🏡 Chore
+
+- No prerender other routes ([636c72f](https://github.com/Yizack/saldometrobus-app/commit/636c72f))
+- Updates ([6a6c85f](https://github.com/Yizack/saldometrobus-app/commit/6a6c85f))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.4.4
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.3...v2.4.4)
