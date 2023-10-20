@@ -125,8 +125,8 @@ class CapacitorPlugins {
   }
 
   addFlexibleListener () {
-    AppUpdate.addListener("onFlexibleUpdateStateChange", async (state) => {
-      switch(state.installStatus) {
+    AppUpdate.addListener("onFlexibleUpdateStateChange", async ({ installStatus }) => {
+      switch(installStatus) {
       case FlexibleUpdateInstallStatus.DOWNLOADING:
         this.showToast(t("downloading_update"));
         break;
