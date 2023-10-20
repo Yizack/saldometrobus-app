@@ -2,9 +2,7 @@
   <div>
     <h4 class="text-center mt-1 py-2"><b>{{ tarjeta.nombre }}</b></h4>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow text-center">
-      <img v-if="tarjeta.tipo === t('tarjeta_rapipass')" class="img-fluid" src="/images/rapipass_brand.webp" :width="size" :height="size">
-      <img v-else-if="tarjeta.tipo === t('tarjeta_normal')" class="img-fluid" src="/images/metro_metrobus_brand.webp" :width="size" :height="size">
-      <img v-else src="/images/metrobus_brand.webp" class="img-fluid" :width="size" :height="size">
+      <img class="img-fluid my-4" :src="`/images/${getCardImage(tarjeta.tipo, true)}`" :width="size.width" :height="size.height">
       <h3><b>{{ tarjeta.numero }}</b></h3>
     </div>
     <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
@@ -110,7 +108,10 @@ export default {
   },
   data () {
     return {
-      size: 200,
+      size: {
+        width: 250,
+        height: 158
+      },
       saldoBar: {
         percent: 0,
         color: ""

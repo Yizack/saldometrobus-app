@@ -18,12 +18,10 @@ definePageMeta({ layout: "main" });
         </div>
         <div class="actions d-flex flex-column">
           <div class="image mb-2 mt-2">
-            <img v-if="tarjeta.tipo === t('tarjeta_rapipass')" class="img-fluid" src="/images/rapipass.webp" :width="size" :height="size">
-            <img v-else-if="tarjeta.tipo === t('tarjeta_normal')" class="img-fluid" src="/images/metro_metrobus.webp" :width="size" :height="size">
-            <img v-else src="/images/metrobus.webp" class="img-fluid" :width="size" :height="size">
+            <img class="img-fluid rounded shadow-sm" :src="`/images/${getCardImage(tarjeta.tipo)}`" :width="size.width" :height="size.height">
           </div>
           <div class="d-grid">
-            <button class="btn btn-primary btn-sm" role="button" @click="$event.stopPropagation(); updateTarjeta(tarjeta.numero)"><Icon name="refresh" size="md" /></button>
+            <button class="btn btn-primary btn-sm" role="button" @click="updateTarjeta($event, tarjeta.numero)"><Icon name="refresh" size="md" /></button>
           </div>
         </div>
       </div>
@@ -77,7 +75,10 @@ export default {
   data () {
     return {
       tarjetas: [],
-      size: 100,
+      size: {
+        width: 100,
+        height: 63
+      },
       fetched: 0,
       fetchLimit: 4,
       form: {
@@ -195,7 +196,8 @@ export default {
     openCard (numero) {
       this.$router.push(`${numero}`);
     },
-    async updateTarjeta (numero) {
+    async updateTarjeta (e, numero) {
+      e.stopPropagation();
       this.progress = t("actualizando_tarjeta");
       showModal("progress-dialog");
       const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero);

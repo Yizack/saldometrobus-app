@@ -101,6 +101,8 @@ export default {
   por_hora: "Por hora",
   tarjeta_normal: "Tarjeta Normal",
   tarjeta_rapipass: "Tarjeta Rapipass",
+  tarjeta_escolar: "Tarjeta Escolar",
+  tarjeta_jubilado: "Tarjeta Jubilado",
   tarjetas_note: "Presiona tu tarjeta para más información.",
   rango: "Rango",
   no_cambio: "No hubo cambios en el saldo.",
@@ -162,5 +164,5 @@ export default {
   rate: "Calificar app",
   limit_tittle: "Aviso: Límite de lectura de información",
   limit_message: "Su cuenta posee demasiadas tarejetas vinculadas, al superar 4 tarjetas vinculadas, la información de estas no se obtendrá automáticamente al iniciar sesión, será necesario que pulses el botón de actualizar en cada una de ellas para visualizar su información, saldo y movimientos. Esto es una medida para evitar la sobrecarga en masa de datos en nuestro servidor.",
-  entendido: "Entendido",
+  entendido: "Entendido"
 };

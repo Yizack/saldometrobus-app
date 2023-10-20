@@ -80,3 +80,18 @@ export const formatHour = (hour) => {
 export const openInNewTab = (url) => {
   window.open(url, "_blank");
 };
+
+export const getCardImage = (tipo, brand = false) => {
+  switch (tipo) {
+  case t("tarjeta_normal"):
+    return brand ? "metro_metrobus_brand.webp" : "metro_metrobus.webp";
+  case t("tarjeta_rapipass"):
+    return brand ? "rapipass_brand.webp" : "rapipass.webp";
+  case t("tarjeta_escolar"):
+    return brand ? "escolar_brand.webp" : "escolar.webp";
+  case t("tarjeta_jubilado"):
+    return brand ? "jubilado_brand.webp" : "jubilado.webp";
+  default:
+    return brand ? "metrobus_brand.webp" : "metrobus.webp";
+  }
+};

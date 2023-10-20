@@ -69,11 +69,19 @@ class Database {
     let tarjeta = {};
     if (values.length) {
       tarjeta = values[0];
-      if (tarjeta.tipo === "Tarjeta Normal al Portador b") {
+      switch (tarjeta.tipo) {
+      case "Tarjeta Normal al Portador b":
         tarjeta.tipo = t("tarjeta_normal");
-      }
-      else if (tarjeta.tipo === "Tarjeta Rapipass") {
+        break;
+      case "Tarjeta Rapipass":
         tarjeta.tipo = t("tarjeta_rapipass");
+        break;
+      case "Escolar 505":
+        tarjeta.tipo = t("tarjeta_escolar");
+        break;
+      case "Jubilado":
+        tarjeta.tipo = t("tarjeta_jubilado");
+        break;
       }
       if (tarjeta.estado === "Contrato Activo") {
         tarjeta.estado = t("contrato_activo");
@@ -92,11 +100,19 @@ class Database {
     const { values } = await this.query(statement);
     if (values.length) {
       values.forEach((tarjeta) => {
-        if (tarjeta.tipo === "Tarjeta Normal al Portador b") {
+        switch (tarjeta.tipo) {
+        case "Tarjeta Normal al Portador b":
           tarjeta.tipo = t("tarjeta_normal");
-        }
-        else if (tarjeta.tipo === "Tarjeta Rapipass") {
+          break;
+        case "Tarjeta Rapipass":
           tarjeta.tipo = t("tarjeta_rapipass");
+          break;
+        case "Escolar 505":
+          tarjeta.tipo = t("tarjeta_escolar");
+          break;
+        case "Jubilado":
+          tarjeta.tipo = t("tarjeta_jubilado");
+          break;
         }
         if (tarjeta.estado === "Contrato Activo") {
           tarjeta.estado = t("contrato_activo");
