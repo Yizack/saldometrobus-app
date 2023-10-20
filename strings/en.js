@@ -166,5 +166,9 @@ export default {
   limit_message: "Your account has too many linked cards. Once you exceed 4 linked cards, their information will not be automatically retrieved upon login. You will need to click the update button for each one to fetch their details, balance, and transactions. This is a measure to prevent mass data overload on our server.",
   entendido: "Understood",
   downloading_update: "Downloading update...",
-  error_update: "Error downloading update"
+  error_update: "Error downloading update",
+  movimiento: "Transaction",
+  lugar: "Location",
+  mov_note: "Press a transaction for more information.",
+  transaccion_n: "Transaction #"
 };

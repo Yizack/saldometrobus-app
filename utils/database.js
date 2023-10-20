@@ -16,7 +16,14 @@ const TABLE = {
       movimiento TEXT,
       fecha TEXT,
       monto TEXT,
-      saldo TEXT)`
+      saldo TEXT,
+      lugar TEXT,
+      transaccion TEXT)`
+};
+
+const ALTER = {
+  lugar: "ALTER TABLE movimientos ADD lugar TEXT",
+  transaccion: "ALTER TABLE movimientos ADD transaccion TEXT"
 };
 
 class Database {
@@ -52,6 +59,13 @@ class Database {
       { statement: TABLE.tarjetas, values: [] },
       { statement: TABLE.movimientos, values: [] }
     ]);
+
+    try {
+      await this.query("SELECT lugar, transaccion FROM movimientos limit 1");
+    }
+    catch (e) {
+      await this.execute([ALTER.lugar, ALTER.transaccion]);
+    }
   }
 
   // Tarjetas
@@ -174,8 +188,10 @@ class Database {
       const fecha = convertToTime(movimientos[size].fecha_hora);
       const monto = movimientos[size].monto;
       const saldo = movimientos[size].saldo_tarjeta;
-      const statement = "INSERT INTO movimientos VALUES (?, ?, ?, ?, ?)";
-      const values = [numero, movimiento, fecha, monto, saldo];
+      const lugar = movimientos[size].lugar;
+      const transaccion = movimientos[size].transaccion;
+      const statement = "INSERT INTO movimientos VALUES (?, ?, ?, ?, ?, ?, ?)";
+      const values = [numero, movimiento, fecha, monto, saldo, lugar, transaccion];
       statements.push({ statement, values });
     }
     return this.execute(statements);
