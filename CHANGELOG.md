@@ -1,5 +1,62 @@
 # Changelog
 
+## v2.5.0
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.3...v2.5.0)
+
+### 🚀 Enhancements
+
+- Cards, updates, no prerender other routes ([89c72a5](https://github.com/Yizack/saldometrobus-app/commit/89c72a5))
+
+### 🏡 Chore
+
+- Tipos de tarjetas ([d61def8](https://github.com/Yizack/saldometrobus-app/commit/d61def8))
+- Aditional cases ([d69b414](https://github.com/Yizack/saldometrobus-app/commit/d69b414))
+- Flexible updates ([48671d5](https://github.com/Yizack/saldometrobus-app/commit/48671d5))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
+## v2.4.6
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.5...v2.4.6)
+
+### 🩹 Fixes
+
+- Missing enum ([c8b01bc](https://github.com/Yizack/saldometrobus-app/commit/c8b01bc))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
+## v2.4.5
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.4...v2.4.5)
+
+### 🏡 Chore
+
+- No prerender other routes ([636c72f](https://github.com/Yizack/saldometrobus-app/commit/636c72f))
+- Updates ([6a6c85f](https://github.com/Yizack/saldometrobus-app/commit/6a6c85f))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
+## v2.4.4
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.3...v2.4.4)
+
+### 🏡 Chore
+
+- Tipos de tarjetas ([d61def8](https://github.com/Yizack/saldometrobus-app/commit/d61def8))
+- Aditional cases ([d69b414](https://github.com/Yizack/saldometrobus-app/commit/d69b414))
+- Flexible updates ([48671d5](https://github.com/Yizack/saldometrobus-app/commit/48671d5))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.4.3
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.2...v2.4.3)
