@@ -76,9 +76,11 @@ class Database {
       case "Tarjeta Rapipass":
         tarjeta.tipo = t("tarjeta_rapipass");
         break;
+      case "Tarjeta Escolar":
       case "Escolar 505":
         tarjeta.tipo = t("tarjeta_escolar");
         break;
+      case "Tarjeta Jubilado":
       case "Jubilado":
         tarjeta.tipo = t("tarjeta_jubilado");
         break;
@@ -107,9 +109,11 @@ class Database {
         case "Tarjeta Rapipass":
           tarjeta.tipo = t("tarjeta_rapipass");
           break;
+        case "Tarjeta Escolar":
         case "Escolar 505":
           tarjeta.tipo = t("tarjeta_escolar");
           break;
+        case "Tarjeta Jubilado":
         case "Jubilado":
           tarjeta.tipo = t("tarjeta_jubilado");
           break;
