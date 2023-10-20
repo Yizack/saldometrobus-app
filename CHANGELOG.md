@@ -1,5 +1,24 @@
 # Changelog
 
+## v2.5.1
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.5.0...v2.5.1)
+
+### 🩹 Fixes
+
+- Complete flexible update ([be29fea](https://github.com/Yizack/saldometrobus-app/commit/be29fea))
+- Complete flexible update ([1281b0b](https://github.com/Yizack/saldometrobus-app/commit/1281b0b))
+
+### 🏡 Chore
+
+- Movimientos info ([b86a724](https://github.com/Yizack/saldometrobus-app/commit/b86a724))
+- Strong modal headers ([ad3679f](https://github.com/Yizack/saldometrobus-app/commit/ad3679f))
+- RemoveAllListeners ([3927d4c](https://github.com/Yizack/saldometrobus-app/commit/3927d4c))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.5.0
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.3...v2.5.0)
