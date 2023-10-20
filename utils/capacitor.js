@@ -7,6 +7,7 @@ import { Dialog } from "@capacitor/dialog";
 import { Network } from "@capacitor/network";
 import { Browser } from "@capacitor/browser";
 import { Clipboard } from "@capacitor/clipboard";
+import { AppUpdate } from "@capawesome/capacitor-app-update";
 
 const error_conexion = { error: true, error_key: "error_conexion" };
 const error_response = { error: true, error_key: "error" };
@@ -106,6 +107,16 @@ class CapacitorPlugins {
 
   onBack (callback = () => {}) {
     App.addListener("backButton", ({ canGoBack }) => callback(canGoBack));
+  }
+
+  async startFlexibleUpdate () {
+    const result = await AppUpdate.getAppUpdateInfo();
+    if (result.updateAvailability !== AppUpdateAvailability.UPDATE_AVAILABLE) {
+      return;
+    }
+    if (result.flexibleUpdateAllowed) {
+      await AppUpdate.startFlexibleUpdate();
+    }
   }
 }
 

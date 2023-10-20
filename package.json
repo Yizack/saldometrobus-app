@@ -53,6 +53,7 @@
     "@capacitor/splash-screen": "^5.0.6",
     "@capacitor/status-bar": "^5.0.6",
     "@capacitor/toast": "^5.0.6",
+    "@capawesome/capacitor-app-update": "^5.0.1",
     "@commitlint/cli": "^17.8.0",
     "@commitlint/config-conventional": "^17.8.0",
     "@nuxt/eslint-config": "^0.2.0",

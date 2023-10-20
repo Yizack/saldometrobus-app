@@ -67,6 +67,9 @@ devDependencies:
   '@capacitor/toast':
     specifier: ^5.0.6
     version: 5.0.6(@capacitor/core@5.5.0)
+  '@capawesome/capacitor-app-update':
+    specifier: ^5.0.1
+    version: 5.0.1(@capacitor/core@5.5.0)
   '@commitlint/cli':
     specifier: ^17.8.0
     version: 17.8.0
@@ -882,6 +885,14 @@ packages:
 
   /@capacitor/toast@5.0.6(@capacitor/core@5.5.0):
     resolution: {integrity: sha512-djkRHVT8YtLJC1vvOnDU3EfAHfQYqAD7LYEXmSmhYuTnXRIggX93m/NkazwLnnpr95kDbs2VVPM/J6dqqYuJng==}
+    peerDependencies:
+      '@capacitor/core': ^5.0.0
+    dependencies:
+      '@capacitor/core': 5.5.0
+    dev: true
+
+  /@capawesome/capacitor-app-update@5.0.1(@capacitor/core@5.5.0):
+    resolution: {integrity: sha512-A5I9hEFwqXYJ/Mc3xx+A0LLm0VrpPTcST9wQ08Mh+ybReDEUNwC+JEEppurJX+/tAUttnB6bZ/Kjh1jqsYPTkA==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
