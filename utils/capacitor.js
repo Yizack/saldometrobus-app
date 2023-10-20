@@ -116,6 +116,7 @@ class CapacitorPlugins {
     }
     if (result.flexibleUpdateAllowed) {
       await AppUpdate.startFlexibleUpdate();
+      await this.showToast(t("downloading_update"));
       this.addFlexibleListener();
     }
   }
@@ -127,15 +128,13 @@ class CapacitorPlugins {
   addFlexibleListener () {
     AppUpdate.addListener("onFlexibleUpdateStateChange", async ({ installStatus }) => {
       switch(installStatus) {
-      case FlexibleUpdateInstallStatus.DOWNLOADING:
-        this.showToast(t("downloading_update"));
-        break;
       case FlexibleUpdateInstallStatus.DOWNLOADED:
         await AppUpdate.removeAllListeners();
         await this.completeFlexibleUpdate();
         break;
       case FlexibleUpdateInstallStatus.FAILED:
         this.showToast(t("error_update"));
+        await AppUpdate.removeAllListeners();
         break;
       }
     });
