@@ -164,5 +164,7 @@ export default {
   rate: "Calificar app",
   limit_tittle: "Aviso: Límite de lectura de información",
   limit_message: "Su cuenta posee demasiadas tarejetas vinculadas, al superar 4 tarjetas vinculadas, la información de estas no se obtendrá automáticamente al iniciar sesión, será necesario que pulses el botón de actualizar en cada una de ellas para visualizar su información, saldo y movimientos. Esto es una medida para evitar la sobrecarga en masa de datos en nuestro servidor.",
-  entendido: "Entendido"
+  entendido: "Entendido",
+  downloading_update: "Descargando actualización...",
+  error_update: "Error al descargar la actualización"
 };

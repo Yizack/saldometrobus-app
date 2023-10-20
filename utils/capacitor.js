@@ -115,8 +115,31 @@ class CapacitorPlugins {
       return;
     }
     if (result.flexibleUpdateAllowed) {
-      await AppUpdate.startFlexibleUpdate();
+      if (this.isAndroid()) {
+        await this.addFlexibleListener();
+        await AppUpdate.startFlexibleUpdate();
+      }
     }
+  }
+
+  async completeFlexibleUpdate () {
+    await AppUpdate.completeFlexibleUpdate();
+  }
+
+  async addFlexibleListener () {
+    AppUpdate.addListener("onFlexibleUpdateStateChange", async (state) => {
+      switch(state) {
+      case "DOWNLOADING":
+        this.showToast(t("downloading_update"));
+        break;
+      case "DOWNLOADED":
+        await this.completeFlexibleUpdate();
+        break;
+      case "FAILED":
+        this.showToast(t("error_update"));
+        break;
+      }
+    });
   }
 }
 
