@@ -264,7 +264,7 @@ export const CONST = {
         en: "The CLI for Cloudflare Workers",
         es: "La CLI para Cloudflare Workers"
       },
-      version: "3.13.1"
+      version: "3.14.0"
     },
     {
       name: "Mustache",
