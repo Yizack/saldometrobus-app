@@ -1,5 +1,21 @@
 # Changelog
 
+## v2.5.2
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.5.1...v2.5.2)
+
+### 🏡 Chore
+
+- Wrangler updated ([7e939e6](https://github.com/Yizack/saldometrobus-app/commit/7e939e6))
+
+### 🎨 Styles
+
+- Adjust yellow color ([f4225cc](https://github.com/Yizack/saldometrobus-app/commit/f4225cc))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.5.1
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.5.0...v2.5.1)
