@@ -7,7 +7,7 @@ import { Dialog } from "@capacitor/dialog";
 import { Network } from "@capacitor/network";
 import { Browser } from "@capacitor/browser";
 import { Clipboard } from "@capacitor/clipboard";
-import { AppUpdate, AppUpdateAvailability } from "@capawesome/capacitor-app-update";
+import { AppUpdate, AppUpdateAvailability, FlexibleUpdateInstallStatus } from "@capawesome/capacitor-app-update";
 
 const error_conexion = { error: true, error_key: "error_conexion" };
 const error_response = { error: true, error_key: "error" };
@@ -115,8 +115,8 @@ class CapacitorPlugins {
       return;
     }
     if (result.flexibleUpdateAllowed) {
-      this.addFlexibleListener();
       await AppUpdate.startFlexibleUpdate();
+      this.addFlexibleListener();
     }
   }
 
@@ -126,15 +126,15 @@ class CapacitorPlugins {
 
   addFlexibleListener () {
     AppUpdate.addListener("onFlexibleUpdateStateChange", async (state) => {
-      switch(state) {
-      case "DOWNLOADING":
+      switch(state.installStatus) {
+      case FlexibleUpdateInstallStatus.DOWNLOADING:
         this.showToast(t("downloading_update"));
         break;
-      case "DOWNLOADED":
-        await this.completeFlexibleUpdate();
+      case FlexibleUpdateInstallStatus.DOWNLOADED:
         await AppUpdate.removeAllListeners();
+        await this.completeFlexibleUpdate();
         break;
-      case "FAILED":
+      case FlexibleUpdateInstallStatus.FAILED:
         this.showToast(t("error_update"));
         break;
       }
