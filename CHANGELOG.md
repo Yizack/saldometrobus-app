@@ -1,5 +1,19 @@
 # Changelog
 
+## v2.4.4
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.3...v2.4.4)
+
+### 🏡 Chore
+
+- Tipos de tarjetas ([d61def8](https://github.com/Yizack/saldometrobus-app/commit/d61def8))
+- Aditional cases ([d69b414](https://github.com/Yizack/saldometrobus-app/commit/d69b414))
+- Flexible updates ([48671d5](https://github.com/Yizack/saldometrobus-app/commit/48671d5))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.4.3
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.4.2...v2.4.3)
