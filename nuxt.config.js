@@ -47,5 +47,11 @@ export default defineNuxtConfig({
     dirs: ["stores"]
   },
   ssr: false,
-  spaLoadingTemplate: false
+  spaLoadingTemplate: false,
+  nitro: {
+    crawlLinks: false,
+    prerender: {
+      ignore: ["/app", "/registro"]
+    }
+  }
 });
