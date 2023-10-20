@@ -22,7 +22,9 @@ definePageMeta({ layout: "main" });
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-primary-emphasis">Banco General</h5>
+            <h5 class="modal-title text-primary-emphasis">
+              <strong>Banco General</strong>
+            </h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
           </div>
           <div class="modal-body">
@@ -44,7 +46,9 @@ definePageMeta({ layout: "main" });
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-primary-emphasis">Nequi</h5>
+            <h5 class="modal-title text-primary-emphasis">
+              <strong>Nequi</strong>
+            </h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
           </div>
           <div class="modal-body">

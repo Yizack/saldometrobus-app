@@ -4,7 +4,9 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 id="progress-dialog-label" class="modal-title text-primary-emphasis">{{ t("limit_tittle") }}</h5>
+          <h5 id="progress-dialog-label" class="modal-title text-primary-emphasis">
+            <strong>{{ t("limit_tittle") }}</strong>
+          </h5>
         </div>
         <div class="modal-body">
           <p class="m-0">{{ t("limit_message") }}</p>

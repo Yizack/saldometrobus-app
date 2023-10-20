@@ -37,7 +37,9 @@ definePageMeta({ layout: "main" });
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 id="add-dialog-label" class="modal-title fs-5 text-primary-emphasis">{{ t("add_tarjeta") }}</h1>
+            <h1 id="add-dialog-label" class="modal-title fs-5 text-primary-emphasis">
+              <strong>{{ t("add_tarjeta") }}</strong>
+            </h1>
           </div>
           <div class="modal-body text-center">
             <form ref="add" novalidate @submit.prevent="addTarjeta()">

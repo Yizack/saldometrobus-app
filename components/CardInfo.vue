@@ -69,7 +69,9 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 id="edit-dialog-label" class="modal-title fs-5 text-primary-emphasis">{{ t("editar_tarjeta") }}</h1>
+            <h1 id="edit-dialog-label" class="modal-title fs-5 text-primary-emphasis">
+              <strong>{{ t("editar_tarjeta") }}</strong>
+            </h1>
           </div>
           <div class="modal-body text-center">
             <form ref="edit" novalidate @submit.prevent="editCard()">
