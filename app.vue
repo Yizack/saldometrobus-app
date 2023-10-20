@@ -17,7 +17,9 @@ export default {
 
     await CONFIG.load();
     await CAPACITOR.setStatusBar(true);
-    await CAPACITOR.startFlexibleUpdate();
+    if (CAPACITOR.isAndroid()) {
+      await CAPACITOR.startFlexibleUpdate();
+    }
 
     if (CAPACITOR.isAndroid()) {
       const { $router } = useNuxtApp();

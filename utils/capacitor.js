@@ -115,10 +115,8 @@ class CapacitorPlugins {
       return;
     }
     if (result.flexibleUpdateAllowed) {
-      if (this.isAndroid()) {
-        await this.addFlexibleListener();
-        await AppUpdate.startFlexibleUpdate();
-      }
+      await this.addFlexibleListener();
+      await AppUpdate.startFlexibleUpdate();
     }
   }
 
