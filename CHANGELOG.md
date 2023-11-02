@@ -1,5 +1,22 @@
 # Changelog
 
+## v2.6.1
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.0...v2.6.1)
+
+### 🩹 Fixes
+
+- Walking only route ([d8d5da5](https://github.com/Yizack/saldometrobus-app/commit/d8d5da5))
+
+### 🏡 Chore
+
+- Updates ([4ed947c](https://github.com/Yizack/saldometrobus-app/commit/4ed947c))
+- Version updates ([1f2bf43](https://github.com/Yizack/saldometrobus-app/commit/1f2bf43))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.6.0
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.5.4...v2.6.0)
