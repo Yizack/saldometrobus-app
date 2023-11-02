@@ -6,7 +6,7 @@ definePageMeta({ layout: "main" });
 
 <template>
   <section>
-    <form class="mb-2" @submit.prevent="getDirections()">
+    <form class="mb-2" @submit.prevent="getDirections">
       <div class="position-relative">
         <div class="input-group mb-1 shadow-sm rounded position-relative">
           <span class="text-primary-emphasis input-group-text border border-end-0" :class="{'bg-disabled' : directions.routes.length}">
@@ -35,7 +35,12 @@ definePageMeta({ layout: "main" });
         </Transition>
       </div>
       <div class="d-grid mt-2">
-        <button class="btn btn-primary" type="submit">{{ directions.routes.length ? t("nueva_busqueda") : t("buscar") }}</button>
+        <button class="btn btn-primary" type="submit">
+          <div v-if="submit" class="spinner-border spinner-border-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <span v-else>{{ directions.routes.length ? t("nueva_busqueda") : t("buscar") }}</span>
+        </button>
       </div>
     </form>
     <template v-if="directions.routes.length">
@@ -46,10 +51,11 @@ definePageMeta({ layout: "main" });
       <div v-for="(route, route_i) in directions.routes" :key="route_i" class="mb-2" role="button" @click="selectRoute(route_i)">
         <div class="d-flex rutas-mibus bg-body-tertiary border rounded rounded p-2">
           <div v-for="(leg, legs_i) in route.legs" :key="legs_i" class="flex-grow-1">
-            <h5 class="fw-bold m-0">{{ leg.departure_time.text }} - {{ leg.arrival_time.text }}</h5>
+            <h5 v-if="leg.steps.length > 1" class="fw-bold m-0">{{ leg.departure_time.text }} - {{ leg.arrival_time.text }}</h5>
+            <h5 v-else class="fw-bold m-0">{{ getCurrentHourAndMinute }} - {{ addSecondsToHourAndMinute(route.legs[0].duration.value) }}</h5>
             <div class="d-flex align-items-center flex-wrap">
               <div v-for="(step, key) in leg.steps" :key="key" class="d-flex align-items-center flex-wrap">
-                <template v-if="key < leg.steps.length - 1">
+                <template v-if="key < leg.steps.length - 1 || leg.steps.length === 1">
                   <template v-if="step.travel_mode === 'WALKING'">
                     <img class="travel-icon" src="https://maps.gstatic.com/mapfiles/transit/iw2/6/walk.png" width="20" height="20">
                   </template>
@@ -149,8 +155,16 @@ export default {
       },
       autocomplete: [],
       debounce: null,
-      loading: false
+      loading: false,
+      submit: false,
+      currentHourTime: null
     };
+  },
+  computed: {
+    getCurrentHourAndMinute () {
+      this.currentHourTime = new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
+      return this.currentHourTime;
+    }
   },
   methods: {
     selectResult (result, field) {
@@ -215,25 +229,28 @@ export default {
             });
 
             try {
-              const google = await loader.load();
-              const directionsService = new google.maps.DirectionsService();
+              const { DirectionsService, DirectionsStatus } = await loader.importLibrary("routes");
+              const { UnitSystem } = await loader.importLibrary("core");
+
+              const directionsService = new DirectionsService();
               const options = {
                 origin: this.form.origin,
                 destination: this.form.destination,
                 travelMode: "TRANSIT",
-                unitSystem: google.maps.UnitSystem.METRIC,
+                unitSystem: UnitSystem.METRIC,
                 region: "pa",
                 provideRouteAlternatives: true,
                 language: t("lang_code")
               };
-
+              this.submit = true;
               directionsService.route(options, (response, status) => {
-                if (status === google.maps.DirectionsStatus.OK) {
+                if (status === DirectionsStatus.OK) {
                   this.directions = response;
                 }
-                else if (status === google.maps.DirectionsStatus.ZERO_RESULTS) {
+                else if (status === DirectionsStatus.ZERO_RESULTS) {
                   CAPACITOR.showToast(t("no_direcciones"));
                 }
+                this.submit = false;
               });
             }
             catch {
@@ -262,6 +279,14 @@ export default {
       const origin = this.form.origin;
       this.form.origin = this.form.destination;
       this.form.destination = origin;
+    },
+    addSecondsToHourAndMinute (seconds) {
+      const [h, m] = this.currentHourTime.split(":");
+      const d = new Date();
+      d.setHours(h);
+      d.setMinutes(m);
+      d.setSeconds(d.getSeconds() + seconds);
+      return d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
     }
   }
 };
