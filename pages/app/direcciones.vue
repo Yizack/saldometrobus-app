@@ -203,6 +203,7 @@ export default {
       }
     },
     async getDirections () {
+      this.submit = true;
       if (CAPACITOR.isOnline()) {
         if (!this.directions.routes.length) {
           if (!this.apiKey) {
@@ -242,7 +243,7 @@ export default {
                 provideRouteAlternatives: true,
                 language: t("lang_code")
               };
-              this.submit = true;
+
               directionsService.route(options, (response, status) => {
                 if (status === DirectionsStatus.OK) {
                   this.directions = response;
@@ -250,7 +251,6 @@ export default {
                 else if (status === DirectionsStatus.ZERO_RESULTS) {
                   CAPACITOR.showToast(t("no_direcciones"));
                 }
-                this.submit = false;
               });
             }
             catch {
@@ -260,6 +260,7 @@ export default {
           else {
             CAPACITOR.showToast(t("error"));
           }
+          this.submit = false;
         }
         else {
           this.form.origin = "";
