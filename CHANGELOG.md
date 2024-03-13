@@ -1,5 +1,25 @@
 # Changelog
 
+## v2.6.2
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.1...v2.6.2)
+
+### 🩹 Fixes
+
+- Directions submit loading ([15ebd52](https://github.com/Yizack/saldometrobus-app/commit/15ebd52))
+
+### 🏡 Chore
+
+- Update workflow ([d5b2cd0](https://github.com/Yizack/saldometrobus-app/commit/d5b2cd0))
+- Update actions version ([976ab19](https://github.com/Yizack/saldometrobus-app/commit/976ab19))
+- Update java version ([cb2cd73](https://github.com/Yizack/saldometrobus-app/commit/cb2cd73))
+- Update dependencies ([377cad2](https://github.com/Yizack/saldometrobus-app/commit/377cad2))
+- Add new wasm ([cba0470](https://github.com/Yizack/saldometrobus-app/commit/cba0470))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.6.1
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.0...v2.6.1)

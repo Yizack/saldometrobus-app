@@ -13,7 +13,7 @@ if (!tag) {
   execSync("git add .");
   execSync(`git commit -m "chore(release): v${version}"`);
   console.info(`commit - "chore(release): v${version}"`);
-  execSync(`git tag v${version}`);
+  execSync(`git tag v${version} -m "chore(release): v${version}"`);
   console.info(`tag - "v${version}"`);
 }
 else {
