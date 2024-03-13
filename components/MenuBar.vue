@@ -29,15 +29,13 @@
     </div>
   </nav>
   <div id="menu" ref="offcanvas" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="menuLabel">
-    <div class="offcanvas-header bg-primary align-items-start">
+    <div class="offcanvas-header bg-primary align-items-start" data-bs-theme="dark">
       <div class="text-white">
         <img class="img-fluid rounded-circle bg-white" src="/images/logo2.webp" width="70" height="70">
         <h5 id="menuLabel" class="offcanvas-title">{{ Auth().user.nombre }}</h5>
         <div>{{ Auth().user.email }}</div>
       </div>
-      <div data-bs-theme="dark">
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
-      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
     </div>
     <div class="offcanvas-body px-0 h-100 w-100 d-flex flex-column">
       <nav class="nav flex-column">
