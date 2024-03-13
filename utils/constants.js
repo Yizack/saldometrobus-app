@@ -184,7 +184,7 @@ export const CONST = {
         en: "TypeScript ORM that feels like writing SQL",
         es: "ORM de TypeScript que se siente como escribir SQL"
       },
-      version: "0.28.6"
+      version: "0.30.1"
     },
     {
       name: "better-sqlite3",
@@ -228,7 +228,7 @@ export const CONST = {
         en: "GitHub Action for checking out a repo",
         es: "Acción de GitHub para revisar un repositorio"
       },
-      version: 3
+      version: 4
     },
     {
       name: "GitHub Actions: Setup Node",
@@ -237,7 +237,7 @@ export const CONST = {
         en: "Set up your GitHub Actions workflow with a specific version of node.js",
         es: "Configure su flujo de trabajo de GitHub Actions con una versión específica de node.js"
       },
-      version: 3
+      version: 4
     },
     {
       name: "GitHub Actions: Setup Java",
@@ -246,7 +246,7 @@ export const CONST = {
         en: "Set up your GitHub Actions workflow with a specific version of Java",
         es: "Configure su flujo de trabajo de GitHub Actions con una versión específica de Java"
       },
-      version: 3
+      version: 4
     },
     {
       name: "GitHub Actions: Upload Artifact",
@@ -255,7 +255,7 @@ export const CONST = {
         en: "Upload a file or directory as a separate artifact for a workflow run",
         es: "Cargue un archivo o directorio como un artefacto separado para una ejecución de flujo de trabajo"
       },
-      version: 3
+      version: 4
     },
     {
       name: "Wrangler",
@@ -264,7 +264,7 @@ export const CONST = {
         en: "The CLI for Cloudflare Workers",
         es: "La CLI para Cloudflare Workers"
       },
-      version: "3.15.0"
+      version: "3.33.0"
     },
     {
       name: "Mustache",
