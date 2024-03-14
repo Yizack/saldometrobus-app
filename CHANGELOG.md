@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.6.3
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.2...v2.6.3)
+
+### 🏡 Chore
+
+- Fix close button ([db83252](https://github.com/Yizack/saldometrobus-app/commit/db83252))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.6.2
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.1...v2.6.2)
