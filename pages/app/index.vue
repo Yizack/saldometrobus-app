@@ -161,14 +161,12 @@ export default {
           tarjeta.fecha_added = new Date().toISOString().replace("T", " ").replace("Z", "");
           const tarjetaExists = await DB.tarjetaExists(tarjeta.numero);
           if (!tarjetaExists) {
-            const { error, error_key } = !Auth().isGuest
-              ? await API.addTarjeta({
-                nombre: tarjeta.nombre,
-                numero: tarjeta.numero,
-                email: Auth().user.email,
-                token: Auth().user.token
-              })
-              : { error: false };
+            const { error, error_key } = !Auth().isGuest ? await API.addTarjeta({
+              nombre: tarjeta.nombre,
+              numero: tarjeta.numero,
+              email: Auth().user.email,
+              token: Auth().user.token
+            }) : { error: false };
             const { changes } = await DB.insertTarjeta(tarjeta);
             if (changes > 0 && !error) {
               await DB.insertMovimientos(tarjeta);

@@ -39,18 +39,18 @@ definePageMeta({ layout: "main" });
       <div class="m-2">
         <form novalidate @submit.prevent="updatePass()">
           <div class="mb-3 position-relative form-floating">
-            <input ref="current" class="form-control" :class="{ 'is-invalid': form.error}" type="password" autocomplete="password" :placeholder="t('current_pass')" :value="form.current_password" required @input="form.current_password = $event.target.value" @keyup="form.error = false">
+            <input ref="current" class="form-control" :class="{ 'is-invalid': form.error }" type="password" autocomplete="password" :placeholder="t('current_pass')" :value="form.current_password" required @input="form.current_password = $event.target.value" @keyup="form.error = false">
             <label>{{ t("current_pass") }}</label>
             <div class="invalid-tooltip">
               {{ t("pass_error") }}
             </div>
           </div>
           <div class="mb-3 form-floating">
-            <input class="form-control" :class="{'is-valid': isPasswordValid}" type="password" autocomplete="new-password" :placeholder="t('new_pass')" :value="form.new_password" required @input="form.new_password = $event.target.value">
+            <input class="form-control" :class="{ 'is-valid': isPasswordValid }" type="password" autocomplete="new-password" :placeholder="t('new_pass')" :value="form.new_password" required @input="form.new_password = $event.target.value">
             <label>{{ t("new_pass") }}</label>
           </div>
           <div class="mb-3 form-floating">
-            <input class="form-control" :class="{'is-valid': isPasswordCheckValid}" type="password" autocomplete="off" :placeholder="t('password_check')" :value="form.password_check" required @input="form.password_check = $event.target.value">
+            <input class="form-control" :class="{ 'is-valid': isPasswordCheckValid }" type="password" autocomplete="off" :placeholder="t('password_check')" :value="form.password_check" required @input="form.password_check = $event.target.value">
             <label>{{ t("password_check") }}</label>
           </div>
           <div class="d-grid">

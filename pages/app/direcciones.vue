@@ -1,6 +1,7 @@
 <script setup>
 import { Loader } from "@googlemaps/js-api-loader";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
+
 definePageMeta({ layout: "main" });
 </script>
 
@@ -9,7 +10,7 @@ definePageMeta({ layout: "main" });
     <form class="mb-2" @submit.prevent="getDirections">
       <div class="position-relative">
         <div class="input-group mb-1 shadow-sm rounded position-relative">
-          <span class="text-primary-emphasis input-group-text border border-end-0" :class="{'bg-disabled' : directions.routes.length}">
+          <span class="text-primary-emphasis input-group-text border border-end-0" :class="{ 'bg-disabled': directions.routes.length }">
             <Icon name="location" size="sm" />
           </span>
           <div class="form-floating">
@@ -19,7 +20,7 @@ definePageMeta({ layout: "main" });
           <AutocompleteList v-if="search.origin && !search.destination" :text="form.origin" :loading="loading" :array="autocomplete" prop="label" @select="selectResult($event, 'origin')" />
         </div>
         <div class="input-group shadow-sm rounded position-relative">
-          <span class="text-primary-emphasis input-group-text border border-end-0" :class="{'bg-disabled' : directions.routes.length}">
+          <span class="text-primary-emphasis input-group-text border border-end-0" :class="{ 'bg-disabled': directions.routes.length }">
             <Icon name="destination" size="sm" />
           </span>
           <div class="form-floating">
@@ -64,7 +65,7 @@ definePageMeta({ layout: "main" });
                       <img class="travel-icon" :src="step.transit.line.vehicle.icon" width="20" height="20">
                       <div v-if="step.transit">
                         <div class="my-2 small">
-                          <span class="px-1 rounded shadow-sm" :style="{backgroundColor: step.transit.line.color, color: step.transit.line.text_color }">{{ step.transit.line.short_name }}</span>
+                          <span class="px-1 rounded shadow-sm" :style="{ backgroundColor: step.transit.line.color, color: step.transit.line.text_color }">{{ step.transit.line.short_name }}</span>
                         </div>
                       </div>
                     </div>

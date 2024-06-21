@@ -33,8 +33,8 @@
     "release:patch": "pnpm changelogen --bump --patch && node scripts/newRelease.js && pnpm changelogen gh release",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --coverage",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
-    "lint:eslint": "eslint --ext .ts,.js,.vue --fix --ignore-path .gitignore .",
-    "lint:stylelint": "stylelint \"**/*.css\" --fix",
+    "lint:eslint": "eslint --fix --config .config/eslint.mjs",
+    "lint:stylelint": "stylelint \"**/*.css\" --fix --config .config/stylelint.json",
     "dev:build": "pnpm app:mibus && pnpm generate && pnpm app:clean && pnpm sync"
   },
   "devDependencies": {

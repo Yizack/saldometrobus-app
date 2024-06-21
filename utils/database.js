@@ -64,6 +64,7 @@ class Database {
       await this.query("SELECT lugar, transaccion FROM movimientos limit 1");
     }
     catch (e) {
+      console.warn(e);
       await this.execute([ALTER.lugar, ALTER.transaccion]);
     }
   }
@@ -84,20 +85,20 @@ class Database {
     if (values.length) {
       tarjeta = values[0];
       switch (tarjeta.tipo) {
-      case "Tarjeta Normal al Portador b":
-        tarjeta.tipo = t("tarjeta_normal");
-        break;
-      case "Tarjeta Rapipass":
-        tarjeta.tipo = t("tarjeta_rapipass");
-        break;
-      case "Tarjeta Escolar":
-      case "Escolar 505":
-        tarjeta.tipo = t("tarjeta_escolar");
-        break;
-      case "Tarjeta Jubilado":
-      case "Jubilado":
-        tarjeta.tipo = t("tarjeta_jubilado");
-        break;
+        case "Tarjeta Normal al Portador b":
+          tarjeta.tipo = t("tarjeta_normal");
+          break;
+        case "Tarjeta Rapipass":
+          tarjeta.tipo = t("tarjeta_rapipass");
+          break;
+        case "Tarjeta Escolar":
+        case "Escolar 505":
+          tarjeta.tipo = t("tarjeta_escolar");
+          break;
+        case "Tarjeta Jubilado":
+        case "Jubilado":
+          tarjeta.tipo = t("tarjeta_jubilado");
+          break;
       }
       if (tarjeta.estado === "Contrato Activo") {
         tarjeta.estado = t("contrato_activo");
@@ -117,20 +118,20 @@ class Database {
     if (values.length) {
       values.forEach((tarjeta) => {
         switch (tarjeta.tipo) {
-        case "Tarjeta Normal al Portador b":
-          tarjeta.tipo = t("tarjeta_normal");
-          break;
-        case "Tarjeta Rapipass":
-          tarjeta.tipo = t("tarjeta_rapipass");
-          break;
-        case "Tarjeta Escolar":
-        case "Escolar 505":
-          tarjeta.tipo = t("tarjeta_escolar");
-          break;
-        case "Tarjeta Jubilado":
-        case "Jubilado":
-          tarjeta.tipo = t("tarjeta_jubilado");
-          break;
+          case "Tarjeta Normal al Portador b":
+            tarjeta.tipo = t("tarjeta_normal");
+            break;
+          case "Tarjeta Rapipass":
+            tarjeta.tipo = t("tarjeta_rapipass");
+            break;
+          case "Tarjeta Escolar":
+          case "Escolar 505":
+            tarjeta.tipo = t("tarjeta_escolar");
+            break;
+          case "Tarjeta Jubilado":
+          case "Jubilado":
+            tarjeta.tipo = t("tarjeta_jubilado");
+            break;
         }
         if (tarjeta.estado === "Contrato Activo") {
           tarjeta.estado = t("contrato_activo");

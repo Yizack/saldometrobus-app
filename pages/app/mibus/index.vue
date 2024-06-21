@@ -16,17 +16,17 @@ definePageMeta({ layout: "main" });
     <div id="accordionFlushRutas" class="accordion accordion-flush bg-body-tertiary border rounded shadow">
       <div v-for="(tipo, i) in tiposFiltered" :key="i" class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button" :class="{'collapsed': !buscar.input}" type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse${i}`" :aria-expanded="Boolean(buscar.input)" :aria-controls="`flush-collapse${i}`">
+          <button class="accordion-button" :class="{ collapsed: !buscar.input }" type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse${i}`" :aria-expanded="Boolean(buscar.input)" :aria-controls="`flush-collapse${i}`">
             <b>{{ tipo.nombre }}</b>
           </button>
         </h2>
-        <div :id="`flush-collapse${i}`" class="accordion-collapse collapse" :class="{'show': buscar.input}">
+        <div :id="`flush-collapse${i}`" class="accordion-collapse collapse" :class="{ show: buscar.input }">
           <div v-if="tipo.rutas.length === 0" class="text-center p-2 border-top">
             <p class="m-0">{{ t("results_notfound") }}</p>
           </div>
           <div v-for="ruta in tipo.rutas" :key="ruta.route_id" class="border-top">
             <div class="d-flex align-items-center p-2 hover" role="button" @click="openRoute(ruta.route_id)">
-              <p class="p-2 m-0 text-white rounded small text-center fw-bold shadow-sm" :style="{ backgroundColor: `#${ruta.route_color}`, minWidth: '3.7rem'} ">{{ ruta.route_short_name }}</p>
+              <p class="p-2 m-0 text-white rounded small text-center fw-bold shadow-sm" :style="{ backgroundColor: `#${ruta.route_color}`, minWidth: '3.7rem' } ">{{ ruta.route_short_name }}</p>
               <div class="p-2">
                 <p class="text-muted mb-0"><small>{{ ruta.route_type }}</small></p>
                 <p class="mb-0 fw-bold">{{ ruta.route_long_name }}</p>

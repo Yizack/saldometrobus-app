@@ -26,12 +26,12 @@ export const convertToTime = (datetime) => {
 export const formatFecha = (fecha, format = "datetime", locale = "es") => {
   const date = new Date(fecha);
   switch (format) {
-  case "datetime":
-    return date.toLocaleDateString(locale, { month: "2-digit", day: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
-  case "chart":
-    return new Date(date.getTime() + timeOffSet).toLocaleString(locale, { month: "short", day: "numeric" });
-  case "long":
-    return date.toLocaleString(locale, { month: "long", day: "numeric", weekday: "long", year: "numeric", hour: "numeric", minute: "numeric", hour12: true });
+    case "datetime":
+      return date.toLocaleDateString(locale, { month: "2-digit", day: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
+    case "chart":
+      return new Date(date.getTime() + timeOffSet).toLocaleString(locale, { month: "short", day: "numeric" });
+    case "long":
+      return date.toLocaleString(locale, { month: "long", day: "numeric", weekday: "long", year: "numeric", hour: "numeric", minute: "numeric", hour12: true });
   }
 };
 
@@ -83,15 +83,15 @@ export const openInNewTab = (url) => {
 
 export const getCardImage = (tipo, brand = false) => {
   switch (tipo) {
-  case t("tarjeta_normal"):
-    return brand ? "metro_metrobus_brand.webp" : "metro_metrobus.webp";
-  case t("tarjeta_rapipass"):
-    return brand ? "rapipass_brand.webp" : "rapipass.webp";
-  case t("tarjeta_escolar"):
-    return brand ? "escolar_brand.webp" : "escolar.webp";
-  case t("tarjeta_jubilado"):
-    return brand ? "jubilado_brand.webp" : "jubilado.webp";
-  default:
-    return brand ? "metrobus_brand.webp" : "metrobus.webp";
+    case t("tarjeta_normal"):
+      return brand ? "metro_metrobus_brand.webp" : "metro_metrobus.webp";
+    case t("tarjeta_rapipass"):
+      return brand ? "rapipass_brand.webp" : "rapipass.webp";
+    case t("tarjeta_escolar"):
+      return brand ? "escolar_brand.webp" : "escolar.webp";
+    case t("tarjeta_jubilado"):
+      return brand ? "jubilado_brand.webp" : "jubilado.webp";
+    default:
+      return brand ? "metrobus_brand.webp" : "metrobus.webp";
   }
 };

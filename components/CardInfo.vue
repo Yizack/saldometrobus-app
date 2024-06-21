@@ -153,14 +153,12 @@ export default {
         this.dialog = t("editando");
         showModal("progress-dialog");
         const nombre_trimmed = this.form.nombre.trim();
-        const { error, error_key } = !Auth().isGuest
-          ? await API.updateTarjeta({
-            email: Auth().user.email,
-            token: Auth().user.token,
-            numero: this.tarjeta.numero,
-            nombre: nombre_trimmed
-          })
-          : { error: false };
+        const { error, error_key } = !Auth().isGuest ? await API.updateTarjeta({
+          email: Auth().user.email,
+          token: Auth().user.token,
+          numero: this.tarjeta.numero,
+          nombre: nombre_trimmed
+        }) : { error: false };
 
         const { changes } = await DB.updateNombreTarjeta(this.tarjeta.numero, nombre_trimmed);
 
@@ -186,13 +184,11 @@ export default {
       if (confirm) {
         this.dialog = t("eliminando");
         showModal("progress-dialog");
-        const { error, error_key } = !Auth().isGuest
-          ? await API.deleteTarjeta({
-            email: Auth().user.email,
-            token: Auth().user.token,
-            numero: this.tarjeta.numero
-          })
-          : { error: false };
+        const { error, error_key } = !Auth().isGuest ? await API.deleteTarjeta({
+          email: Auth().user.email,
+          token: Auth().user.token,
+          numero: this.tarjeta.numero
+        }) : { error: false };
 
         const { changes } = await DB.deleteTarjeta(this.tarjeta.numero);
 

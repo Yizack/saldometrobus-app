@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     "~/assets/css/nav.css"
   ],
   modules: [
+    "@nuxt/eslint",
     "nuxt-icons",
     "@pinia/nuxt"
   ],

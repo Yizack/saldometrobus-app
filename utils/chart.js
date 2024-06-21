@@ -9,27 +9,25 @@ export class Chart {
   render (style) {
     const { reduce, color, color_area, title, monotone, tension, stepped, subtitle, text_color, tick_color } = style;
 
-    const dataset = reduce
-      ? this.dataset.reduce((a, b) => {
-        const index = a.findIndex(d => d.x === b.x);
-        if (index < 0) {
-          a.push({ x: b.x, y: b.y });
-        }
-        else {
-          a[index].y += b.y;
-        }
-        return a;
-      }, [])
-      : this.dataset.reduce((a, b) => {
-        const index = a.findIndex(d => d.x === b.x);
-        if (index < 0) {
-          a.push({ x: b.x, y: b.y });
-        }
-        else {
-          a[index].y = b.y;
-        }
-        return a;
-      }, []);
+    const dataset = reduce ? this.dataset.reduce((a, b) => {
+      const index = a.findIndex(d => d.x === b.x);
+      if (index < 0) {
+        a.push({ x: b.x, y: b.y });
+      }
+      else {
+        a[index].y += b.y;
+      }
+      return a;
+    }, []) : this.dataset.reduce((a, b) => {
+      const index = a.findIndex(d => d.x === b.x);
+      if (index < 0) {
+        a.push({ x: b.x, y: b.y });
+      }
+      else {
+        a[index].y = b.y;
+      }
+      return a;
+    }, []);
 
     const total = reduce ? dataset.reduce((a, b) => a + b.y, 0) : dataset[dataset.length - 1].y;
 
