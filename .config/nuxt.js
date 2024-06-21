@@ -37,6 +37,12 @@ export default defineNuxtConfig({
     "nuxt-icons",
     "@pinia/nuxt"
   ],
+  eslint: {
+    config: {
+      autoInit: false,
+      stylistic: true
+    }
+  },
   pinia: {
     autoImports: [
       "defineStore",

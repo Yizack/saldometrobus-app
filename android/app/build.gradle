@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     namespace "com.yizack.saldometrobus"
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.yizack.saldometrobus"
         minSdkVersion rootProject.ext.minSdkVersion
