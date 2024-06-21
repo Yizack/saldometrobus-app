@@ -28,14 +28,15 @@
     "app:version": "node scripts/updateVersion.js",
     "app:android:key": "openssl base64 -A -in saldometrobus_key.jks -out saldometrobus_key.jks.txt",
     "trapeze": "npx trapeze run config.yaml -y",
-    "husky:install": "husky install",
+    "husky:install": "husky",
     "release": "pnpm changelogen --bump && node scripts/newRelease.js && pnpm changelogen gh release",
     "release:patch": "pnpm changelogen --bump --patch && node scripts/newRelease.js && pnpm changelogen gh release",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --coverage",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint --fix --config .config/eslint.mjs",
     "lint:stylelint": "stylelint \"**/*.css\" --fix --config .config/stylelint.json",
-    "dev:build": "pnpm app:mibus && pnpm generate && pnpm app:clean && pnpm sync"
+    "dev:build": "pnpm app:mibus && pnpm generate && pnpm app:clean && pnpm sync",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@capacitor-community/sqlite": "^6.0.1",
