@@ -14,3 +14,4 @@ release/
 assets/rutas.json
 .husky/_
 coverage
+.vscode
