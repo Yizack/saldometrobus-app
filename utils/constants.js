@@ -97,13 +97,13 @@ export const CONST = {
       version: devDependencies.eslint
     },
     {
-      name: "Nuxt: eslint-config",
-      link: "https://github.com/nuxt/eslint-config",
+      name: "Nuxt: eslint",
+      link: "https://github.com/nuxt/eslint",
       description: {
         en: "ESLint shareable config for Nuxt.js",
         es: "Configuración compartida de ESLint para Nuxt.js"
       },
-      version: devDependencies["@nuxt/eslint-config"]
+      version: devDependencies["@nuxt/eslint"]
     },
     {
       name: "Stylelint",
@@ -184,7 +184,7 @@ export const CONST = {
         en: "TypeScript ORM that feels like writing SQL",
         es: "ORM de TypeScript que se siente como escribir SQL"
       },
-      version: "0.30.1"
+      version: "0.31.2"
     },
     {
       name: "better-sqlite3",
@@ -192,7 +192,8 @@ export const CONST = {
       description: {
         en: "The fastest and simplest library for SQLite3 in Node.js",
         es: "La biblioteca más rápida y simple para SQLite3 en Node.js"
-      }
+      },
+      version: "11.0.0"
     },
     {
       name: "Husky",
@@ -264,7 +265,7 @@ export const CONST = {
         en: "The CLI for Cloudflare Workers",
         es: "La CLI para Cloudflare Workers"
       },
-      version: "3.33.0"
+      version: "3.61.0"
     },
     {
       name: "Mustache",

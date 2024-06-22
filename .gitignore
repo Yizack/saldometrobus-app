@@ -15,3 +15,5 @@ assets/rutas.json
 .husky/_
 coverage
 .vscode
+android/app/src/main/assets/public
+android/app/build
