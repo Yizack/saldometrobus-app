@@ -52,9 +52,25 @@ class CapacitorPlugins {
     return status.connected;
   }
 
-  async doGet (url) {
-    const GET = CapacitorHttp.get({ url }).then((response) => {
+  async doGet (url, cached = false) {
+    const numero = new URL(url).pathname.split("/").pop();
+    const cachedResponse = JSON.parse((await Preferences.get({ key: numero })).value);
+
+    const currentTime = new Date().getTime();
+    if (cached && cachedResponse && cachedResponse.expires && currentTime < cachedResponse.expires) {
+      return {
+        error: true,
+        error_key: `${t("tarjeta_actualizada")}: ${numero}`
+      };
+    }
+
+    const GET = CapacitorHttp.get({ url, headers: { "Cache-Control": "max-age=900" } }).then(async (response) => {
       if (response.status === 200) {
+        if (parseInt(numero)) {
+          const maxAge = parseInt(response.headers["Cache-Control"].split("=")[1]);
+          const expiresTime = currentTime + (maxAge * 1000);
+          await Preferences.set({ key: numero, value: JSON.stringify({ expires: expiresTime }) });
+        }
         return response.data;
       }
       else {

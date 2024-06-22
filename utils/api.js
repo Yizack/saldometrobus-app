@@ -37,7 +37,7 @@ class SaldometrobusAPI {
   }
 
   async getTarjetaAPI (numero) {
-    const { tarjeta, status, error, error_key } = await CAPACITOR.doGet(`${this.tarjetasAPI}/${numero}`);
+    const { tarjeta, status, error, error_key } = await CAPACITOR.doGet(`${this.tarjetasAPI}/${numero}`, true);
     if (!error && status === "ok" && tarjeta) {
       return { tarjeta };
     }
