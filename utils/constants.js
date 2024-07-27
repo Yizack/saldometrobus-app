@@ -196,24 +196,6 @@ export const CONST = {
       version: "11.0.0"
     },
     {
-      name: "Husky",
-      link: "https://typicode.github.io/husky",
-      description: {
-        en: "Modern native Git hooks made easy",
-        es: "Lbibrería que facilita Hooks Git nativos modernos"
-      },
-      version: devDependencies.husky
-    },
-    {
-      name: "Commitlint CLI",
-      link: "https://commitlint.js.org",
-      description: {
-        en: "Lint commit messages",
-        es: "Herramienta de lint para mensajes de commits"
-      },
-      version: devDependencies["@commitlint/cli"]
-    },
-    {
       name: "Changelogen",
       link: "https://github.com/unjs/changelogen",
       description: {
