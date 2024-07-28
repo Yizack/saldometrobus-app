@@ -1,5 +1,28 @@
 # Changelog
 
+## v2.6.4
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.3...v2.6.4)
+
+### 🩹 Fixes
+
+- Update sql-wasm ([6d6e4e9](https://github.com/Yizack/saldometrobus-app/commit/6d6e4e9))
+
+### 🏡 Chore
+
+- Updates and migrations ([12e09b2](https://github.com/Yizack/saldometrobus-app/commit/12e09b2))
+- Lint ([cee148c](https://github.com/Yizack/saldometrobus-app/commit/cee148c))
+- Husky install dep ([e28409a](https://github.com/Yizack/saldometrobus-app/commit/e28409a))
+- Vscode update ([3e60047](https://github.com/Yizack/saldometrobus-app/commit/3e60047))
+- Self cache api requests with preferences ([20f0e45](https://github.com/Yizack/saldometrobus-app/commit/20f0e45))
+- Remove unnecessary eslint ignores ([782a529](https://github.com/Yizack/saldometrobus-app/commit/782a529))
+- Update dependencies ([52f6f56](https://github.com/Yizack/saldometrobus-app/commit/52f6f56))
+- Updates ([ec5bb14](https://github.com/Yizack/saldometrobus-app/commit/ec5bb14))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.6.3
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.2...v2.6.3)
