@@ -53,7 +53,7 @@
     "@capacitor/status-bar": "^6.0.0",
     "@capacitor/toast": "^6.0.1",
     "@capawesome/capacitor-app-update": "^6.0.0",
-    "@nuxt/eslint": "^0.3.13",
+    "@nuxt/eslint": "^0.4.0",
     "@trapezedev/configure": "^7.0.10",
     "changelogen": "^0.5.5",
     "eslint": "^9.8.0",
