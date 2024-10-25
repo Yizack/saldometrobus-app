@@ -50,7 +50,7 @@ export const Auth = defineStore("auth", {
     },
     async logout () {
       this.auth = {};
-      await CAPACITOR.removePref("auth");
+      await CAPACITOR.clearPrefs();
     },
     async restore () {
       if (Object.keys(this.auth).length === 0) {

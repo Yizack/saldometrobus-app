@@ -168,6 +168,7 @@ export default {
     async logout () {
       await DB.deleteAll();
       await Auth().logout();
+      await CAPACITOR.clearPrefs();
       document.body.removeAttribute("style");
       this.$router.replace("/");
     }

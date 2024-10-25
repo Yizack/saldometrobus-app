@@ -29,6 +29,10 @@ class CapacitorPlugins {
     return Capacitor.isNativePlatform();
   }
 
+  async clearPrefs () {
+    await Preferences.clear();
+  }
+
   async setPref (name: string, value: unknown) {
     await Preferences.set({ key: name, value: JSON.stringify(value) });
   }

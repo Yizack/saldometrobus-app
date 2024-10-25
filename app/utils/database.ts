@@ -164,7 +164,7 @@ class Database {
     ];
 
     const executed = await this.execute(set);
-    return executed?.changes;
+    return executed?.changes?.changes ?? 0;
   }
 
   deleteAll () {
