@@ -184,7 +184,7 @@ export const CONST = {
         en: "TypeScript ORM that feels like writing SQL",
         es: "ORM de TypeScript que se siente como escribir SQL"
       },
-      version: "0.31.2"
+      version: "0.35.3"
     },
     {
       name: "better-sqlite3",
@@ -193,7 +193,7 @@ export const CONST = {
         en: "The fastest and simplest library for SQLite3 in Node.js",
         es: "La biblioteca más rápida y simple para SQLite3 en Node.js"
       },
-      version: "11.0.0"
+      version: "11.5.0"
     },
     {
       name: "Changelogen",
@@ -247,7 +247,7 @@ export const CONST = {
         en: "The CLI for Cloudflare Workers",
         es: "La CLI para Cloudflare Workers"
       },
-      version: "3.61.0"
+      version: "3.83.0"
     },
     {
       name: "Mustache",
