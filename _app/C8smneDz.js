@@ -1,1 +1,0 @@
-import{_ as t}from"./CAPbfVmY.js";import{_ as o,o as _,H as r}from"./IL8u1Ikr.js";const s={props:{name:{type:String,required:!0},size:{type:String,default:"24"}}};function c(a,i,e,m,p,f){const n=t;return _(),r(n,{name:e.name,size:e.size,filled:""},null,8,["name","size"])}const d=o(s,[["render",c]]);export{d as _};
