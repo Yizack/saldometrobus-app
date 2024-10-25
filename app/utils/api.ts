@@ -1,42 +1,40 @@
 class SaldometrobusAPI {
-  constructor () {
-    this.base = import.meta.dev ? "http://localhost:5173" : "https://saldometrobus.yizack.com";
-    this.version = "v2";
-    this.baseAPI = `${this.base}/api/${this.version}`;
-    this.baseDB = `${this.base}/database/${this.version}`;
-    this.tarjetasAPI = `${this.baseAPI}/tarjeta`;
-    this.loginURL = `${this.baseDB}/login`;
-    this.registroURL = `${this.baseDB}/registro`;
-    this.addTarjetaURL = `${this.baseDB}/tarjetas_insert`;
-    this.getTarjetasURL = `${this.baseDB}/tarjetas_get`;
-    this.updateTarjetaURL = `${this.baseDB}/tarjetas_update`;
-    this.deleteTarjetaURL = `${this.baseDB}/tarjetas_delete`;
-    this.updateURL = `${this.baseDB}/update_password`;
-    this.deleteAccountURL = `${this.baseDB}/delete_account`;
-    this.updateNameURL = `${this.baseDB}/update_name`;
-  }
+  base = import.meta.dev ? "http://localhost:5173" : "https://saldometrobus.yizack.com";
+  version = "v2";
+  baseAPI = `${this.base}/api/${this.version}`;
+  baseDB = `${this.base}/database/${this.version}`;
+  tarjetasAPI = `${this.baseAPI}/tarjeta`;
+  loginURL = `${this.baseDB}/login`;
+  registroURL = `${this.baseDB}/registro`;
+  addTarjetaURL = `${this.baseDB}/tarjetas_insert`;
+  getTarjetasURL = `${this.baseDB}/tarjetas_get`;
+  updateTarjetaURL = `${this.baseDB}/tarjetas_update`;
+  deleteTarjetaURL = `${this.baseDB}/tarjetas_delete`;
+  updateURL = `${this.baseDB}/update_password`;
+  deleteAccountURL = `${this.baseDB}/delete_account`;
+  updateNameURL = `${this.baseDB}/update_name`;
 
-  userLogin (payload) {
+  userLogin (payload: Record<string, string>) {
     return CAPACITOR.doPost(this.loginURL, payload);
   }
 
-  userRegistro (payload) {
+  userRegistro (payload: Record<string, string>) {
     return CAPACITOR.doPost(this.registroURL, payload);
   }
 
-  userPassUpdate (payload) {
+  userPassUpdate (payload: Record<string, string>) {
     return CAPACITOR.doPost(this.updateURL, payload);
   }
 
-  addTarjeta (payload) {
+  addTarjeta (payload: Record<string, string>) {
     return CAPACITOR.doPost(this.addTarjetaURL, payload);
   }
 
-  getTarjetas (payload) {
+  getTarjetas (payload: Record<string, string>) {
     return CAPACITOR.doPost(this.getTarjetasURL, payload);
   }
 
-  async getTarjetaAPI (numero) {
+  async getTarjetaAPI (numero: string) {
     const { tarjeta, status, error, error_key } = await CAPACITOR.doGet(`${this.tarjetasAPI}/${numero}`, true);
     if (!error && status === "ok" && tarjeta) {
       return { tarjeta };
@@ -49,7 +47,7 @@ class SaldometrobusAPI {
     }
   }
 
-  async getDetallesTarjetas (tarjetas) {
+  async getDetallesTarjetas (tarjetas: SaldometrobusTarjeta[]) {
     const arr = [];
     for (const tarjeta of tarjetas) {
       const data = await CAPACITOR.doGet(`${this.tarjetasAPI}/${tarjeta.numero}`).catch(() => ({}));
@@ -61,23 +59,23 @@ class SaldometrobusAPI {
     return arr;
   }
 
-  deleteTarjeta (payload) {
+  deleteTarjeta (payload: Record<string, string>) {
     return CAPACITOR.doPost(this.deleteTarjetaURL, payload);
   }
 
-  updateTarjeta (payload) {
+  updateTarjeta (payload: Record<string, string>) {
     return CAPACITOR.doPost(this.updateTarjetaURL, payload);
   }
 
-  deleteAccount (payload) {
+  deleteAccount (payload: Record<string, string>) {
     return CAPACITOR.doPost(this.deleteAccountURL, payload);
   }
 
-  updateName (payload) {
+  updateName (payload: Record<string, string>) {
     return CAPACITOR.doPost(this.updateNameURL, payload);
   }
 
-  getGoogleKey (payload) {
+  getGoogleKey (payload: Record<string, string>) {
     return CAPACITOR.doPost(`${this.base}/maps/key`, payload);
   }
 }

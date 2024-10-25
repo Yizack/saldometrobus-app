@@ -13,7 +13,7 @@ const error_conexion = { error: true, error_key: "error_conexion" };
 const error_response = { error: true, error_key: "error" };
 
 class CapacitorPlugins {
-  async setStatusBar (isDark) {
+  async setStatusBar (isDark: boolean) {
     if (Capacitor.getPlatform() === "android" && Capacitor.isPluginAvailable("StatusBar")) {
       const { dark, light } = CONST.colors;
       await StatusBar.setStyle({ style: isDark ? Style.Dark : Style.Light });
@@ -29,20 +29,21 @@ class CapacitorPlugins {
     return Capacitor.isNativePlatform();
   }
 
-  async setPref (name, value) {
+  async setPref (name: string, value: unknown) {
     await Preferences.set({ key: name, value: JSON.stringify(value) });
   }
 
-  async getPref (name) {
+  async getPref (name: string) {
     const { value } = await Preferences.get({ key: name });
+    if (!value) return null;
     return JSON.parse(value);
   }
 
-  async removePref (name) {
+  async removePref (name: string) {
     await Preferences.remove({ key: name });
   }
 
-  showToast (text, duration, position) {
+  showToast (text: string, duration: "short" | "long" = "short", position: "top" | "center" | "bottom" = "bottom") {
     console.info(text);
     return Toast.show({ text, duration, position });
   }
@@ -52,9 +53,12 @@ class CapacitorPlugins {
     return status.connected;
   }
 
-  async doGet (url, cached = false) {
+  async doGet (url: string, cached = false) {
     const numero = new URL(url).pathname.split("/").pop();
-    const cachedResponse = JSON.parse((await Preferences.get({ key: numero })).value);
+    if (!numero) return error_response;
+    const pref = (await Preferences.get({ key: numero })).value;
+    if (!pref) return error_response;
+    const cachedResponse = JSON.parse(pref);
 
     const currentTime = new Date().getTime();
     if (cached && cachedResponse && cachedResponse.expires && currentTime < cachedResponse.expires) {
@@ -67,7 +71,8 @@ class CapacitorPlugins {
     const GET = CapacitorHttp.get({ url, headers: { "Cache-Control": "max-age=900" } }).then(async (response) => {
       if (response.status === 200) {
         if (parseInt(numero)) {
-          const maxAge = parseInt(response.headers["Cache-Control"].split("=")[1]);
+          const cacheControl = response.headers["Cache-Control"];
+          const maxAge = parseInt(String(cacheControl?.split("=").pop()));
           const expiresTime = currentTime + (maxAge * 1000);
           await Preferences.set({ key: numero, value: JSON.stringify({ expires: expiresTime }) });
         }
@@ -81,7 +86,7 @@ class CapacitorPlugins {
     return await this.isOnline() ? GET : error_conexion;
   }
 
-  async doPost (url, payload) {
+  async doPost (url: string, payload: Record<string, string>) {
     const options = {
       url,
       headers: {
@@ -102,12 +107,12 @@ class CapacitorPlugins {
     return await this.isOnline() ? POST : error_conexion;
   }
 
-  async confirm (title, message) {
+  async confirm (title: string, message: string) {
     const { value } = await Dialog.confirm({ title, message, okButtonTitle: "Ok", cancelButtonTitle: t("cancel") });
     return value;
   }
 
-  async openBrowser (url = "") {
+  async openBrowser (url: string) {
     await Browser.open({ url, toolbarColor: CONST.colors.light.primary });
   }
 
@@ -121,7 +126,7 @@ class CapacitorPlugins {
     App.exitApp();
   }
 
-  onBack (callback = () => {}) {
+  onBack (callback: (canGoBack: boolean) => void) {
     App.addListener("backButton", ({ canGoBack }) => callback(canGoBack));
   }
 

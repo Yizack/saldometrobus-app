@@ -4,7 +4,7 @@ import "bootstrap/js/dist/collapse";
 import OffCanvas from "bootstrap/js/dist/offcanvas";
 import Modal from "bootstrap/js/dist/modal";
 
-export const sha256 = async (message) => {
+export const sha256 = async (message: string) => {
   try {
     const msgBuffer = new TextEncoder().encode(message);
     const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
@@ -17,13 +17,14 @@ export const sha256 = async (message) => {
   }
 };
 
-export const convertToTime = (datetime) => {
+export const convertToTime = (datetime: string) => {
   const [date, time] = datetime.split(" ");
+  if (!date || !time) return 0;
   const [day, month, year] = date.split("/");
   return new Date(`${year}-${month}-${day}T${time}`).getTime();
 };
 
-export const formatFecha = (fecha, format = "datetime", locale = "es") => {
+export const formatFecha = (fecha: number, format = "datetime", locale = "es") => {
   const date = new Date(fecha);
   switch (format) {
     case "datetime":
@@ -35,26 +36,26 @@ export const formatFecha = (fecha, format = "datetime", locale = "es") => {
   }
 };
 
-export const showModal = (id) => {
+export const showModal = (id: string) => {
   const modal = new Modal("#" + id);
   modal.show();
 };
 
-export const hideModal = (id) => {
+export const hideModal = (id: string) => {
   const instance = Modal.getInstance("#" + id);
   if (instance) {
     instance.hide();
   }
 };
 
-export const closeOffCanvas = (id) => {
+export const closeOffCanvas = (id: string) => {
   const instance = OffCanvas.getInstance("#" + id);
   if (instance) {
     instance.hide();
   }
 };
 
-export const sleep = (seconds) => {
+export const sleep = (seconds: number) => {
   return new Promise(resolve => setTimeout(resolve, seconds * 1000));
 };
 
@@ -73,15 +74,15 @@ export const PanamaDate = () => {
   return new Date(PA);
 };
 
-export const formatHour = (hour) => {
+export const formatHour = (hour: number) => {
   return `${hour}h`;
 };
 
-export const openInNewTab = (url) => {
+export const openInNewTab = (url: string) => {
   window.open(url, "_blank");
 };
 
-export const getCardImage = (tipo, brand = false) => {
+export const getCardImage = (tipo: string, brand = false) => {
   switch (tipo) {
     case t("tarjeta_normal"):
       return brand ? "metro_metrobus_brand.webp" : "metro_metrobus.webp";

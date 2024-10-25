@@ -36,7 +36,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "LoginPage",
   data () {
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     async login () {
-      const form = this.$refs.login;
+      const form = this.$refs.login as HTMLFormElement;
       if (form.checkValidity()) {
         showModal("progress-dialog");
         const { error, error_key } = await Auth().login({

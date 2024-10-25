@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({ layout: "back", nav_title: "registrate" });
 </script>
 
@@ -11,22 +11,22 @@ definePageMeta({ layout: "back", nav_title: "registrate" });
       </div>
       <form ref="registro" novalidate @submit.prevent="registro()">
         <div class="mb-3 form-floating">
-          <input class="form-control" :class="{ 'is-valid': isNombreValid }" type="text" :placeholder="t('nombre')" required @input="form.nombre = $event.target.value">
+          <input v-model="form.nombre" class="form-control" :class="{ 'is-valid': isNombreValid }" type="text" :placeholder="t('nombre')" required>
           <label>{{ t("nombre") }}</label>
         </div>
         <div class="mb-3 position-relative form-floating">
-          <input ref="email" class="form-control" :class="{ 'is-valid': isEmailValid, 'is-invalid': form.error }" type="email" :placeholder="t('correo')" autocomplete="email" required @input="form.email = $event.target.value" @keyup="form.error = false">
+          <input ref="email" v-model="form.email" class="form-control" :class="{ 'is-valid': isEmailValid, 'is-invalid': form.error }" type="email" :placeholder="t('correo')" autocomplete="email" required @keyup="form.error = false">
           <label>{{ t("correo") }}</label>
           <div v-if="form.error" class="invalid-tooltip">
             {{ t("correo_existe") }}
           </div>
         </div>
         <div class="mb-3 form-floating">
-          <input class="form-control" :class="{ 'is-valid': isPasswordValid }" type="password" :placeholder="t('password')" autocomplete="new-password" required @input="form.password = $event.target.value">
+          <input v-model="form.password" class="form-control" :class="{ 'is-valid': isPasswordValid }" type="password" :placeholder="t('password')" autocomplete="new-password" required>
           <label>{{ t("password") }}</label>
         </div>
         <div class="mb-3 form-floating">
-          <input class="form-control" :class="{ 'is-valid': isPasswordCheckValid }" type="password" :placeholder="t('password_check')" autocomplete="off" required @input="form.password_check = $event.target.value">
+          <input v-model="form.password_check" class="form-control" :class="{ 'is-valid': isPasswordCheckValid }" type="password" :placeholder="t('password_check')" autocomplete="off" required>
           <label>{{ t("password_check") }}</label>
         </div>
         <div class="d-grid mt-4">
@@ -40,7 +40,7 @@ definePageMeta({ layout: "back", nav_title: "registrate" });
   </section>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "SignupPage",
   data () {
@@ -77,7 +77,6 @@ export default {
     async registro () {
       if (this.isNombreValid && this.isEmailValid && this.isPasswordValid && this.isPasswordCheckValid) {
         showModal("progress-dialog");
-        this.form.submitted = true;
         const { error, error_key } = await Auth().registro({
           nombre: this.form.nombre.trim(),
           email: this.form.email,
@@ -91,7 +90,7 @@ export default {
         else {
           if (error_key === "correo_existe") {
             this.form.error = true;
-            const email_input = this.$refs.email;
+            const email_input = this.$refs.email as HTMLInputElement;
             email_input.focus();
           }
           await CAPACITOR.showToast(t(error_key), "long");

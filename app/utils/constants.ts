@@ -1,4 +1,4 @@
-import { version, devDependencies, dependencies } from "./../package.json";
+import { version, devDependencies, dependencies } from "./../../package.json";
 
 export const CONST = {
   name: "Saldo Metrobús",
@@ -18,7 +18,7 @@ export const CONST = {
   appStore: "",
   status_url: "https://status.saldometrobus.yizack.com",
   email: "saldometrobus@yizack.com",
-  privacy: lang => `https://yizack.com/legal/saldometrobus/${lang}/privacy.html`,
+  privacy: (lang: string) => `https://yizack.com/legal/saldometrobus/${lang}/privacy.html`,
   database: "saldometrobus.db",
   mapsEmbedKey: "AIzaSyD_qEcAuuJ1Arg-MgaaphTlnG8CXVjHaII",
   dark: false,

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({ layout: "main" });
 </script>
 
@@ -39,18 +39,18 @@ definePageMeta({ layout: "main" });
       <div class="m-2">
         <form novalidate @submit.prevent="updatePass()">
           <div class="mb-3 position-relative form-floating">
-            <input ref="current" class="form-control" :class="{ 'is-invalid': form.error }" type="password" autocomplete="password" :placeholder="t('current_pass')" :value="form.current_password" required @input="form.current_password = $event.target.value" @keyup="form.error = false">
+            <input ref="current" v-model="form.current_password" class="form-control" :class="{ 'is-invalid': form.error }" type="password" autocomplete="password" :placeholder="t('current_pass')" required @keyup="form.error = false">
             <label>{{ t("current_pass") }}</label>
             <div class="invalid-tooltip">
               {{ t("pass_error") }}
             </div>
           </div>
           <div class="mb-3 form-floating">
-            <input class="form-control" :class="{ 'is-valid': isPasswordValid }" type="password" autocomplete="new-password" :placeholder="t('new_pass')" :value="form.new_password" required @input="form.new_password = $event.target.value">
+            <input v-model="form.new_password" class="form-control" :class="{ 'is-valid': isPasswordValid }" type="password" autocomplete="new-password" :placeholder="t('new_pass')" required>
             <label>{{ t("new_pass") }}</label>
           </div>
           <div class="mb-3 form-floating">
-            <input class="form-control" :class="{ 'is-valid': isPasswordCheckValid }" type="password" autocomplete="off" :placeholder="t('password_check')" :value="form.password_check" required @input="form.password_check = $event.target.value">
+            <input v-model="form.password_check" class="form-control" :class="{ 'is-valid': isPasswordCheckValid }" type="password" autocomplete="off" :placeholder="t('password_check')" required>
             <label>{{ t("password_check") }}</label>
           </div>
           <div class="d-grid">
@@ -75,7 +75,7 @@ definePageMeta({ layout: "main" });
   </section>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   data () {
     return {
@@ -87,7 +87,7 @@ export default {
         nombre: Auth().user.nombre,
         email: Auth().user.email,
         token: Auth().user.token,
-        tarjetas: []
+        tarjetas: [] as SaldometrobusTarjeta[]
       },
       form: {
         current_password: "",
@@ -112,7 +112,7 @@ export default {
     async editName () {
       this.edit.nombre = !this.edit.nombre;
       this.user.nombre = this.user.nombre.trim();
-      const input = this.$refs.nombre;
+      const input = this.$refs.nombre as HTMLInputElement;
       if (this.edit.nombre) {
         const end = this.user.nombre.length;
         input.setSelectionRange(end, end);
@@ -124,7 +124,7 @@ export default {
           const { error, error_key } = await API.updateName({
             nombre: this.user.nombre,
             email: Auth().user.email,
-            token: Auth().user.token
+            token: Auth().user.token || ""
           });
 
           if (!error) {
@@ -136,7 +136,7 @@ export default {
             await CAPACITOR.showToast(t(error_key));
           }
         }
-        input.setAttribute("readonly", true);
+        input.setAttribute("readonly", "true");
         input.blur();
       }
     },
@@ -155,13 +155,14 @@ export default {
           this.form = {
             current_password: "",
             new_password: "",
-            password_check: ""
+            password_check: "",
+            error: false
           };
         }
         else {
           if (error_key === "pass_error") {
             this.form.error = true;
-            const current_input = this.$refs.current;
+            const current_input = this.$refs.current as HTMLInputElement;
             current_input.focus();
           }
           await CAPACITOR.showToast(t(error_key), "long");
@@ -170,8 +171,8 @@ export default {
       await sleep(0.5);
       hideModal("progress-dialog");
     },
-    copyToken (event) {
-      const input = event.target;
+    copyToken (event: Event) {
+      const input = event.target as HTMLInputElement;
       input.select();
       CAPACITOR.writeToClipboard(this.user.token);
     },

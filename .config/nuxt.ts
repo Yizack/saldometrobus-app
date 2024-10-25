@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+  future: { compatibilityVersion: 4 },
   app: {
     rootId: "app",
     buildAssetsDir: "/_app/",
@@ -44,21 +45,16 @@ export default defineNuxtConfig({
       stylistic: true
     }
   },
-  pinia: {
-    autoImports: [
-      "defineStore",
-      ["defineStore", "definePiniaStore"]
-    ]
-  },
   imports: {
     dirs: ["stores"]
   },
   ssr: false,
   spaLoadingTemplate: false,
   nitro: {
-    crawlLinks: false,
     prerender: {
+      crawlLinks: false,
       ignore: ["/app", "/registro"]
     }
-  }
+  },
+  compatibilityDate: "2024-10-23"
 });

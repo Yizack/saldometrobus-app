@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({ layout: "main" });
 </script>
 
@@ -71,12 +71,12 @@ definePageMeta({ layout: "main" });
   </section>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "AppPage",
   data () {
     return {
-      tarjetas: [],
+      tarjetas: [] as SaldometrobusTarjeta[],
       size: {
         width: 100,
         height: 63
@@ -121,7 +121,7 @@ export default {
         }
 
         for (const tarjeta of tarjetasApi) {
-          const { changes } = await DB.insertTarjeta(tarjeta);
+          const changes = await DB.insertTarjeta(tarjeta);
           if (changes > 0 && !this.isFetchLimited) {
             await DB.insertMovimientos(tarjeta);
           }
@@ -150,7 +150,7 @@ export default {
   methods: {
     async addTarjeta () {
       this.progress = t("adding_tarjeta");
-      const form = this.$refs.add;
+      const form = this.$refs.add as HTMLFormElement;
       if (form.checkValidity()) {
         hideModal("add-dialog");
         showModal("progress-dialog");
@@ -167,7 +167,7 @@ export default {
               email: Auth().user.email,
               token: Auth().user.token
             }) : { error: false };
-            const { changes } = await DB.insertTarjeta(tarjeta);
+            const changes = await DB.insertTarjeta(tarjeta);
             if (changes > 0 && !error) {
               await DB.insertMovimientos(tarjeta);
               await CAPACITOR.showToast(`${t("tarjeta_added")}: ${tarjeta.numero}`);
@@ -193,16 +193,16 @@ export default {
         form.classList.add("was-validated");
       }
     },
-    openCard (numero) {
+    openCard (numero: string) {
       this.$router.push(`${numero}`);
     },
-    async updateTarjeta (e, numero) {
+    async updateTarjeta (e: Event, numero: string) {
       e.stopPropagation();
       this.progress = t("actualizando_tarjeta");
       showModal("progress-dialog");
       const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero);
       if (tarjeta && !error) {
-        const { changes } = await DB.updateTarjeta(tarjeta);
+        const changes = await DB.updateTarjeta(tarjeta);
         if (changes > 0) {
           await DB.deleteMovimientos(numero);
           await DB.insertMovimientos(tarjeta);

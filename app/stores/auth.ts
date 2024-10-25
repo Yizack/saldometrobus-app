@@ -1,6 +1,6 @@
 export const Auth = defineStore("auth", {
   state: () => ({
-    auth: {}
+    auth: {} as { email: string, nombre: string, updated: boolean, guest: boolean, token: string } | Record<string, never>
   }),
   getters: {
     user (state) {
@@ -14,7 +14,7 @@ export const Auth = defineStore("auth", {
     }
   },
   actions: {
-    async login (payload) {
+    async login (payload: Record<string, string>) {
       const data = await API.userLogin(payload);
       if (!data.error) {
         this.auth = data.usuario;
@@ -28,6 +28,7 @@ export const Auth = defineStore("auth", {
       this.auth = {
         email: t("invitado"),
         nombre: t("invitado"),
+        token: "",
         updated: true,
         guest: true
       };
@@ -37,7 +38,7 @@ export const Auth = defineStore("auth", {
       this.auth.updated = true;
       await CAPACITOR.setPref("auth", JSON.stringify(this.auth));
     },
-    async registro (payload) {
+    async registro (payload: Record<string, string>) {
       const data = await API.userRegistro(payload);
       if (!data.error) {
         this.auth = data.usuario;
@@ -60,7 +61,7 @@ export const Auth = defineStore("auth", {
         }
       }
     },
-    updateName (name) {
+    updateName (name: string) {
       this.auth.nombre = name;
       CAPACITOR.setPref("auth", JSON.stringify(this.auth));
     }

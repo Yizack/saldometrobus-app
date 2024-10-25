@@ -11,7 +11,7 @@ app-release*
 *.jks*
 release/
 .gradle
-assets/rutas.json
+app/assets/rutas.json
 .husky/_
 coverage
 .vscode

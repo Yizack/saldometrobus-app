@@ -1,4 +1,4 @@
-import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from "@capacitor-community/sqlite";
+import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection, type capSQLiteSet } from "@capacitor-community/sqlite";
 
 const TABLE = {
   tarjetas: `
@@ -27,16 +27,17 @@ const ALTER = {
 };
 
 class Database {
-  constructor (SQLite = new SQLiteDBConnection()) {
+  SQLite: SQLiteDBConnection;
+  constructor (SQLite: SQLiteDBConnection = new SQLiteDBConnection(CONST.database, false, CapacitorSQLite)) {
     this.SQLite = SQLite;
   }
 
-  async setup (database) {
+  async setup (database: string) {
     const connection = new SQLiteConnection(CapacitorSQLite);
 
     if (!CAPACITOR.isNative()) {
       const { defineCustomElement } = await import("jeep-sqlite/dist/components/jeep-sqlite");
-      defineCustomElement(window);
+      defineCustomElement();
       const jeep = document.createElement("jeep-sqlite");
       document.body.appendChild(jeep);
       await customElements.whenDefined("jeep-sqlite");
@@ -44,13 +45,13 @@ class Database {
     }
 
     const ret = await connection.checkConnectionsConsistency();
-    const isConn = (await connection.isConnection(database)).result;
+    const isConn = (await connection.isConnection(database, false)).result;
 
     if (ret.result && isConn) {
-      this.SQLite = await connection.retrieveConnection(database);
+      this.SQLite = await connection.retrieveConnection(database, false);
     }
     else {
-      this.SQLite = await connection.createConnection(database, false, "no-encryption", 1);
+      this.SQLite = await connection.createConnection(database, false, "no-encryption", 1, false);
     }
 
     await this.open();
@@ -70,19 +71,19 @@ class Database {
   }
 
   // Tarjetas
-  async insertTarjeta (tarjeta) {
+  async insertTarjeta (tarjeta: SaldometrobusTarjeta) {
     const { nombre, numero, saldo, estado, fecha, fecha_added, tipo } = tarjeta;
     const values = [nombre, numero, saldo, estado, fecha, fecha_added, tipo];
     const statement = "INSERT INTO tarjetas VALUES (?, ?, ?, ?, ?, ?, ?)";
     const { changes } = await this.run(statement, values);
-    return changes;
+    return changes?.changes ?? 0;
   }
 
-  async getTarjeta (numero) {
+  async getTarjeta (numero: number) {
     const statement = "SELECT * FROM tarjetas WHERE numero = ?";
     const { values } = await this.query(statement, [numero]);
-    let tarjeta = {};
-    if (values.length) {
+    let tarjeta = {} as SaldometrobusTarjeta;
+    if (values && values.length) {
       tarjeta = values[0];
       switch (tarjeta.tipo) {
         case "Tarjeta Normal al Portador b":
@@ -107,7 +108,7 @@ class Database {
     return tarjeta;
   }
 
-  async tarjetaExists (numero) {
+  async tarjetaExists (numero: number) {
     const tarjeta = await this.getTarjeta(numero);
     return Boolean(tarjeta.numero);
   }
@@ -115,7 +116,7 @@ class Database {
   async getTarjetas () {
     const statement = "SELECT * FROM tarjetas ORDER BY fecha_added ASC";
     const { values } = await this.query(statement);
-    if (values.length) {
+    if (values && values.length) {
       values.forEach((tarjeta) => {
         switch (tarjeta.tipo) {
           case "Tarjeta Normal al Portador b":
@@ -138,32 +139,32 @@ class Database {
         }
       });
     }
-    return values;
+    return values as SaldometrobusTarjeta[];
   }
 
-  async updateTarjeta (tarjeta) {
+  async updateTarjeta (tarjeta: SaldometrobusTarjeta) {
     const { numero, saldo, estado, fecha, tipo } = tarjeta;
     const statement = "UPDATE tarjetas SET saldo = ?, estado = ?, fecha = ?, tipo = ? WHERE numero = ?";
     const { changes } = await this.run(statement, [saldo, estado, fecha, tipo, numero]);
     console.info(`Updated: ${numero}`);
-    return changes;
+    return changes?.changes ?? 0;
   }
 
-  async updateNombreTarjeta (numero, nombre) {
+  async updateNombreTarjeta (numero: number, nombre: string) {
     const statement = "UPDATE tarjetas SET nombre = ? WHERE numero = ?";
     const { changes } = await this.run(statement, [nombre, numero]);
     console.info(`Edited: ${numero}`);
-    return changes;
+    return changes?.changes ?? 0;
   }
 
-  async deleteTarjeta (numero) {
+  async deleteTarjeta (numero: number) {
     const set = [
       { statement: "DELETE FROM tarjetas WHERE numero = ?", values: [numero] },
       { statement: "DELETE FROM movimientos WHERE numero = ?", values: [numero] }
     ];
 
-    const { changes } = await this.execute(set);
-    return changes;
+    const executed = await this.execute(set);
+    return executed?.changes;
   }
 
   deleteAll () {
@@ -177,7 +178,7 @@ class Database {
   }
 
   // Movimientos
-  insertMovimientos (tarjeta) {
+  insertMovimientos (tarjeta: SaldometrobusTarjeta) {
     const statements = [];
     const { numero, movimientos } = tarjeta;
     let size = movimientos.length;
@@ -185,12 +186,14 @@ class Database {
       return false;
     }
     while (size--) {
-      const movimiento = movimientos[size].tipo;
-      const fecha = convertToTime(movimientos[size].fecha_hora);
-      const monto = movimientos[size].monto;
-      const saldo = movimientos[size].saldo_tarjeta;
-      const lugar = movimientos[size].lugar;
-      const transaccion = movimientos[size].transaccion;
+      const obj = movimientos[size];
+      if (!obj) continue;
+      const movimiento = obj.tipo;
+      const fecha = convertToTime(obj.fecha_hora);
+      const monto = obj.monto;
+      const saldo = obj.saldo_tarjeta;
+      const lugar = obj.lugar;
+      const transaccion = obj.transaccion;
       const statement = "INSERT INTO movimientos VALUES (?, ?, ?, ?, ?, ?, ?)";
       const values = [numero, movimiento, fecha, monto, saldo, lugar, transaccion];
       statements.push({ statement, values });
@@ -198,10 +201,10 @@ class Database {
     return this.execute(statements);
   }
 
-  async getMovimientos (numero) {
+  async getMovimientos (numero: number) {
     const statement = `SELECT * FROM movimientos WHERE numero = '${numero}' ORDER BY fecha DESC, saldo ASC`;
     const { values } = await this.query(statement);
-    if (values.length) {
+    if (values && values.length) {
       const tipos = {
         uso: {
           text: "Uso",
@@ -242,31 +245,32 @@ class Database {
     return values;
   }
 
-  deleteMovimientos (numero) {
+  deleteMovimientos (numero: string) {
     const statement = "DELETE FROM movimientos WHERE numero = ?";
     return this.run(statement, [numero]);
   }
 
   // Base methods
-  query (statement, values) {
+  query (statement: string, values?: unknown[]) {
     return this.SQLite.query(statement, values);
   }
 
-  run (statement, values) {
+  run (statement: string, values?: unknown[]) {
     return this.SQLite.run(statement, values);
   }
 
-  execute (statement) {
+  execute (statement: string | unknown[]) {
     if (typeof statement === "string") {
       return this.SQLite.execute(statement);
     }
     else if (Array.isArray(statement)) {
-      const set = [];
+      const set = [] as capSQLiteSet[];
       statement.forEach((item) => {
         if (typeof item === "string") {
           set.push({ statement: item, values: [] });
         }
         else if (typeof item === "object") {
+          if (!item) return;
           set.push(item);
         }
       });

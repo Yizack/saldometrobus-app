@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({ layout: "main" });
 </script>
 
@@ -10,7 +10,7 @@ definePageMeta({ layout: "main" });
     </div>
     <div class="donate-buttons">
       <template v-for="(donate, name) in donate_options" :key="name">
-        <div v-if="donate.external" class="donate-option rounded-pill shadow mb-2" :class="name" @click="CAPACITOR.openBrowser(donate.link)">
+        <div v-if="donate.external && 'link' in donate" class="donate-option rounded-pill shadow mb-2" :class="name" @click="CAPACITOR.openBrowser(donate.link)">
           <img class="img-fluid" :src="`/images/${name}.svg`">
         </div>
         <div v-else class="donate-option rounded-pill shadow mb-2" :class="name" data-bs-toggle="modal" :data-bs-target="`#${name}`">
@@ -67,7 +67,7 @@ definePageMeta({ layout: "main" });
   </section>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   data () {
     return {
@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     copyBgeneral () {
-      this.$refs.bgeneral[1].focus();
+      (this.$refs.bgeneral as HTMLInputElement[])[1]!.focus();
       CAPACITOR.writeToClipboard(this.donate_options.bgeneral.info.n_cuenta);
     }
   }

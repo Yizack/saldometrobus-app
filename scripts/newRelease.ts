@@ -1,8 +1,5 @@
 import { execSync } from "child_process";
-import { createRequire } from "module";
-
-const require = createRequire(import.meta.url);
-const { version } = require("./../package.json");
+import { version } from "./../package.json";
 
 const tag = execSync(`git tag -l v${version}`).toString();
 if (!tag) {

@@ -51,7 +51,6 @@ export default {
   idioma: "Idioma",
   modo_oscuro: "Modo oscuro",
   language_prompt: "Selecciona un idioma",
-  languages: ["Español", "English"],
   guardar: "Guardar cambios",
   dark_mode_desc: "Reduce el resplandor y mejora la visión nocturna",
   about_message: "\"Saldo Metrobús\" es una app de consultas de saldo y movimientos para las tarjetas de Metro y Metrobús de Panamá, diseñada y desarrollada por Yizack Rangel. Los dos diferentes logos fueron diseñados por Georlenys Martínez\n\nLa actualización de saldo puede tardar hasta 15 o 30 minutos en reflejarse desde el último movimiento o acción realizada con tu tarjeta debido al retraso de actualización impuesto por las fuentes oficiales.\n\nTodos los datos de las tarjetas son obtenidos de la fuente oficial del servicio en el sitio a de consultas www.tarjetametrobus.com el cual ofrece esta información en todo Panamá. Esta aplicación no es oficial y no pertenece ni está respaldada por una afiliación gubernamental.",

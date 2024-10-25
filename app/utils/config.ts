@@ -1,5 +1,8 @@
+type AppConfig = { lang: Locale, dark: boolean };
+
 class Config {
-  constructor (config) {
+  config: AppConfig;
+  constructor (config: AppConfig) {
     this.config = config;
   }
 
@@ -20,13 +23,13 @@ class Config {
     return this.config.dark;
   }
 
-  async setLang (lang) {
+  async setLang (lang: Locale) {
     this.config.lang = lang;
     LOCALE.setLanguage(lang);
     await CAPACITOR.setPref("lang", lang);
   }
 
-  async setDark (dark) {
+  async setDark (dark: boolean) {
     this.config.dark = dark;
     useHead({ bodyAttrs: { "data-bs-theme": dark ? "dark" : "light" } });
     await CAPACITOR.setPref("dark", dark);
