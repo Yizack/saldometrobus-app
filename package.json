@@ -1,6 +1,6 @@
 {
   "name": "saldometrobus-app",
-  "version": "2.6.4",
+  "version": "2.6.5",
   "description": "Saldo Metrobús es un sitio de consultas de saldo y movimientos para las tarjetas de metro y metrobús de Panamá a cualquier hora del día.",
   "author": "Yizack Rangel",
   "license": "MIT",
@@ -28,8 +28,8 @@
     "app:version": "tsx scripts/updateVersion",
     "app:android:key": "openssl base64 -A -in saldometrobus_key.jks -out saldometrobus_key.jks.txt",
     "trapeze": "npx trapeze run config.yaml -y",
-    "release": "pnpm changelogen --bump && node scripts/newRelease.js && pnpm changelogen gh release",
-    "release:patch": "pnpm changelogen --bump --patch && node scripts/newRelease.js && pnpm changelogen gh release",
+    "release": "pnpm changelogen --bump && tsx scripts/newRelease && pnpm changelogen gh release",
+    "release:patch": "pnpm changelogen --bump --patch && tsx scripts/newRelease && pnpm changelogen gh release",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --coverage",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint --fix --config .config/eslint.mjs",

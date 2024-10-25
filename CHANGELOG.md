@@ -1,5 +1,29 @@
 # Changelog
 
+## v2.6.5
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.4...v2.6.5)
+
+### 🩹 Fixes
+
+- Get tarjeta ([440830a](https://github.com/Yizack/saldometrobus-app/commit/440830a))
+- Add once cached ([92d24c7](https://github.com/Yizack/saldometrobus-app/commit/92d24c7))
+- Modificar ([e543540](https://github.com/Yizack/saldometrobus-app/commit/e543540))
+- Navbar meta ([980bc42](https://github.com/Yizack/saldometrobus-app/commit/980bc42))
+
+### 💅 Refactors
+
+- Nuxt v4 compatibility ([162cc8f](https://github.com/Yizack/saldometrobus-app/commit/162cc8f))
+
+### 🏡 Chore
+
+- Update gradle ([096b8d1](https://github.com/Yizack/saldometrobus-app/commit/096b8d1))
+- Deps ([51578de](https://github.com/Yizack/saldometrobus-app/commit/51578de))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.6.4
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.3...v2.6.4)
