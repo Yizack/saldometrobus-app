@@ -57,8 +57,7 @@ class CapacitorPlugins {
     const numero = new URL(url).pathname.split("/").pop();
     if (!numero) return error_response;
     const pref = (await Preferences.get({ key: numero })).value;
-    if (!pref) return error_response;
-    const cachedResponse = JSON.parse(pref);
+    const cachedResponse = pref ? JSON.parse(pref) : null;
 
     const currentTime = new Date().getTime();
     if (cached && cachedResponse && cachedResponse.expires && currentTime < cachedResponse.expires) {
