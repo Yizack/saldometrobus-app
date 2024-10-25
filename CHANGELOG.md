@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.6.7
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.6...v2.6.7)
+
+### 🏡 Chore
+
+- Remove duplicated clear ([2186b6b](https://github.com/Yizack/saldometrobus-app/commit/2186b6b))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.6.6
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.5...v2.6.6)
