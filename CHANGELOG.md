@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.6.6
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.5...v2.6.6)
+
+### 🩹 Fixes
+
+- Delete tarjeta and prefs ([ff14ffa](https://github.com/Yizack/saldometrobus-app/commit/ff14ffa))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.6.5
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.4...v2.6.5)
