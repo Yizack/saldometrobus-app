@@ -200,7 +200,7 @@ export default {
       e.stopPropagation();
       this.progress = t("actualizando_tarjeta");
       showModal("progress-dialog");
-      const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero);
+      const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero, true);
       if (tarjeta && !error) {
         const changes = await DB.updateTarjeta(tarjeta);
         if (changes > 0) {

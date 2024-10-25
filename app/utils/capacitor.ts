@@ -59,7 +59,7 @@ class CapacitorPlugins {
     const pref = (await Preferences.get({ key: numero })).value;
     const cachedResponse = pref ? JSON.parse(pref) : null;
 
-    const currentTime = new Date().getTime();
+    const currentTime = Date.now();
     if (cached && cachedResponse && cachedResponse.expires && currentTime < cachedResponse.expires) {
       return {
         error: true,
@@ -67,11 +67,10 @@ class CapacitorPlugins {
       };
     }
 
-    const GET = CapacitorHttp.get({ url, headers: { "Cache-Control": "max-age=900" } }).then(async (response) => {
+    const GET = CapacitorHttp.get({ url }).then(async (response) => {
       if (response.status === 200) {
         if (parseInt(numero)) {
-          const cacheControl = response.headers["Cache-Control"];
-          const maxAge = parseInt(String(cacheControl?.split("=").pop()));
+          const maxAge = 900; // 15 minutos
           const expiresTime = currentTime + (maxAge * 1000);
           await Preferences.set({ key: numero, value: JSON.stringify({ expires: expiresTime }) });
         }
