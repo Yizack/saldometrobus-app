@@ -160,7 +160,7 @@ export default {
           nombre: nombre_trimmed
         }) : { error: false };
 
-        const { changes } = await DB.updateNombreTarjeta(this.tarjeta.numero, nombre_trimmed);
+        const changes = await DB.updateNombreTarjeta(this.tarjeta.numero, nombre_trimmed);
 
         if (!error && changes > 0) {
           await CAPACITOR.showToast(`${t("editada")}: ${this.tarjeta.numero}`);
@@ -190,7 +190,7 @@ export default {
           numero: this.tarjeta.numero
         }) : { error: false };
 
-        const { changes } = await DB.deleteTarjeta(this.tarjeta.numero);
+        const changes = await DB.deleteTarjeta(this.tarjeta.numero);
 
         if (!error && changes > 0) {
           await CAPACITOR.showToast(`${t("eliminada")}: ${this.tarjeta.numero}`);
