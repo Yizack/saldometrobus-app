@@ -1,5 +1,59 @@
 <script setup lang="ts">
 definePageMeta({ layout: "back", nav_title: "registrate" });
+const auth = Auth();
+
+const form = useFormState({
+  nombre: "",
+  email: "",
+  password: "",
+  password_check: "",
+  error: false
+});
+
+const isNombreValid = computed(() => {
+  const nombre = form.value.nombre;
+  return nombre.length > 0 && nombre.length <= 50;
+});
+
+const isPasswordValid = computed(() => {
+  return form.value.password.length >= 3;
+});
+
+const isPasswordCheckValid = computed(() => {
+  return isPasswordValid.value && form.value.password === form.value.password_check;
+});
+
+const isEmailValid = computed(() => {
+  const input = document.createElement("input");
+  input.type = "email";
+  input.required = true;
+  input.value = form.value.email;
+  return input.checkValidity();
+});
+
+const email = ref<HTMLInputElement>();
+const registro = async () => {
+  if (isNombreValid.value && isEmailValid.value && isPasswordValid.value && isPasswordCheckValid.value) {
+    showModal("progress-dialog");
+    const { error, error_key } = await auth.registro({
+      nombre: form.value.nombre,
+      email: form.value.email,
+      password: form.value.password
+    });
+    await sleep(0.5);
+    hideModal("progress-dialog");
+    if (!error) {
+      navigateTo("/app/", { replace: true });
+    }
+    else {
+      if (error_key === "correo_existe") {
+        form.value.error = true;
+        email.value?.focus();
+      }
+      await CAPACITOR.showToast(t(error_key), "long");
+    }
+  }
+};
 </script>
 
 <template>
@@ -9,13 +63,13 @@ definePageMeta({ layout: "back", nav_title: "registrate" });
         <img class="img-fluid shadow-sm my-3 rounded bg-body" width="90" height="90" src="/images/logo2.webp">
         <p>{{ t("enter_account_info") }}</p>
       </div>
-      <form ref="registro" novalidate @submit.prevent="registro()">
+      <form ref="registro" novalidate @submit.prevent="registro">
         <div class="mb-3 form-floating">
-          <input v-model="form.nombre" class="form-control" :class="{ 'is-valid': isNombreValid }" type="text" :placeholder="t('nombre')" required>
+          <input v-model.trim="form.nombre" class="form-control" :class="{ 'is-valid': isNombreValid }" type="text" :placeholder="t('nombre')" required>
           <label>{{ t("nombre") }}</label>
         </div>
         <div class="mb-3 position-relative form-floating">
-          <input ref="email" v-model="form.email" class="form-control" :class="{ 'is-valid': isEmailValid, 'is-invalid': form.error }" type="email" :placeholder="t('correo')" autocomplete="email" required @keyup="form.error = false">
+          <input ref="email" v-model.trim="form.email" class="form-control" :class="{ 'is-valid': isEmailValid, 'is-invalid': form.error }" type="email" :placeholder="t('correo')" autocomplete="email" required @keyup="form.error = false">
           <label>{{ t("correo") }}</label>
           <div v-if="form.error" class="invalid-tooltip">
             {{ t("correo_existe") }}
@@ -39,64 +93,3 @@ definePageMeta({ layout: "back", nav_title: "registrate" });
     <ProgressDialog :message="t('iniciando_sesion')" />
   </section>
 </template>
-
-<script lang="ts">
-export default {
-  name: "SignupPage",
-  data () {
-    return {
-      form: {
-        nombre: "",
-        email: "",
-        password: "",
-        password_check: "",
-        error: false
-      }
-    };
-  },
-  computed: {
-    isNombreValid () {
-      const nombre = this.form.nombre.trim();
-      return nombre.length > 0 && nombre.length <= 50;
-    },
-    isPasswordValid () {
-      return this.form.password.length >= 3;
-    },
-    isPasswordCheckValid () {
-      return this.isPasswordValid && this.form.password === this.form.password_check;
-    },
-    isEmailValid () {
-      const input = document.createElement("input");
-      input.type = "email";
-      input.required = true;
-      input.value = this.form.email;
-      return input.checkValidity();
-    }
-  },
-  methods: {
-    async registro () {
-      if (this.isNombreValid && this.isEmailValid && this.isPasswordValid && this.isPasswordCheckValid) {
-        showModal("progress-dialog");
-        const { error, error_key } = await Auth().registro({
-          nombre: this.form.nombre.trim(),
-          email: this.form.email,
-          password: this.form.password
-        });
-        await sleep(0.5);
-        hideModal("progress-dialog");
-        if (!error) {
-          this.$router.replace("/app/");
-        }
-        else {
-          if (error_key === "correo_existe") {
-            this.form.error = true;
-            const email_input = this.$refs.email as HTMLInputElement;
-            email_input.focus();
-          }
-          await CAPACITOR.showToast(t(error_key), "long");
-        }
-      }
-    }
-  }
-};
-</script>

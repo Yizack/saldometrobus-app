@@ -1,7 +1,8 @@
 export default defineNuxtRouteMiddleware(async (to) => {
-  if (!Auth().exists) {
-    await Auth().restore();
-    if (Auth().exists) {
+  const auth = Auth();
+  if (!auth.exists) {
+    await auth.restore();
+    if (auth.exists) {
       if (to.path === "/") {
         return navigateTo("/app/", { replace: true });
       }

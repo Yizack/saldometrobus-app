@@ -1,11 +1,11 @@
 <script setup lang="ts">
 definePageMeta({ layout: "main" });
+const auth = Auth();
 
 const tarjetas = ref<SaldometrobusTarjeta[]>([]);
 const fetched = ref(0);
 const fetchLimit = ref(4);
 const progress = ref("");
-const auth = Auth();
 
 const form = useFormState({
   numero: "",
