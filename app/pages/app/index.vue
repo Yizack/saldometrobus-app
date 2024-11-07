@@ -119,12 +119,12 @@ onMounted(async () => {
   }
 
   const getTarjetas = await DB.getTarjetas();
-  const entries = (getTarjetas).entries();
 
-  for (const [i, tarjeta] of entries) {
+  for (const tarjeta of getTarjetas) {
     tarjetas.value.push(tarjeta);
-    await CAPACITOR.showToast(`${t("tarjeta_added")}: ${tarjeta.numero}`);
-    if (getTarjetas.length - 1 === i) break;
+    if (tarjeta.saldo) {
+      await CAPACITOR.showToast(`${t("tarjeta_added")}: ${tarjeta.numero}`);
+    }
     await sleep(0.5);
   }
 
