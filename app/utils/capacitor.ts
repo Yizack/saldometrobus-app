@@ -57,37 +57,6 @@ class CapacitorPlugins {
     return status.connected;
   }
 
-  async doGet (url: string, cached = false) {
-    const numero = new URL(url).pathname.split("/").pop();
-    if (!numero) return error_response;
-    const pref = (await Preferences.get({ key: numero })).value;
-    const cachedResponse = pref ? JSON.parse(pref) : null;
-
-    const currentTime = Date.now();
-    if (cached && cachedResponse && cachedResponse.expires && currentTime < cachedResponse.expires) {
-      return {
-        error: true,
-        error_key: `${t("tarjeta_actualizada")}: ${numero}`
-      };
-    }
-
-    const GET = CapacitorHttp.get({ url }).then(async (response) => {
-      if (response.status === 200) {
-        if (parseInt(numero)) {
-          const maxAge = 900; // 15 minutos
-          const expiresTime = currentTime + (maxAge * 1000);
-          await Preferences.set({ key: numero, value: JSON.stringify({ expires: expiresTime }) });
-        }
-        return response.data;
-      }
-      else {
-        return error_response;
-      }
-    }).catch(() => error_response);
-
-    return await this.isOnline() ? GET : error_conexion;
-  }
-
   async doPost (url: string, payload: Record<string, string>) {
     const options = {
       url,
