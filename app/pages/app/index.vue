@@ -1,5 +1,138 @@
 <script setup lang="ts">
 definePageMeta({ layout: "main" });
+
+const tarjetas = ref<SaldometrobusTarjeta[]>([]);
+const fetched = ref(0);
+const fetchLimit = ref(4);
+const progress = ref("");
+const auth = Auth();
+
+const form = useFormState({
+  numero: "",
+  nombre: ""
+});
+
+const size = { width: 100, height: 63 };
+
+const isFetchLimited = computed(() => fetched.value > fetchLimit.value);
+const openCard = (numero: string) => navigateTo(`/app/${numero}`);
+
+const addTarjeta = async (event: Event) => {
+  progress.value = t("adding_tarjeta");
+  const addForm = event.currentTarget as HTMLFormElement;
+  if (!addForm.checkValidity()) {
+    return addForm.classList.add("was-validated");
+  }
+
+  hideModal("add-dialog");
+  showModal("progress-dialog");
+  const { tarjeta, error, error_key } = await API.getTarjetaAPI(form.value.numero);
+  if (tarjeta && !error) {
+    tarjeta.nombre = form.value.nombre;
+    tarjeta.fecha_added = new Date().toISOString().replace("T", " ").replace("Z", "");
+    const tarjetaExists = await DB.tarjetaExists(tarjeta.numero);
+    if (!tarjetaExists) {
+      const { error, error_key } = !auth.isGuest ? await API.addTarjeta({
+        nombre: tarjeta.nombre,
+        numero: tarjeta.numero,
+        email: auth.user.email,
+        token: auth.user.token
+      }) : { error: false };
+      const changes = await DB.insertTarjeta(tarjeta);
+      if (changes > 0 && !error) {
+        await DB.insertMovimientos(tarjeta);
+        await CAPACITOR.showToast(`${t("tarjeta_added")}: ${tarjeta.numero}`);
+      }
+      else {
+        await CAPACITOR.showToast(t(error_key));
+      }
+      tarjetas.value = await DB.getTarjetas();
+    }
+    else {
+      await CAPACITOR.showToast(`${t("existe_tarjeta")}: ${tarjeta.numero}`);
+    }
+    form.reset();
+  }
+  else {
+    await CAPACITOR.showToast(t(error_key || "error"), "long");
+  }
+  await sleep(0.5);
+  hideModal("progress-dialog");
+  addForm.classList.remove("was-validated");
+};
+
+const updateTarjeta = async (event: Event, numero: string) => {
+  event.stopPropagation();
+  progress.value = t("actualizando_tarjeta");
+  showModal("progress-dialog");
+  const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero, true);
+  if (tarjeta && !error) {
+    const changes = await DB.updateTarjeta(tarjeta);
+    if (changes > 0) {
+      await DB.deleteMovimientos(numero);
+      await DB.insertMovimientos(tarjeta);
+      await CAPACITOR.showToast(`${t("tarjeta_actualizada")}: ${tarjeta.numero}`);
+      tarjetas.value = await DB.getTarjetas();
+    }
+  }
+  else {
+    await CAPACITOR.showToast(t(error_key || "error"), "long");
+  }
+  await sleep(0.5);
+  hideModal("progress-dialog");
+};
+
+onMounted(async () => {
+  if (!auth.exists && auth.user.updated && auth.isGuest) return;
+  tarjetas.value = await DB.getTarjetas();
+  if (tarjetas.value.length) return;
+
+  progress.value = t("adding_tarjetas");
+  await sleep(0.5);
+  showModal("progress-dialog");
+  const { email, token } = auth.user;
+  const { error, error_key, tarjetas: tarjetasAPI } = await API.getTarjetas({ email, token }) || [];
+  let tarjetasDetalles = [];
+
+  if (error) {
+    await CAPACITOR.showToast(t(error_key), "long");
+  }
+
+  if (tarjetasAPI) {
+    fetched.value = tarjetasAPI.length;
+    if (isFetchLimited.value) {
+      tarjetasDetalles = tarjetasAPI || [];
+    }
+    else {
+      tarjetasDetalles = await API.getDetallesTarjetas(tarjetasAPI) || [];
+    }
+  }
+
+  for (const tarjeta of tarjetasDetalles) {
+    const changes = await DB.insertTarjeta(tarjeta);
+    if (changes > 0 && !isFetchLimited.value) {
+      await DB.insertMovimientos(tarjeta);
+    }
+  }
+
+  const getTarjetas = await DB.getTarjetas();
+  const entries = (getTarjetas).entries();
+
+  for (const [i, tarjeta] of entries) {
+    tarjetas.value.push(tarjeta);
+    await CAPACITOR.showToast(`${t("tarjeta_added")}: ${tarjeta.numero}`);
+    if (getTarjetas.length - 1 === i) break;
+    await sleep(0.5);
+  }
+
+  await auth.setUpdated();
+  await sleep(0.5);
+  hideModal("progress-dialog");
+  if (isFetchLimited.value) {
+    await sleep(0.5);
+    showModal("limit-dialog");
+  }
+});
 </script>
 
 <template>
@@ -42,9 +175,9 @@ definePageMeta({ layout: "main" });
             </h1>
           </div>
           <div class="modal-body text-center">
-            <form ref="add" novalidate @submit.prevent="addTarjeta()">
+            <form novalidate @submit.prevent="addTarjeta">
               <div class="mb-3 position-relative form-floating">
-                <input v-model="form.nombre" class="form-control" type="text" :placeholder="t('nombre')" required>
+                <input v-model.trim="form.nombre" class="form-control" type="text" :placeholder="t('nombre')" required>
                 <label>{{ t("nombre") }}</label>
                 <div class="invalid-tooltip">
                   {{ t("obligatorio") }}
@@ -70,151 +203,3 @@ definePageMeta({ layout: "main" });
     <LimitDialog />
   </section>
 </template>
-
-<script lang="ts">
-export default {
-  name: "AppPage",
-  data () {
-    return {
-      tarjetas: [] as SaldometrobusTarjeta[],
-      size: {
-        width: 100,
-        height: 63
-      },
-      fetched: 0,
-      fetchLimit: 4,
-      form: {
-        numero: "",
-        nombre: ""
-      },
-      progress: ""
-    };
-  },
-  computed: {
-    isFetchLimited () {
-      return this.fetched > this.fetchLimit;
-    }
-  },
-  async mounted () {
-    if (Auth().exists) {
-      this.tarjetas = await DB.getTarjetas();
-      if (!Auth().user.updated && !this.tarjetas.length && !Auth().isGuest) {
-        this.progress = t("adding_tarjetas");
-        await sleep(0.5);
-        showModal("progress-dialog");
-        const { email, token } = Auth().user;
-        const { error, error_key, tarjetas } = await API.getTarjetas({ email, token }) || [];
-        let tarjetasApi = [];
-
-        if (error) {
-          await CAPACITOR.showToast(t(error_key), "long");
-        }
-
-        if (tarjetas) {
-          this.fetched = tarjetas.length;
-          if (this.isFetchLimited) {
-            tarjetasApi = tarjetas || [];
-          }
-          else {
-            tarjetasApi = await API.getDetallesTarjetas(tarjetas) || [];
-          }
-        }
-
-        for (const tarjeta of tarjetasApi) {
-          const changes = await DB.insertTarjeta(tarjeta);
-          if (changes > 0 && !this.isFetchLimited) {
-            await DB.insertMovimientos(tarjeta);
-          }
-        }
-
-        const getTarjetas = await DB.getTarjetas();
-        const entries = (getTarjetas).entries();
-
-        for (const [i, tarjeta] of entries) {
-          this.tarjetas.push(tarjeta);
-          await CAPACITOR.showToast(`${t("tarjeta_added")}: ${tarjeta.numero}`);
-          if (getTarjetas.length - 1 === i) break;
-          await sleep(0.5);
-        }
-
-        await Auth().setUpdated();
-        await sleep(0.5);
-        hideModal("progress-dialog");
-        if (this.isFetchLimited) {
-          await sleep(0.5);
-          showModal("limit-dialog");
-        }
-      }
-    }
-  },
-  methods: {
-    async addTarjeta () {
-      this.progress = t("adding_tarjeta");
-      const form = this.$refs.add as HTMLFormElement;
-      if (form.checkValidity()) {
-        hideModal("add-dialog");
-        showModal("progress-dialog");
-        const { tarjeta, error, error_key } = await API.getTarjetaAPI(this.form.numero);
-        if (tarjeta && !error) {
-          tarjeta.nombre = String(this.form.nombre).trim();
-          tarjeta.fecha_added = new Date().toISOString().replace("T", " ").replace("Z", "");
-          const tarjetaExists = await DB.tarjetaExists(Number(tarjeta.numero));
-          if (!tarjetaExists) {
-            const { error, error_key } = !Auth().isGuest ? await API.addTarjeta({
-              nombre: tarjeta.nombre,
-              numero: tarjeta.numero,
-              email: Auth().user.email,
-              token: Auth().user.token
-            }) : { error: false };
-            const changes = await DB.insertTarjeta(tarjeta);
-            if (changes > 0 && !error) {
-              await DB.insertMovimientos(tarjeta);
-              await CAPACITOR.showToast(`${t("tarjeta_added")}: ${tarjeta.numero}`);
-            }
-            else {
-              await CAPACITOR.showToast(t(error_key));
-            }
-            this.tarjetas = await DB.getTarjetas();
-          }
-          else {
-            await CAPACITOR.showToast(`${t("existe_tarjeta")}: ${tarjeta.numero}`);
-          }
-          this.form = { numero: "", nombre: "" };
-        }
-        else {
-          await CAPACITOR.showToast(t(error_key), "long");
-        }
-        await sleep(0.5);
-        hideModal("progress-dialog");
-        form.classList.remove("was-validated");
-      }
-      else {
-        form.classList.add("was-validated");
-      }
-    },
-    openCard (numero: string) {
-      this.$router.push(`${numero}`);
-    },
-    async updateTarjeta (e: Event, numero: string) {
-      e.stopPropagation();
-      this.progress = t("actualizando_tarjeta");
-      showModal("progress-dialog");
-      const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero, true);
-      if (tarjeta && !error) {
-        const changes = await DB.updateTarjeta(tarjeta);
-        if (changes > 0) {
-          await DB.deleteMovimientos(numero);
-          await DB.insertMovimientos(tarjeta);
-          await CAPACITOR.showToast(`${t("tarjeta_actualizada")}: ${tarjeta.numero}`);
-          this.tarjetas = await DB.getTarjetas();
-        }
-      }
-      else {
-        await CAPACITOR.showToast(t(error_key), "long");
-      }
-      await sleep(0.5);
-      hideModal("progress-dialog");
-    }
-  }
-};
-</script>

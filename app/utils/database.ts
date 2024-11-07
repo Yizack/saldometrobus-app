@@ -79,7 +79,7 @@ class Database {
     return changes?.changes ?? 0;
   }
 
-  async getTarjeta (numero: number) {
+  async getTarjeta (numero: string) {
     const statement = "SELECT * FROM tarjetas WHERE numero = ?";
     const { values } = await this.query(statement, [numero]);
     let tarjeta = {} as SaldometrobusTarjeta;
@@ -108,7 +108,7 @@ class Database {
     return tarjeta;
   }
 
-  async tarjetaExists (numero: number) {
+  async tarjetaExists (numero: string) {
     const tarjeta = await this.getTarjeta(numero);
     return Boolean(tarjeta.numero);
   }
@@ -150,14 +150,14 @@ class Database {
     return changes?.changes ?? 0;
   }
 
-  async updateNombreTarjeta (numero: number, nombre: string) {
+  async updateNombreTarjeta (numero: string, nombre: string) {
     const statement = "UPDATE tarjetas SET nombre = ? WHERE numero = ?";
     const { changes } = await this.run(statement, [nombre, numero]);
     console.info(`Edited: ${numero}`);
     return changes?.changes ?? 0;
   }
 
-  async deleteTarjeta (numero: number) {
+  async deleteTarjeta (numero: string) {
     const set = [
       { statement: "DELETE FROM tarjetas WHERE numero = ?", values: [numero] },
       { statement: "DELETE FROM movimientos WHERE numero = ?", values: [numero] }
@@ -201,7 +201,7 @@ class Database {
     return this.execute(statements);
   }
 
-  async getMovimientos (numero: number) {
+  async getMovimientos (numero: string) {
     const statement = `SELECT * FROM movimientos WHERE numero = '${numero}' ORDER BY fecha DESC, saldo ASC`;
     const { values } = await this.query(statement);
     if (values && values.length) {
