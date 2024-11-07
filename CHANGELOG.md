@@ -1,5 +1,21 @@
 # Changelog
 
+## v2.6.9
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.8...v2.6.9)
+
+### 🩹 Fixes
+
+- Add tarjeta ([b4ff3de](https://github.com/Yizack/saldometrobus-app/commit/b4ff3de))
+
+### 📖 Documentation
+
+- Fix screenshot ([00c716f](https://github.com/Yizack/saldometrobus-app/commit/00c716f))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.6.8
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.7...v2.6.8)
