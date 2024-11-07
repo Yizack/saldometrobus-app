@@ -18,7 +18,12 @@ export default {
     await CONFIG.load();
     await CAPACITOR.setStatusBar(true);
     if (CAPACITOR.isAndroid()) {
-      await CAPACITOR.startFlexibleUpdate();
+      try {
+        await CAPACITOR.startFlexibleUpdate();
+      }
+      catch (e) {
+        console.warn(e);
+      }
     }
 
     if (CAPACITOR.isAndroid()) {
