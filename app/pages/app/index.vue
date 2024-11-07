@@ -83,9 +83,9 @@ const updateTarjeta = async (event: Event, numero: string) => {
 };
 
 onMounted(async () => {
-  if (!auth.exists && auth.user.updated && auth.isGuest) return;
+  if (!auth.exists) return;
   tarjetas.value = await DB.getTarjetas();
-  if (tarjetas.value.length) return;
+  if (tarjetas.value.length || auth.user.updated || auth.isGuest) return;
 
   progress.value = t("adding_tarjetas");
   await sleep(0.5);
