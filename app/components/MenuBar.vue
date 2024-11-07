@@ -98,12 +98,6 @@ export default {
           external: false
         },
         {
-          name: t("estado"),
-          icon: "status",
-          link: CONST.status_url,
-          external: true
-        },
-        {
           name: t("donar"),
           icon: "donate",
           link: "/app/donar/",

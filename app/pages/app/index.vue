@@ -154,12 +154,11 @@ export default {
       if (form.checkValidity()) {
         hideModal("add-dialog");
         showModal("progress-dialog");
-        const { nombre, numero } = this.form;
-        const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero);
+        const { tarjeta, error, error_key } = await API.getTarjetaAPI(this.form.numero);
         if (tarjeta && !error) {
-          tarjeta.nombre = String(nombre).trim();
+          tarjeta.nombre = String(this.form.nombre).trim();
           tarjeta.fecha_added = new Date().toISOString().replace("T", " ").replace("Z", "");
-          const tarjetaExists = await DB.tarjetaExists(tarjeta.numero);
+          const tarjetaExists = await DB.tarjetaExists(Number(tarjeta.numero));
           if (!tarjetaExists) {
             const { error, error_key } = !Auth().isGuest ? await API.addTarjeta({
               nombre: tarjeta.nombre,

@@ -34,16 +34,18 @@ class SaldometrobusAPI {
     return CAPACITOR.doPost(this.getTarjetasURL, payload);
   }
 
-  async getTarjetaAPI (numero: string, cached = false) {
-    const pref = (await Preferences.get({ key: numero })).value;
-    const cachedResponse = pref ? JSON.parse(pref) : null;
-
+  async getTarjetaAPI (n: string | number, cached = false): Promise<Partial<{ tarjeta: SaldometrobusTarjeta, error: boolean, error_key: string }>> {
+    const numero = String(n);
     const currentTime = Date.now();
-    if (cached && cachedResponse && cachedResponse.expires && currentTime < cachedResponse.expires) {
-      return {
-        error: true,
-        error_key: `${t("tarjeta_actualizada")}: ${numero}`
-      };
+    if (cached) {
+      const pref = (await Preferences.get({ key: numero })).value;
+      const cachedResponse = pref ? JSON.parse(pref) : null;
+      if (cachedResponse && cachedResponse.expires && currentTime < cachedResponse.expires) {
+        return {
+          error: true,
+          error_key: `${t("tarjeta_actualizada")}: ${numero}`
+        };
+      }
     }
 
     const scrapped = await scrapperTarjeta(numero);
@@ -55,13 +57,13 @@ class SaldometrobusAPI {
       return { error: true, error_key: "error_tarjeta_unknown" };
     }
 
-    if (parseInt(numero)) {
+    if (cached && parseInt(numero)) {
       const maxAge = 60; // 1 minuto
       const expiresTime = currentTime + (maxAge * 1000);
       await Preferences.set({ key: numero, value: JSON.stringify({ expires: expiresTime }) });
     }
 
-    return { tarjeta };
+    return { tarjeta } as unknown as { tarjeta: SaldometrobusTarjeta };
   }
 
   async getDetallesTarjetas (tarjetas: SaldometrobusTarjeta[]) {

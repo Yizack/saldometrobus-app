@@ -16,7 +16,6 @@ export const CONST = {
   url: "https://saldometrobus.yizack.com",
   googlePlay: "https://play.google.com/store/apps/details?id=com.yizack.saldometrobus",
   appStore: "",
-  status_url: "https://status.saldometrobus.yizack.com",
   email: "saldometrobus@yizack.com",
   privacy: (lang: string) => `https://yizack.com/legal/saldometrobus/${lang}/privacy.html`,
   database: "saldometrobus.db",
