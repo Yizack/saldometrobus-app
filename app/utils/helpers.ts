@@ -96,3 +96,17 @@ export const getCardImage = (tipo: string, brand = false) => {
       return brand ? "metrobus_brand.webp" : "metrobus.webp";
   }
 };
+
+export const getCardType = (cardNumber: string) => {
+  const n = Number(cardNumber);
+  const rangeMap = [
+    { min: 20000000, max: 30000000, label: "Tarjeta Escolar" },
+    { min: 30000000, max: 40000000, label: "Tarjeta Rapipass" },
+    { min: 40000000, max: 50000000, label: "Tarjeta Jubilado" }
+  ];
+
+  const matchedRange = rangeMap.find(range => n >= range.min && n < range.max);
+
+  if (matchedRange) return matchedRange.label;
+  return "Tarjeta Normal al Portador b";
+};

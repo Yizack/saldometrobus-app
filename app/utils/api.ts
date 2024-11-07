@@ -1,9 +1,9 @@
+import { Preferences } from "@capacitor/preferences";
+
 class SaldometrobusAPI {
   base = import.meta.dev ? "http://localhost:5173" : "https://saldometrobus.yizack.com";
   version = "v2";
-  baseAPI = `${this.base}/api/${this.version}`;
   baseDB = `${this.base}/database/${this.version}`;
-  tarjetasAPI = `${this.baseAPI}/tarjeta`;
   loginURL = `${this.baseDB}/login`;
   registroURL = `${this.baseDB}/registro`;
   addTarjetaURL = `${this.baseDB}/tarjetas_insert`;
@@ -35,25 +35,42 @@ class SaldometrobusAPI {
   }
 
   async getTarjetaAPI (numero: string, cached = false) {
-    const { tarjeta, status, error, error_key } = await CAPACITOR.doGet(`${this.tarjetasAPI}/${numero}`, cached);
-    if (!error && status === "ok" && tarjeta) {
-      return { tarjeta };
+    const pref = (await Preferences.get({ key: numero })).value;
+    const cachedResponse = pref ? JSON.parse(pref) : null;
+
+    const currentTime = Date.now();
+    if (cached && cachedResponse && cachedResponse.expires && currentTime < cachedResponse.expires) {
+      return {
+        error: true,
+        error_key: `${t("tarjeta_actualizada")}: ${numero}`
+      };
     }
-    else if (!error && status === "error") {
+
+    const scrapped = await scrapperTarjeta(numero);
+    if (!scrapped) return { error: true, error_key: "error" };
+
+    const { tarjeta, status } = scrapped;
+
+    if (status !== "ok" || !tarjeta) {
       return { error: true, error_key: "error_tarjeta_unknown" };
     }
-    else {
-      return { error, error_key };
+
+    if (parseInt(numero)) {
+      const maxAge = 60; // 1 minuto
+      const expiresTime = currentTime + (maxAge * 1000);
+      await Preferences.set({ key: numero, value: JSON.stringify({ expires: expiresTime }) });
     }
+
+    return { tarjeta };
   }
 
   async getDetallesTarjetas (tarjetas: SaldometrobusTarjeta[]) {
     const arr = [];
     for (const tarjeta of tarjetas) {
-      const data = await CAPACITOR.doGet(`${this.tarjetasAPI}/${tarjeta.numero}`).catch(() => ({}));
-      if (data.status === "ok") {
-        Object.assign(data.tarjeta, tarjeta);
-        arr.push(data.tarjeta);
+      const scrapped = await scrapperTarjeta(tarjeta.numero);
+      if (scrapped && scrapped.status === "ok" && scrapped.tarjeta) {
+        Object.assign(scrapped.tarjeta, tarjeta); // needed for 1st time
+        arr.push(scrapped.tarjeta);
       }
     }
     return arr;

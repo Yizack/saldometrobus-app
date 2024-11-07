@@ -53,25 +53,26 @@
     "@capacitor/status-bar": "^6.0.1",
     "@capacitor/toast": "^6.0.2",
     "@capawesome/capacitor-app-update": "^6.0.0",
-    "@nuxt/eslint": "^0.6.0",
+    "@nuxt/eslint": "^0.6.1",
     "@trapezedev/configure": "^7.0.10",
     "@types/bootstrap": "^5.2.10",
     "changelogen": "^0.5.7",
-    "eslint": "^9.13.0",
+    "cheerio": "^1.0.0",
+    "eslint": "^9.14.0",
     "jeep-sqlite": "^2.8.0",
     "jest": "^29.7.0",
-    "nuxt": "^3.13.2",
+    "nuxt": "^3.14.159",
     "nuxt-icons": "^3.2.1",
     "stylelint": "^16.10.0",
     "stylelint-config-standard": "^36.0.1",
     "stylelint-order": "^6.0.4",
-    "tsx": "^4.19.1"
+    "tsx": "^4.19.2"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.8",
-    "@pinia/nuxt": "^0.5.5",
+    "@pinia/nuxt": "^0.7.0",
     "bootstrap": "^5.3.3",
-    "chart.js": "^4.4.5",
+    "chart.js": "^4.4.6",
     "leaflet-geosearch": "^4.0.0"
   },
   "overrides": {
@@ -83,5 +84,5 @@
       "^~/(.*)$": "<rootDir>/$1"
     }
   },
-  "packageManager": "pnpm@9.12.2"
+  "packageManager": "pnpm@9.12.3"
 }
