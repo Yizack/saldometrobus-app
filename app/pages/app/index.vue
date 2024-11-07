@@ -15,7 +15,10 @@ const form = useFormState({
 const size = { width: 100, height: 63 };
 
 const isFetchLimited = computed(() => fetched.value > fetchLimit.value);
-const openCard = (numero: string) => navigateTo(`/app/${numero}`);
+const openCard = (tarjeta: SaldometrobusTarjeta) => {
+  if (!tarjeta.saldo) return CAPACITOR.showToast(t("actualiza_tarjeta"), "long");
+  navigateTo(`/app/${tarjeta.numero}`);
+};
 
 const addTarjeta = async (event: Event) => {
   progress.value = t("adding_tarjeta");
@@ -138,15 +141,25 @@ onMounted(async () => {
 <template>
   <section>
     <TransitionGroup name="tab">
-      <div v-for="tarjeta in tarjetas" :key="tarjeta.numero" class="bg-body-tertiary border rounded d-flex p-2 mb-2 shadow" role="button" @click="openCard(tarjeta.numero)">
+      <div v-for="tarjeta in tarjetas" :key="tarjeta.numero" class="bg-body-tertiary border rounded d-flex p-2 mb-2 shadow" role="button" @click="openCard(tarjeta)">
         <div class="flex-grow-1">
           <h4 class="text-primary-emphasis m-0"><b>{{ tarjeta.nombre }}</b></h4>
           <div class="info mx-2 small">
-            <p class="m-0">{{ t("numero") }}: {{ tarjeta.numero }}</p>
-            <p class="m-0">{{ t("estado") }}: {{ tarjeta.estado }}</p>
-            <p class="m-0">{{ t("tipo") }}: {{ tarjeta.tipo }}</p>
-            <p class="m-0">{{ t("fecha") }}: {{ tarjeta.fecha }}</p>
-            <h3 class="text-nowrap"><b>{{ t("saldo") }}: B/. {{ tarjeta.saldo }}</b></h3>
+            <p class="m-0"><b>{{ t("numero") }}: {{ tarjeta.numero }}</b></p>
+            <Transition name="fade" mode="out-in">
+              <div v-if="tarjeta.saldo">
+                <p class="m-0">{{ t("estado") }}: {{ tarjeta.estado }}</p>
+                <p class="m-0">{{ t("tipo") }}: {{ tarjeta.tipo }}</p>
+                <p class="m-0">{{ t("fecha") }}: {{ tarjeta.fecha }}</p>
+                <h3 class="text-nowrap"><b>{{ t("saldo") }}: B/. {{ tarjeta.saldo }}</b></h3>
+              </div>
+              <div v-else>
+                <p class="placeholder-glow m-0"><span class="placeholder col-6" /></p>
+                <p class="placeholder-glow m-0"><span class="placeholder col-5" /></p>
+                <p class="placeholder-glow m-0"><span class="placeholder col-7" /></p>
+                <h3 class="placeholder-glow"><span class="placeholder col-6" /></h3>
+              </div>
+            </Transition>
           </div>
         </div>
         <div class="actions d-flex flex-column">

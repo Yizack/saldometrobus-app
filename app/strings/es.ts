@@ -68,7 +68,7 @@ export default {
   iniciando_sesion: "Iniciando sesión...",
   tarjetas_vinculadas: "Tarjetas vinculadas",
   nota: "Si no estás registrado, tus tarjetas vinculadas solamente serán almacenadas en la memoria de tu teléfono y no estarán vinculadas a ninguna cuenta, si cambias de teléfono tendrás que volver a añadir tus tarjetas una por una. Regístrate para vincular tu tarjeta a tu correo electrónico.",
-  nota2: "Saldo Metrobús no puede acceder a la contraseña de ninguno de sus usuarios porque esta pasa por un algoritmo hash (SHA-256) con una Salt, y es almacenada ya cifrada para proteger tus redes sociales en caso de que alguien no autorizado tenga acceso a nuestra base de datos.",
+  nota2: "Saldo Metrobús no puede acceder a la contraseña de ninguno de sus usuarios porque esta pasa por un algoritmo hash con una salt, y es almacenada ya cifrada para proteger tus redes sociales en caso de que alguien no autorizado tenga acceso a nuestra base de datos.",
   informacion: "Información",
   movimientos: "Movimientos",
   saldos: "Saldos y movimientos",
@@ -169,5 +169,6 @@ export default {
   movimiento: "Movimiento",
   lugar: "Lugar",
   mov_note: "Presiona un movimiento para más información.",
-  transaccion_n: "N° Transacción"
+  transaccion_n: "N° Transacción",
+  actualiza_tarjeta: "Actualiza tu tarjeta para ver los detalles"
 };

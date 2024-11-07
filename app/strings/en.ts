@@ -68,7 +68,7 @@ export default {
   iniciando_sesion: "Logging in...",
   tarjetas_vinculadas: "Linked cards",
   nota: "If you are not registered, your linked cards will only be stored in your phone's memory and will not be linked to any account. If you change phones, you will have to re-add your cards one by one. Register to link your card to your email.",
-  nota2: "Metrobus Balance cannot access the password of any of its users because it passes through a hash algorithm (SHA-256) with a Salt and is stored already encrypted to protect your social networks in case someone unauthorized has access to our database.",
+  nota2: "Metrobus Balance cannot access the password of any of its users because it passes through a hash algorithm with a salt and is stored already encrypted to protect your social networks in case someone unauthorized has access to our database.",
   informacion: "Information",
   movimientos: "Transactions",
   saldos: "Balances and transactions",
@@ -169,5 +169,6 @@ export default {
   movimiento: "Transaction",
   lugar: "Location",
   mov_note: "Press a transaction for more information.",
-  transaccion_n: "Transaction #"
+  transaccion_n: "Transaction #",
+  actualiza_tarjeta: "Update your card to view details"
 };
