@@ -18,4 +18,4 @@ Descargo de responsabilidad: Todos los datos de las tarjetas son obtenidos de la
 </a>
 
 # Demo
-![Login](assets/images/screenshots/es/start.png)
+![Login](app/assets/images/screenshots/es/start.png)
