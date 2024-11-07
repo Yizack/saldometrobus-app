@@ -1,5 +1,21 @@
 # Changelog
 
+## v2.6.8
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.7...v2.6.8)
+
+### 🩹 Fixes
+
+- Flexible update on debug ([3ffc00a](https://github.com/Yizack/saldometrobus-app/commit/3ffc00a))
+
+### 💅 Refactors
+
+- Deprecate api and move scrapper to client ([84ffb1e](https://github.com/Yizack/saldometrobus-app/commit/84ffb1e))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.6.7
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.6...v2.6.7)
