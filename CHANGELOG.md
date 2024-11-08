@@ -1,5 +1,32 @@
 # Changelog
 
+## v2.6.10
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.9...v2.6.10)
+
+### 🩹 Fixes
+
+- **types:** Chart utils ([0ea5db2](https://github.com/Yizack/saldometrobus-app/commit/0ea5db2))
+
+### 💅 Refactors
+
+- App page to composition ([b1e8964](https://github.com/Yizack/saldometrobus-app/commit/b1e8964))
+- Login to composition api ([12ac9a1](https://github.com/Yizack/saldometrobus-app/commit/12ac9a1))
+- Registro to composition api ([3aaa6d0](https://github.com/Yizack/saldometrobus-app/commit/3aaa6d0))
+- Perfil to composition api ([a347519](https://github.com/Yizack/saldometrobus-app/commit/a347519))
+- Iterate tarjetas with array ([dff943f](https://github.com/Yizack/saldometrobus-app/commit/dff943f))
+
+### 🏡 Chore
+
+- Remove unused method ([dd18912](https://github.com/Yizack/saldometrobus-app/commit/dd18912))
+- Placeholdersfor limited cards ([0b84e37](https://github.com/Yizack/saldometrobus-app/commit/0b84e37))
+- Remove tests ([171ff89](https://github.com/Yizack/saldometrobus-app/commit/171ff89))
+- Remove unused ([7c2dbd1](https://github.com/Yizack/saldometrobus-app/commit/7c2dbd1))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.6.9
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.8...v2.6.9)
