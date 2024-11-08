@@ -1,35 +1,50 @@
-import ChartJS from "chart.js/auto";
+import ChartJS, { type ChartItem } from "chart.js/auto";
+
+interface ChartStyle {
+  reduce: boolean;
+  color: string;
+  color_area: string;
+  title: string;
+  monotone: boolean;
+  tension: number;
+  stepped: boolean;
+  subtitle: string;
+  text_color: string;
+  tick_color: string;
+}
 
 export class Chart {
-  constructor (ctx, dataset) {
+  ctx: ChartItem;
+  dataset: { x: string, y: number }[];
+  constructor (ctx: ChartItem, dataset: { x: string, y: number }[]) {
     this.ctx = ctx;
     this.dataset = dataset;
   }
 
-  render (style) {
+  render (style: ChartStyle) {
     const { reduce, color, color_area, title, monotone, tension, stepped, subtitle, text_color, tick_color } = style;
 
-    const dataset = reduce ? this.dataset.reduce((a, b) => {
+    const dataset = reduce ? this.dataset.reduce((a: { x: string, y: number }[], b) => {
       const index = a.findIndex(d => d.x === b.x);
       if (index < 0) {
         a.push({ x: b.x, y: b.y });
       }
       else {
-        a[index].y += b.y;
+        a[index]!.y += b.y;
       }
       return a;
-    }, []) : this.dataset.reduce((a, b) => {
+    }, []) : this.dataset.reduce((a: { x: string, y: number }[], b) => {
       const index = a.findIndex(d => d.x === b.x);
       if (index < 0) {
         a.push({ x: b.x, y: b.y });
       }
       else {
-        a[index].y = b.y;
+        a[index]!.y = b.y;
       }
       return a;
     }, []);
 
-    const total = reduce ? dataset.reduce((a, b) => a + b.y, 0) : dataset[dataset.length - 1].y;
+    const total = reduce ? dataset.reduce((a, b) => a + b.y, 0) : dataset[dataset.length - 1]!.y;
 
     return new ChartJS(this.ctx, {
       type: "line",
@@ -56,10 +71,6 @@ export class Chart {
           mode: "index",
           intersect: false
         },
-        tooltips: {
-          mode: "interpolate",
-          intersect: false
-        },
         plugins: {
           tooltip: {
             callbacks: {
@@ -82,7 +93,7 @@ export class Chart {
           },
           subtitle: {
             display: true,
-            text: reduce ? `${subtitle}: B/. ${fixed(total, 2)}` : `${subtitle} ${dataset[dataset.length - 1].x}: B/. ${fixed(total, 2)}`,
+            text: reduce ? `${subtitle}: B/. ${fixed(total, 2)}` : `${subtitle} ${dataset[dataset.length - 1]!.x}: B/. ${fixed(total, 2)}`,
             color: text_color,
             font: {
               size: 12,
@@ -127,7 +138,7 @@ export class Chart {
             },
             ticks: {
               callback: (value) => {
-                return `B/. ${fixed(value, 2)}`;
+                return `B/. ${fixed(Number(value), 2)}`;
               },
               color: text_color,
               stepSize: 0.25,
@@ -142,10 +153,6 @@ export class Chart {
         }
       }
     });
-  }
-
-  destroy () {
-    this.chart.destroy();
   }
 
   static getInstances () {
