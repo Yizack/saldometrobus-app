@@ -1,0 +1,1 @@
+import t from"./BdIsnQkU.js";import{_ as o,o as _,H as c}from"./DIlFzhNM.js";const r={props:{name:{type:String,required:!0},size:{type:String,default:"24"}}};function s(a,i,e,m,p,u){const n=t;return _(),c(n,{name:e.name,size:e.size,filled:""},null,8,["name","size"])}const d=Object.assign(o(r,[["render",s]]),{__name:"Icon"});export{d as _};
