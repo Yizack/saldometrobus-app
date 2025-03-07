@@ -126,67 +126,55 @@ onMounted(async () => {
 
 <template>
   <section>
-    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><b>{{ t("nombre") }}</b></h4>
-      <div class="input-group p-2">
+    <BoxComponent :title="t('perfil')">
+      <div class="input-group">
         <input ref="nombre" v-model="user.nombre" class="form-control py-2" type="text" readonly>
-        <button v-if="!auth.isGuest" class="btn btn-sm" :class="edit.nombre ? 'btn-success' : 'btn-primary'" :style="{ width: '3rem' }" @click="editName()">
+        <button v-if="!auth.isGuest" class="btn btn-sm" :class="edit.nombre ? 'btn-success' : 'btn-secondary'" :style="{ width: '3rem' }" @click="editName()">
           <Transition name="tab" mode="out-in">
             <Icon v-if="edit.nombre" name="check" />
             <Icon v-else name="edit" />
           </Transition>
         </button>
       </div>
-    </div>
-    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><b>{{ t("correo") }}</b></h4>
-      <div class="m-2">
-        <input :value="user.email" class="form-control py-2" type="text" readonly>
-      </div>
-    </div>
-    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><b>{{ t("tarjetas_vinculadas") }}</b></h4>
-      <div class="m-2">
-        <template v-if="user.tarjetas.length">
-          <div v-for="tarjeta in user.tarjetas" :key="tarjeta.numero" class="d-flex align-items-center">
-            <Icon name="card" />
-            <p class="ms-2 my-0">{{ tarjeta.numero }} ({{ tarjeta.nombre }})</p>
+    </BoxComponent>
+    <BoxComponent :title="t('correo')">
+      <input :value="user.email" class="form-control py-2" type="text" readonly>
+    </BoxComponent>
+    <BoxComponent :title="t('tarjetas_vinculadas')">
+      <template v-if="user.tarjetas.length">
+        <div v-for="tarjeta in user.tarjetas" :key="tarjeta.numero" class="d-flex align-items-center">
+          <Icon name="card" />
+          <p class="ms-2 my-0">{{ tarjeta.numero }} ({{ tarjeta.nombre }})</p>
+        </div>
+      </template>
+      <p v-else class="m-0">{{ t("no_tarjetas") }}</p>
+    </BoxComponent>
+    <BoxComponent v-if="!auth.isGuest" :title="t('password')">
+      <form novalidate @submit.prevent="updatePass">
+        <input type="text" class="d-none" name="email" :value="auth.user.email" autocomplete="email">
+        <div class="mb-3 position-relative form-floating">
+          <input ref="current" v-model="form.current_password" class="form-control" :class="{ 'is-invalid': form.error }" type="password" autocomplete="password" :placeholder="t('current_pass')" required @keyup="form.error = false">
+          <label>{{ t("current_pass") }}</label>
+          <div class="invalid-tooltip">
+            {{ t("pass_error") }}
           </div>
-        </template>
-        <p v-else class="m-0">{{ t("no_tarjetas") }}</p>
-      </div>
-    </div>
-    <div v-if="!auth.isGuest" class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><b>{{ t("password") }}</b></h4>
-      <div class="m-2">
-        <form novalidate @submit.prevent="updatePass">
-          <div class="mb-3 position-relative form-floating">
-            <input ref="current" v-model="form.current_password" class="form-control" :class="{ 'is-invalid': form.error }" type="password" autocomplete="password" :placeholder="t('current_pass')" required @keyup="form.error = false">
-            <label>{{ t("current_pass") }}</label>
-            <div class="invalid-tooltip">
-              {{ t("pass_error") }}
-            </div>
-          </div>
-          <div class="mb-3 form-floating">
-            <input v-model="form.new_password" class="form-control" :class="{ 'is-valid': isPasswordValid }" type="password" autocomplete="new-password" :placeholder="t('new_pass')" required>
-            <label>{{ t("new_pass") }}</label>
-          </div>
-          <div class="mb-3 form-floating">
-            <input v-model="form.password_check" class="form-control" :class="{ 'is-valid': isPasswordCheckValid }" type="password" autocomplete="off" :placeholder="t('password_check')" required>
-            <label>{{ t("password_check") }}</label>
-          </div>
-          <div class="d-grid">
-            <button class="btn btn-primary" type="submit" role="button">{{ t("change_pass") }}</button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div v-if="!auth.isGuest" class="bg-body-tertiary border rounded p-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><b>{{ t("account_id") }}</b></h4>
-      <div class="m-2">
-        <input :value="user.token" class="form-control py-2" type="text" readonly @click="copyToken($event)">
-      </div>
-    </div>
+        </div>
+        <div class="mb-3 form-floating">
+          <input v-model="form.new_password" class="form-control" :class="{ 'is-valid': isPasswordValid }" type="password" autocomplete="new-password" :placeholder="t('new_pass')" required>
+          <label>{{ t("new_pass") }}</label>
+        </div>
+        <div class="mb-3 form-floating">
+          <input v-model="form.password_check" class="form-control" :class="{ 'is-valid': isPasswordCheckValid }" type="password" autocomplete="off" :placeholder="t('password_check')" required>
+          <label>{{ t("password_check") }}</label>
+        </div>
+        <div class="d-grid">
+          <button class="btn btn-primary" type="submit" role="button">{{ t("change_pass") }}</button>
+        </div>
+      </form>
+    </BoxComponent>
+    <BoxComponent v-if="!auth.isGuest" :title="t('account_id')">
+      <input :value="user.token" class="form-control py-2" type="text" readonly @click="copyToken($event)">
+    </BoxComponent>
     <div v-if="!auth.isGuest" class="d-grid">
       <button class="btn btn-danger mt-2" @click="deleteAccount">{{ t("delete_account") }}</button>
     </div>

@@ -19,7 +19,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: lts/*
-        cache: 'pnpm'
+        cache: pnpm
         
     - name: Install Dependencies 📦
       run: pnpm install
@@ -50,8 +50,8 @@ jobs:
     - name: Setup java ☕
       uses: actions/setup-java@v4
       with:
-        distribution: 'zulu'
-        java-version: '21'
+        distribution: zulu
+        java-version: 21
 
     - name: Bundle Android App 📦
       run: |

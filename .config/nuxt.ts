@@ -56,5 +56,13 @@ export default defineNuxtConfig({
       ignore: ["/app", "/registro"]
     }
   },
+  routeRules: {
+    "/tarjetametrobus/**": {
+      proxy: { to: "http://200.46.245.230:8080/**" }
+    },
+    "/database/**": {
+      proxy: { to: "http://localhost:5173/database/**" }
+    }
+  },
   compatibilityDate: "2024-10-23"
 });

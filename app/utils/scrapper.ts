@@ -1,7 +1,7 @@
 import { load } from "cheerio";
 import { CapacitorHttp } from "@capacitor/core";
 
-const scrapperURL = "http://200.46.245.230:8080";
+const scrapperURL = import.meta.dev ? "/tarjetametrobus" : "http://200.46.245.230:8080";
 const baseUrl = scrapperURL + "/PortalCAE-WAR-MODULE";
 
 export const scrapperTarjeta = async (numero: string) => {
@@ -54,7 +54,7 @@ export const scrapperTarjeta = async (numero: string) => {
     const binaryString = atob(response.data);
     const bytes = Uint8Array.from(binaryString, char => char.charCodeAt(0));
     const decoder = new TextDecoder("iso-8859-1");
-    return decoder.decode(bytes as ArrayBuffer);
+    return decoder.decode(bytes);
   }).catch(() => "");
   const $2 = load(movsHTML);
   const movimientos: SaldometrobusMovimiento[] = [];

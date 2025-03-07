@@ -141,36 +141,37 @@ onMounted(async () => {
 <template>
   <section>
     <TransitionGroup name="tab">
-      <div v-for="tarjeta in tarjetas" :key="tarjeta.numero" class="bg-body-tertiary border rounded d-flex p-2 mb-2 shadow" role="button" @click="openCard(tarjeta)">
-        <div class="flex-grow-1">
-          <h4 class="text-primary-emphasis m-0"><b>{{ tarjeta.nombre }}</b></h4>
-          <div class="info mx-2 small">
-            <p class="m-0"><b>{{ t("numero") }}: {{ tarjeta.numero }}</b></p>
-            <Transition name="fade" mode="out-in">
-              <div v-if="tarjeta.saldo">
-                <p class="m-0">{{ t("estado") }}: {{ tarjeta.estado }}</p>
-                <p class="m-0">{{ t("tipo") }}: {{ tarjeta.tipo }}</p>
-                <p class="m-0">{{ t("fecha") }}: {{ tarjeta.fecha }}</p>
-                <h3 class="text-nowrap"><b>{{ t("saldo") }}: B/. {{ tarjeta.saldo }}</b></h3>
-              </div>
-              <div v-else>
-                <p class="placeholder-glow m-0"><span class="placeholder col-6" /></p>
-                <p class="placeholder-glow m-0"><span class="placeholder col-5" /></p>
-                <p class="placeholder-glow m-0"><span class="placeholder col-7" /></p>
-                <h3 class="placeholder-glow"><span class="placeholder col-6" /></h3>
-              </div>
-            </Transition>
+      <BoxComponent v-for="tarjeta in tarjetas" :key="tarjeta.numero" :title="tarjeta.nombre" p2 role="button" @click="openCard(tarjeta)">
+        <div class="d-flex">
+          <div class="flex-grow-1">
+            <div class="info mx-2 small">
+              <p class="m-0"><b>{{ t("numero") }}: {{ tarjeta.numero }}</b></p>
+              <Transition name="fade" mode="out-in">
+                <div v-if="tarjeta.saldo">
+                  <p class="m-0">{{ t("estado") }}: {{ tarjeta.estado }}</p>
+                  <p class="m-0">{{ t("tipo") }}: {{ tarjeta.tipo }}</p>
+                  <p class="m-0">{{ t("fecha") }}: {{ tarjeta.fecha }}</p>
+                  <h3 class="text-nowrap m-0"><b>{{ t("saldo") }}: B/. {{ tarjeta.saldo }}</b></h3>
+                </div>
+                <div v-else>
+                  <p class="placeholder-glow m-0"><span class="placeholder col-6" /></p>
+                  <p class="placeholder-glow m-0"><span class="placeholder col-5" /></p>
+                  <p class="placeholder-glow m-0"><span class="placeholder col-7" /></p>
+                  <h3 class="placeholder-glow"><span class="placeholder col-6" /></h3>
+                </div>
+              </Transition>
+            </div>
+          </div>
+          <div class="actions d-flex flex-column">
+            <div class="image mb-2">
+              <img class="img-fluid rounded shadow-sm" :src="`/images/${getCardImage(tarjeta.tipo)}`" :width="size.width" :height="size.height">
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-secondary btn-sm py-2" role="button" @click="updateTarjeta($event, tarjeta.numero)"><Icon name="refresh" size="md" /></button>
+            </div>
           </div>
         </div>
-        <div class="actions d-flex flex-column">
-          <div class="image mb-2 mt-2">
-            <img class="img-fluid rounded shadow-sm" :src="`/images/${getCardImage(tarjeta.tipo)}`" :width="size.width" :height="size.height">
-          </div>
-          <div class="d-grid">
-            <button class="btn btn-primary btn-sm" role="button" @click="updateTarjeta($event, tarjeta.numero)"><Icon name="refresh" size="md" /></button>
-          </div>
-        </div>
-      </div>
+      </BoxComponent>
     </TransitionGroup>
     <div v-if="tarjetas.length" class="text-center mt-3">
       <p class="small m-0"><small>{{ t("tarjetas_note") }}</small></p>

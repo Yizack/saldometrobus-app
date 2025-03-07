@@ -1,7 +1,7 @@
 import { Preferences } from "@capacitor/preferences";
 
 class SaldometrobusAPI {
-  base = import.meta.dev ? "http://localhost:5173" : "https://saldometrobus.yizack.com";
+  base = import.meta.dev ? "http://localhost:5174" : "https://saldometrobus.yizack.com";
   version = "v2";
   baseDB = `${this.base}/database/${this.version}`;
   loginURL = `${this.baseDB}/login`;

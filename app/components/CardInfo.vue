@@ -1,57 +1,49 @@
 <template>
-  <div>
-    <h4 class="text-center mt-1 py-2"><b>{{ tarjeta.nombre }}</b></h4>
-    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow text-center">
-      <img class="img-fluid my-4" :src="`/images/${getCardImage(tarjeta.tipo, true)}`" :width="size.width" :height="size.height">
-      <h3><b>{{ tarjeta.numero }}</b></h3>
-    </div>
-    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><b>{{ t("saldo") }}</b></h4>
-      <div class="m-2">
-        <h3><b>B/. {{ tarjeta.saldo }}</b></h3>
+  <div class="mt-1">
+    <BoxComponent :title="tarjeta.nombre" title-center>
+      <div class="text-center py-2">
+        <img class="img-fluid mb-3" :src="`/images/${getCardImage(tarjeta.tipo, true)}`" :width="size.width" :height="size.height">
+        <h3 class="m-0"><b>{{ tarjeta.numero }}</b></h3>
       </div>
-    </div>
-    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><b>{{ t("info_tarjeta") }}</b></h4>
-      <div class="p-2">
-        <div class="row">
-          <div class="col-6">
-            <p class="m-0"><b>{{ t("numero_tarjeta") }}</b></p>
-            <p>{{ tarjeta.numero }}</p>
-          </div>
-          <div class="col-6">
-            <p class=" m-0"><b>{{ t("estado") }}</b></p>
-            <p>{{ tarjeta.estado }}</p>
-          </div>
-          <div class="col-6">
-            <p class="m-0"><b>{{ t("fecha") }}</b></p>
-            <p>{{ tarjeta.fecha }}</p>
-          </div>
-          <div class="col-6">
-            <p class="m-0"><b>{{ t("tipo_tarjeta") }}</b></p>
-            <p>{{ tarjeta.tipo }}</p>
-          </div>
+    </BoxComponent>
+    <BoxComponent :title="t('saldo')">
+      <h3 class="m-0"><b>B/. {{ tarjeta.saldo }}</b></h3>
+    </BoxComponent>
+    <BoxComponent :title="t('info_tarjeta')">
+      <div class="row row-gap-3">
+        <div class="col-6">
+          <p class="m-0"><b>{{ t("numero_tarjeta") }}</b></p>
+          <p class="m-0">{{ tarjeta.numero }}</p>
+        </div>
+        <div class="col-6">
+          <p class=" m-0"><b>{{ t("estado") }}</b></p>
+          <p class="m-0">{{ tarjeta.estado }}</p>
+        </div>
+        <div class="col-6">
+          <p class="m-0"><b>{{ t("fecha") }}</b></p>
+          <p class="m-0">{{ tarjeta.fecha }}</p>
+        </div>
+        <div class="col-6">
+          <p class="m-0"><b>{{ t("tipo_tarjeta") }}</b></p>
+          <p class="m-0">{{ tarjeta.tipo }}</p>
         </div>
       </div>
-    </div>
-    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><b>{{ t("balance") }}</b></h4>
-      <div class="ms-2">
-        <div class="d-flex justify-content-between">
-          <h4 class="small"><b>Actual: B/. {{ tarjeta.saldo }}</b></h4>
-          <h4 class="small"><b>B/. {{ Number(tarjeta.saldo) > 50 ? tarjeta.saldo : "50.00" }}</b></h4>
-        </div>
-        <div class="progress" role="progressbar" :aria-label="t('balance')" :aria-valuenow="percent" aria-valuemin="0" aria-valuemax="100">
-          <div class="progress-bar" :class="`bg-${color}`" :style="`width: ${percent}%`" />
-        </div>
+    </BoxComponent>
+    <BoxComponent :title="t('balance')">
+      <div class="d-flex justify-content-between">
+        <h4 class="small"><b>Actual: B/. {{ tarjeta.saldo }}</b></h4>
+        <h4 class="small"><b>B/. {{ Number(tarjeta.saldo) > 50 ? tarjeta.saldo : "50.00" }}</b></h4>
       </div>
-    </div>
+      <div class="progress" role="progressbar" :aria-label="t('balance')" :aria-valuenow="percent" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" :class="`bg-${color}`" :style="`width: ${percent}%`" />
+      </div>
+    </BoxComponent>
     <div class="d-flex">
       <div class="flex-fill">
         <div class="d-grid">
           <button class="btn btn-primary btn-block me-2" role="button" data-bs-toggle="modal" data-bs-target="#edit-dialog">
             <i class="fas fa-sync-alt" />
-            <span class="ms-2">{{ t("editar") }}</span>
+            <span>{{ t("editar") }}</span>
           </button>
         </div>
       </div>
@@ -59,7 +51,7 @@
         <div class="d-grid">
           <button class="btn btn-danger btn-block ms-1" @click="deleteCard()">
             <i class="fas fa-sync-alt" />
-            <span class="ms-2">{{ t("eliminar") }}</span>
+            <span>{{ t("eliminar") }}</span>
           </button>
         </div>
       </div>

@@ -10,7 +10,7 @@ Con solo presionar un botón, puedes actualizar el saldo y los movimientos de tu
 
 La pestaña de gráficas de la aplicación te permite visualizar tus gastos, cambios de saldo y cargas en un formato gráfico fácil de entender. La aplicación cuenta con una interfaz amigable y sencilla de utilizar, disponible en dos idiomas (Español e Inglés), con una opción de modo oscuro para mejorar la visión nocturna.
 
-Descargo de responsabilidad: Todos los datos de las tarjetas son obtenidos de la fuente oficial del servicio en el sitio a de consultas http://www.tarjetametrobus.com/ el cual ofrece esta información en todo Panamá. Esta aplicación no es oficial y no pertenece ni está respaldada por una afiliación gubernamental.
+Descargo de responsabilidad: Todos los datos de las tarjetas son obtenidos de la fuente oficial del servicio en el sitio a de consultas http://www.tarjetametrobus.com/ el cual ofrece esta información en todo Panamá. Esta aplicación NO es oficial y no pertenece ni está respaldada por una afiliación gubernamental.
 
 # Descargar
 <a href="https://play.google.com/store/apps/details?id=com.yizack.saldometrobus&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">

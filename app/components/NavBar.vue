@@ -1,3 +1,9 @@
+<script setup lang="ts">
+defineProps<{
+  title: string;
+}>();
+</script>
+
 <template>
   <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top shadow-sm">
     <div class="container-fluid">
@@ -8,15 +14,3 @@
     </div>
   </nav>
 </template>
-
-<script>
-export default {
-  name: "NavBar",
-  props: {
-    title: {
-      type: String,
-      required: true
-    }
-  }
-};
-</script>

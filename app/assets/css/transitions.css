@@ -3,7 +3,9 @@
 .page-left-leave-active,
 .page-right-leave-active {
   height: 100%;
+  /* stylelint-disable-next-line declaration-property-value-no-unknown */
   height: available;
+  /* stylelint-disable-next-line declaration-property-value-no-unknown */
   height: fill-available;
   height: stretch;
   left: 0;
