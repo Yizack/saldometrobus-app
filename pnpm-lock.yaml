@@ -69,6 +69,9 @@ importers:
       '@capacitor/toast':
         specifier: ^7.0.0
         version: 7.0.0(@capacitor/core@7.0.1)
+      '@capawesome/capacitor-android-edge-to-edge-support':
+        specifier: ^7.1.0
+        version: 7.1.0(@capacitor/core@7.0.1)
       '@capawesome/capacitor-app-update':
         specifier: ^7.0.1
         version: 7.0.1(@capacitor/core@7.0.1)
@@ -347,6 +350,11 @@ packages:
 
   '@capacitor/toast@7.0.0':
     resolution: {integrity: sha512-HsJ6nn1h+Ucm/actgA9bZhI5FOXKh3oFb3wiDYGB0xdnV+6U8rJu+xR1MUdVwM7opAXHuozjFi06FvnZ6gVO4w==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
+  '@capawesome/capacitor-android-edge-to-edge-support@7.1.0':
+    resolution: {integrity: sha512-VHPK90xA/lYkuB2fCOyfnO2PJLxMqzaulZmwiC+78JJWmfOePWvlzrvfEscTCjnoPrNgsA+9sDcEeGEZDG0z5w==}
     peerDependencies:
       '@capacitor/core': '>=7.0.0'
 
@@ -5834,6 +5842,10 @@ snapshots:
       '@capacitor/core': 7.0.1
 
   '@capacitor/toast@7.0.0(@capacitor/core@7.0.1)':
+    dependencies:
+      '@capacitor/core': 7.0.1
+
+  '@capawesome/capacitor-android-edge-to-edge-support@7.1.0(@capacitor/core@7.0.1)':
     dependencies:
       '@capacitor/core': 7.0.1
 

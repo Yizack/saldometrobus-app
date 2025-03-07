@@ -4,7 +4,6 @@ export default {
   appId: "com.yizack.saldometrobus",
   appName: "Saldo Metrobús Panamá",
   webDir: ".output/public",
-  bundledWebRuntime: false,
   server: {
     androidScheme: "https",
     hostname: "saldometrobus.yizack.com"
@@ -39,6 +38,9 @@ export default {
       electronWindowsLocation: "C:\\ProgramData\\CapacitorDatabases",
       electronMacLocation: "Yizack/CapacitorDatabases",
       electronLinuxLocation: "Databases"
+    },
+    EdgeToEdge: {
+      backgroundColor: "#4E73DF"
     }
   }
 } satisfies CapacitorConfig;
