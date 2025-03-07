@@ -31,7 +31,7 @@ const isEmailValid = computed(() => {
   return input.checkValidity();
 });
 
-const email = ref<HTMLInputElement>();
+const email = useTemplateRef<HTMLInputElement>("email");
 const registro = async () => {
   if (isNombreValid.value && isEmailValid.value && isPasswordValid.value && isPasswordCheckValid.value) {
     showModal("progress-dialog");
@@ -63,7 +63,7 @@ const registro = async () => {
         <img class="img-fluid shadow-sm my-3 rounded bg-body" width="90" height="90" src="/images/logo2.webp">
         <p>{{ t("enter_account_info") }}</p>
       </div>
-      <form ref="registro" novalidate @submit.prevent="registro">
+      <form novalidate @submit.prevent="registro">
         <div class="mb-3 form-floating">
           <input v-model.trim="form.nombre" class="form-control" :class="{ 'is-valid': isNombreValid }" type="text" :placeholder="t('nombre')" required>
           <label>{{ t("nombre") }}</label>
