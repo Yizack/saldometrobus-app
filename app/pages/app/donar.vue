@@ -42,28 +42,6 @@ definePageMeta({ layout: "main" });
         </div>
       </div>
     </div>
-    <div id="nequi" class="modal fade" tabindex="-1" aria-labelledby="nequiLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-primary-emphasis">
-              <strong>Nequi</strong>
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-          </div>
-          <div class="modal-body">
-            <p>{{ t("donar_nequi") }}</p>
-            <div class="nequi rounded p-4 text-center mb-2">
-              <h5 class="text-white text-uppercase mb-3">{{ CONST.dev.legal_name }}</h5>
-              <img class="img-fluid rounded" src="/images/nequi_qr.webp">
-            </div>
-            <div class="d-grid">
-              <a class="btn btn-primary" role="button" @click="CAPACITOR.openBrowser(`${CONST.url}/images/nequi_qr.png`)">{{ t("download_qr") }}</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 </template>
 
@@ -79,9 +57,6 @@ export default {
             n_cuenta: CONST.dev.bgeneral.numero,
             tipo: CONST.dev.bgeneral.tipo
           }
-        },
-        nequi: {
-          external: false
         },
         paypal: {
           external: true,
@@ -107,15 +82,6 @@ export default {
 
 .paypal:hover {
   background-color: #04a2e6;
-}
-
-.nequi {
-  background-color: #210049;
-  padding: 0.8rem;
-}
-
-.nequi:hover {
-  background-color: #2c0858;
 }
 
 .bgeneral {
