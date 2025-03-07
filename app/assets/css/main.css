@@ -63,3 +63,11 @@ a {
 .bg-disabled {
   background-color: var(--bs-secondary-bg);
 }
+
+.rounded {
+  border-radius: var(--bs-border-radius-lg)!important;
+}
+
+.btn {
+  --bs-btn-border-radius: var(--bs-border-radius-lg);
+}
