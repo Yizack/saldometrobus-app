@@ -1,5 +1,37 @@
 # Changelog
 
+## v2.6.11
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.10...v2.6.11)
+
+### 🩹 Fixes
+
+- Limit message typo ([a88140a](https://github.com/Yizack/saldometrobus-app/commit/a88140a))
+
+### 💅 Refactors
+
+- Update some code and visuals ([29bb917](https://github.com/Yizack/saldometrobus-app/commit/29bb917))
+
+### 🏡 Chore
+
+- Capacitor config types ([29bb2db](https://github.com/Yizack/saldometrobus-app/commit/29bb2db))
+- Update dependencies ([a5e0fbb](https://github.com/Yizack/saldometrobus-app/commit/a5e0fbb))
+- Update android files ([7b0ab49](https://github.com/Yizack/saldometrobus-app/commit/7b0ab49))
+- Remove nequi ([fa6c213](https://github.com/Yizack/saldometrobus-app/commit/fa6c213))
+- Fixes template ref warning ([3d63c88](https://github.com/Yizack/saldometrobus-app/commit/3d63c88))
+
+### 🎨 Styles
+
+- Change border radios of all rounded and button elements ([4275ed8](https://github.com/Yizack/saldometrobus-app/commit/4275ed8))
+
+### 🤖 CI
+
+- Fix ci + use java 21 + node lts ([573eb26](https://github.com/Yizack/saldometrobus-app/commit/573eb26))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.6.10
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.9...v2.6.10)
