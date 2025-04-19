@@ -71,3 +71,7 @@ a {
 .btn {
   --bs-btn-border-radius: var(--bs-border-radius-lg);
 }
+
+.text-success {
+  color: #14ac74!important;
+}
