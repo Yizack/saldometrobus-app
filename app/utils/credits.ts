@@ -134,7 +134,7 @@ export const CREDITS = [
       en: "TypeScript ORM that feels like writing SQL",
       es: "ORM de TypeScript que se siente como escribir SQL"
     },
-    version: "0.40.0"
+    version: "0.42.0"
   },
   {
     name: "better-sqlite3",
@@ -143,7 +143,7 @@ export const CREDITS = [
       en: "The fastest and simplest library for SQLite3 in Node.js",
       es: "La biblioteca más rápida y simple para SQLite3 en Node.js"
     },
-    version: "11.5.0"
+    version: "11.9.1"
   },
   {
     name: "Changelogen",
@@ -197,6 +197,6 @@ export const CREDITS = [
       en: "The CLI for Cloudflare Workers",
       es: "La CLI para Cloudflare Workers"
     },
-    version: "3.114.0"
+    version: "4.12.0"
   }
 ];

@@ -110,3 +110,13 @@ export const getCardType = (cardNumber: string) => {
   if (matchedRange) return matchedRange.label;
   return "Tarjeta Normal al Portador b";
 };
+
+export const passwordClass = (isValid: boolean, form: { password: string }) => {
+  if (!form.password) return;
+  return isValid && isValidPassword(form.password) ? "is-valid" : "is-invalid";
+};
+
+export const passwordCheckClass = (isValid: boolean, form: { password: string, passwordCheck: string }) => {
+  if (!form.passwordCheck) return;
+  return isValid && isValidPasswordCheck(form.password, form.passwordCheck) ? "is-valid" : "is-invalid";
+};

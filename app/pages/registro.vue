@@ -6,52 +6,34 @@ const form = useFormState({
   nombre: "",
   email: "",
   password: "",
-  password_check: "",
+  passwordCheck: "",
   error: false
 });
 
-const isNombreValid = computed(() => {
-  const nombre = form.value.nombre;
-  return nombre.length > 0 && nombre.length <= 50;
-});
-
-const isPasswordValid = computed(() => {
-  return form.value.password.length >= 3;
-});
-
-const isPasswordCheckValid = computed(() => {
-  return isPasswordValid.value && form.value.password === form.value.password_check;
-});
-
-const isEmailValid = computed(() => {
-  const input = document.createElement("input");
-  input.type = "email";
-  input.required = true;
-  input.value = form.value.email;
-  return input.checkValidity();
-});
+const passwordFocus = ref(false);
+const isValidPass = ref(false);
 
 const email = useTemplateRef<HTMLInputElement>("email");
+
 const registro = async () => {
-  if (isNombreValid.value && isEmailValid.value && isPasswordValid.value && isPasswordCheckValid.value) {
-    showModal("progress-dialog");
-    const { error, error_key } = await auth.registro({
-      nombre: form.value.nombre,
-      email: form.value.email,
-      password: form.value.password
-    });
-    await sleep(0.5);
-    hideModal("progress-dialog");
-    if (!error) {
-      navigateTo("/app/", { replace: true });
+  if (!(isValidName(form.value.nombre) && isValidEmail(form.value.email) && isValidPass.value && isValidPasswordCheck(form.value.password, form.value.passwordCheck))) return;
+  showModal("progress-dialog");
+  const { error, error_key } = await auth.registro({
+    nombre: form.value.nombre,
+    email: form.value.email,
+    password: form.value.password
+  });
+  await sleep(0.5);
+  hideModal("progress-dialog");
+  if (!error) {
+    navigateTo("/app/", { replace: true });
+  }
+  else {
+    if (error_key === "correo_existe") {
+      form.value.error = true;
+      email.value?.focus();
     }
-    else {
-      if (error_key === "correo_existe") {
-        form.value.error = true;
-        email.value?.focus();
-      }
-      await CAPACITOR.showToast(t(error_key), "long");
-    }
+    await CAPACITOR.showToast(t(error_key), "long");
   }
 };
 </script>
@@ -65,22 +47,25 @@ const registro = async () => {
       </div>
       <form novalidate @submit.prevent="registro">
         <div class="mb-3 form-floating">
-          <input v-model.trim="form.nombre" class="form-control" :class="{ 'is-valid': isNombreValid }" type="text" :placeholder="t('nombre')" required>
+          <input v-model.trim="form.nombre" class="form-control" :class="{ 'is-valid': isValidName(form.nombre) }" type="text" :placeholder="t('nombre')" required>
           <label>{{ t("nombre") }}</label>
         </div>
         <div class="mb-3 position-relative form-floating">
-          <input ref="email" v-model.trim="form.email" class="form-control" :class="{ 'is-valid': isEmailValid, 'is-invalid': form.error }" type="email" :placeholder="t('correo')" autocomplete="email" required @keyup="form.error = false">
+          <input ref="email" v-model.trim="form.email" class="form-control" :class="{ 'is-valid': isValidEmail(form.email), 'is-invalid': form.error }" type="email" :placeholder="t('correo')" autocomplete="email" required @keyup="form.error = false">
           <label>{{ t("correo") }}</label>
           <div v-if="form.error" class="invalid-tooltip">
             {{ t("correo_existe") }}
           </div>
         </div>
         <div class="mb-3 form-floating">
-          <input v-model="form.password" class="form-control" :class="{ 'is-valid': isPasswordValid }" type="password" :placeholder="t('password')" autocomplete="new-password" required>
+          <input v-model="form.password" class="form-control" :class="passwordClass(isValidPass, form)" type="password" :placeholder="t('password')" autocomplete="new-password" required @focus="passwordFocus = true" @blur="passwordFocus = false">
           <label>{{ t("password") }}</label>
+          <Transition name="tab" mode="out-in">
+            <PasswordRequirements v-if="passwordFocus" v-model="isValidPass" :password="form.password" />
+          </Transition>
         </div>
         <div class="mb-3 form-floating">
-          <input v-model="form.password_check" class="form-control" :class="{ 'is-valid': isPasswordCheckValid }" type="password" :placeholder="t('password_check')" autocomplete="off" required>
+          <input v-model="form.passwordCheck" class="form-control" :class="passwordCheckClass(isValidPass, form)" type="password" :placeholder="t('password_check')" autocomplete="off" required>
           <label>{{ t("password_check") }}</label>
         </div>
         <div class="d-grid mt-4">

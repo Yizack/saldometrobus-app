@@ -169,5 +169,11 @@ export default {
   lugar: "Lugar",
   mov_note: "Presiona un movimiento para más información.",
   transaccion_n: "N° Transacción",
-  actualiza_tarjeta: "Actualiza tu tarjeta para ver los detalles"
+  actualiza_tarjeta: "Actualiza tu tarjeta para ver los detalles",
+  pass_req: "Requisitos de contraseña",
+  pass_req_caracteres: "Al menos 8 caracteres",
+  pass_req_mayus: "Una letra mayúscula",
+  pass_req_minus: "Una letra minúscula",
+  pass_req_num: "Un número",
+  pass_req_special: "Un carácter especial"
 };
