@@ -34,7 +34,7 @@ watch(() => props.password, () => {
     </div>
     <div class="d-flex align-items-center gap-2" :class="requirements.hasSpecial ? 'text-success' : 'text-muted'">
       <Icon :name="requirements.hasSpecial ? 'check' : 'right_chevron'" />
-      <span>{{ t("pass_req_special") }} (!@#$%^&*(),.?'":{}|&lt;&gt;)</span>
+      <span>{{ t("pass_req_especial") }} (!@#$%^&*(),.?'":{}|&lt;&gt;)</span>
     </div>
   </div>
 </template>

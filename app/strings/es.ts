@@ -175,5 +175,5 @@ export default {
   pass_req_mayus: "Una letra mayúscula",
   pass_req_minus: "Una letra minúscula",
   pass_req_num: "Un número",
-  pass_req_special: "Un carácter especial"
+  pass_req_especial: "Un carácter especial"
 };
