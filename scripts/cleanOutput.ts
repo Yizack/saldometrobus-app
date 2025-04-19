@@ -1,4 +1,4 @@
-import { readdirSync, unlinkSync, rmSync } from "fs";
+import { readdirSync, unlinkSync, rmSync } from "node:fs";
 
 const public_path = "./.output/public/";
 const nuxt_path = public_path + "_app/";
