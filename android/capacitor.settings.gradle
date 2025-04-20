@@ -17,9 +17,6 @@ project(':capacitor-clipboard').projectDir = new File('../node_modules/.pnpm/@ca
 include ':capacitor-dialog'
 project(':capacitor-dialog').projectDir = new File('../node_modules/.pnpm/@capacitor+dialog@7.0.1_@capacitor+core@7.2.0/node_modules/@capacitor/dialog/android')
 
-include ':capacitor-keyboard'
-project(':capacitor-keyboard').projectDir = new File('../node_modules/.pnpm/@capacitor+keyboard@7.0.1_@capacitor+core@7.2.0/node_modules/@capacitor/keyboard/android')
-
 include ':capacitor-network'
 project(':capacitor-network').projectDir = new File('../node_modules/.pnpm/@capacitor+network@7.0.1_@capacitor+core@7.2.0/node_modules/@capacitor/network/android')
 
@@ -36,7 +33,7 @@ include ':capacitor-toast'
 project(':capacitor-toast').projectDir = new File('../node_modules/.pnpm/@capacitor+toast@7.0.1_@capacitor+core@7.2.0/node_modules/@capacitor/toast/android')
 
 include ':capawesome-capacitor-android-edge-to-edge-support'
-project(':capawesome-capacitor-android-edge-to-edge-support').projectDir = new File('../node_modules/.pnpm/@capawesome+capacitor-andro_a2d13d9c0090707f5044e3b960282f34/node_modules/@capawesome/capacitor-android-edge-to-edge-support/android')
+project(':capawesome-capacitor-android-edge-to-edge-support').projectDir = new File('../node_modules/.pnpm/@capawesome+capacitor-andro_d77390d6c132ceab38c8837258a0258f/node_modules/@capawesome/capacitor-android-edge-to-edge-support/android')
 
 include ':capawesome-capacitor-app-update'
 project(':capawesome-capacitor-app-update').projectDir = new File('../node_modules/.pnpm/@capawesome+capacitor-app-update@7.0.1_@capacitor+core@7.2.0/node_modules/@capawesome/capacitor-app-update/android')
