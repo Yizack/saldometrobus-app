@@ -41,6 +41,9 @@ export default {
     },
     EdgeToEdge: {
       backgroundColor: "#4E73DF"
+    },
+    Keyboard: {
+      resizeOnFullScreen: true
     }
   }
 } satisfies CapacitorConfig;

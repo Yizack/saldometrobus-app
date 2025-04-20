@@ -57,6 +57,9 @@ importers:
       '@capacitor/ios':
         specifier: ^7.2.0
         version: 7.2.0(@capacitor/core@7.2.0)
+      '@capacitor/keyboard':
+        specifier: ^7.0.1
+        version: 7.0.1(@capacitor/core@7.2.0)
       '@capacitor/network':
         specifier: ^7.0.1
         version: 7.0.1(@capacitor/core@7.2.0)
@@ -301,6 +304,11 @@ packages:
     resolution: {integrity: sha512-MQgRZcXZpbpjN83bjkGrzQd7s3XeHBZplmWf38/msF/siMGJKLrXNmNzmmPIWA5Xpi/aH6UoJFk1wXuU2U+zMg==}
     peerDependencies:
       '@capacitor/core': ^7.2.0
+
+  '@capacitor/keyboard@7.0.1':
+    resolution: {integrity: sha512-Gi064vOARMac+x9/DmEFeywN9oAETMf3OYsMuYm9gA8SvdsDJ3QJqMoFnSEIORYXe21Jzt2SIEdLlpT65P/b2g==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
 
   '@capacitor/network@7.0.1':
     resolution: {integrity: sha512-jKyhTUqegKHjHKkK8e3t0TgwAYpKb3ocYpZkJrB3uXL5figkG06UEhQE4Cp25Dfb4LIjDxTSDLLsDEteKarmyg==}
@@ -6314,6 +6322,10 @@ snapshots:
       '@capacitor/core': 7.2.0
 
   '@capacitor/ios@7.2.0(@capacitor/core@7.2.0)':
+    dependencies:
+      '@capacitor/core': 7.2.0
+
+  '@capacitor/keyboard@7.0.1(@capacitor/core@7.2.0)':
     dependencies:
       '@capacitor/core': 7.2.0
 
