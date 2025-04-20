@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.7.1
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.7.0...v2.7.1)
+
+### 🏡 Chore
+
+- Edge to edge support resolved keyboard issue ([e13f577](https://github.com/Yizack/saldometrobus-app/commit/e13f577))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.7.0
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.12...v2.7.0)
