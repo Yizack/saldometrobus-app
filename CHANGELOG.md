@@ -1,5 +1,30 @@
 # Changelog
 
+## v2.7.0
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.12...v2.7.0)
+
+### 🚀 Enhancements
+
+- Add pass validation ([7a8da19](https://github.com/Yizack/saldometrobus-app/commit/7a8da19))
+
+### 🩹 Fixes
+
+- Resize view on keyboard open ([c74cbb6](https://github.com/Yizack/saldometrobus-app/commit/c74cbb6))
+
+### 🏡 Chore
+
+- Add text success color ([88d8f60](https://github.com/Yizack/saldometrobus-app/commit/88d8f60))
+- Use spanish string name ([a31d1c6](https://github.com/Yizack/saldometrobus-app/commit/a31d1c6))
+
+### 🤖 CI
+
+- Noo need to force install corepack anymore ([d3ce17b](https://github.com/Yizack/saldometrobus-app/commit/d3ce17b))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.6.12
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.6.11...v2.6.12)

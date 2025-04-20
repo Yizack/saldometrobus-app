@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "saldometrobus-app",
-  "version": "2.6.12",
+  "version": "2.7.0",
   "description": "Saldo Metrobús es un sitio de consultas de saldo y movimientos para las tarjetas de metro y metrobús de Panamá a cualquier hora del día.",
   "author": {
     "name": "Yizack Rangel",
