@@ -216,14 +216,14 @@ export default {
           });
 
           try {
-            const { DirectionsService, DirectionsStatus } = await loader.importLibrary("routes");
+            const { DirectionsService, DirectionsStatus, TravelMode } = await loader.importLibrary("routes");
             const { UnitSystem } = await loader.importLibrary("core");
 
             const directionsService = new DirectionsService();
             const options = {
               origin: this.form.origin,
               destination: this.form.destination,
-              travelMode: "TRANSIT",
+              travelMode: TravelMode.TRANSIT,
               unitSystem: UnitSystem.METRIC,
               region: "pa",
               provideRouteAlternatives: true,

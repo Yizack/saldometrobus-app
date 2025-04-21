@@ -14,6 +14,9 @@ importers:
       '@pinia/nuxt':
         specifier: ^0.11.0
         version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.3)(vue@3.5.13(typescript@5.8.3)))
+      '@types/google.maps':
+        specifier: ^3.58.1
+        version: 3.58.1
       '@types/node':
         specifier: ^22.14.1
         version: 22.14.1
@@ -1490,6 +1493,9 @@ packages:
 
   '@types/fs-extra@9.0.13':
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+
+  '@types/google.maps@3.58.1':
+    resolution: {integrity: sha512-X9QTSvGJ0nCfMzYOnaVs/k6/4L+7F5uCS+4iUmkLEls6J9S/Phv+m/i3mDeyc49ZBgwab3EFO1HEoBY7k98EGQ==}
 
   '@types/jest@27.5.2':
     resolution: {integrity: sha512-mpT8LJJ4CMeeahobofYWIjFo0xonRS/HfxnVEPMPFSQdGUt1uHCnoPT7Zhb+sjDU2wz0oKV0OLUR0WzrHNgfeA==}
@@ -7678,6 +7684,8 @@ snapshots:
   '@types/fs-extra@9.0.13':
     dependencies:
       '@types/node': 22.14.1
+
+  '@types/google.maps@3.58.1': {}
 
   '@types/jest@27.5.2':
     dependencies:
