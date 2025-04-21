@@ -17,9 +17,12 @@ const email = useTemplateRef<HTMLInputElement>("email");
 
 const googleRegistro = async () => {
   showModal("progress-dialog");
-  const { error, error_key } = await auth.googleRegistro();
+  const result = await auth.googleRegistro();
   await sleep(0.5);
   hideModal("progress-dialog");
+
+  if (!result) return;
+  const { error, error_key } = result;
 
   if (error) {
     await CAPACITOR.showToast(t(error_key), "long");

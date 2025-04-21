@@ -8,9 +8,12 @@ const form = useFormState({
 
 const googleLogin = async () => {
   showModal("progress-dialog");
-  const { error, error_key } = await auth.googleLogin();
+  const result = await auth.googleLogin();
   await sleep(0.5);
   hideModal("progress-dialog");
+
+  if (!result) return;
+  const { error, error_key } = result;
 
   if (error) {
     await CAPACITOR.showToast(t(error_key), "long");
