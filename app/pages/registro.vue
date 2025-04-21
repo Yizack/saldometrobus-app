@@ -15,6 +15,20 @@ const isValidPass = ref(false);
 
 const email = useTemplateRef<HTMLInputElement>("email");
 
+const googleRegistro = async () => {
+  showModal("progress-dialog");
+  const { error, error_key } = await auth.googleRegistro();
+  await sleep(0.5);
+  hideModal("progress-dialog");
+
+  if (error) {
+    await CAPACITOR.showToast(t(error_key), "long");
+    return;
+  }
+
+  navigateTo("/app/", { replace: true });
+};
+
 const registro = async () => {
   if (!(isValidName(form.value.nombre) && isValidEmail(form.value.email) && isValidPass.value && isValidPasswordCheck(form.value.password, form.value.passwordCheck))) return;
   showModal("progress-dialog");
@@ -68,8 +82,13 @@ const registro = async () => {
           <input v-model="form.passwordCheck" class="form-control" :class="passwordCheckClass(isValidPass, form)" type="password" :placeholder="t('password_check')" autocomplete="off" required>
           <label>{{ t("password_check") }}</label>
         </div>
-        <div class="d-grid mt-4">
-          <input class="btn btn-primary mb-4" type="submit" role="button" :value="t('registrate')">
+        <div class="d-grid my-4 gap-2">
+          <input class="btn btn-primary" type="submit" role="button" :value="t('registrate')">
+          <span>{{ t("or") }}</span>
+          <button class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2 text-decoration-none d-flex align-items-center gap-2" type="button" role="button" @click="googleRegistro">
+            <Icon name="google" size="sm" />
+            <span>{{ t("google_signup") }}</span>
+          </button>
         </div>
       </form>
       <p class="mb-3">{{ t("tiene_cuenta") }} <NuxtLink class="text-primary" to="/">{{ t("ingresa") }}</NuxtLink></p>

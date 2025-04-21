@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "438294813620",
+    "project_id": "saldometrobus-385609",
+    "storage_bucket": "saldometrobus-385609.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438294813620:android:51d0c4988b4015a560b0e1",
+        "android_client_info": {
+          "package_name": "com.yizack.saldometrobus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438294813620-0g0l777ob6i9eshp3hg130jbguquupk2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yizack.saldometrobus",
+            "certificate_hash": "749bfe2a80de4c262f68aa2b25a360d60727af48"
+          }
+        },
+        {
+          "client_id": "438294813620-gvffprvkf9au41icrv7lo141t4flb69l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yizack.saldometrobus",
+            "certificate_hash": "f4e95b90d13233da4399a8c8a8148003c5562ce7"
+          }
+        },
+        {
+          "client_id": "438294813620-poqgbtejn3id1tvct7buv628thc6a5c6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqB6aJO67GPHVEHGQr0Yd27IE59vhqaIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438294813620-1svjeaqv941bj0rn20la7rduqobs0oq4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

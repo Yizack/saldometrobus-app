@@ -25,6 +25,7 @@ export default {
   adding_tarjeta: "Adding card...",
   login: "Log in",
   login_error: "The email address or password is incorrect. Please try again!",
+  login_google_error: "No email linked to this Google account.",
   correo: "Email",
   password: "Password",
   password_check: "Confirm password",
@@ -175,5 +176,8 @@ export default {
   pass_req_mayus: "One uppercase letter",
   pass_req_minus: "One lowercase letter",
   pass_req_num: "One number",
-  pass_req_especial: "One special character"
+  pass_req_especial: "One special character",
+  google_login: "Log in with Google",
+  google_signup: "Sign up with Google",
+  or: "or"
 };

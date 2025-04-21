@@ -5,6 +5,9 @@ project(':capacitor-android').projectDir = new File('../node_modules/.pnpm/@capa
 include ':capacitor-community-sqlite'
 project(':capacitor-community-sqlite').projectDir = new File('../node_modules/.pnpm/@capacitor-community+sqlite@7.0.0_@capacitor+core@7.2.0/node_modules/@capacitor-community/sqlite/android')
 
+include ':capacitor-firebase-authentication'
+project(':capacitor-firebase-authentication').projectDir = new File('../node_modules/.pnpm/@capacitor-firebase+authent_9ccef85b0bdd8de44474e1b2def70f53/node_modules/@capacitor-firebase/authentication/android')
+
 include ':capacitor-app'
 project(':capacitor-app').projectDir = new File('../node_modules/.pnpm/@capacitor+app@7.0.1_@capacitor+core@7.2.0/node_modules/@capacitor/app/android')
 

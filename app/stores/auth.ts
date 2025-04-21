@@ -1,3 +1,5 @@
+import { FirebaseAuthentication } from "@capacitor-firebase/authentication";
+
 export const Auth = defineStore("auth", {
   state: () => ({
     auth: {} as { email: string, nombre: string, updated: boolean, guest: boolean, token: string } | Record<string, never>
@@ -14,7 +16,16 @@ export const Auth = defineStore("auth", {
     }
   },
   actions: {
-    async login (payload: Record<string, string>) {
+    async googleLogin () {
+      const result = await FirebaseAuthentication.signInWithGoogle().catch(() => null);
+      if (!result?.credential?.idToken || !result?.user?.email) return;
+
+      return this.login({
+        email: result.user.email,
+        idToken: result.credential.idToken
+      });
+    },
+    async login (payload: { email: string, password?: string, idToken?: string }) {
       const data = await API.userLogin(payload);
       if (!data.error) {
         this.auth = data.usuario;
@@ -38,7 +49,16 @@ export const Auth = defineStore("auth", {
       this.auth.updated = true;
       await CAPACITOR.setPref("auth", JSON.stringify(this.auth));
     },
-    async registro (payload: Record<string, string>) {
+    async googleRegistro () {
+      const result = await FirebaseAuthentication.signInWithGoogle().catch(() => null);
+      if (!result?.credential?.idToken || !result?.user?.email) return;
+
+      return this.registro({
+        email: result.user.email,
+        idToken: result.credential.idToken
+      });
+    },
+    async registro (payload: { nombre?: string, email: string, password?: string, idToken?: string }) {
       const data = await API.userRegistro(payload);
       if (!data.error) {
         this.auth = data.usuario;

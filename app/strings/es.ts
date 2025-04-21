@@ -25,6 +25,7 @@ export default {
   adding_tarjeta: "Agregando tarjeta...",
   login: "Iniciar sesión",
   login_error: "El correo electrónico o la contraseña son incorrectos. ¡Vuelve a intentarlo!",
+  login_google_error: "No existe un correo vinculado a esta cuenta de Google.",
   correo: "Correo electrónico",
   password: "Contraseña",
   password_check: "Confirmar contraseña",
@@ -175,5 +176,8 @@ export default {
   pass_req_mayus: "Una letra mayúscula",
   pass_req_minus: "Una letra minúscula",
   pass_req_num: "Un número",
-  pass_req_especial: "Un carácter especial"
+  pass_req_especial: "Un carácter especial",
+  google_login: "Iniciar con Google",
+  google_signup: "Registrarse con Google",
+  or: "o"
 };

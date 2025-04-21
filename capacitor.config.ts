@@ -41,6 +41,10 @@ export default {
     },
     EdgeToEdge: {
       backgroundColor: "#4E73DF"
+    },
+    FirebaseAuthentication: {
+      skipNativeAuth: false,
+      providers: ["google.com"]
     }
   }
 } satisfies CapacitorConfig;

@@ -6,6 +6,20 @@ const form = useFormState({
   password: ""
 });
 
+const googleLogin = async () => {
+  showModal("progress-dialog");
+  const { error, error_key } = await auth.googleLogin();
+  await sleep(0.5);
+  hideModal("progress-dialog");
+
+  if (error) {
+    await CAPACITOR.showToast(t(error_key), "long");
+    return;
+  }
+
+  navigateTo("/app/", { replace: true });
+};
+
 const userLogin = async (event: Event) => {
   const loginForm = event.currentTarget as HTMLFormElement;
   if (!loginForm.checkValidity()) {
@@ -60,6 +74,10 @@ const guestLogin = async () => {
         </div>
         <div class="d-grid gap-2 mt-5 mt-auto">
           <button class="btn btn-primary" type="submit" role="button">{{ t("login") }}</button>
+          <button class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2 text-decoration-none d-flex align-items-center gap-2" type="button" role="button" @click="googleLogin">
+            <Icon name="google" size="sm" />
+            <span>{{ t("google_login") }}</span>
+          </button>
           <a class="text-primary my-2" role="button" @click="CAPACITOR.openBrowser(`${CONST.url}/cuenta?s=restaurar`)">{{ t("olvido_pass") }}</a>
           <NuxtLink class="btn btn-success" role="button" to="/registro/">{{ t("registrate") }}</NuxtLink>
           <button class="btn btn-secondary" type="button" role="button" @click="guestLogin">{{ t("no_registro") }}</button>
