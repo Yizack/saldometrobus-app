@@ -65,7 +65,7 @@
     "@types/node": "^22.14.1",
     "changelogen": "^0.6.1",
     "cheerio": "^1.0.0",
-    "eslint": "^9.25.0",
+    "eslint": "^9.25.1",
     "firebase": "^11.6.0",
     "jeep-sqlite": "^2.8.0",
     "nuxt": "^3.16.2",
@@ -82,5 +82,5 @@
     "chart.js": "^4.4.9",
     "leaflet-geosearch": "^4.2.0"
   },
-  "packageManager": "pnpm@10.8.1"
+  "packageManager": "pnpm@10.9.0"
 }
