@@ -93,10 +93,6 @@ class SaldometrobusAPI {
   updateName (payload: Record<string, string>) {
     return CAPACITOR.doPost(this.updateNameURL, payload);
   }
-
-  getGoogleKey (payload: Record<string, string>) {
-    return CAPACITOR.doPost(`${this.base}/maps/key`, payload);
-  }
 }
 
 export const API = new SaldometrobusAPI();

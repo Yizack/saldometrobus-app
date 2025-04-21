@@ -48,6 +48,13 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["stores"]
   },
+  runtimeConfig: {
+    public: {
+      google: {
+        apiKey: "AIzaSyA60VM-yC8g350aJYKEzmlAR-9kRbp5SEc"
+      }
+    }
+  },
   ssr: false,
   spaLoadingTemplate: false,
   nitro: {

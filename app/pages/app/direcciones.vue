@@ -134,7 +134,7 @@ definePageMeta({ layout: "main" });
 export default {
   data () {
     return {
-      apiKey: "",
+      apiKey: useRuntimeConfig().public.google.apiKey,
       form: {
         origin: "",
         destination: ""
@@ -207,67 +207,50 @@ export default {
       this.submit = true;
       if (CAPACITOR.isOnline()) {
         if (!this.directions.routes.length) {
-          if (!this.apiKey) {
-            const { error, error_key, googleKey } = await API.getGoogleKey({
-              email: Auth().user.email,
-              token: Auth().user.token
+          this.form.origin = this.form.origin.trim();
+          this.form.destination = this.form.destination.trim();
+
+          const loader = new Loader({
+            apiKey: this.apiKey,
+            version: "weekly"
+          });
+
+          try {
+            const { DirectionsService, DirectionsStatus } = await loader.importLibrary("routes");
+            const { UnitSystem } = await loader.importLibrary("core");
+
+            const directionsService = new DirectionsService();
+            const options = {
+              origin: this.form.origin,
+              destination: this.form.destination,
+              travelMode: "TRANSIT",
+              unitSystem: UnitSystem.METRIC,
+              region: "pa",
+              provideRouteAlternatives: true,
+              language: t("lang_code")
+            };
+
+            directionsService.route(options, (response, status) => {
+              if (status === DirectionsStatus.OK) {
+                this.directions = response;
+              }
+              else if (status === DirectionsStatus.ZERO_RESULTS) {
+                CAPACITOR.showToast(t("no_direcciones"));
+              }
+              this.submit = false;
             });
-            if (!error) {
-              this.apiKey = googleKey;
-            }
-            else {
-              CAPACITOR.showToast(t(error_key));
-            }
           }
-
-          if (this.apiKey) {
-            this.apiKey = !this.apiKey ? await API.googleKey() : this.apiKey;
-            this.form.origin = this.form.origin.trim();
-            this.form.destination = this.form.destination.trim();
-
-            const loader = new Loader({
-              apiKey: this.apiKey,
-              version: "weekly"
-            });
-
-            try {
-              const { DirectionsService, DirectionsStatus } = await loader.importLibrary("routes");
-              const { UnitSystem } = await loader.importLibrary("core");
-
-              const directionsService = new DirectionsService();
-              const options = {
-                origin: this.form.origin,
-                destination: this.form.destination,
-                travelMode: "TRANSIT",
-                unitSystem: UnitSystem.METRIC,
-                region: "pa",
-                provideRouteAlternatives: true,
-                language: t("lang_code")
-              };
-
-              directionsService.route(options, (response, status) => {
-                if (status === DirectionsStatus.OK) {
-                  this.directions = response;
-                }
-                else if (status === DirectionsStatus.ZERO_RESULTS) {
-                  CAPACITOR.showToast(t("no_direcciones"));
-                }
-              });
-            }
-            catch {
-              CAPACITOR.showToast(t("error"));
-            }
-          }
-          else {
+          catch {
+            this.submit = false;
             CAPACITOR.showToast(t("error"));
           }
-          this.submit = false;
         }
         else {
           this.form.origin = "";
           this.form.destination = "";
           this.directions.routes = [];
           this.directions.geocoded_waypoints = [];
+          this.submit = false;
         }
       }
       else {
