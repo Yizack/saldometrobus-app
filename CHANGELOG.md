@@ -1,5 +1,26 @@
 # Changelog
 
+## v2.8.0
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.7.1...v2.8.0)
+
+### 🚀 Enhancements
+
+- Add firebase google auth ([5a9e25b](https://github.com/Yizack/saldometrobus-app/commit/5a9e25b))
+
+### 🩹 Fixes
+
+- Google service cancel request ([489b684](https://github.com/Yizack/saldometrobus-app/commit/489b684))
+
+### 🏡 Chore
+
+- Uses secured google key ([41f09ed](https://github.com/Yizack/saldometrobus-app/commit/41f09ed))
+- Use travel mode enum ([09f5f81](https://github.com/Yizack/saldometrobus-app/commit/09f5f81))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.7.1
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.7.0...v2.7.1)
