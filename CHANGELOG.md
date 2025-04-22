@@ -1,5 +1,18 @@
 # Changelog
 
+## v2.8.1
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.0...v2.8.1)
+
+### 🏡 Chore
+
+- Update graddle and android studio ([ca8d66f](https://github.com/Yizack/saldometrobus-app/commit/ca8d66f))
+- Remove biometric permissions since not used ([fbcd85c](https://github.com/Yizack/saldometrobus-app/commit/fbcd85c))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.8.0
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.7.1...v2.8.0)
