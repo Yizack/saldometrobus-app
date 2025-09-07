@@ -62,6 +62,9 @@ export default defineNuxtConfig({
       }
     }
   },
+  experimental: {
+    typedPages: true
+  },
   ssr: false,
   spaLoadingTemplate: false,
   nitro: {

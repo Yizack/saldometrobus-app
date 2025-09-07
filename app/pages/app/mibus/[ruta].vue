@@ -1,5 +1,10 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({ layout: "main" });
+
+const ruta = computed(() => {
+  const { params } = useRoute("app-mibus-ruta");
+  return MIBUS.getRuta(params.ruta)!;
+});
 </script>
 
 <template>
@@ -32,13 +37,3 @@ definePageMeta({ layout: "main" });
     <iframe class="rounded border-0 shadow" :src="`https://saldometrobus-app.yizack.com/_mibus/maps/${ruta.route_id}.html`" width="100%" height="500px" loading="lazy" allowfullscreen />
   </section>
 </template>
-
-<script>
-export default {
-  data () {
-    return {
-      ruta: MIBUS.getRuta(this.$route.params.ruta)
-    };
-  }
-};
-</script>

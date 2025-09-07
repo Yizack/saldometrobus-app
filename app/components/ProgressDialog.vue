@@ -1,3 +1,9 @@
+<script setup lang="ts">
+defineProps<{
+  message: string;
+}>();
+</script>
+
 <template>
   <!-- Progress Dialog -->
   <div id="progress-dialog" class="modal modal-sm fade" tabindex="-1" aria-labelledby="progress-dialog-label" aria-hidden="true" data-bs-backdrop="static">
@@ -17,15 +23,3 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: "ProgressDialog",
-  props: {
-    message: {
-      type: String,
-      default: "Loading..."
-    }
-  }
-};
-</script>
