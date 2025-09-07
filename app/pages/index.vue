@@ -78,7 +78,7 @@ const guestLogin = async () => {
         <div class="d-grid gap-2 mt-5 mt-auto">
           <button class="btn btn-primary" type="submit" role="button">{{ t("login") }}</button>
           <button class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2 text-decoration-none d-flex align-items-center gap-2" type="button" role="button" @click="googleLogin">
-            <Icon name="google" size="sm" />
+            <Icon name="google" size="1rem" />
             <span>{{ t("google_login") }}</span>
           </button>
           <a class="text-primary my-2" role="button" @click="CAPACITOR.openBrowser(`${CONST.url}/cuenta?s=restaurar`)">{{ t("olvido_pass") }}</a>

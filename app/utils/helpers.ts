@@ -4,19 +4,6 @@ import "bootstrap/js/dist/collapse";
 import OffCanvas from "bootstrap/js/dist/offcanvas";
 import Modal from "bootstrap/js/dist/modal";
 
-export const sha256 = async (message: string) => {
-  try {
-    const msgBuffer = new TextEncoder().encode(message);
-    const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-    return hashHex;
-  }
-  catch (e) {
-    console.warn(e);
-  }
-};
-
 export const convertToTime = (datetime: string) => {
   const [date, time] = datetime.split(" ");
   if (!date || !time) return 0;

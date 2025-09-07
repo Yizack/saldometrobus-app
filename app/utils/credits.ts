@@ -2,8 +2,8 @@ import { devDependencies, dependencies } from "./../../package.json";
 
 export const CREDITS = [
   {
-    name: "Nuxt.js",
-    link: "https://nuxtjs.com",
+    name: "Nuxt",
+    link: "https://nuxt.com",
     description: {
       en: "The Intuitive Vue Framework",
       es: "El Framework Intuitivo de Vue"
@@ -29,13 +29,13 @@ export const CREDITS = [
     version: dependencies.bootstrap
   },
   {
-    name: "Nuxt Icons",
-    link: "https://github.com/gitFoxCode/nuxt-icons",
+    name: "Nuxt Icon",
+    link: "https://github.com/nuxt/icon",
     description: {
-      en: "A module for Nuxt 3 that allows you to use your own SVG icons quickly and enjoyably",
-      es: "Un módulo para Nuxt 3 que te permite usar tus propios iconos SVG de forma rápida y agradable"
+      en: "The Icon module for Nuxt",
+      es: "El módulo de Iconos para Nuxt"
     },
-    version: devDependencies["nuxt-icons"]
+    version: devDependencies["@nuxt/icon"]
   },
   {
     name: "ESLint",
@@ -137,15 +137,6 @@ export const CREDITS = [
     version: "0.42.0"
   },
   {
-    name: "better-sqlite3",
-    link: "https://github.com/WiseLibs/better-sqlite3",
-    description: {
-      en: "The fastest and simplest library for SQLite3 in Node.js",
-      es: "La biblioteca más rápida y simple para SQLite3 en Node.js"
-    },
-    version: "11.9.1"
-  },
-  {
     name: "Changelogen",
     link: "https://github.com/unjs/changelogen",
     description: {
@@ -161,7 +152,7 @@ export const CREDITS = [
       en: "GitHub Action for checking out a repo",
       es: "Acción de GitHub para revisar un repositorio"
     },
-    version: 4
+    version: 5
   },
   {
     name: "GitHub Actions: Setup Node",
@@ -170,7 +161,7 @@ export const CREDITS = [
       en: "Set up your GitHub Actions workflow with a specific version of node.js",
       es: "Configure su flujo de trabajo de GitHub Actions con una versión específica de node.js"
     },
-    version: 4
+    version: 5
   },
   {
     name: "GitHub Actions: Setup Java",
@@ -179,7 +170,7 @@ export const CREDITS = [
       en: "Set up your GitHub Actions workflow with a specific version of Java",
       es: "Configure su flujo de trabajo de GitHub Actions con una versión específica de Java"
     },
-    version: 4
+    version: 5
   },
   {
     name: "GitHub Actions: Upload Artifact",
@@ -197,6 +188,6 @@ export const CREDITS = [
       en: "The CLI for Cloudflare Workers",
       es: "La CLI para Cloudflare Workers"
     },
-    version: "4.12.0"
+    version: "4.34.0"
   }
 ];

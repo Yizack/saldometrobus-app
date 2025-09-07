@@ -6,7 +6,7 @@ definePageMeta({ layout: "main" });
   <section>
     <div class="input-group mb-2 rounded shadow-sm">
       <span class="text-primary-emphasis input-group-text border border-end-0">
-        <Icon name="search" size="sm" />
+        <Icon name="search" size="1rem" />
       </span>
       <div class="form-floating mb">
         <input class="form-control bg-body-tertiary rounded-end border border-start-0 shadow-none" type="text" :placeholder="t('buscar')" @keyup="buscar.input = $event.target.value">

@@ -11,7 +11,7 @@ definePageMeta({ layout: "main" });
       <div class="position-relative">
         <div class="input-group mb-1 shadow-sm rounded position-relative">
           <span class="text-primary-emphasis input-group-text border border-end-0" :class="{ 'bg-disabled': directions.routes.length }">
-            <Icon name="location" size="sm" />
+            <Icon name="location" size="1rem" />
           </span>
           <div class="form-floating">
             <input v-model="form.origin" class="form-control rounded-end border border-start-0 shadow-none" :class="directions.routes.length ? 'bg-disabled' : 'bg-body-tertiary'" :placeholder="t('location')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'origin')">
@@ -21,7 +21,7 @@ definePageMeta({ layout: "main" });
         </div>
         <div class="input-group shadow-sm rounded position-relative">
           <span class="text-primary-emphasis input-group-text border border-end-0" :class="{ 'bg-disabled': directions.routes.length }">
-            <Icon name="destination" size="sm" />
+            <Icon name="destination" size="1rem" />
           </span>
           <div class="form-floating">
             <input v-model="form.destination" class="form-control rounded-end border border-start-0 shadow-none" :class="directions.routes.length ? 'bg-disabled' : 'bg-body-tertiary'" :placeholder="t('destino')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'destination')">
@@ -70,7 +70,7 @@ definePageMeta({ layout: "main" });
                       </div>
                     </div>
                   </template>
-                  <Icon v-if="key < leg.steps.length - 2" name="right_chevron" size="sm" />
+                  <Icon v-if="key < leg.steps.length - 2" name="right-chevron" size="1rem" />
                 </template>
               </div>
             </div>
@@ -89,8 +89,8 @@ definePageMeta({ layout: "main" });
                     <div v-if="step.travel_mode === 'WALKING'" class="me-2 rounded position-absolute bg-primary" :style="{ width: '10px', left: '3px', bottom: 0, top: '1.5rem', height: 'calc(100% - 1.5rem)' }" />
                     <div v-if="step.travel_mode === 'TRANSIT'" class="me-2 rounded position-absolute" :style="{ backgroundColor: step.transit.line.color || 'var(--border)', width: '10px', left: '3px', bottom: 0, top: '1.5rem', height: 'calc(100% - 1.5rem)' }" />
                   </template>
-                  <Icon v-if="key < leg.steps.length - 1" name="step" size="sm" />
-                  <Icon v-else name="step_end" size="sm" />
+                  <Icon v-if="key < leg.steps.length - 1" name="step" size="1rem" />
+                  <Icon v-else name="step-end" size="1rem" />
                 </div>
                 <div class="w-100">
                   <div>

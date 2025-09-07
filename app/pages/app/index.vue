@@ -167,7 +167,7 @@ onMounted(async () => {
               <img class="img-fluid rounded shadow-sm" :src="`/images/${getCardImage(tarjeta.tipo)}`" :width="size.width" :height="size.height">
             </div>
             <div class="d-grid">
-              <button class="btn btn-secondary btn-sm py-2" role="button" @click="updateTarjeta($event, tarjeta.numero)"><Icon name="refresh" size="md" /></button>
+              <button class="btn btn-secondary btn-sm py-2" role="button" @click="updateTarjeta($event, tarjeta.numero)"><Icon name="refresh" size="1.5rem" /></button>
             </div>
           </div>
         </div>
@@ -177,7 +177,7 @@ onMounted(async () => {
       <p class="small m-0"><small>{{ t("tarjetas_note") }}</small></p>
     </div>
     <div class="position-fixed bottom-0 end-0 m-3">
-      <button class="btn btn-primary rounded-circle p-1 shadow" role="button" data-bs-toggle="modal" data-bs-target="#add-dialog"><Icon name="plus" size="lg" /></button>
+      <button class="btn btn-primary rounded-circle p-1 shadow" role="button" data-bs-toggle="modal" data-bs-target="#add-dialog"><Icon name="plus" size="3rem" /></button>
     </div>
     <!-- Add Dialog -->
     <div id="add-dialog" class="modal fade" tabindex="-1" aria-labelledby="add-dialog-label" aria-hidden="true" data-bs-backdrop="static">

@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top shadow-sm">
     <div class="container-fluid">
-      <a class="text-white pe-4 display-6 d-flex" data-bs-toggle="offcanvas" href="#menu" role="button" aria-controls="menu">
-        <Icon name="menu" />
+      <a class="text-white pe-4 display-6 d-flex" data-bs-toggle="offcanvas" href="#sidebar-menu" role="button" aria-controls="sidebar-menu">
+        <Icon name="hamburger" />
       </a>
       <span class="navbar-brand me-auto">{{ title }}</span>
       <div class="nav-item dropstart">
@@ -28,7 +28,7 @@
       </div>
     </div>
   </nav>
-  <div id="menu" ref="offcanvas" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="menuLabel">
+  <div id="sidebar-menu" ref="offcanvas" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="menuLabel">
     <div class="offcanvas-header bg-primary align-items-start" data-bs-theme="dark">
       <div class="text-white">
         <img class="img-fluid rounded-circle bg-white" src="/images/logo2.webp" width="70" height="70">
@@ -145,18 +145,18 @@ export default {
   mounted () {
     this.$refs.offcanvas.addEventListener("touchstart", (event) => {
       this.touch.startX = event.changedTouches[0].screenX;
-    }, false);
+    }, { passive: true });
 
     this.$refs.offcanvas.addEventListener("touchend", (event) => {
       this.touch.endX = event.changedTouches[0].screenX;
       if (this.touch.endX < this.touch.startX) {
-        closeOffCanvas("menu");
+        closeOffCanvas("sidebar-menu");
       }
-    }, false);
+    }, { passive: true });
   },
   beforeUnmount () {
-    this.$refs.offcanvas.removeEventListener("touchstart", () => {}, false);
-    this.$refs.offcanvas.removeEventListener("touchend", () => {}, false);
+    this.$refs.offcanvas.removeEventListener("touchstart", () => {}, { passive: true });
+    this.$refs.offcanvas.removeEventListener("touchend", () => {}, { passive: true });
   },
   methods: {
     async logout () {

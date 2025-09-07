@@ -89,7 +89,7 @@ const registro = async () => {
           <input class="btn btn-primary" type="submit" role="button" :value="t('registrate')">
           <span>{{ t("or") }}</span>
           <button class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2 text-decoration-none d-flex align-items-center gap-2" type="button" role="button" @click="googleRegistro">
-            <Icon name="google" size="sm" />
+            <Icon name="google" size="1rem" />
             <span>{{ t("google_signup") }}</span>
           </button>
         </div>

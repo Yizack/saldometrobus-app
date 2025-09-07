@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  future: { compatibilityVersion: 4 },
+  // future: { compatibilityVersion: 4 },
   app: {
     rootId: "app",
     buildAssetsDir: "/_app/",
@@ -36,7 +36,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     "@nuxt/eslint",
-    "nuxt-icons",
+    "@nuxt/icon",
     "@pinia/nuxt"
   ],
   eslint: {
@@ -44,6 +44,13 @@ export default defineNuxtConfig({
       autoInit: false,
       stylistic: true
     }
+  },
+  icon: {
+    size: "24px",
+    provider: "none",
+    mode: "svg",
+    clientBundle: { scan: true },
+    customCollections: [{ prefix: "", dir: "./app/assets/icons" }]
   },
   imports: {
     dirs: ["stores"]
@@ -71,5 +78,12 @@ export default defineNuxtConfig({
       proxy: { to: "http://localhost:5173/database/**" }
     }
   },
-  compatibilityDate: "2024-10-23"
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ["jeep-sqlite/dist/components/jeep-sqlite", "jeep-sqlite"]
+      }
+    }
+  },
+  compatibilityDate: "2025-09-07"
 });

@@ -1,6 +1,16 @@
+shamefullyHoist: true
+strictPeerDependencies: false
+
+packages:
+  - .
+
 ignoredBuiltDependencies:
+  - '@firebase/util'
   - '@parcel/watcher'
   - esbuild
+  - protobufjs
+  - unrs-resolver
+
 
 onlyBuiltDependencies:
   - sharp
