@@ -237,7 +237,7 @@ import{ax as yr,ay as Q,az as Ne}from"#entry";/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class fi{constructor(e){this.container=e}getPlatformInfoString(){return this.container.getProviders().map(t=>{if(pi(t)){const r=t.getImmediate();return`${r.library}/${r.version}`}else return null}).filter(t=>t).join(" ")}}function pi(n){return n.getComponent()?.type==="VERSION"}const pt="@firebase/app",Wt="0.14.2";/**
+ */class fi{constructor(e){this.container=e}getPlatformInfoString(){return this.container.getProviders().map(t=>{if(pi(t)){const r=t.getImmediate();return`${r.library}/${r.version}`}else return null}).filter(t=>t).join(" ")}}function pi(n){return n.getComponent()?.type==="VERSION"}const pt="@firebase/app",Wt="0.14.3";/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -252,7 +252,7 @@ import{ax as yr,ay as Q,az as Ne}from"#entry";/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const x=new En("@firebase/app"),mi="@firebase/app-compat",gi="@firebase/analytics-compat",Ii="@firebase/analytics",_i="@firebase/app-check-compat",yi="@firebase/app-check",Ei="@firebase/auth",wi="@firebase/auth-compat",Ti="@firebase/database",Ri="@firebase/data-connect",vi="@firebase/database-compat",Si="@firebase/functions",Ci="@firebase/functions-compat",bi="@firebase/installations",Pi="@firebase/installations-compat",ki="@firebase/messaging",Ai="@firebase/messaging-compat",Oi="@firebase/performance",Ni="@firebase/performance-compat",Di="@firebase/remote-config",Li="@firebase/remote-config-compat",Ui="@firebase/storage",Mi="@firebase/storage-compat",Vi="@firebase/firestore",Fi="@firebase/ai",xi="@firebase/firestore-compat",Wi="firebase",Hi="12.2.0";/**
+ */const x=new En("@firebase/app"),mi="@firebase/app-compat",gi="@firebase/analytics-compat",Ii="@firebase/analytics",_i="@firebase/app-check-compat",yi="@firebase/app-check",Ei="@firebase/auth",wi="@firebase/auth-compat",Ti="@firebase/database",Ri="@firebase/data-connect",vi="@firebase/database-compat",Si="@firebase/functions",Ci="@firebase/functions-compat",bi="@firebase/installations",Pi="@firebase/installations-compat",ki="@firebase/messaging",Ai="@firebase/messaging-compat",Oi="@firebase/performance",Ni="@firebase/performance-compat",Di="@firebase/remote-config",Li="@firebase/remote-config-compat",Ui="@firebase/storage",Mi="@firebase/storage-compat",Vi="@firebase/firestore",Fi="@firebase/ai",xi="@firebase/firestore-compat",Wi="firebase",Hi="12.3.0";/**
  * @license
  * Copyright 2019 Google LLC
  *
