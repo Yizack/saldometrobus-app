@@ -145,13 +145,20 @@ onMounted(async () => {
         <div class="d-flex">
           <div class="flex-grow-1">
             <div class="info mx-2 small">
-              <p class="m-0"><b>{{ t("numero") }}: {{ tarjeta.numero }}</b></p>
               <Transition name="fade" mode="out-in">
                 <div v-if="tarjeta.saldo">
-                  <p class="m-0">{{ t("estado") }}: {{ tarjeta.estado }}</p>
-                  <p class="m-0">{{ t("tipo") }}: {{ tarjeta.tipo }}</p>
-                  <p class="m-0">{{ t("fecha") }}: {{ tarjeta.fecha }}</p>
-                  <h3 class="text-nowrap m-0"><b>{{ t("saldo") }}: B/. {{ tarjeta.saldo }}</b></h3>
+                  <div class="mb-1">
+                    <div class="small fw-bold">{{ t("tipo") }}</div>
+                    <div class="m-0">{{ tarjeta.tipo}}</div>
+                  </div>
+                  <div class="mb-1">
+                    <div class="small fw-bold">{{ t("fecha") }}</div>
+                    <div class="text-nowrap m-0">{{ tarjeta.fecha}}</div>
+                  </div>
+                  <div class="text-primary border-primary border-start rounded ps-3 py-1 border-3">
+                    <div class="small fw-bold">{{ t("saldo") }}</div>
+                    <div class="text-nowrap fw-bold h3 m-0">B/. {{ tarjeta.saldo }}</div>
+                  </div>
                 </div>
                 <div v-else>
                   <p class="placeholder-glow m-0"><span class="placeholder col-6" /></p>
@@ -163,11 +170,12 @@ onMounted(async () => {
             </div>
           </div>
           <div class="actions d-flex flex-column">
-            <div class="image mb-2">
-              <img class="img-fluid rounded shadow-sm" :src="`/images/${getCardImage(tarjeta.tipo)}`" :width="size.width" :height="size.height">
+            <div class="image">
+              <img class="img-fluid rounded shadow-sm border" :src="`/images/${getCardImage(tarjeta.tipo)}`" :width="size.width" :height="size.height">
             </div>
+            <p class="bg-secondary-subtle rounded px-2 fw-bold text-body my-1 text-center">{{ tarjeta.numero }}</p>
             <div class="d-grid">
-              <button class="btn btn-secondary btn-sm py-2" role="button" @click="updateTarjeta($event, tarjeta.numero)"><Icon name="refresh" size="1.5rem" /></button>
+              <button class="btn btn-secondary btn-sm py-2" role="button" @click="updateTarjeta($event, tarjeta.numero)"><Icon name="refresh" size="1.3rem" /></button>
             </div>
           </div>
         </div>
