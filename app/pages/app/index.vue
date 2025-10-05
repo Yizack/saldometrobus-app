@@ -149,11 +149,11 @@ onMounted(async () => {
                 <div v-if="tarjeta.saldo">
                   <div class="mb-1">
                     <div class="small fw-bold">{{ t("tipo") }}</div>
-                    <div class="m-0">{{ tarjeta.tipo}}</div>
+                    <div class="m-0">{{ tarjeta.tipo }}</div>
                   </div>
                   <div class="mb-1">
                     <div class="small fw-bold">{{ t("fecha") }}</div>
-                    <div class="text-nowrap m-0">{{ tarjeta.fecha}}</div>
+                    <div class="text-nowrap m-0">{{ tarjeta.fecha }}</div>
                   </div>
                   <div class="text-primary border-primary border-start rounded ps-3 py-1 border-3">
                     <div class="small fw-bold">{{ t("saldo") }}</div>
