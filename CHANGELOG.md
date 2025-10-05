@@ -1,5 +1,25 @@
 # Changelog
 
+## v2.8.2
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.1...v2.8.2)
+
+### 💅 Refactors
+
+- Update to nuxt4 + @nuxt/icon + other deps ([87a3e10](https://github.com/Yizack/saldometrobus-app/commit/87a3e10))
+- Use ts and composition api in some components ([50b5d42](https://github.com/Yizack/saldometrobus-app/commit/50b5d42))
+- Update cards ui ([a1b212e](https://github.com/Yizack/saldometrobus-app/commit/a1b212e))
+
+### 🏡 Chore
+
+- Update graddle and android studio ([1d576b8](https://github.com/Yizack/saldometrobus-app/commit/1d576b8))
+- Update sdk and capacitor dirs ([c70e1cf](https://github.com/Yizack/saldometrobus-app/commit/c70e1cf))
+- Lint ([a3c3dea](https://github.com/Yizack/saldometrobus-app/commit/a3c3dea))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.8.1
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.0...v2.8.1)
