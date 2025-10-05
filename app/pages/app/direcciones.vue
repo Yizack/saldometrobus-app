@@ -1,5 +1,5 @@
 <script setup>
-import { Loader } from "@googlemaps/js-api-loader";
+import { setOptions, importLibrary } from "@googlemaps/js-api-loader";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 
 definePageMeta({ layout: "main" });
@@ -210,14 +210,11 @@ export default {
           this.form.origin = this.form.origin.trim();
           this.form.destination = this.form.destination.trim();
 
-          const loader = new Loader({
-            apiKey: this.apiKey,
-            version: "weekly"
-          });
+          setOptions({ key: this.apiKey, v: "weekly" });
 
           try {
-            const { DirectionsService, DirectionsStatus, TravelMode } = await loader.importLibrary("routes");
-            const { UnitSystem } = await loader.importLibrary("core");
+            const { DirectionsService, DirectionsStatus, TravelMode } = await importLibrary("routes");
+            const { UnitSystem } = await importLibrary("core");
 
             const directionsService = new DirectionsService();
             const options = {
