@@ -1,7 +1,7 @@
 import { load } from "cheerio";
 import { CapacitorHttp } from "@capacitor/core";
 
-const scrapperURL = import.meta.dev ? "/tarjetametrobus" : "http://200.46.245.230:8080";
+const scrapperURL = import.meta.dev ? "/tarjetametrobus" : "https://consultasaldomb.com";
 const baseUrl = scrapperURL + "/PortalCAE-WAR-MODULE";
 
 export const scrapperTarjeta = async (numero: string) => {
