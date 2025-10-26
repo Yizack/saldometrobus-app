@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.8.3
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.2...v2.8.3)
+
+### 🩹 Fixes
+
+- Scrapper url ([efc2cbb](https://github.com/Yizack/saldometrobus-app/commit/efc2cbb))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.8.2
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.1...v2.8.2)
