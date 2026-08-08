@@ -1,4 +1,13 @@
 export default defineNuxtConfig({
+  modules: [
+    "@nuxt/eslint",
+    "@nuxt/icon",
+    "@pinia/nuxt"
+  ],
+  ssr: false,
+  imports: {
+    dirs: ["stores"]
+  },
   app: {
     rootId: "app",
     buildAssetsDir: "/_app/",
@@ -33,51 +42,12 @@ export default defineNuxtConfig({
     "~/assets/css/table.css",
     "~/assets/css/nav.css"
   ],
-  modules: [
-    "@nuxt/eslint",
-    "@nuxt/icon",
-    "@pinia/nuxt"
-  ],
-  eslint: {
-    config: {
-      autoInit: false,
-      stylistic: true
-    }
-  },
-  typescript: {
-    nodeTsConfig: {
-      include: [
-        "../scripts/**/*",
-        "../shared/**/*.d.ts"
-      ]
-    }
-  },
-  icon: {
-    size: "24px",
-    provider: "none",
-    mode: "svg",
-    clientBundle: { scan: true },
-    customCollections: [{ prefix: "", dir: "./app/assets/icons" }]
-  },
-  imports: {
-    dirs: ["stores"]
-  },
+  spaLoadingTemplate: false,
   runtimeConfig: {
     public: {
       google: {
         apiKey: "AIzaSyA60VM-yC8g350aJYKEzmlAR-9kRbp5SEc"
       }
-    }
-  },
-  experimental: {
-    typedPages: true
-  },
-  ssr: false,
-  spaLoadingTemplate: false,
-  nitro: {
-    prerender: {
-      crawlLinks: false,
-      ignore: ["/app", "/registro"]
     }
   },
   routeRules: {
@@ -88,6 +58,16 @@ export default defineNuxtConfig({
       proxy: { to: "http://localhost:5173/database/**" }
     }
   },
+  experimental: {
+    typedPages: true
+  },
+  compatibilityDate: "2026-08-08",
+  nitro: {
+    prerender: {
+      crawlLinks: false,
+      ignore: ["/app", "/registro"]
+    }
+  },
   vite: {
     build: {
       rollupOptions: {
@@ -95,5 +75,25 @@ export default defineNuxtConfig({
       }
     }
   },
-  compatibilityDate: "2026-08-08"
+  typescript: {
+    nodeTsConfig: {
+      include: [
+        "../scripts/**/*",
+        "../shared/**/*.d.ts"
+      ]
+    }
+  },
+  eslint: {
+    config: {
+      autoInit: false,
+      stylistic: true
+    }
+  },
+  icon: {
+    size: "24px",
+    provider: "none",
+    mode: "svg",
+    clientBundle: { scan: true },
+    customCollections: [{ prefix: "", dir: "./app/assets/icons" }]
+  }
 });

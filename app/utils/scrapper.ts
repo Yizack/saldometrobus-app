@@ -43,7 +43,7 @@ export const scrapperTarjeta = async (numero: string) => {
     return {
       status: "error" as const,
       tarjeta: null,
-      error_key: "error_tarjeta",
+      error_key: "error_tarjeta"
     };
   }
 
