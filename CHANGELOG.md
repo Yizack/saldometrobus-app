@@ -1,5 +1,26 @@
 # Changelog
 
+## v2.8.4
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.3...v2.8.4)
+
+### 🩹 Fixes
+
+- Fix an issue when adding invalid card numbers ([c19be87](https://github.com/Yizack/saldometrobus-app/commit/c19be87))
+
+### 📦 Build
+
+- Add package.json import attr ([bf1d64f](https://github.com/Yizack/saldometrobus-app/commit/bf1d64f))
+
+### 🏡 Chore
+
+- Update all dependencies ([11d099a](https://github.com/Yizack/saldometrobus-app/commit/11d099a))
+- Add comment for the original ip address ([7dd02f4](https://github.com/Yizack/saldometrobus-app/commit/7dd02f4))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.8.3
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.2...v2.8.3)
