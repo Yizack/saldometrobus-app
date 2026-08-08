@@ -134,7 +134,7 @@ export const CREDITS = [
       en: "TypeScript ORM that feels like writing SQL",
       es: "ORM de TypeScript que se siente como escribir SQL"
     },
-    version: "0.42.0"
+    version: "0.45.2"
   },
   {
     name: "Changelogen",
@@ -152,7 +152,7 @@ export const CREDITS = [
       en: "GitHub Action for checking out a repo",
       es: "Acción de GitHub para revisar un repositorio"
     },
-    version: 5
+    version: 7
   },
   {
     name: "GitHub Actions: Setup Node",
@@ -161,7 +161,7 @@ export const CREDITS = [
       en: "Set up your GitHub Actions workflow with a specific version of node.js",
       es: "Configure su flujo de trabajo de GitHub Actions con una versión específica de node.js"
     },
-    version: 5
+    version: 7
   },
   {
     name: "GitHub Actions: Setup Java",
@@ -188,6 +188,6 @@ export const CREDITS = [
       en: "The CLI for Cloudflare Workers",
       es: "La CLI para Cloudflare Workers"
     },
-    version: "4.34.0"
+    version: "4.120.0"
   }
 ];
