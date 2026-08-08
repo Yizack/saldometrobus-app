@@ -1,5 +1,7 @@
 import { execSync } from "node:child_process";
-import { version } from "../package.json";
+import pkg from "../package.json" with { type: "json" };
+
+const version = pkg.version;
 
 const tag = execSync(`git tag -l v${version}`).toString();
 if (!tag) {
