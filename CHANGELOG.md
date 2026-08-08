@@ -1,5 +1,22 @@
 # Changelog
 
+## v2.8.5
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.4...v2.8.5)
+
+### 🩹 Fixes
+
+- Also delete card from api if card is invalid ([af1c33b](https://github.com/Yizack/saldometrobus-app/commit/af1c33b))
+
+### 🏡 Chore
+
+- Lint ([518963a](https://github.com/Yizack/saldometrobus-app/commit/518963a))
+- Prefer node --run scripts ([7d96873](https://github.com/Yizack/saldometrobus-app/commit/7d96873))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.8.4
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.3...v2.8.4)
