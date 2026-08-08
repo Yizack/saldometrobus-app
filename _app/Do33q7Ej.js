@@ -1,0 +1,1 @@
+import{r as e}from"./CdnVfMHM.js";var t=e(`/images/logo2.webp`);export{t};
