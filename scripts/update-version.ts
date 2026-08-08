@@ -1,5 +1,5 @@
 import { writeFile } from "node:fs/promises";
-import { version } from "./../package.json";
+import { version } from "../package.json";
 
 const generateVersionCode = (v: string) => {
   const [major, minor, patch] = v.split(".");

@@ -11,12 +11,12 @@ jobs:
 
     steps:
     - name: Checkout 🛎️
-      uses: actions/checkout@v5
+      uses: actions/checkout@v7
 
     - run: corepack enable
 
     - name: Setup Node 🐢
-      uses: actions/setup-node@v5
+      uses: actions/setup-node@v7
       with:
         node-version: lts/*
         cache: pnpm
@@ -25,10 +25,10 @@ jobs:
       run: pnpm install
 
     - name: MiBus Rutas 🚌
-      run: pnpm app:mibus
+      run: node --run app:mibus
 
     - name: Build App ⚡
-      run: pnpm generate
+      run: node --run generate
 
     - name: Deploy Web Demo 🚀
       uses: JamesIves/github-pages-deploy-action@v4
@@ -37,21 +37,21 @@ jobs:
         folder: .output/public
 
     - name: Clean output 🧹
-      run: pnpm app:clean
+      run: node --run app:clean
 
     - name: Capacitor 📲
-      run: pnpm sync
+      run: node --run sync
 
     - name: Version App 🔢
       run: |
-          pnpm app:version
-          pnpm trapeze
+          node --run app:version
+          node --run trapeze
 
     - name: Setup java ☕
       uses: actions/setup-java@v5
       with:
         distribution: zulu
-        java-version: 21
+        java-version: 25
 
     - name: Bundle Android App 📦
       run: |

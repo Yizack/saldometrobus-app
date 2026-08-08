@@ -1,5 +1,4 @@
 export default defineNuxtConfig({
-  // future: { compatibilityVersion: 4 },
   app: {
     rootId: "app",
     buildAssetsDir: "/_app/",
@@ -45,6 +44,14 @@ export default defineNuxtConfig({
       stylistic: true
     }
   },
+  typescript: {
+    nodeTsConfig: {
+      include: [
+        "../scripts/**/*",
+        "../shared/**/*.d.ts"
+      ]
+    }
+  },
   icon: {
     size: "24px",
     provider: "none",
@@ -88,5 +95,5 @@ export default defineNuxtConfig({
       }
     }
   },
-  compatibilityDate: "2025-09-07"
+  compatibilityDate: "2026-08-08"
 });
