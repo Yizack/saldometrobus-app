@@ -31,13 +31,13 @@
     "app:version": "node scripts/update-version.ts",
     "app:android:key": "openssl base64 -A -in saldometrobus_key.jks -out saldometrobus_key.jks.txt",
     "trapeze": "npx trapeze run config.yaml -y",
-    "release": "pnpm changelogen --bump && node scripts/new-release.ts && pnpm changelogen gh release",
-    "release:patch": "pnpm changelogen --bump --patch && node scripts/new-release.ts && pnpm changelogen gh release",
+    "release": "changelogen --bump && node scripts/new-release.ts && changelogen gh release",
+    "release:patch": "changelogen --bump --patch && node scripts/new-release.ts && changelogen gh release",
     "test:types": "vue-tsc -b --noEmit",
-    "lint": "npm run lint:eslint && npm run lint:stylelint",
+    "lint": "node --run lint:eslint && node --run lint:stylelint",
     "lint:eslint": "eslint --fix --config .config/eslint.mjs",
     "lint:stylelint": "stylelint \"**/*.css\" --fix --config .config/stylelint.json",
-    "dev:build": "pnpm app:mibus && pnpm generate && pnpm app:clean && pnpm sync"
+    "dev:build": "node --run app:mibus && node --run generate && node --run app:clean && node --run sync"
   },
   "devDependencies": {
     "@capacitor-community/sqlite": "^8.1.1",
