@@ -54,7 +54,7 @@ class SaldometrobusAPI {
     const { tarjeta, status } = scrapped;
 
     if (status !== "ok" || !tarjeta) {
-      return { error: true, error_key: "error_tarjeta_unknown" };
+      return { error: true, error_key: scrapped.error_key || "error_tarjeta_unknown" };
     }
 
     if (cached && parseInt(numero)) {

@@ -69,6 +69,7 @@ const updateTarjeta = async (event: Event, numero: string) => {
   progress.value = t("actualizando_tarjeta");
   showModal("progress-dialog");
   const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero, true);
+
   if (tarjeta && !error) {
     const changes = await DB.updateTarjeta(tarjeta);
     if (changes > 0) {
@@ -79,6 +80,11 @@ const updateTarjeta = async (event: Event, numero: string) => {
     }
   }
   else {
+    if (error_key === "error_tarjeta") {
+      console.log("Eliminando tarjeta debido a error en la tarjeta:", numero);
+      tarjetas.value = tarjetas.value.filter(t => t.numero !== numero);
+      await DB.deleteTarjeta(numero);
+    }
     await CAPACITOR.showToast(t(error_key || "error"), "long");
   }
   await sleep(0.5);

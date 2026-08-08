@@ -24,12 +24,10 @@ export const scrapperTarjeta = async (numero: string) => {
   const ksi = $1("input#KSI").eq(0).val() as string;
 
   if (!ksi) {
-    // setResponseStatus(event, 400);
     return {
-      status: "error",
+      status: "error" as const,
       tarjeta: null,
-      code: 400,
-      message: "Número de tarjeta no válido"
+      error_key: "error_tarjeta"
     };
   }
 
@@ -40,6 +38,14 @@ export const scrapperTarjeta = async (numero: string) => {
   const tipoAltElement = td1.eq(3);
   const tipo_alt = tipoAltElement.length ? tipoAltElement.text().trim().split("Tipo de contrato:")[1]?.trim() : null;
   const tipo = saldo ? tipo_alt || getCardType(numero) : "";
+
+  if (estado === "---" || !saldo) {
+    return {
+      status: "error" as const,
+      tarjeta: null,
+      error_key: "error_tarjeta",
+    };
+  }
 
   // Movimientos
   const movsParams = new URLSearchParams({
@@ -72,7 +78,7 @@ export const scrapperTarjeta = async (numero: string) => {
   }
 
   const output = {
-    status: "ok",
+    status: "ok" as const,
     tarjeta: {
       numero,
       ksi,
