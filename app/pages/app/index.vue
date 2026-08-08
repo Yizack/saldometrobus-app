@@ -81,8 +81,14 @@ const updateTarjeta = async (event: Event, numero: string) => {
   }
   else {
     if (error_key === "error_tarjeta") {
-      console.log("Eliminando tarjeta debido a error en la tarjeta:", numero);
       tarjetas.value = tarjetas.value.filter(t => t.numero !== numero);
+      if (!auth.isGuest) {
+        await API.deleteTarjeta({
+          email: auth.user.email,
+          token: auth.user.token,
+          numero
+        });
+      }
       await DB.deleteTarjeta(numero);
     }
     await CAPACITOR.showToast(t(error_key || "error"), "long");
