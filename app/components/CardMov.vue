@@ -2,8 +2,8 @@
   <div>
     <h4 class="text-center mt-1 py-2"><b>{{ t("saldos") }}</b></h4>
     <p class="m-0">{{ t("mov_4_semanas") }}<span v-if="tarjeta.movimientos.length">. {{ t("mov_note") }}</span></p>
-    <div class="table-responsive">
-      <table v-if="tarjeta.movimientos.length" class="table table-hover shadow small">
+    <div v-if="tarjeta.movimientos.length" class="table-responsive rounded shadow border">
+      <table class="table table-hover mb-0 small">
         <thead class="table-primary">
           <tr class="small">
             <th scope="col">{{ t("tipo") }}</th>
@@ -23,8 +23,8 @@
           </tr>
         </tbody>
       </table>
-      <p v-else class="text-center my-4"><i>{{ t("mov_notfound") }}.</i></p>
     </div>
+    <p v-else class="text-center my-4"><i>{{ t("mov_notfound") }}.</i></p>
     <!-- Movimiento Dialog -->
     <div id="mov-dialog" class="modal fade" tabindex="-1" aria-labelledby="add-dialog-label" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
