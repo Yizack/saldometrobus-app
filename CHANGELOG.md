@@ -1,5 +1,21 @@
 # Changelog
 
+## v2.8.6
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.5...v2.8.6)
+
+### 🩹 Fixes
+
+- New system temporal fix ([60e65fa](https://github.com/Yizack/saldometrobus-app/commit/60e65fa))
+
+### 🏡 Chore
+
+- Remove ksi ([638e2de](https://github.com/Yizack/saldometrobus-app/commit/638e2de))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.8.5
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.4...v2.8.5)
