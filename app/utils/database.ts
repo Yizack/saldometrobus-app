@@ -207,11 +207,11 @@ class Database {
     if (values && values.length) {
       const tipos = {
         uso: {
-          text: "Uso",
+          text: "USO SUBIDA",
           translation: t("uso")
         },
         carga: {
-          text: "Carga",
+          text: "CARGA SALDO TAG",
           translation: t("carga")
         },
         online: {
@@ -219,7 +219,7 @@ class Database {
           translation: t("carga_online")
         },
         trasera: {
-          text: "Puerta Trasera",
+          text: "USO BAJADA",
           translation: t("puerta_trasera")
         }
       };

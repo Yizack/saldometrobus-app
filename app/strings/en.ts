@@ -16,7 +16,7 @@ export default {
   cancel: "Cancel",
   numero: "Number",
   tipo: "Type",
-  fecha: "Last updated",
+  fecha: "Last request",
   saldo: "Balance",
   actualizar_tarjetas: "Update cards",
   sesion: "Session",
@@ -179,5 +179,6 @@ export default {
   pass_req_especial: "One special character",
   google_login: "Log in with Google",
   google_signup: "Sign up with Google",
-  or: "or"
+  or: "or",
+  operador: "Operator"
 };

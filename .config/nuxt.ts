@@ -47,15 +47,15 @@ export default defineNuxtConfig({
     public: {
       google: {
         apiKey: "AIzaSyA60VM-yC8g350aJYKEzmlAR-9kRbp5SEc"
-      },
-      sonda: {
-        credential: "RXR5YWxhYjpNM3RyMEJ1JCM="
       }
     }
   },
   routeRules: {
+    "/login": {
+      proxy: { to: "https://us-south1-saldo-ya-metro.cloudfunctions.net/snd-login" }
+    },
     "/tarjetametrobus/**": {
-      proxy: { to: "https://a2-20tarjetametrobus.com/**" }
+      proxy: { to: "https://recaudo.sondapay.com/**" }
     },
     "/database/**": {
       proxy: { to: "http://localhost:5173/database/**" }
