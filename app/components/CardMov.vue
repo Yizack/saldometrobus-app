@@ -48,11 +48,11 @@
                 </div>
                 <div class="col-6">
                   <p class="m-0"><b>{{ t("monto") }}</b></p>
-                  <p :class="`text-${tarjeta.movimientos[current]?.color}`">{{ tarjeta.movimientos[current]?.sign }}{{ tarjeta.movimientos[current]?.monto }}</p>
+                  <p :class="`text-${tarjeta.movimientos[current]?.color}`">{{ tarjeta.movimientos[current]?.sign }}B/. {{ tarjeta.movimientos[current]?.monto }}</p>
                 </div>
                 <div class="col-6">
                   <p class="m-0"><b>{{ t("saldo") }}</b></p>
-                  <p>{{ tarjeta.movimientos[current]?.saldo }}</p>
+                  <p>B/. {{ tarjeta.movimientos[current]?.saldo }}</p>
                 </div>
                 <hr>
                 <div class="col-6">
