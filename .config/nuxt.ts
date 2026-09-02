@@ -47,6 +47,9 @@ export default defineNuxtConfig({
     public: {
       google: {
         apiKey: "AIzaSyA60VM-yC8g350aJYKEzmlAR-9kRbp5SEc"
+      },
+      sonda: {
+        credential: "RXR5YWxhYjpNM3RyMEJ1JCM="
       }
     }
   },

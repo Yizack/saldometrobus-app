@@ -8,10 +8,12 @@ export const scrapperTarjeta = async (numero: string) => {
     card_number: numero
   });
 
+  const { sonda } = useRuntimeConfig().public;
+
   const ckeckBalance = await CapacitorHttp.get({
     url: `${scrapperURL}/api/v1/check_balance?${infoParams}`,
     headers: {
-      authorization: "Basic RXR5YWxhYjpNM3RyMEJ1JCM="
+      authorization: `Basic ${sonda.credential}`
     },
     responseType: "json"
   }).then(async response => response.data).catch(() => {});
