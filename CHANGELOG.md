@@ -1,5 +1,23 @@
 # Changelog
 
+## v2.8.7
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.6...v2.8.7)
+
+### 🩹 Fixes
+
+- Update date string ([20ff717](https://github.com/Yizack/saldometrobus-app/commit/20ff717))
+- Estado contrato ([760d494](https://github.com/Yizack/saldometrobus-app/commit/760d494))
+
+### 🏡 Chore
+
+- Migrate to pnpm 12 ([735970a](https://github.com/Yizack/saldometrobus-app/commit/735970a))
+- Move to auth to public runtime config ([8ace8af](https://github.com/Yizack/saldometrobus-app/commit/8ace8af))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.8.6
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.5...v2.8.6)
