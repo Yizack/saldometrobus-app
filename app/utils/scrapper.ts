@@ -28,7 +28,6 @@ export const scrapperTarjeta = async (numero: string) => {
     status: "ok" as const,
     tarjeta: {
       numero,
-      ksi: null,
       saldo: Number(ckeckBalance.saldo_tarjeta).toFixed(2),
       estado: ckeckBalance.saldo_tarjeta === "Activa" ? "Contrato Activo" : "Contrato Inactivo",
       fecha: new Date().toLocaleString("es-PA", { timeZone: "America/Panama", hour12: false }),
