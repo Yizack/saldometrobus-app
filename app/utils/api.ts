@@ -74,6 +74,16 @@ class SaldometrobusAPI {
         Object.assign(scrapped.tarjeta, tarjeta); // needed for 1st time
         arr.push(scrapped.tarjeta);
       }
+      else {
+        const auth = Auth();
+        if (!auth.isGuest) {
+          await API.deleteTarjeta({
+            email: auth.user.email,
+            token: auth.user.token,
+            numero: tarjeta.numero
+          });
+        }
+      }
     }
     return arr;
   }

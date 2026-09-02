@@ -52,7 +52,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/tarjetametrobus/**": {
-      proxy: { to: "http://200.46.245.230:8080/**" }
+      proxy: { to: "https://a2-20tarjetametrobus.com/**" }
     },
     "/database/**": {
       proxy: { to: "http://localhost:5173/database/**" }

@@ -1,6 +1,10 @@
 <template>
   <div>
     <h4 class="text-center mt-1 py-2"><b>{{ t("saldos") }}</b></h4>
+    <div class="alert alert-warning d-flex align-items-center" role="alert">
+      <Icon name="alert" class="flex-shrink-0 me-2" />
+      Debido al cambio reciente en el sistema de cobros de SONDA, Metro de Panamá y MiBus, en este momento no es posible mostrar los movimientos de sus tarjetas. Actualmente estoy investigando una solución para restablecer esta funcionalidad pero no lo puedo garantizar. Recuerde que esta no es una aplicación oficial y es desarrollada de manera independiente.
+    </div>
     <p class="m-0">{{ t("mov_4_semanas") }}<span v-if="tarjeta.movimientos.length">. {{ t("mov_note") }}</span></p>
     <div class="table-responsive">
       <table v-if="tarjeta.movimientos.length" class="table table-hover shadow small">

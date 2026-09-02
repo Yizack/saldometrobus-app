@@ -87,9 +87,9 @@ export const getCardImage = (tipo: string, brand = false) => {
 export const getCardType = (cardNumber: string) => {
   const n = Number(cardNumber);
   const rangeMap = [
-    { min: 20000000, max: 30000000, label: "Tarjeta Escolar" },
+    { min: 20000000, max: 30000000, label: "Tarjeta Jubilado" },
     { min: 30000000, max: 40000000, label: "Tarjeta Rapipass" },
-    { min: 40000000, max: 50000000, label: "Tarjeta Jubilado" }
+    { min: 40000000, max: 50000000, label: "Tarjeta Escolar" }
   ];
 
   const matchedRange = rangeMap.find(range => n >= range.min && n < range.max);
