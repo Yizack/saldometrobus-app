@@ -16,7 +16,7 @@ export default {
   cancel: "Cancelar",
   numero: "Número",
   tipo: "Tipo",
-  fecha: "Último uso",
+  fecha: "Última actualización",
   saldo: "Saldo",
   actualizar_tarjetas: "Actualizar tarjetas",
   sesion: "Sesión",
