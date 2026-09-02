@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.8.8
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.7...v2.8.8)
+
+### 🩹 Fixes
+
+- Migrate to POCAE ([b7ea42a](https://github.com/Yizack/saldometrobus-app/commit/b7ea42a))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.8.7
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.6...v2.8.7)
