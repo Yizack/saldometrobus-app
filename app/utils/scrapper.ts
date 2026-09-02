@@ -64,7 +64,7 @@ export const scrapperTarjeta = async (numero: string) => {
       numero,
       saldo: formatSaldo(cardResponse.servicio.saldo),
       estado: cardResponse.servicio.estadoCuenta === "Activa" ? "Contrato Activo" : "Contrato Inactivo",
-      fecha: new Date().toLocaleString("es-PA", { timeZone: "America/Panama", hour12: false }),
+      fecha: formatFecha(Date.now()),
       tipo: getCardType(numero),
       movimientos: cardResponse.servicio?.listaTransacciones?.map(t => ({
         transaccion: t.operador,
