@@ -7,7 +7,7 @@ packages:
 
 allowBuilds:
   '@firebase/util': false
-  '@parcel/watcher': set this to true or false
+  '@parcel/watcher': false
   esbuild: false
   protobufjs: false
   sharp: true
