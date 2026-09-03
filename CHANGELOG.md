@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.9.1
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.0...v2.9.1)
+
+### 🩹 Fixes
+
+- Pnpm workspace ([b345aea](https://github.com/Yizack/saldometrobus-app/commit/b345aea))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.9.0
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.10...v2.9.0)
