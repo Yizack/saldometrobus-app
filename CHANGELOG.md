@@ -1,5 +1,23 @@
 # Changelog
 
+## v2.9.0
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.10...v2.9.0)
+
+### 🚀 Enhancements
+
+- **ui:** Migrate app to Nuxt UI ([88f44cd](https://github.com/Yizack/saldometrobus-app/commit/88f44cd))
+
+### 🩹 Fixes
+
+- **movements:** Improve table borders and layout ([582cc07](https://github.com/Yizack/saldometrobus-app/commit/582cc07))
+- **movements:** Show currency prefix in dialog ([f51a2d8](https://github.com/Yizack/saldometrobus-app/commit/f51a2d8))
+- **scrapper:** Use shared date formatter ([f8f63b1](https://github.com/Yizack/saldometrobus-app/commit/f8f63b1))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.8.10
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.8.9...v2.8.10)
