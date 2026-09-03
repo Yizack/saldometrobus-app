@@ -1,14 +1,23 @@
 <template>
   <div>
-    <h4 class="text-center mt-1 py-2"><b>{{ t("graficas") }}</b></h4>
+    <h4 class="text-center text-xl mb-4 font-bold"><b>{{ t("graficas") }}</b></h4>
     <p>{{ t("grafica_nota") }}</p>
-    <div class="d-flex align-items-center my-3">
+    <div class="flex items-center my-3 gap-2">
       <span>{{ t("filtrar") }}:</span>
-      <div class="d-flex justify-content-evenly flex-grow-1 filters">
-        <button v-for="(filter, key) in filters" :key="key" class="btn btn-sm rounded-pill text-nowrap" :class="{ 'active': daysBefore === filter, 'btn-outline-dark': !CONFIG.dark, 'btn-outline-light': CONFIG.dark }" @click="daysBefore = filter">{{ t(key) }}</button>
+      <div class="flex justify-evenly grow gap-2">
+        <UButton
+          v-for="(filter, key) in filters"
+          :key="key"
+          class="rounded-full text-nowrap py-1"
+          :variant="daysBefore === filter ? 'solid' : 'outline'"
+          :label="t(key)"
+          color="neutral"
+          block
+          @click="daysBefore = filter"
+        />
       </div>
     </div>
-    <div v-for="(chart, key) in charts" :key="key" class="bg-body-tertiary border rounded p-2 mb-2 shadow">
+    <div v-for="(chart, key) in charts" :key="key" class="border border-default rounded-lg p-2 mb-2 shadow">
       <canvas ref="chart" class="my-2 w-100" />
     </div>
   </div>

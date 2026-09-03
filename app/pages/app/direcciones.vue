@@ -6,128 +6,168 @@ definePageMeta({ layout: "main" });
 </script>
 
 <template>
-  <section>
-    <form class="mb-2" @submit.prevent="getDirections">
-      <div class="position-relative">
-        <div class="input-group mb-1 shadow-sm rounded position-relative">
-          <span class="text-primary-emphasis input-group-text border border-end-0" :class="{ 'bg-disabled': directions.routes.length }">
-            <Icon name="location" size="1rem" />
-          </span>
-          <div class="form-floating">
-            <input v-model="form.origin" class="form-control rounded-end border border-start-0 shadow-none" :class="directions.routes.length ? 'bg-disabled' : 'bg-body-tertiary'" :placeholder="t('location')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'origin')">
-            <label>{{ t("location") }}</label>
-          </div>
-          <AutocompleteList v-if="search.origin && !search.destination" :text="form.origin" :loading="loading" :array="autocomplete" prop="label" @select="selectResult($event, 'origin')" />
+  <UContainer class="space-y-2 py-2">
+    <form class="space-y-2" @submit.prevent="getDirections">
+      <div class="relative space-y-1">
+        <div class="relative">
+          <InputFloating
+            id="origin"
+            v-model="form.origin"
+            icon="location"
+            class="w-full"
+            :placeholder="t('location')"
+            required
+            :disabled="Boolean(directions.routes.length)"
+            @keyup="searchPlace($event.target.value, 'origin')"
+          />
+          <AutocompleteList
+            v-if="search.origin && !search.destination"
+            :text="form.origin"
+            :loading="loading"
+            :array="autocomplete"
+            prop="label"
+            @select="selectResult($event, 'origin')"
+          />
         </div>
-        <div class="input-group shadow-sm rounded position-relative">
-          <span class="text-primary-emphasis input-group-text border border-end-0" :class="{ 'bg-disabled': directions.routes.length }">
-            <Icon name="destination" size="1rem" />
-          </span>
-          <div class="form-floating">
-            <input v-model="form.destination" class="form-control rounded-end border border-start-0 shadow-none" :class="directions.routes.length ? 'bg-disabled' : 'bg-body-tertiary'" :placeholder="t('destino')" required :disabled="directions.routes.length" @keyup="searchPlace($event.target.value, 'destination')">
-            <label>{{ t("destino") }}</label>
-          </div>
-          <AutocompleteList v-if="search.destination && !search.origin" :text="form.destination" :loading="loading" :array="autocomplete" prop="label" @select="selectResult($event, 'destination')" />
+        <div class="relative">
+          <InputFloating
+            id="destination"
+            v-model="form.destination"
+            icon="destination"
+            class="w-full"
+            :placeholder="t('destino')"
+            required
+            :disabled="Boolean(directions.routes.length)"
+            @keyup="searchPlace($event.target.value, 'destination')"
+          />
+          <AutocompleteList
+            v-if="search.destination && !search.origin"
+            :text="form.destination"
+            :loading="loading"
+            :array="autocomplete"
+            prop="label"
+            @select="selectResult($event, 'destination')"
+          />
         </div>
         <Transition name="fade">
-          <button v-if="!search.origin && !search.destination && !directions.routes.length" type="button" class="btn btn-primary position-absolute end-0 top-50 translate-middle-y rounded-pill rounded-end-0 shadow-sm pe-2 z-10" @click="swapDirections()">
-            <Icon name="sort" />
-          </button>
+          <UButton
+            v-if="!search.origin && !search.destination && !directions.routes.length"
+            type="button"
+            icon="sort"
+            size="xl"
+            class="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-s-full ps-3 shadow bg-primary!"
+            :aria-label="t('intercambiar_direcciones')"
+            :title="t('intercambiar_direcciones')"
+            @click="swapDirections"
+          />
         </Transition>
       </div>
-      <div class="d-grid mt-2">
-        <button class="btn btn-primary" type="submit">
-          <div v-if="submit" class="spinner-border spinner-border-sm" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-          <span v-else>{{ directions.routes.length ? t("nueva_busqueda") : t("buscar") }}</span>
-        </button>
-      </div>
+      <UButton
+        type="submit"
+        block
+        :loading="submit"
+        :label="submit ? ' ' :directions.routes.length ? t('nueva_busqueda') : t('buscar')"
+      />
     </form>
     <template v-if="directions.routes.length">
-      <iframe class="rounded border-0 shadow-sm" :src="`https://www.google.com/maps/embed/v1/directions?origin=place_id:${directions.geocoded_waypoints[0].place_id}&destination=place_id:${directions.geocoded_waypoints[1].place_id}&mode=transit&units=metric&language=${t('lang_code')}&region=pa&key=${CONST.mapsEmbedKey}`" width="100%" height="400px" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" />
-      <div class="d-grid">
-        <button class="btn btn-primary mb-2" type="button" @click="CAPACITOR.openBrowser(`https://www.google.com/maps/dir/?api=1&origin=${form.origin}&origin_place_id=${directions.geocoded_waypoints[0].place_id}&destination=${form.destination}&destination_place_id=${directions.geocoded_waypoints[1].place_id}&travelmode=transit`)">{{ t("open_map") }}</button>
-      </div>
-      <div v-for="(route, route_i) in directions.routes" :key="route_i" class="mb-2" role="button" @click="selectRoute(route_i)">
-        <div class="d-flex rutas-mibus bg-body-tertiary border rounded rounded p-2">
-          <div v-for="(leg, legs_i) in route.legs" :key="legs_i" class="flex-grow-1">
-            <h5 v-if="leg.steps.length > 1" class="fw-bold m-0">{{ leg.departure_time.text }} - {{ leg.arrival_time.text }}</h5>
-            <h5 v-else class="fw-bold m-0">{{ getCurrentHourAndMinute }} - {{ addSecondsToHourAndMinute(route.legs[0].duration.value) }}</h5>
-            <div class="d-flex align-items-center flex-wrap">
-              <div v-for="(step, key) in leg.steps" :key="key" class="d-flex align-items-center flex-wrap">
-                <template v-if="key < leg.steps.length - 1 || leg.steps.length === 1">
-                  <template v-if="step.travel_mode === 'WALKING'">
-                    <img class="travel-icon" src="https://maps.gstatic.com/mapfiles/transit/iw2/6/walk.png" width="20" height="20">
-                  </template>
-                  <template v-if="step.travel_mode === 'TRANSIT'">
-                    <div class="d-flex align-items-center flex-wrap">
-                      <img class="travel-icon" :src="step.transit.line.vehicle.icon" width="20" height="20">
-                      <div v-if="step.transit">
-                        <div class="my-2 small">
-                          <span class="px-1 rounded shadow-sm" :style="{ backgroundColor: step.transit.line.color, color: step.transit.line.text_color }">{{ step.transit.line.short_name }}</span>
+      <iframe class="block h-100 w-full rounded-lg border-0 shadow-sm" :src="`https://www.google.com/maps/embed/v1/directions?origin=place_id:${directions.geocoded_waypoints[0].place_id}&destination=place_id:${directions.geocoded_waypoints[1].place_id}&mode=transit&units=metric&language=${t('lang_code')}&region=pa&key=${CONST.mapsEmbedKey}`" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" />
+      <UButton
+        class="mb-2"
+        type="button"
+        block
+        :label="t('open_map')"
+        @click="CAPACITOR.openBrowser(`https://www.google.com/maps/dir/?api=1&origin=${form.origin}&origin_place_id=${directions.geocoded_waypoints[0].place_id}&destination=${form.destination}&destination_place_id=${directions.geocoded_waypoints[1].place_id}&travelmode=transit`)"
+      />
+      <div
+        v-for="(route, route_i) in directions.routes"
+        :key="route_i"
+        role="button"
+        tabindex="0"
+        class="space-y-1"
+      >
+        <UCollapsible class="space-y-1">
+          <template #default="{ open }">
+            <div
+              class="flex items-start gap-3 rounded-lg border border-default p-3 shadow-sm transition-colors hover:bg-muted"
+              :class="{ 'border-primary': open }"
+            >
+              <div v-for="(leg, legs_i) in route.legs" :key="legs_i" class="min-w-0 flex-1">
+                <h2 v-if="leg.steps.length > 1" class="font-bold">{{ leg.departure_time.text }} - {{ leg.arrival_time.text }}</h2>
+                <h2 v-else class="font-bold">{{ getCurrentHourAndMinute }} - {{ addSecondsToHourAndMinute(route.legs[0].duration.value) }}</h2>
+                <div class="flex flex-wrap items-center gap-1">
+                  <div v-for="(step, key) in leg.steps" :key="key" class="flex flex-wrap items-center gap-1">
+                    <template v-if="key < leg.steps.length - 1 || leg.steps.length === 1">
+                      <template v-if="step.travel_mode === 'WALKING'">
+                        <img class="size-5 shrink-0 object-contain" src="https://maps.gstatic.com/mapfiles/transit/iw2/6/walk.png" width="20" height="20">
+                      </template>
+                      <template v-if="step.travel_mode === 'TRANSIT'">
+                        <div class="flex flex-wrap items-center gap-1">
+                          <img class="size-5 shrink-0 object-contain" :src="step.transit.line.vehicle.icon" width="20" height="20">
+                          <div v-if="step.transit" class="my-1 text-xs">
+                            <span class="rounded-full px-1 shadow-sm" :style="{ backgroundColor: step.transit.line.color, color: step.transit.line.text_color }">{{ step.transit.line.short_name }}</span>
+                          </div>
+                        </div>
+                      </template>
+                      <Icon v-if="key < leg.steps.length - 2" name="chevron-right" size="1rem" class="text-muted" />
+                    </template>
+                  </div>
+                </div>
+              </div>
+              <div class="shrink-0 text-right">
+                <h3 class="text-lg font-bold text-primary">{{ route.legs[0].duration.text }}</h3>
+                <p class="text-xs text-muted">({{ route.legs[0].distance.text }})</p>
+              </div>
+            </div>
+          </template>
+          <template #content>
+            <div class="space-y-2">
+              <div v-for="(leg, legs_i) in route.legs" :key="legs_i" class="rounded-lg border border-primary p-3 shadow-sm sm:p-4">
+                <div v-for="(step, key) in leg.steps" :key="key" class="flex">
+                  <div class="relative mr-2 shrink-0">
+                    <template v-if="key < leg.steps.length - 1">
+                      <div v-if="step.travel_mode === 'WALKING'" class="absolute bottom-0 left-0.75 top-5 w-2.5 rounded-lg bg-primary" :style="{ height: 'calc(100% - 1.5rem)' }" />
+                      <div v-if="step.travel_mode === 'TRANSIT'" class="absolute bottom-0 left-0.75 top-5 w-2.5 rounded-lg" :style="{ backgroundColor: step.transit.line.color || 'var(--ui-border)', height: 'calc(100% - 1.5rem)' }" />
+                    </template>
+                    <Icon v-if="key < leg.steps.length - 1" name="step" size="1rem" class="relative z-1" />
+                    <Icon v-else name="step-end" size="1rem" class="relative z-1" />
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <div>
+                      <div class="font-bold">{{ step.instructions }}</div>
+                      <div class="text-xs text-muted">{{ step.duration.text }} ({{ step.distance.text }})</div>
+                    </div>
+                    <div v-if="step.transit">
+                      <div class="my-2 flex items-center">
+                        <div class="mr-2 rounded-lg p-1 font-bold shadow-sm text-sm" :style="{ backgroundColor: step.transit.line.color, color: step.transit.line.text_color }">{{ step.transit.line.short_name }}</div>
+                        <div class="border-l border-default pl-2">
+                          <div class="font-bold">{{ step.transit.line.name }}</div>
+                          <div class="text-xs text-muted">
+                            <p>{{ t("departure") }}: {{ step.transit.departure_stop.name }}</p>
+                            <p>{{ t("arrival") }}: {{ step.transit.arrival_stop.name }}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </template>
-                  <Icon v-if="key < leg.steps.length - 2" name="right-chevron" size="1rem" />
-                </template>
-              </div>
-            </div>
-          </div>
-          <div class="text-end">
-            <h4 class="text-primary-emphasis fw-bold m-0">{{ route.legs[0].duration.text }}</h4>
-            <p class="small m-0">({{ route.legs[0].distance.text }})</p>
-          </div>
-        </div>
-        <Transition name="tab" mode="out-in">
-          <div v-if="route_i === selected">
-            <div v-for="(leg, legs_i) in route.legs" :key="legs_i" class="bg-body-tertiary rounded border shadow p-3 mt-1">
-              <div v-for="(step, key) in leg.steps" :key="key" class="d-flex position-relative">
-                <div class="h-100 me-2">
-                  <template v-if="key < leg.steps.length - 1">
-                    <div v-if="step.travel_mode === 'WALKING'" class="me-2 rounded position-absolute bg-primary" :style="{ width: '10px', left: '3px', bottom: 0, top: '1.5rem', height: 'calc(100% - 1.5rem)' }" />
-                    <div v-if="step.travel_mode === 'TRANSIT'" class="me-2 rounded position-absolute" :style="{ backgroundColor: step.transit.line.color || 'var(--border)', width: '10px', left: '3px', bottom: 0, top: '1.5rem', height: 'calc(100% - 1.5rem)' }" />
-                  </template>
-                  <Icon v-if="key < leg.steps.length - 1" name="step" size="1rem" />
-                  <Icon v-else name="step-end" size="1rem" />
-                </div>
-                <div class="w-100">
-                  <div>
-                    <div class="fw-bold">{{ step.instructions }}</div>
-                    <div class="small">{{ step.duration.text }} ({{ step.distance.text }})</div>
+                    <ul v-if="step.steps && step.steps.length > 1" class="mt-2 space-y-1 border-t border-default pt-2 text-sm">
+                      <li v-for="(in_step, in_key) in step.steps" :key="in_key" class="border-b border-default pb-1 last:border-b-0">
+                        <!-- eslint-disable-next-line vue/no-v-html -->
+                        <div v-html="in_step.instructions" />
+                        <div class="text-xs text-muted">({{ in_step.distance.text }})</div>
+                      </li>
+                    </ul>
+                    <div v-if="key < leg.steps.length - 1" class="my-3 border-t border-default" />
                   </div>
-                  <div v-if="step.transit">
-                    <div class="my-2 d-flex align-items-center">
-                      <div class="p-1 rounded shadow-sm fw-bold me-2" :style="{ backgroundColor: step.transit.line.color, color: step.transit.line.text_color }">{{ step.transit.line.short_name }}</div>
-                      <div class="border-start ps-2">
-                        <div class="fw-bold">{{ step.transit.line.name }}</div>
-                        <div class="small">
-                          <p class="m-0">{{ t("departure") }}: {{ step.transit.departure_stop.name }}</p>
-                          <p class="m-0">{{ t("arrival") }}: {{ step.transit.arrival_stop.name }}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <ul v-if="step.steps && step.steps.length > 1" class="list-group list-group-flush small pt-2">
-                    <li v-for="(in_step, in_key) in step.steps" :key="in_key" class="list-group-item bg-body-tertiary">
-                      <!-- eslint-disable-next-line vue/no-v-html -->
-                      <div v-html="in_step.instructions" />
-                      <div class="small"> ({{ in_step.distance.text }})</div>
-                    </li>
-                  </ul>
-                  <hr v-if="key < leg.steps.length - 1">
                 </div>
               </div>
             </div>
-          </div>
-        </Transition>
+          </template>
+        </UCollapsible>
       </div>
     </template>
-    <div class="text-center mt-3">
-      <p class="small m-0"><small>{{ t("aviso_dir") }}</small></p>
+    <div class="mt-3 text-center">
+      <p class="text-sm text-muted">{{ t("aviso_dir") }}</p>
     </div>
-  </section>
+  </UContainer>
 </template>
 
 <script>
@@ -143,7 +183,6 @@ export default {
         geocoded_waypoints: [],
         routes: []
       },
-      selected: null,
       provider: new OpenStreetMapProvider({
         params: {
           countrycodes: "pa", // limit search results to Panama
@@ -253,9 +292,6 @@ export default {
       else {
         CAPACITOR.showToast(t("error_conexion"));
       }
-    },
-    selectRoute (route_i) {
-      this.selected = this.selected !== route_i ? route_i : null;
     },
     swapDirections () {
       const origin = this.form.origin;

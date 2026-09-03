@@ -3,8 +3,10 @@ const meta = useRouter().currentRoute.value.meta as { nav_title: string };
 </script>
 
 <template>
-  <main>
+  <div>
     <NavBar :title="t(meta.nav_title)" />
-    <slot />
-  </main>
+    <UContainer class="py-2">
+      <slot />
+    </UContainer>
+  </div>
 </template>

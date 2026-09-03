@@ -14,27 +14,29 @@ watch(() => props.password, () => {
 </script>
 
 <template>
-  <div class="text-start position-absolute z-3 shadow mt-2 bg-body-tertiary rounded border p-4 small">
-    <h4 class="fs-6 fw-medium mb-2">{{ t("pass_req") }}:</h4>
-    <div class="d-flex align-items-center gap-2" :class="requirements.hasLength ? 'text-success' : 'text-muted'">
-      <Icon :name="requirements.hasLength ? 'check' : 'right-chevron'" />
-      <span>{{ t("pass_req_caracteres") }}</span>
-    </div>
-    <div class="d-flex align-items-center gap-2" :class="requirements.hasUppercase ? 'text-success' : 'text-muted'">
-      <Icon :name="requirements.hasUppercase ? 'check' : 'right-chevron'" />
-      <span>{{ t("pass_req_mayus") }} (A-Z)</span>
-    </div>
-    <div class="d-flex align-items-center gap-2" :class="requirements.hasLowercase ? 'text-success' : 'text-muted'">
-      <Icon :name="requirements.hasLowercase ? 'check' : 'right-chevron'" />
-      <span>{{ t("pass_req_minus") }} (a-z)</span>
-    </div>
-    <div class="d-flex align-items-center gap-2" :class="requirements.hasNumber ? 'text-success' : 'text-muted'">
-      <Icon :name="requirements.hasNumber ? 'check' : 'right-chevron'" />
-      <span>{{ t("pass_req_num") }} (0-9)</span>
-    </div>
-    <div class="d-flex align-items-center gap-2" :class="requirements.hasSpecial ? 'text-success' : 'text-muted'">
-      <Icon :name="requirements.hasSpecial ? 'check' : 'right-chevron'" />
-      <span>{{ t("pass_req_especial") }} (!@#$%^&*(),.?'":{}|&lt;&gt;)</span>
+  <div class="text-start absolute z-3 shadow mt-2 bg-default rounded-lg border border-accented px-5 p-4 text-xs space-y-2">
+    <h4 class="text-sm">{{ t("pass_req") }}:</h4>
+    <div class="space-y-1">
+      <div class="flex items-center gap-2" :class="requirements.hasLength ? 'text-success' : 'text-muted'">
+        <Icon :name="requirements.hasLength ? 'check' : 'chevron-right'" size="1.2rem" />
+        <span>{{ t("pass_req_caracteres") }}</span>
+      </div>
+      <div class="flex items-center gap-2" :class="requirements.hasUppercase ? 'text-success' : 'text-muted'">
+        <Icon :name="requirements.hasUppercase ? 'check' : 'chevron-right'" size="1.2rem" />
+        <span>{{ t("pass_req_mayus") }} (A-Z)</span>
+      </div>
+      <div class="flex items-center gap-2" :class="requirements.hasLowercase ? 'text-success' : 'text-muted'">
+        <Icon :name="requirements.hasLowercase ? 'check' : 'chevron-right'" size="1.2rem" />
+        <span>{{ t("pass_req_minus") }} (a-z)</span>
+      </div>
+      <div class="flex items-center gap-2" :class="requirements.hasNumber ? 'text-success' : 'text-muted'">
+        <Icon :name="requirements.hasNumber ? 'check' : 'chevron-right'" size="1.2rem" />
+        <span>{{ t("pass_req_num") }} (0-9)</span>
+      </div>
+      <div class="flex items-center gap-2" :class="requirements.hasSpecial ? 'text-success' : 'text-muted'">
+        <Icon :name="requirements.hasSpecial ? 'check' : 'chevron-right'" size="1.2rem" />
+        <span>{{ t("pass_req_especial") }} (!@#$%^&*(),.?'":{}|&lt;&gt;)</span>
+      </div>
     </div>
   </div>
 </template>

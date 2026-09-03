@@ -1,17 +1,16 @@
 <template>
-  <ul class="autocomplete-list position-absolute top-100 rounded-bottom border bg-body-tertiary py-2 px-0 shadow w-100 m-0">
+  <ul class="absolute top-full z-20 max-h-75 w-full list-none overflow-y-auto rounded-b-lg border border-default bg-default px-0 py-2 shadow-lg">
     <template v-if="loading">
-      <div class="text-center">
-        <div class="spinner-border text-primary-emphasis spinner-border-sm" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      </div>
+      <li class="flex justify-center px-3 py-2" role="status">
+        <Icon name="spinner" class="animate-spin text-primary" size="1.5rem" />
+        <span class="sr-only">Loading...</span>
+      </li>
     </template>
     <template v-else>
-      <li v-for="(result, index) in array" :key="index" role="button" class="py-2 px-3 hover border-bottom" @click="select(result)">
+      <li v-for="(result, index) in array" :key="index" role="button" class="cursor-pointer border-b border-default px-3 py-2 last:border-b-0 hover:bg-elevated" @click="select(result)">
         {{ result[prop] }} <template v-if="descprop">({{ result[descprop] }})</template>
       </li>
-      <li v-if="text" role="button" class="py-2 px-3 hover border-bottom" @click="selectText(text)">{{ t("use") }}: <strong>{{ text }}</strong></li>
+      <li v-if="text" role="button" class="cursor-pointer border-b border-default px-3 py-2 last:border-b-0 hover:bg-elevated" @click="selectText(text)">{{ t("use") }}: <strong>{{ text }}</strong></li>
     </template>
   </ul>
 </template>

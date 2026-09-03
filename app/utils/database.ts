@@ -229,7 +229,7 @@ class Database {
           mov.movimiento = tipo === tipos.uso.text ? tipos.uso.translation : tipos.trasera.translation;
           if (Number(mov.monto) > 0) {
             mov.sign = "-";
-            mov.color = "danger";
+            mov.color = "error";
           }
           else {
             mov.color = "warning";

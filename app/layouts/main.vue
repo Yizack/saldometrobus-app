@@ -1,6 +1,6 @@
 <template>
-  <main>
+  <div>
     <MenuBar :title="t('app_name')" />
     <slot />
-  </main>
+  </div>
 </template>

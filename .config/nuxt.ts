@@ -2,7 +2,8 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/eslint",
     "@nuxt/icon",
-    "@pinia/nuxt"
+    "@pinia/nuxt",
+    "@nuxt/ui"
   ],
   ssr: false,
   imports: {
@@ -16,9 +17,6 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "es"
       },
-      bodyAttrs: {
-        "data-bs-theme": "light"
-      },
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" },
@@ -31,17 +29,17 @@ export default defineNuxtConfig({
     }
   },
   css: [
-    "bootstrap/dist/css/bootstrap.min.css",
-    "~/assets/css/transitions.css",
-    "~/assets/css/main.css",
-    "~/assets/css/light.css",
-    "~/assets/css/dark.css",
-    "~/assets/css/button.css",
-    "~/assets/css/form.css",
-    "~/assets/css/modal.css",
-    "~/assets/css/table.css",
-    "~/assets/css/nav.css"
+    "~/assets/css/ui.tailwind.css",
+    "~/assets/scss/app.scss"
   ],
+  colorMode: {
+    preference: "light",
+    fallback: "light"
+  },
+  ui: {
+    colorMode: true,
+    fonts: false
+  },
   spaLoadingTemplate: false,
   runtimeConfig: {
     public: {
@@ -95,8 +93,8 @@ export default defineNuxtConfig({
   icon: {
     size: "24px",
     provider: "none",
-    mode: "svg",
-    clientBundle: { scan: true },
+    mode: "css",
+    clientBundle: { scan: false },
     customCollections: [{ prefix: "", dir: "./app/assets/icons" }]
   }
 });

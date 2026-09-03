@@ -32,9 +32,9 @@ onUnmounted(async () => {
 
 <template>
   <NuxtLoadingIndicator :throttle="0" />
-  <NuxtLayout>
-    <div id="page">
-      <NuxtPage class="p-2" />
-    </div>
-  </NuxtLayout>
+  <UApp>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </UApp>
 </template>

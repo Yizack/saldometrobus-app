@@ -1,61 +1,59 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({ layout: "main" });
+
+const tarjeta = ref({} as any);
+
+const numero = useRoute().params.tarjeta;
+tarjeta.value = await DB.getTarjeta(numero);
+tarjeta.value.movimientos = await DB.getMovimientos(numero);
+
+const tabs = [
+  {
+    label: t("informacion"),
+    icon: "card",
+    slot: "card"
+  },
+  {
+    label: t("movimientos"),
+    icon: "list",
+    slot: "movimientos"
+  },
+  {
+    label: t("graficas"),
+    icon: "graph",
+    slot: "graficas"
+  }
+];
 </script>
 
 <template>
-  <section>
-    <ul class="tabs nav nav-pills shadow-sm" role="tablist">
-      <li v-for="(tab, key) in tabs" :key="key" class="nav-item flex-fill" role="presentation">
-        <a class="nav-link rounded-0 text-uppercase text-center py-1" :class="{ active: tab.active }" role="button" @click="tabClick(key)">
-          <Icon :name="tab.icon" />
-          <p class="m-0 small mt-1"><small>{{ t(key) }}</small></p>
-        </a>
-      </li>
-    </ul>
-    <div class="pt-5">
-      <Transition name="tab" mode="out-in">
-        <CardInfo v-if="tabs.informacion.active" :tarjeta="tarjeta" />
-        <CardMov v-else-if="tabs.movimientos.active" :tarjeta="tarjeta" />
-        <CardGraphs v-else-if="tabs.graficas.active" :tarjeta="tarjeta" />
-      </Transition>
-    </div>
-  </section>
+  <UMain>
+    <UTabs
+      :items="tabs"
+      :ui="{
+        root: 'gap-0',
+        leadingIcon: 'size-6',
+        list: 'justify-around sticky top-16 py-2 shadow border border-default z-1 rounded-none',
+        indicator: 'rounded-xl',
+        trigger: 'grow flex-col gap-1 py-1',
+        label: 'uppercase text-[10px]/3',
+      }"
+    >
+      <template #card>
+        <UContainer class="py-2">
+          <CardInfo :tarjeta="tarjeta" />
+        </UContainer>
+      </template>
+      <template #movimientos>
+        <UContainer class="py-2">
+          <CardMov :tarjeta="tarjeta" />
+        </UContainer>
+      </template>
+      <template #graficas>
+        <UContainer class="py-2">
+          <CardGraphs :tarjeta="tarjeta" />
+        </UContainer>
+      </template>
+    </UTabs>
+  </UMain>
 </template>
-
-<script>
-export default {
-  data () {
-    return {
-      tarjeta: {},
-      tabs: {
-        informacion: {
-          active: false,
-          icon: "card"
-        },
-        movimientos: {
-          active: false,
-          icon: "list"
-        },
-        graficas: {
-          active: false,
-          icon: "graph"
-        }
-      }
-    };
-  },
-  async mounted () {
-    const numero = this.$route.params.tarjeta;
-    this.tarjeta = await DB.getTarjeta(numero);
-    this.tarjeta.movimientos = await DB.getMovimientos(numero);
-    this.tabs.informacion.active = true;
-  },
-  methods: {
-    tabClick (tab) {
-      this.tabs.informacion.active = false;
-      this.tabs.movimientos.active = false;
-      this.tabs.graficas.active = false;
-      this.tabs[tab].active = true;
-    }
-  }
-};
-</script>

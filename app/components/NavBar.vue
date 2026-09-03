@@ -5,12 +5,12 @@ defineProps<{
 </script>
 
 <template>
-  <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top shadow-sm">
-    <div class="container-fluid">
-      <a class="text-white pe-4 display-6 d-flex" role="button" @click="$router.back()">
-        <Icon name="left" />
-      </a>
-      <span class="navbar-brand me-auto">{{ title }}</span>
-    </div>
-  </nav>
+  <UHeader :title="title" class="bg-primary sticky-top shadow-sm" :toggle="false">
+    <template #left>
+      <div class="text-inverted flex items-center gap-4">
+        <UButton icon="left" variant="link" class="text-inverted!" size="xl" @click="$router.back()" />
+        <h1 class="text-xl">{{ title }}</h1>
+      </div>
+    </template>
+  </UHeader>
 </template>

@@ -20,13 +20,13 @@ export const CREDITS = [
     version: devDependencies["@capacitor/core"]
   },
   {
-    name: "Bootstrap",
-    link: "https://getbootstrap.com",
+    name: "Nuxt UI",
+    link: "https://ui.nuxt.com",
     description: {
-      en: "The world's most popular front-end open source toolkit",
-      es: "El kit de herramientas de código abierto más popular del mundo para el desarrollo de front-end"
+      en: "The official component library for Nuxt",
+      es: "La biblioteca de componentes oficial para Nuxt"
     },
-    version: dependencies.bootstrap
+    version: dependencies["@nuxt/ui"]
   },
   {
     name: "Nuxt Icon",

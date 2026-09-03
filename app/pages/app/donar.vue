@@ -3,46 +3,36 @@ definePageMeta({ layout: "main" });
 </script>
 
 <template>
-  <section>
-    <div class="bg-body-tertiary border rounded p-2 mb-2 shadow">
-      <h4 class="text-primary-emphasis m-0"><Icon class="me-1 text-danger" name="donate" /><b>{{ t("donacion") }}</b></h4>
+  <UContainer class="py-2">
+    <div class="border border-default rounded-lg p-2 mb-2 shadow">
+      <h4 class="text-primary text-xl font-bold flex gap-2">
+        <Icon class="text-error" name="donate" />
+        <span>{{ t("donacion") }}</span>
+      </h4>
       <div class="m-2">{{ t("donar_desc") }}</div>
     </div>
-    <div class="donate-buttons">
+    <div class="donate-buttons space-y-2">
       <template v-for="(donate, name) in donate_options" :key="name">
-        <div v-if="donate.external && 'link' in donate" class="donate-option rounded-pill shadow mb-2" :class="name" @click="CAPACITOR.openBrowser(donate.link)">
-          <img class="img-fluid" :src="`/images/${name}.svg`">
+        <div v-if="donate.external && 'link' in donate" class="donate-option rounded-lg shadow" :class="name" @click="CAPACITOR.openBrowser(donate.link)">
+          <img :src="`/images/${name}.svg`">
         </div>
-        <div v-else class="donate-option rounded-pill shadow mb-2" :class="name" data-bs-toggle="modal" :data-bs-target="`#${name}`">
-          <img class="img-fluid" :src="`/images/${name}.svg`">
-        </div>
+        <UModal v-else title="Banco General">
+          <div class="donate-option rounded-lg shadow" :class="name" :data-bs-target="`#${name}`">
+            <img :src="`/images/${name}.svg`">
+          </div>
+          <template #body>
+            <div class="space-y-2">
+              <p>{{ t("donar_bgeneral") }}</p>
+              <div v-for="(field, key) in donate_options.bgeneral.info" :key="key">
+                <InputFloating :id="`bgeneral-${key}`" :value="field" :placeholder="t(key)" readonly />
+              </div>
+              <UButton :label="t('copiar_n')" block @click="copyBgeneral()" />
+            </div>
+          </template>
+        </UModal>
       </template>
     </div>
-    <div id="bgeneral" class="modal fade" tabindex="-1" aria-labelledby="bgeneralLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-primary-emphasis">
-              <strong>Banco General</strong>
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-          </div>
-          <div class="modal-body">
-            <p class="m-0">{{ t("donar_bgeneral") }}</p>
-            <div class="my-3">
-              <div v-for="(field, key) in donate_options.bgeneral.info" :key="key" class="form-floating mb-2">
-                <input ref="bgeneral" type="text" class="form-control" :value="field" readonly>
-                <label>{{ t(key) }}</label>
-              </div>
-            </div>
-            <div class="d-grid">
-              <button class="btn btn-primary" @click="copyBgeneral()">{{ t("copiar_n") }}</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </UContainer>
 </template>
 
 <script lang="ts">
@@ -67,7 +57,6 @@ export default {
   },
   methods: {
     copyBgeneral () {
-      (this.$refs.bgeneral as HTMLInputElement[])[1]!.focus();
       CAPACITOR.writeToClipboard(this.donate_options.bgeneral.info.n_cuenta);
     }
   }

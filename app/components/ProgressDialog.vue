@@ -2,24 +2,18 @@
 defineProps<{
   message: string;
 }>();
+
+const model = defineModel<boolean>({ required: true });
 </script>
 
 <template>
   <!-- Progress Dialog -->
-  <div id="progress-dialog" class="modal modal-sm fade" tabindex="-1" aria-labelledby="progress-dialog-label" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 id="progress-dialog-label" class="modal-title text-primary-emphasis">
-            <strong>{{ message }}</strong>
-          </h5>
-        </div>
-        <div class="modal-body text-center">
-          <div class="spinner-border text-primary-emphasis" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
+  <UModal v-model:open="model" :title="message" :close="false" :dismissible="false">
+    <template #body>
+      <div class="flex justify-center items-center py-4">
+        <Icon name="spinner" class="animate-spin text-primary" size="2.5rem" />
+        <span class="hidden">Loading...</span>
       </div>
-    </div>
-  </div>
+    </template>
+  </UModal>
 </template>

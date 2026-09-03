@@ -1,9 +1,3 @@
-import "bootstrap/js/dist/dropdown";
-import "bootstrap/js/dist/tooltip";
-import "bootstrap/js/dist/collapse";
-import OffCanvas from "bootstrap/js/dist/offcanvas";
-import Modal from "bootstrap/js/dist/modal";
-
 export const convertToTime = (datetime: string) => {
   const [date, time] = datetime.split(" ");
   if (!date || !time) return 0;
@@ -21,29 +15,6 @@ export const formatFecha = (fecha: number, format = "datetime", locale = "es") =
     case "long":
       return date.toLocaleString(locale, { month: "long", day: "numeric", weekday: "long", year: "numeric", hour: "numeric", minute: "numeric", hour12: true });
   }
-};
-
-export const showModal = (id: string) => {
-  const modal = new Modal("#" + id);
-  modal.show();
-};
-
-export const hideModal = (id: string) => {
-  const instance = Modal.getInstance("#" + id);
-  if (instance) {
-    instance.hide();
-  }
-};
-
-export const closeOffCanvas = (id: string) => {
-  const instance = OffCanvas.getInstance("#" + id);
-  if (instance) {
-    instance.hide();
-  }
-};
-
-export const sleep = (seconds: number) => {
-  return new Promise(resolve => setTimeout(resolve, seconds * 1000));
 };
 
 export const fixed = (n = 0, d = 0) => {

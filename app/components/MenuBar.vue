@@ -1,170 +1,128 @@
-<template>
-  <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top shadow-sm">
-    <div class="container-fluid">
-      <a class="text-white pe-4 display-6 d-flex" data-bs-toggle="offcanvas" href="#sidebar-menu" role="button" aria-controls="sidebar-menu">
-        <Icon name="hamburger" />
-      </a>
-      <span class="navbar-brand me-auto">{{ title }}</span>
-      <div class="nav-item dropstart">
-        <a class="text-white display-6 d-flex" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <Icon name="more" />
-        </a>
-        <ul class="dropdown-menu m-0 end-0">
-          <li v-for="(option, index) of more" :key="index">
-            <a v-if="option.external" class="dropdown-item py-3 px-4 hover d-flex align-items-center" role="button" @click="CAPACITOR.openBrowser(option.link)">
-              <Icon :name="option.icon" />
-              <span class="ms-1">{{ option.name }}</span>
-            </a>
-            <a v-else-if="option.modal" class="dropdown-item py-3 px-4 hover d-flex align-items-center" data-bs-toggle="modal" :data-bs-target="`#${option.modal}`" role="button">
-              <Icon :name="option.icon" />
-              <span class="ms-1">{{ option.name }}</span>
-            </a>
-            <NuxtLink v-else class="dropdown-item py-3 px-4 hover d-flex align-items-center" :to="option.link">
-              <Icon :name="option.icon" />
-              <span class="ms-1">{{ option.name }}</span>
-            </NuxtLink>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <div id="sidebar-menu" ref="offcanvas" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="menuLabel">
-    <div class="offcanvas-header bg-primary align-items-start" data-bs-theme="dark">
-      <div class="text-white">
-        <img class="img-fluid rounded-circle bg-white" src="/images/logo2.webp" width="70" height="70">
-        <h5 id="menuLabel" class="offcanvas-title">{{ Auth().user.nombre }}</h5>
-        <div>{{ Auth().user.email }}</div>
-      </div>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
-    </div>
-    <div class="offcanvas-body px-0 h-100 w-100 d-flex flex-column">
-      <nav class="nav flex-column">
-        <span v-for="(tab, index) in menu" :key="index" data-bs-dismiss="offcanvas">
-          <NuxtLink v-if="!tab.external" class="nav-link text-dark-emphasis py-3" :to="tab.link">
-            <Icon :name="tab.icon" class="me-4" /> {{ tab.name }}
-          </NuxtLink>
-          <a v-else class="nav-link text-dark-emphasis py-3" role="button" @click="CAPACITOR.openBrowser(tab.link)">
-            <Icon :name="tab.icon" class="me-4" /> {{ tab.name }}
-          </a>
-        </span>
-        <hr>
-        <div class="px-3">{{ t("sesion") }}</div>
-        <a class="nav-link text-dark-emphasis py-3" role="button" @click="logout()">
-          <Icon name="logout" class="me-4" /> {{ t("salir") }}
-        </a>
-      </nav>
-      <div class="mt-auto text-center small">
-        <i>{{ t("version") }}: {{ CONST.version }}</i>
-      </div>
-    </div>
-  </div>
-  <AboutDialog />
-</template>
+<script setup lang="ts">
+import type { NavigationMenuItem, DropdownMenuItem } from "@nuxt/ui";
 
-<script>
-export default {
-  name: "MainNavbar",
-  props: {
-    title: {
-      type: String,
-      required: true
-    }
-  },
-  data () {
-    return {
-      menu: [
-        {
-          name: t("tarjetas"),
-          icon: "card",
-          link: "/app/",
-          external: false
-        },
-        {
-          name: t("perfil"),
-          icon: "profile",
-          link: "/app/perfil/",
-          external: false
-        },
-        {
-          name: t("rutas"),
-          icon: "bus",
-          link: "/app/mibus/",
-          external: false
-        },
-        {
-          name: t("direcciones"),
-          icon: "directions",
-          link: "/app/direcciones/",
-          external: false
-        },
-        {
-          name: t("donar"),
-          icon: "donate",
-          link: "/app/donar/",
-          external: false
-        }
-      ],
-      more: [
-        {
-          name: t("config"),
-          icon: "settings",
-          link: "/app/prefs/config/",
-          external: false
-        },
-        {
-          name: t("acerca"),
-          icon: "about",
-          modal: "about",
-          external: false
-        },
-        {
-          name: t("privacidad"),
-          icon: "privacy",
-          link: CONST.privacy(t("lang_code")),
-          external: true
-        },
-        {
-          name: t("rate"),
-          icon: "star",
-          link: CONST.googlePlay,
-          external: true
-        },
-        {
-          name: t("creditos"),
-          icon: "credits",
-          link: "/app/prefs/creditos/",
-          external: false
-        }
-      ],
-      touch: {
-        startX: 0,
-        endX: 0
-      }
-    };
-  },
-  mounted () {
-    this.$refs.offcanvas.addEventListener("touchstart", (event) => {
-      this.touch.startX = event.changedTouches[0].screenX;
-    }, { passive: true });
+defineProps<{
+  title: string;
+}>();
 
-    this.$refs.offcanvas.addEventListener("touchend", (event) => {
-      this.touch.endX = event.changedTouches[0].screenX;
-      if (this.touch.endX < this.touch.startX) {
-        closeOffCanvas("sidebar-menu");
-      }
-    }, { passive: true });
-  },
-  beforeUnmount () {
-    this.$refs.offcanvas.removeEventListener("touchstart", () => {}, { passive: true });
-    this.$refs.offcanvas.removeEventListener("touchend", () => {}, { passive: true });
-  },
-  methods: {
-    async logout () {
-      await DB.deleteAll();
-      await Auth().logout();
-      document.body.removeAttribute("style");
-      this.$router.replace("/");
-    }
-  }
+const showAbout = ref(false);
+const showDrawer = ref(false);
+
+const logout = async () => {
+  navigateTo("/", { replace: true });
+  nextTick(async () => {
+    await DB.deleteAll();
+    await Auth().logout();
+  });
 };
+
+const hideDrawer = () => {
+  showDrawer.value = false;
+};
+
+const menu: NavigationMenuItem[][] = [
+  [
+    {
+      label: t("tarjetas"),
+      icon: "card",
+      to: "/app/",
+      onSelect: hideDrawer
+    },
+    {
+      label: t("perfil"),
+      icon: "profile",
+      to: "/app/perfil/",
+      onSelect: hideDrawer
+    },
+    {
+      label: t("rutas"),
+      icon: "bus",
+      to: "/app/mibus/",
+      onSelect: hideDrawer
+    },
+    {
+      label: t("direcciones"),
+      icon: "directions",
+      to: "/app/direcciones/",
+      onSelect: hideDrawer
+    },
+    {
+      label: t("donar"),
+      icon: "donate",
+      to: "/app/donar/",
+      onSelect: hideDrawer
+    }
+  ],
+  [
+    {
+      label: t("salir"),
+      icon: "logout",
+      onSelect: logout
+    }
+  ]
+];
+
+const more: DropdownMenuItem[] = [
+  {
+    label: t("config"),
+    icon: "settings",
+    to: "/app/prefs/config/"
+  },
+  {
+    label: t("acerca"),
+    icon: "about",
+    onSelect: () => {
+      showAbout.value = true;
+    }
+  },
+  {
+    label: t("privacidad"),
+    icon: "privacy",
+    onSelect: () => {
+      CAPACITOR.openBrowser(CONST.privacy(t("lang_code")));
+    }
+  },
+  {
+    label: t("rate"),
+    icon: "star",
+    onSelect: () => {
+      CAPACITOR.openBrowser(CONST.googlePlay);
+    }
+  },
+  {
+    label: t("creditos"),
+    icon: "credits",
+    to: "/app/prefs/creditos/"
+  }
+];
 </script>
+
+<template>
+  <UHeader :title="title" class="bg-primary sticky-top shadow-sm" :toggle="false">
+    <template #left>
+      <div class="text-inverted flex items-center gap-4">
+        <UDrawer v-model:open="showDrawer" direction="left" :ui="{ content: 'w-full' }" :handle="false">
+          <UButton icon="hamburger" variant="link" class="text-inverted!" size="xl" />
+          <template #content>
+            <UButton icon="x" class="absolute top-4 right-4 text-inverted/70! hover:text-inverted!" variant="link" color="neutral" @click="showDrawer = false" />
+            <div class="flex-col w-full">
+              <div class="py-5 px-4 rounded-b-2xl bg-primary text-inverted mb-2 shadow-lg">
+                <img class="rounded-full bg-white p-1" src="/images/logo2.webp" width="70" height="70">
+                <h5 id="menuLabel" class="text-lg font-semibold">{{ Auth().user.nombre }}</h5>
+                <div>{{ Auth().user.email }}</div>
+              </div>
+              <UNavigationMenu :items="menu" orientation="vertical" />
+            </div>
+          </template>
+        </UDrawer>
+        <h1 class="text-xl">{{ title }}</h1>
+      </div>
+    </template>
+    <template #right>
+      <UDropdownMenu :items="more" arrow :modal="false">
+        <UButton icon="more" variant="link" class="text-inverted!" size="xl" />
+      </UDropdownMenu>
+    </template>
+  </UHeader>
+  <AboutDialog v-model="showAbout" />
+</template>

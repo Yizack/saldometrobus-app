@@ -1,0 +1,14 @@
+body {
+  font-family: Nunito, sans-serif;
+  overflow-x: hidden;
+}
+
+img {
+  pointer-events: none;
+  user-select: none;
+}
+
+.nuxt-loading-indicator {
+  background: repeating-linear-gradient(to right, var(--ui-primary) 0%, var(--ui-secondary) 50%,var(--ui-primary) 100%)!important;
+  box-shadow: 0 0 10px rgb(255 255 255 / 50%);
+}

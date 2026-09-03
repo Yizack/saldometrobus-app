@@ -7,9 +7,10 @@ class Config {
   }
 
   async load () {
+    const colorMode = useColorMode();
     this.config = {
       lang: await CAPACITOR.getPref("lang") || "es",
-      dark: await CAPACITOR.getPref("dark") || false
+      dark: await CAPACITOR.getPref("dark") || colorMode.preference === "dark" || false
     };
     await this.setLang(this.config.lang);
     await this.setDark(this.config.dark);
@@ -31,7 +32,8 @@ class Config {
 
   async setDark (dark: boolean) {
     this.config.dark = dark;
-    useHead({ bodyAttrs: { "data-bs-theme": dark ? "dark" : "light" } });
+    const colorMode = useColorMode();
+    colorMode.preference = dark ? "dark" : "light";
     await CAPACITOR.setPref("dark", dark);
   }
 }

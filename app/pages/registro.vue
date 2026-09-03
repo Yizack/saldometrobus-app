@@ -12,14 +12,15 @@ const form = useFormState({
 
 const passwordFocus = ref(false);
 const isValidPass = ref(false);
+const isValidCheck = computed(() => isValidPasswordCheck(form.value.password, form.value.passwordCheck));
+const showProgress = ref(false);
 
 const email = useTemplateRef<HTMLInputElement>("email");
 
 const googleRegistro = async () => {
-  showModal("progress-dialog");
+  showProgress.value = true;
   const result = await auth.googleRegistro();
-  await sleep(0.5);
-  hideModal("progress-dialog");
+  showProgress.value = false;
 
   if (!result) return;
   const { error, error_key } = result;
@@ -33,15 +34,14 @@ const googleRegistro = async () => {
 };
 
 const registro = async () => {
-  if (!(isValidName(form.value.nombre) && isValidEmail(form.value.email) && isValidPass.value && isValidPasswordCheck(form.value.password, form.value.passwordCheck))) return;
-  showModal("progress-dialog");
+  if (!(isValidName(form.value.nombre) && isValidEmail(form.value.email) && isValidPass.value && isValidCheck.value)) return;
+  showProgress.value = true;
   const { error, error_key } = await auth.registro({
     nombre: form.value.nombre,
     email: form.value.email,
     password: form.value.password
   });
-  await sleep(0.5);
-  hideModal("progress-dialog");
+  showProgress.value = false;
   if (!error) {
     navigateTo("/app/", { replace: true });
   }
@@ -56,47 +56,92 @@ const registro = async () => {
 </script>
 
 <template>
-  <section>
-    <div class="container-fluid text-center">
-      <div class="py-2">
-        <img class="img-fluid shadow-sm my-3 rounded bg-body" width="90" height="90" src="/images/logo2.webp">
-        <p>{{ t("enter_account_info") }}</p>
+  <UMain class="py-10">
+    <div class="text-center space-y-2 mb-6">
+      <div class="flex items-center justify-center mb-2">
+        <img class="shadow rounded-lg bg-default border border-default" width="90" height="90" src="/images/logo2.webp">
       </div>
-      <form novalidate @submit.prevent="registro">
-        <div class="mb-3 form-floating">
-          <input v-model.trim="form.nombre" class="form-control" :class="{ 'is-valid': isValidName(form.nombre) }" type="text" :placeholder="t('nombre')" required>
-          <label>{{ t("nombre") }}</label>
-        </div>
-        <div class="mb-3 position-relative form-floating">
-          <input ref="email" v-model.trim="form.email" class="form-control" :class="{ 'is-valid': isValidEmail(form.email), 'is-invalid': form.error }" type="email" :placeholder="t('correo')" autocomplete="email" required @keyup="form.error = false">
-          <label>{{ t("correo") }}</label>
-          <div v-if="form.error" class="invalid-tooltip">
-            {{ t("correo_existe") }}
-          </div>
-        </div>
-        <div class="mb-3 form-floating">
-          <input v-model="form.password" class="form-control" :class="passwordClass(isValidPass, form)" type="password" :placeholder="t('password')" autocomplete="new-password" required @focus="passwordFocus = true" @blur="passwordFocus = false">
-          <label>{{ t("password") }}</label>
+      <p>{{ t("enter_account_info") }}</p>
+    </div>
+    <form novalidate @submit.prevent="registro">
+      <div class="space-y-2 bg-elevated py-6 px-4 rounded-lg">
+        <UFormField>
+          <InputFloating
+            id="nombre"
+            v-model.trim="form.nombre"
+            class="w-full"
+            :placeholder="t('nombre')"
+            name="nombre"
+            autocomplete="name"
+            required
+          />
+        </UFormField>
+        <ValidationTooltip :invalid="form.error" :text=" t('correo_existe')">
+          <InputFloating
+            id="email"
+            ref="email"
+            v-model.trim="form.email"
+            class="w-full"
+            type="email"
+            :placeholder="t('correo')"
+            name="email"
+            autocomplete="email"
+            required
+            @keyup="form.error = false"
+          />
+        </ValidationTooltip>
+        <div class="relative">
+          <ValidationTooltip :invalid="!isValidPass && !!form.password" :text="t('password_not_valid')">
+            <InputFloating
+              id="password"
+              v-model="form.password"
+              class="w-full"
+              type="password"
+              :placeholder="t('password')"
+              name="password"
+              autocomplete="new-password"
+              required
+              @focus="passwordFocus = true"
+              @blur="passwordFocus = false"
+            />
+          </ValidationTooltip>
           <Transition name="tab" mode="out-in">
             <PasswordRequirements v-if="passwordFocus" v-model="isValidPass" :password="form.password" />
           </Transition>
         </div>
-        <div class="mb-3 form-floating">
-          <input v-model="form.passwordCheck" class="form-control" :class="passwordCheckClass(isValidPass, form)" type="password" :placeholder="t('password_check')" autocomplete="off" required>
-          <label>{{ t("password_check") }}</label>
+        <ValidationTooltip :invalid="!isValidCheck && (!!form.password || !!form.passwordCheck)" :text="t('password_check_error')">
+          <InputFloating
+            id="password-check"
+            v-model="form.passwordCheck"
+            class="w-full"
+            type="password"
+            :placeholder="t('password_check')"
+            name="passwordCheck"
+            autocomplete="off"
+            required
+          />
+        </ValidationTooltip>
+        <UButton
+          type="submit"
+          :label="t('registrate')"
+          block
+        />
+        <div class="text-center text-muted">
+          {{ t("or") }}
         </div>
-        <div class="d-grid my-4 gap-2">
-          <input class="btn btn-primary" type="submit" role="button" :value="t('registrate')">
-          <span>{{ t("or") }}</span>
-          <button class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2 text-decoration-none d-flex align-items-center gap-2" type="button" role="button" @click="googleRegistro">
-            <Icon name="google" size="1rem" />
-            <span>{{ t("google_signup") }}</span>
-          </button>
-        </div>
-      </form>
-      <p class="mb-3">{{ t("tiene_cuenta") }} <NuxtLink class="text-primary" to="/">{{ t("ingresa") }}</NuxtLink></p>
-      <p class="mb-3"><small>{{ t("nota2") }}</small></p>
+        <UButton
+          icon="google"
+          color="neutral"
+          :label="t('google_signup')"
+          variant="outline"
+          block
+          @click="googleRegistro"
+        />
+      </div>
+    </form>
+    <div class="space-y-4 text-center mt-4">
+      <p>{{ t("tiene_cuenta") }} <ULink class="text-primary" to="/">{{ t("ingresa") }}</ULink></p>
     </div>
-    <ProgressDialog :message="t('iniciando_sesion')" />
-  </section>
+    <ProgressDialog v-model="showProgress" :message="t('iniciando_sesion')" />
+  </UMain>
 </template>

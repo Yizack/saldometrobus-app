@@ -1,90 +1,126 @@
+<script setup lang="ts">
+import type { TableColumn } from "@nuxt/ui";
+
+interface Movimiento {
+  id: string;
+  movimiento: string;
+  fecha: string;
+  color: string;
+  sign: string;
+  monto: string;
+  saldo: string;
+  transaccion: string;
+  lugar: string;
+}
+
+const props = defineProps<{
+  tarjeta: {
+    numero: string;
+    nombre: string;
+    saldo: string;
+    estado: string;
+    fecha: string;
+    tipo: string;
+    movimientos: Movimiento[];
+  };
+}>();
+
+const current = ref(0);
+const currentMov = computed(() => props.tarjeta.movimientos[current.value]);
+const showDetails = ref(false);
+
+const tableColumns: TableColumn<Movimiento>[] = [
+  {
+    accessorKey: "tipo",
+    header: t("tipo")
+  },
+  {
+    accessorKey: "fecha",
+    header: t("fecha_mov")
+  },
+  {
+    accessorKey: "monto",
+    header: t("monto")
+  },
+  {
+    accessorKey: "saldo",
+    header: t("saldo")
+  }
+];
+
+const selectMov = (row: { index: number }) => {
+  current.value = row.index;
+  showDetails.value = true;
+};
+</script>
+
 <template>
   <div>
-    <h4 class="text-center mt-1 py-2"><b>{{ t("saldos") }}</b></h4>
-    <p class="m-0">{{ t("mov_4_semanas") }}<span v-if="tarjeta.movimientos.length">. {{ t("mov_note") }}</span></p>
-    <div v-if="tarjeta.movimientos.length" class="table-responsive rounded shadow border">
-      <table class="table table-hover mb-0 small">
-        <thead class="table-primary">
-          <tr class="small">
-            <th scope="col">{{ t("tipo") }}</th>
-            <th scope="col">{{ t("fecha_mov") }}</th>
-            <th class="pe-0" />
-            <th class="ps-0" scope="col">{{ t("monto") }}</th>
-            <th scope="col">{{ t("saldo") }}</th>
-          </tr>
-        </thead>
-        <tbody class="bg-body-tertiary">
-          <tr v-for="(movimiento, i) in tarjeta.movimientos" :key="movimiento.id" class="small" role="button" data-bs-toggle="modal" data-bs-target="#mov-dialog" @click="current = i">
-            <td>{{ movimiento.movimiento }}</td>
-            <td :title="movimiento.fecha" class="text-nowrap">{{ formatFecha(Number(movimiento.fecha)) }}</td>
-            <td class="pe-0 text-end" :class="`text-${movimiento.color}`">{{ movimiento.sign }}</td>
-            <td class="ps-0 text-nowrap ps-0" :class="`text-${movimiento.color}`">B/. {{ movimiento.monto }}</td>
-            <td class="text-nowrap">B/. {{ movimiento.saldo }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <h4 class="text-center text-xl mb-4 font-bold">{{ t("saldos") }}</h4>
+    <p>{{ t("mov_4_semanas") }}<span v-if="tarjeta.movimientos.length">. {{ t("mov_note") }}</span></p>
+    <UTable
+      v-if="tarjeta.movimientos.length"
+      :data="tarjeta.movimientos"
+      :columns="tableColumns"
+      :ui="{
+        th: 'p-2 text-xs',
+        td: 'tabular-nums p-2 text-xs text-default',
+      }"
+      @select="(e, row) => selectMov(row)"
+    >
+      <template #tipo-cell="{ row }">
+        {{ row.original.movimiento }}
+      </template>
+      <template #fecha-cell="{ row }">
+        {{ formatFecha(Number(row.original.fecha)) }}
+      </template>
+      <template #monto-cell="{ row }">
+        <span :class="`text-nowrap text-${row.original.color}`">
+          <span v-if="row.original.sign">{{ row.original.sign }}</span>
+          <span v-else>&nbsp;</span>
+          <span>B/. {{ row.original.monto }}</span>
+        </span>
+      </template>
+      <template #saldo-cell="{ row }">
+        <span class="text-nowrap">B/. {{ row.original.saldo }}</span>
+      </template>
+    </UTable>
     <p v-else class="text-center my-4"><i>{{ t("mov_notfound") }}.</i></p>
     <!-- Movimiento Dialog -->
-    <div id="mov-dialog" class="modal fade" tabindex="-1" aria-labelledby="add-dialog-label" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 id="add-dialog-label" class="modal-title fs-5 text-primary-emphasis">
-              <strong>{{ t("movimiento") }}</strong>
-            </h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+    <UModal v-model:open="showDetails" :title="t('movimiento')">
+      <template #body>
+        <div class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p><b>{{ t("tipo") }}</b></p>
+              <p>{{ currentMov?.movimiento }}</p>
+            </div>
+            <div>
+              <p><b>{{ t("fecha_mov") }}</b></p>
+              <p>{{ formatFecha(Number(currentMov?.fecha)) }}</p>
+            </div>
+            <div>
+              <p><b>{{ t("monto") }}</b></p>
+              <p :class="`text-${currentMov?.color}`">{{ currentMov?.sign }}B/. {{ currentMov?.monto }}</p>
+            </div>
+            <div>
+              <p><b>{{ t("saldo") }}</b></p>
+              <p>B/. {{ currentMov?.saldo }}</p>
+            </div>
           </div>
-          <div class="modal-body">
-            <div class="p-2">
-              <div class="row">
-                <div class="col-6">
-                  <p class="m-0"><b>{{ t("tipo") }}</b></p>
-                  <p>{{ tarjeta.movimientos[current]?.movimiento }}</p>
-                </div>
-                <div class="col-6">
-                  <p class=" m-0"><b>{{ t("fecha_mov") }}</b></p>
-                  <p>{{ formatFecha(Number(tarjeta.movimientos[current]?.fecha)) }}</p>
-                </div>
-                <div class="col-6">
-                  <p class="m-0"><b>{{ t("monto") }}</b></p>
-                  <p :class="`text-${tarjeta.movimientos[current]?.color}`">{{ tarjeta.movimientos[current]?.sign }}B/. {{ tarjeta.movimientos[current]?.monto }}</p>
-                </div>
-                <div class="col-6">
-                  <p class="m-0"><b>{{ t("saldo") }}</b></p>
-                  <p>B/. {{ tarjeta.movimientos[current]?.saldo }}</p>
-                </div>
-                <hr>
-                <div class="col-6">
-                  <p class="m-0"><b>{{ t("operador") }}</b></p>
-                  <p>{{ tarjeta.movimientos[current]?.transaccion }}</p>
-                </div>
-                <div class="col-6">
-                  <p class="m-0"><b>{{ t("lugar") }}</b></p>
-                  <p>{{ tarjeta.movimientos[current]?.lugar }}</p>
-                </div>
-              </div>
+          <USeparator />
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p><b>{{ t("operador") }}</b></p>
+              <p>{{ currentMov?.transaccion }}</p>
+            </div>
+            <div>
+              <p><b>{{ t("lugar") }}</b></p>
+              <p>{{ currentMov?.lugar }}</p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </template>
+    </UModal>
   </div>
 </template>
-
-<script>
-export default {
-  name: "MovimientosTarjeta",
-  props: {
-    tarjeta: {
-      type: Object,
-      required: true
-    }
-  },
-  data () {
-    return {
-      current: 0
-    };
-  }
-};
-</script>

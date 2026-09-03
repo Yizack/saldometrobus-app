@@ -5,12 +5,16 @@ const auth = Auth();
 const tarjetas = ref<SaldometrobusTarjeta[]>([]);
 const fetched = ref(0);
 const fetchLimit = ref(4);
-const progress = ref("");
+const showProgress = ref(false);
+const progressTitle = ref("");
+const showLimit = ref(false);
+const showAdd = ref(false);
 
 const form = useFormState({
   numero: "",
   nombre: ""
 });
+const validation = useFormValidation(form);
 
 const size = { width: 100, height: 63 };
 
@@ -21,14 +25,12 @@ const openCard = (tarjeta: SaldometrobusTarjeta) => {
 };
 
 const addTarjeta = async (event: Event) => {
-  progress.value = t("adding_tarjeta");
+  progressTitle.value = t("adding_tarjeta");
   const addForm = event.currentTarget as HTMLFormElement;
-  if (!addForm.checkValidity()) {
-    return addForm.classList.add("was-validated");
-  }
+  if (!validation.validate(addForm)) return;
 
-  hideModal("add-dialog");
-  showModal("progress-dialog");
+  showAdd.value = false;
+  showProgress.value = true;
   const { tarjeta, error, error_key } = await API.getTarjetaAPI(form.value.numero);
   if (tarjeta && !error) {
     tarjeta.nombre = form.value.nombre;
@@ -59,15 +61,14 @@ const addTarjeta = async (event: Event) => {
   else {
     await CAPACITOR.showToast(t(error_key || "error"), "long");
   }
-  await sleep(0.5);
-  hideModal("progress-dialog");
-  addForm.classList.remove("was-validated");
+  showProgress.value = false;
+  validation.reset();
 };
 
 const updateTarjeta = async (event: Event, numero: string) => {
   event.stopPropagation();
-  progress.value = t("actualizando_tarjeta");
-  showModal("progress-dialog");
+  progressTitle.value = t("actualizando_tarjeta");
+  showProgress.value = true;
   const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero, true);
 
   if (tarjeta && !error) {
@@ -93,8 +94,7 @@ const updateTarjeta = async (event: Event, numero: string) => {
     }
     await CAPACITOR.showToast(t(error_key || "error"), "long");
   }
-  await sleep(0.5);
-  hideModal("progress-dialog");
+  showProgress.value = false;
 };
 
 onMounted(async () => {
@@ -102,9 +102,8 @@ onMounted(async () => {
   tarjetas.value = await DB.getTarjetas();
   if (tarjetas.value.length || auth.user.updated || auth.isGuest) return;
 
-  progress.value = t("adding_tarjetas");
-  await sleep(0.5);
-  showModal("progress-dialog");
+  progressTitle.value = t("adding_tarjetas");
+  showProgress.value = true;
   const { email, token } = auth.user;
   const { error, error_key, tarjetas: tarjetasAPI } = await API.getTarjetas({ email, token }) || [];
   let tarjetasDetalles = [];
@@ -137,103 +136,100 @@ onMounted(async () => {
     if (tarjeta.saldo) {
       await CAPACITOR.showToast(`${t("tarjeta_added")}: ${tarjeta.numero}`);
     }
-    await sleep(0.5);
   }
 
   await auth.setUpdated();
-  await sleep(0.5);
-  hideModal("progress-dialog");
+  showProgress.value = false;
   if (isFetchLimited.value) {
-    await sleep(0.5);
-    showModal("limit-dialog");
+    showLimit.value = true;
   }
 });
 </script>
 
 <template>
-  <section>
+  <UContainer class="py-2">
     <TransitionGroup name="tab">
       <BoxComponent v-for="tarjeta in tarjetas" :key="tarjeta.numero" :title="tarjeta.nombre" p2 role="button" @click="openCard(tarjeta)">
-        <div class="d-flex">
-          <div class="flex-grow-1">
-            <div class="info mx-2 small">
+        <div class="flex">
+          <div class="grow">
+            <div class="info mx-2 text-sm">
               <Transition name="fade" mode="out-in">
-                <div v-if="tarjeta.saldo">
-                  <div class="mb-1">
-                    <div class="small fw-bold">{{ t("tipo") }}</div>
-                    <div class="m-0">{{ tarjeta.tipo }}</div>
+                <div v-if="tarjeta.saldo" class="space-y-2">
+                  <div>
+                    <div class="font-bold">{{ t("tipo") }}</div>
+                    <div>{{ tarjeta.tipo }}</div>
                   </div>
-                  <div class="mb-1">
-                    <div class="small fw-bold">{{ t("fecha") }}</div>
-                    <div class="text-nowrap m-0">{{ tarjeta.fecha }}</div>
+                  <div>
+                    <div class="font-bold">{{ t("fecha") }}</div>
+                    <div class="text-nowrap">{{ tarjeta.fecha }}</div>
                   </div>
-                  <div class="text-primary border-primary border-start rounded ps-3 py-1 border-3">
-                    <div class="small fw-bold">{{ t("saldo") }}</div>
-                    <div class="text-nowrap fw-bold h3 m-0">B/. {{ tarjeta.saldo }}</div>
+                  <div class="text-primary rounded ps-3 py-1 border-s-3">
+                    <div class="font-bold">{{ t("saldo") }}</div>
+                    <div class="text-nowrap font-bold text-xl">B/. {{ tarjeta.saldo }}</div>
                   </div>
                 </div>
-                <div v-else>
-                  <p class="placeholder-glow m-0"><span class="placeholder col-6" /></p>
-                  <p class="placeholder-glow m-0"><span class="placeholder col-5" /></p>
-                  <p class="placeholder-glow m-0"><span class="placeholder col-7" /></p>
-                  <h3 class="placeholder-glow"><span class="placeholder col-6" /></h3>
+                <div v-else class="space-y-2">
+                  <div class="space-y-0.5">
+                    <USkeleton class="h-5 w-8 rounded-full" />
+                    <USkeleton class="h-5 w-24 rounded-full" />
+                  </div>
+                  <div class="space-y-0.5">
+                    <USkeleton class="h-5 w-25 rounded-full" />
+                    <USkeleton class="h-5 w-30 rounded-full" />
+                  </div>
+                  <div class="space-y-0.5 text-primary rounded ps-3 py-1 border-s-3">
+                    <USkeleton class="h-5 w-12 rounded-full" />
+                    <USkeleton class="h-5.5 w-12 rounded-full" />
+                  </div>
                 </div>
               </Transition>
             </div>
           </div>
-          <div class="actions d-flex flex-column">
-            <div class="image">
-              <img class="img-fluid rounded shadow-sm border" :src="`/images/${getCardImage(tarjeta.tipo)}`" :width="size.width" :height="size.height">
-            </div>
-            <p class="bg-secondary-subtle rounded px-2 fw-bold text-body my-1 text-center">{{ tarjeta.numero }}</p>
-            <div class="d-grid">
-              <button class="btn btn-secondary btn-sm py-2" role="button" @click="updateTarjeta($event, tarjeta.numero)"><Icon name="refresh" size="1.3rem" /></button>
-            </div>
+          <div class="actions flex flex-col space-y-1">
+            <img class="rounded-md shadow-sm border border-default" :src="`/images/${getCardImage(tarjeta.tipo)}`" :width="size.width" :height="size.height">
+            <p class="bg-elevated rounded-lg px-2 font-bold text-center">{{ tarjeta.numero }}</p>
+            <UButton icon="refresh" color="secondary" :ui="{ base: 'justify-center py-2.5' }" @click="updateTarjeta($event, tarjeta.numero)" />
           </div>
         </div>
       </BoxComponent>
     </TransitionGroup>
     <div v-if="tarjetas.length" class="text-center mt-3">
-      <p class="small m-0"><small>{{ t("tarjetas_note") }}</small></p>
+      <p class="text-sm">{{ t("tarjetas_note") }}</p>
     </div>
-    <div class="position-fixed bottom-0 end-0 m-3">
-      <button class="btn btn-primary rounded-circle p-1 shadow" role="button" data-bs-toggle="modal" data-bs-target="#add-dialog"><Icon name="plus" size="3rem" /></button>
+    <div class="fixed bottom-0 right-0 m-6">
+      <UModal v-model:open="showAdd" :title="t('add_tarjeta')" :dismissible="false">
+        <UButton class="rounded-full shadow transition-transform duration-200 hover:scale-110" icon="plus" :ui="{ leadingIcon: 'size-12' }" />
+        <template #body="{ close }">
+          <form novalidate class="space-y-2" @submit.prevent="addTarjeta">
+            <ValidationTooltip :invalid="validation.invalidFields.nombre" :text="t('obligatorio')">
+              <InputFloating
+                id="nombre"
+                v-model="form.nombre"
+                :placeholder="t('nombre')"
+                name="nombre"
+                required
+              />
+            </ValidationTooltip>
+            <ValidationTooltip :invalid="validation.invalidFields.numero" :text="t('error_tarjeta')">
+              <InputFloating
+                id="numero"
+                v-model="form.numero"
+                :placeholder="t('numero_tarjeta')"
+                name="numero"
+                type="number"
+                pattern="[0-9]"
+                required
+              />
+            </ValidationTooltip>
+            <div class="flex gap-2">
+              <UButton type="button" color="error" :label="t('cancel')" block @click="close" />
+              <UButton type="submit" :label="t('add')" block />
+            </div>
+          </form>
+        </template>
+      </UModal>
     </div>
-    <!-- Add Dialog -->
-    <div id="add-dialog" class="modal fade" tabindex="-1" aria-labelledby="add-dialog-label" aria-hidden="true" data-bs-backdrop="static">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 id="add-dialog-label" class="modal-title fs-5 text-primary-emphasis">
-              <strong>{{ t("add_tarjeta") }}</strong>
-            </h1>
-          </div>
-          <div class="modal-body text-center">
-            <form novalidate @submit.prevent="addTarjeta">
-              <div class="mb-3 position-relative form-floating">
-                <input v-model.trim="form.nombre" class="form-control" type="text" :placeholder="t('nombre')" required>
-                <label>{{ t("nombre") }}</label>
-                <div class="invalid-tooltip">
-                  {{ t("obligatorio") }}
-                </div>
-              </div>
-              <div class="mb-3 position-relative form-floating">
-                <input v-model="form.numero" class="form-control" type="number" pattern="[0-9]" :placeholder="t('numero_tarjeta')" required>
-                <label>{{ t("numero_tarjeta") }}</label>
-                <div class="invalid-tooltip">
-                  {{ t("error_tarjeta") }}
-                </div>
-              </div>
-              <div class="d-flex justify-content-end">
-                <button class="btn btn-danger me-2" type="button" data-bs-dismiss="modal">{{ t("cancel") }}</button>
-                <button class="btn btn-primary" type="submit" role="button">{{ t("add") }}</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <ProgressDialog :message="progress" />
-    <LimitDialog />
-  </section>
+    <ProgressDialog v-model="showProgress" :message="progressTitle" />
+    <LimitDialog v-model="showLimit" />
+  </UContainer>
 </template>

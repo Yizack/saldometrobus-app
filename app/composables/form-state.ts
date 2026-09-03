@@ -13,6 +13,13 @@ export const useFormState = <T extends Record<string, unknown>>(initialState: T)
       for (const field of fields) {
         data.value[field] = initialState[field];
       }
+    },
+    /**
+     * Update the initial state
+     * @param newState The new initial state
+     */
+    update (newState: Partial<T>) {
+      initialState = { ...initialState, ...newState };
     }
   };
   Object.assign(data, methods);
