@@ -1,0 +1,1 @@
+import{N as e}from"./CDDiXvCH.js";import{i as t,o as n}from"./CHy823t9.js";function r(r,i){let a=t(r),o=i?n(i):{};return e(()=>({...a.value,...o}))}export{r as t};

@@ -1,0 +1,1 @@
+import{r as e}from"./DMSJlXY0.js";var t=e(`/images/logo.webp`);export{t};

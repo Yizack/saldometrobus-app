@@ -1,1 +1,0 @@
-import{L as e,V as t,f as n}from"./BEvfOLvt.js";import{t as r}from"./BDNMzG2s.js";var i={};function a(r,i){return e(),n(`main`,null,[t(r.$slots,`default`)])}var o=r(i,[[`render`,a]]);export{o as default};

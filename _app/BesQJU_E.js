@@ -1,1 +1,0 @@
-import{ct as e}from"./BEvfOLvt.js";var t=t=>{let n=e({...t});return Object.assign(n,{reset(...e){if(!e.length){n.value={...t};return}for(let r of e)n.value[r]=t[r]}}),n};export{t};
