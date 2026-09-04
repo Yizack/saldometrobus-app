@@ -152,7 +152,7 @@ onMounted(async () => {
       <BoxComponent v-for="tarjeta in tarjetas" :key="tarjeta.numero" :title="tarjeta.nombre" p2 role="button" @click="openCard(tarjeta)">
         <div class="flex">
           <div class="grow">
-            <div class="info mx-2 text-sm">
+            <div class="info me-2 text-sm">
               <Transition name="fade" mode="out-in">
                 <div v-if="tarjeta.saldo" class="space-y-2">
                   <div>
