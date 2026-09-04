@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.9.2
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.1...v2.9.2)
+
+### 🎨 Styles
+
+- **app:** Use logical margin utility ([3208a0f](https://github.com/Yizack/saldometrobus-app/commit/3208a0f))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.9.1
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.0...v2.9.1)
