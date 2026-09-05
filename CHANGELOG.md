@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.9.5
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.4...v2.9.5)
+
+### 🩹 Fixes
+
+- **scrapper:** Guard missing login response ([d49df25](https://github.com/Yizack/saldometrobus-app/commit/d49df25))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.9.4
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.3...v2.9.4)
