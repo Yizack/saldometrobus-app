@@ -3,41 +3,15 @@ import { CapacitorHttp } from "@capacitor/core";
 
 const formatSaldo = (amount: number | string) => (Number(amount) / 100).toFixed(2);
 
-type ApiTransaction = {
-  operador?: string;
-  nombreTRX?: string;
-  fecha_trx?: string;
-  montoAbono?: number | string | null;
-  montoDescuento?: number | string | null;
-  estacion?: string;
-};
-
-const getTransactionDelta = (transaction: ApiTransaction) => {
-  const abono = Number(transaction.montoAbono);
-  if (Number.isFinite(abono) && abono !== 0) return abono;
-
-  const descuento = Number(transaction.montoDescuento);
-  return Number.isFinite(descuento) ? -descuento : 0;
-};
-
-export const calculateMovementBalances = (transactions: ApiTransaction[], currentBalance: number | string): SaldometrobusMovimiento[] => {
-  let balance = Number(currentBalance);
-
-  return transactions.map((transaction) => {
-    const delta = getTransactionDelta(transaction);
-    const movement = {
-      transaccion: transaction.operador ?? "",
-      tipo: transaction.nombreTRX || "Desconocido",
-      fecha_hora: transaction.fecha_trx ?? "",
-      monto: formatSaldo(Math.abs(delta)),
-      saldo_tarjeta: formatSaldo(balance),
-      lugar: transaction.estacion ?? ""
-    };
-
-    balance -= delta;
-    return movement;
-  });
-};
+interface ApiTransaction {
+  nombreTRX: string;
+  fecha_trx: string;
+  operador: string;
+  estacion: string;
+  montoAbono: number;
+  montoDescuento: number;
+  saldo: number;
+}
 
 const scrapperURL = import.meta.dev ? "/tarjetametrobus" : "https://www.tarjetametrobus.com";
 const scrapper2URL = import.meta.dev ? "/tarjetametrobus2" : "https://a2-20tarjetametrobus.com";
@@ -130,7 +104,14 @@ const scrapper1 = async (numero: string, shouldWait = false) => {
       estado: cardResponse.estadoCuenta === "Activa" ? "Contrato Activo" : "Contrato Inactivo",
       fecha: formatFecha(Date.now()),
       tipo: getCardType(numero),
-      movimientos: calculateMovementBalances(cardResponse.transacciones ?? [], cardResponse.saldo)
+      movimientos: cardResponse.transacciones?.map((t: ApiTransaction) => ({
+        transaccion: t.operador,
+        tipo: t.nombreTRX || "Desconocido",
+        fecha_hora: t.fecha_trx,
+        monto: formatSaldo(t.montoAbono || t.montoDescuento),
+        saldo_tarjeta: formatSaldo(t.saldo),
+        lugar: t.estacion
+      })) ?? []
     }
   };
 };
