@@ -45,6 +45,9 @@ export default defineNuxtConfig({
     public: {
       google: {
         apiKey: "AIzaSyA60VM-yC8g350aJYKEzmlAR-9kRbp5SEc"
+      },
+      sonda: {
+        credential: "RXR5YWxhYjpNM3RyMEJ1JCM="
       }
     }
   },
@@ -54,6 +57,9 @@ export default defineNuxtConfig({
     },
     "/tarjetametrobus/**": {
       proxy: { to: "https://recaudo.sondapay.com/**" }
+    },
+    "/tarjetametrobus2/**": {
+      proxy: { to: "https://a2-20tarjetametrobus.com/**" }
     },
     "/database/**": {
       proxy: { to: "http://localhost:5173/database/**" }

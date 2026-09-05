@@ -57,6 +57,11 @@ const selectMov = (row: { index: number }) => {
 <template>
   <div>
     <h4 class="text-center text-xl mb-4 font-bold">{{ t("saldos") }}</h4>
+    <UAlert
+      description="Debido al cambio reciente en el sistema de cobros de SONDA, Metro de Panamá y MiBus, en este momento no es posible mostrar los movimientos de sus tarjetas. Actualmente estoy investigando una solución para restablecer esta funcionalidad pero no lo puedo garantizar. Recuerde que esta no es una aplicación oficial y es desarrollada de manera independiente."
+      color="warning"
+      variant="subtle"
+    />
     <p>{{ t("mov_4_semanas") }}<span v-if="tarjeta.movimientos.length">. {{ t("mov_note") }}</span></p>
     <UTable
       v-if="tarjeta.movimientos.length"
