@@ -88,14 +88,14 @@ const scrapper2 = async (numero: string) => {
 
 export const scrapperTarjeta = async (numero: string) => {
   let loginResponse = await getLogin();
-  if (!loginResponse.sIdSesion) return scrapper2(numero);
+  if (!loginResponse?.sIdSesion) return scrapper2(numero);
 
   let cardResponse = await getCard(numero, loginResponse.sIdSesion);
   if (!cardResponse) return scrapper2(numero);
 
   if (cardResponse.estado?.numeroError === 999) {
     loginResponse = await getLogin(true);
-    if (!loginResponse.sIdSesion) return scrapper2(numero);
+    if (!loginResponse?.sIdSesion) return scrapper2(numero);
 
     cardResponse = await getCard(numero, loginResponse.sIdSesion);
     if (!cardResponse) return scrapper2(numero);
