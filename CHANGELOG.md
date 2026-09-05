@@ -1,5 +1,18 @@
 # Changelog
 
+## v2.10.0
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.5...v2.10.0)
+
+### 🚀 Enhancements
+
+- **scrapper:** Migrate to Tarjeta Metrobus API ([85eb733](https://github.com/Yizack/saldometrobus-app/commit/85eb733))
+- **info:** Add card refresh action ([f3b010c](https://github.com/Yizack/saldometrobus-app/commit/f3b010c))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.9.5
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.4...v2.9.5)
