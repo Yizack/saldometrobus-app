@@ -3,8 +3,7 @@
     <h4 class="text-center text-xl mb-4 font-bold"><b>{{ t("graficas") }}</b></h4>
     <UAlert
       description="Debido al cambio reciente en el sistema de cobros de SONDA, Metro de Panamá y MiBus, en este momento no es posible mostrar las gráficas de uso. Actualmente estoy investigando una solución para restablecer esta funcionalidad pero no lo puedo garantizar. Recuerde que esta no es una aplicación oficial y es desarrollada de manera independiente."
-      color="warning"
-      variant="subtle"
+      color="neutral"
     />
     <p>{{ t("grafica_nota") }}</p>
     <div class="flex items-center my-3 gap-2">
