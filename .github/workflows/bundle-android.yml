@@ -66,3 +66,8 @@ jobs:
         name: app-release
         path: android/app/build/outputs/bundle/release/app-release-signed.aab
         retention-days: 1
+
+    - name: 📝 Publish GitHub release notes
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: node --run release:github
