@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.9.4
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.3...v2.9.4)
+
+### 🩹 Fixes
+
+- **ui:** Neutralize service alerts ([5cfdbd5](https://github.com/Yizack/saldometrobus-app/commit/5cfdbd5))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.9.3
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.2...v2.9.3)
