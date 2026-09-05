@@ -52,11 +52,8 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    "/login": {
-      proxy: { to: "https://us-south1-saldo-ya-metro.cloudfunctions.net/snd-login" }
-    },
     "/tarjetametrobus/**": {
-      proxy: { to: "https://recaudo.sondapay.com/**" }
+      proxy: { to: "https://www.tarjetametrobus.com/**" }
     },
     "/tarjetametrobus2/**": {
       proxy: { to: "https://a2-20tarjetametrobus.com/**" }

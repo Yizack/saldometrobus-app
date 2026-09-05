@@ -12,6 +12,9 @@ export default {
     CapacitorHttp: {
       enabled: true
     },
+    CapacitorCookies: {
+      enabled: true
+    },
     SplashScreen: {
       launchShowDuration: 1000,
       launchAutoHide: true,

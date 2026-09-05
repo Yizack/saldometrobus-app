@@ -182,5 +182,6 @@ export default {
   google_login: "Log in with Google",
   google_signup: "Sign up with Google",
   or: "or",
-  operador: "Operator"
+  operador: "Operator",
+  retry_after: "Please try again after {{ s }} seconds"
 };

@@ -182,5 +182,6 @@ export default {
   google_login: "Iniciar con Google",
   google_signup: "Registrarse con Google",
   or: "o",
-  operador: "Operador"
+  operador: "Operador",
+  retry_after: "Por favor, inténtalo de nuevo después de {{ s }} segundos"
 };

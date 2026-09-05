@@ -69,10 +69,13 @@ class SaldometrobusAPI {
   async getDetallesTarjetas (tarjetas: SaldometrobusTarjeta[]) {
     const arr = [];
     for (const tarjeta of tarjetas) {
-      const scrapped = await scrapperTarjeta(tarjeta.numero);
+      const scrapped = await scrapperTarjeta(tarjeta.numero, true);
       if (scrapped && scrapped.status === "ok" && scrapped.tarjeta) {
         Object.assign(scrapped.tarjeta, tarjeta); // needed for 1st time
         arr.push(scrapped.tarjeta);
+      }
+      else {
+        arr.push(tarjeta);
       }
     }
     return arr;

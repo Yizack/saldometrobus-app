@@ -124,7 +124,7 @@ onMounted(async () => {
 
   for (const tarjeta of tarjetasDetalles) {
     const changes = await DB.insertTarjeta(tarjeta);
-    if (changes > 0 && !isFetchLimited.value) {
+    if (changes > 0 && !isFetchLimited.value && tarjeta.movimientos?.length) {
       await DB.insertMovimientos(tarjeta);
     }
   }
