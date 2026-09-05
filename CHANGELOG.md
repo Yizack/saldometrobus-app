@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.10.2
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.1...v2.10.2)
+
+### 🩹 Fixes
+
+- **scrapper:** Api introduced saldo for transactins ([3e2b866](https://github.com/Yizack/saldometrobus-app/commit/3e2b866))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.10.1
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.0...v2.10.1)
