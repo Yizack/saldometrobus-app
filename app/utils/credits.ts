@@ -5,8 +5,8 @@ export const CREDITS = [
     name: "Nuxt",
     link: "https://nuxt.com",
     description: {
-      en: "The Intuitive Vue Framework",
-      es: "El Framework Intuitivo de Vue"
+      en: "The full-stack Vue Framework",
+      es: "El framework de Vue Full-Stack"
     },
     version: devDependencies.nuxt
   },
@@ -36,6 +36,15 @@ export const CREDITS = [
       es: "El módulo de Iconos para Nuxt"
     },
     version: devDependencies["@nuxt/icon"]
+  },
+  {
+    name: "MailChannels Node.js SDK",
+    link: "https://docs.mailchannels.com/email-api/javascript/quickstart",
+    description: {
+      en: "Email API for sending transactional emails",
+      es: "API de correo electrónico para el envío de correos transaccionales"
+    },
+    version: "1.5.2"
   },
   {
     name: "ESLint",
@@ -77,8 +86,8 @@ export const CREDITS = [
     name: "Google Maps JavaScript API Loader",
     link: "https://github.com/googlemaps/js-api-loader",
     description: {
-      en: "Create custom maps with the JavaScript Maps API",
-      es: "Cree mapas personalizados con la API de JavaScript Maps"
+      en: "Create custom maps with the JavaScript Google Maps API",
+      es: "Cree mapas personalizados con la API de JavaScript de Google Maps"
     },
     version: dependencies["@googlemaps/js-api-loader"]
   },
@@ -95,8 +104,8 @@ export const CREDITS = [
     name: "Pinia: Nuxt",
     link: "https://github.com/vuejs/pinia/tree/v2/packages/nuxt#readme",
     description: {
-      en: "Intuitive, type safe, light and flexible Store for Vue using the composition api with DevTools support",
-      es: "Store intuitivo, seguro, ligero y flexible para Vue utilizando la API de composición con soporte para DevTools"
+      en: "Intuitive, type safe, light and flexible Store for Vue using the Composition API",
+      es: "Store intuitivo, seguro, ligero y flexible para Vue utilizando Composition API"
     },
     version: dependencies["@pinia/nuxt"]
   },
