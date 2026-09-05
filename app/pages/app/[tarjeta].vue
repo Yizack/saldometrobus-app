@@ -41,7 +41,7 @@ const tabs = [
     >
       <template #card>
         <UContainer class="py-2">
-          <CardInfo :tarjeta="tarjeta" />
+          <CardInfo v-model="tarjeta" />
         </UContainer>
       </template>
       <template #movimientos>

@@ -1,19 +1,17 @@
 <script setup lang="ts">
-const props = defineProps<{
-  tarjeta: {
-    numero: string;
-    nombre: string;
-    saldo: string;
-    estado: string;
-    fecha: string;
-    tipo: string;
-  };
-}>();
+const tarjeta = defineModel<{
+  numero: string;
+  nombre: string;
+  saldo: string;
+  estado: string;
+  fecha: string;
+  tipo: string;
+}>({ required: true });
 
 const router = useRouter();
 
 const form = useFormState({
-  nombre: props.tarjeta.nombre
+  nombre: tarjeta.value.nombre
 });
 
 const validation = useFormValidation(form);
@@ -32,14 +30,14 @@ const editCard = async (event: Event) => {
   const { error, error_key } = !Auth().isGuest ? await API.updateTarjeta({
     email: Auth().user.email,
     token: Auth().user.token,
-    numero: props.tarjeta.numero,
+    numero: tarjeta.value.numero,
     nombre: nombre_trimmed
   }) : { error: false };
 
-  const changes = await DB.updateNombreTarjeta(props.tarjeta.numero, nombre_trimmed);
+  const changes = await DB.updateNombreTarjeta(tarjeta.value.numero, nombre_trimmed);
 
   if (!error && changes > 0) {
-    await CAPACITOR.showToast(`${t("editada")}: ${props.tarjeta.numero}`);
+    await CAPACITOR.showToast(`${t("editada")}: ${tarjeta.value.numero}`);
     showProgress.value = false;
     router.replace("/app/");
   }
@@ -51,7 +49,7 @@ const editCard = async (event: Event) => {
 };
 
 const color = computed(() => {
-  const saldo = Number(props.tarjeta.saldo);
+  const saldo = Number(tarjeta.value.saldo);
   return saldo <= 2 ? "error" : saldo > 2 && saldo < 5 ? "warning" : "success";
 });
 
@@ -63,13 +61,13 @@ const deleteCard = async () => {
     const { error, error_key } = !Auth().isGuest ? await API.deleteTarjeta({
       email: Auth().user.email,
       token: Auth().user.token,
-      numero: props.tarjeta.numero
+      numero: tarjeta.value.numero
     }) : { error: false };
 
-    const changes = await DB.deleteTarjeta(props.tarjeta.numero);
+    const changes = await DB.deleteTarjeta(tarjeta.value.numero);
 
     if (!error && changes > 0) {
-      await CAPACITOR.showToast(`${t("eliminada")}: ${props.tarjeta.numero}`);
+      await CAPACITOR.showToast(`${t("eliminada")}: ${tarjeta.value.numero}`);
       showProgress.value = false;
       router.replace("/app/");
     }
@@ -78,6 +76,26 @@ const deleteCard = async () => {
       showProgress.value = false;
     }
   }
+};
+
+const updateTarjeta = async (event: Event, numero: string) => {
+  event.stopPropagation();
+  progressTitle.value = t("actualizando_tarjeta");
+  showProgress.value = true;
+  const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero, true);
+
+  if (tarjeta && !error) {
+    const changes = await DB.updateTarjeta(tarjeta);
+    if (changes > 0) {
+      await DB.deleteMovimientos(numero);
+      await DB.insertMovimientos(tarjeta);
+      await CAPACITOR.showToast(`${t("tarjeta_actualizada")}: ${tarjeta.numero}`);
+    }
+  }
+  else {
+    await CAPACITOR.showToast(t(error_key || "error"), "long");
+  }
+  showProgress.value = false;
 };
 </script>
 
@@ -92,7 +110,10 @@ const deleteCard = async () => {
       </div>
     </BoxComponent>
     <BoxComponent :title="t('saldo')">
-      <h3 class="text-xl font-bold">B/. {{ tarjeta.saldo }}</h3>
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-bold">B/. {{ tarjeta.saldo }}</h3>
+        <UButton icon="refresh" color="secondary" :ui="{ base: 'justify-center px-2' }" @click="updateTarjeta($event, tarjeta.numero)" />
+      </div>
     </BoxComponent>
     <BoxComponent :title="t('info_tarjeta')">
       <div class="grid grid-cols-2 gap-4">
