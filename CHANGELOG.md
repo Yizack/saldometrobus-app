@@ -1,5 +1,25 @@
 # Changelog
 
+## v2.9.3
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.2...v2.9.3)
+
+### 🩹 Fixes
+
+- **scrapper:** Add fallback card balance service ([614ba48](https://github.com/Yizack/saldometrobus-app/commit/614ba48))
+
+### 🏡 Chore
+
+- Update credits ([c69b3db](https://github.com/Yizack/saldometrobus-app/commit/c69b3db))
+
+### 🤖 CI
+
+- **release:** Publish GitHub release notes ([e3b416e](https://github.com/Yizack/saldometrobus-app/commit/e3b416e))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.9.2
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.1...v2.9.2)
