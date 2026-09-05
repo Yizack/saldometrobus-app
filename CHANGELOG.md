@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.10.1
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.0...v2.10.1)
+
+### 🩹 Fixes
+
+- **scrapper:** Handle missing token cleanly to allow fallback ([f68b7a6](https://github.com/Yizack/saldometrobus-app/commit/f68b7a6))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.10.0
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.9.5...v2.10.0)
