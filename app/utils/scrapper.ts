@@ -86,7 +86,7 @@ const getCardResponse = (numero: string, token: string) => CapacitorHttp.post({
 
 const scrapper1 = async (numero: string, shouldWait = false) => {
   let token = await getScrapperToken();
-  if (!token) return unknownError;
+  if (!token) return;
 
   if (shouldWait) {
     await new Promise(resolve => setTimeout(resolve, 5000));
