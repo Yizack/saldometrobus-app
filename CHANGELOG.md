@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.10.3
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.2...v2.10.3)
+
+### 🩹 Fixes
+
+- **scraper:** Use fallback card scraper ([babd02b](https://github.com/Yizack/saldometrobus-app/commit/babd02b))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.10.2
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.1...v2.10.2)

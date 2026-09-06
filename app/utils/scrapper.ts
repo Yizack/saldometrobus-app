@@ -130,7 +130,7 @@ const scrapper2 = async (numero: string) => {
   }).then(response => response.data).catch(() => {});
 
   if (!cardResponse) return unknownError;
-  if (!cardResponse?.successful) {
+  if (cardResponse.saldo_tarjeta === null) {
     return {
       status: "error" as const,
       tarjeta: null,
