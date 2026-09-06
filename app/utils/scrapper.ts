@@ -151,9 +151,6 @@ const scrapper2 = async (numero: string) => {
   };
 };
 
-export const scrapperTarjeta = async (numero: string, shouldWait = false) => {
-  const result = await scrapper1(numero, shouldWait);
-  if (!result) return scrapper2(numero);
-
-  return result;
+export const scrapperTarjeta = async (numero: string, _shouldWait = false) => {
+  return scrapper2(numero);
 };
