@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.10.4
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.3...v2.10.4)
+
+### 🩹 Fixes
+
+- **scrapper:** Add verification flow ([2bf070a](https://github.com/Yizack/saldometrobus-app/commit/2bf070a))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.10.3
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.2...v2.10.3)
