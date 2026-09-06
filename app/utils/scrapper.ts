@@ -12,7 +12,6 @@ interface ApiTransaction {
   montoDescuento: number;
   saldo: number;
 }
-
 const scrapperURL = import.meta.dev ? "/tarjetametrobus" : "https://www.tarjetametrobus.com";
 const scrapper2URL = import.meta.dev ? "/tarjetametrobus2" : "https://a2-20tarjetametrobus.com";
 let scrapperToken: string | undefined;
@@ -22,6 +21,15 @@ const unknownError = {
   tarjeta: null,
   error_key: "error"
 };
+
+const getChallenge = async () => CapacitorHttp.get({
+  url: scrapperURL + "/api/altcha",
+  responseType: "json",
+  headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  }
+}).then(response => response.data as AltchaChallenge).catch(() => {});
 
 const getScrapperToken = async (forceFetch = false) => {
   if (!forceFetch && scrapperToken) {
@@ -44,19 +52,27 @@ const getScrapperToken = async (forceFetch = false) => {
   return token;
 };
 
-const getCardResponse = (numero: string, token: string) => CapacitorHttp.post({
-  url: scrapperURL + "/api/transacciones",
-  responseType: "json",
-  headers: {
-    "Content-Type": "application/json",
-    "Accept": "application/json"
-  },
-  data: JSON.stringify({
-    tarjeta: numero,
-    token,
-    verificacion: ""
-  })
-}).catch(() => {});
+const getCardResponse = async (numero: string, token: string) => {
+  const challenge = await getChallenge();
+  if (!challenge) return;
+  const altcha = await solveAltcha(challenge);
+  if (!altcha) return;
+
+  return CapacitorHttp.post({
+    url: scrapperURL + "/api/transacciones",
+    responseType: "json",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    data: JSON.stringify({
+      altcha,
+      tarjeta: numero,
+      token,
+      verificacion: ""
+    })
+  }).catch(() => {});
+};
 
 const scrapper1 = async (numero: string, shouldWait = false) => {
   let token = await getScrapperToken();
@@ -67,7 +83,7 @@ const scrapper1 = async (numero: string, shouldWait = false) => {
   }
 
   let response = await getCardResponse(numero, token);
-  if (!response) return unknownError;
+  if (!response) return;
   const retryAfter = response.headers["retry-after"];
   if (retryAfter) {
     return {
@@ -83,6 +99,7 @@ const scrapper1 = async (numero: string, shouldWait = false) => {
     if (!token) return unknownError;
 
     response = await getCardResponse(numero, token);
+    if (!response || response.status !== 200) return;
   }
 
   const cardResponse = response?.data;
@@ -151,6 +168,9 @@ const scrapper2 = async (numero: string) => {
   };
 };
 
-export const scrapperTarjeta = async (numero: string, _shouldWait = false) => {
-  return scrapper2(numero);
+export const scrapperTarjeta = async (numero: string, shouldWait = false) => {
+  const result = await scrapper1(numero, shouldWait);
+  if (!result) return scrapper2(numero);
+
+  return result;
 };
