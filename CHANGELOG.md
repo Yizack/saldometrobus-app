@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.10.6
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.5...v2.10.6)
+
+### 🩹 Fixes
+
+- **tarjeta:** Increase the tab list z-index ([981421b](https://github.com/Yizack/saldometrobus-app/commit/981421b))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.10.5
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.4...v2.10.5)
