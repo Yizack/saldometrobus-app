@@ -75,18 +75,22 @@ const updateTarjeta = async (event: Event, numero: string) => {
   event.stopPropagation();
   progressTitle.value = t("actualizando_tarjeta");
   showProgress.value = true;
-  const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero, true);
+  const tarjetaScrapper = await SCRAPPER.getTarjeta(numero, true);
 
-  if (tarjeta && !error) {
-    const changes = await DB.updateTarjeta(tarjeta);
+  if (tarjetaScrapper.tarjeta && !tarjetaScrapper.error) {
+    const changes = await DB.updateTarjeta(tarjetaScrapper.tarjeta);
     if (changes > 0) {
       await DB.deleteMovimientos(numero);
-      await DB.insertMovimientos(tarjeta);
-      await CAPACITOR.showToast(`${t("tarjeta_actualizada")}: ${tarjeta.numero}`);
+      await DB.insertMovimientos(tarjetaScrapper.tarjeta);
+      await CAPACITOR.showToast(`${t("tarjeta_actualizada")}: ${tarjetaScrapper.tarjeta.numero}`);
+      tarjeta.value = {
+        ...await DB.getTarjeta(numero),
+        movimientos: await DB.getMovimientos(numero)
+      };
     }
   }
   else {
-    await CAPACITOR.showToast(t(error_key || "error"), "long");
+    await CAPACITOR.showToast(t(tarjetaScrapper.error_key || "error"), "long");
   }
   showProgress.value = false;
 };
