@@ -34,7 +34,7 @@ const tabs = [
       :ui="{
         root: 'gap-0',
         leadingIcon: 'size-6',
-        list: 'justify-around sticky top-16 py-2 shadow border border-default z-1 rounded-none',
+        list: 'justify-around sticky top-16 py-2 shadow border border-default z-50 rounded-none',
         indicator: 'rounded-xl',
         trigger: 'grow flex-col gap-1 py-1',
         label: 'uppercase text-[10px]/3',
