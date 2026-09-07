@@ -36,8 +36,7 @@ const addTarjeta = async (event: Event) => {
     const tarjetaAPI: TarjetaAPI = {
       nombre: form.value.nombre,
       numero: tarjeta.numero,
-      email: auth.user.email,
-      fecha_added: new Date().toISOString().replace("T", " ").replace("Z", "")
+      email: auth.user.email
     };
 
     const tarjetaExists = await DB.tarjetaExists(tarjeta.numero);

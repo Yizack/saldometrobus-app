@@ -5,7 +5,6 @@ declare global {
     nombre: string;
     numero: string;
     email: string;
-    fecha_added: string;
   }
 
   interface TarjetaScrapper {

@@ -72,7 +72,8 @@ class Database {
 
   // Tarjetas
   async insertTarjeta (tarjeta: Partial<TarjetaAPI & TarjetaScrapper>) {
-    const { nombre, numero, saldo, estado, fecha, fecha_added, tipo } = tarjeta;
+    const { nombre, numero, saldo, estado, fecha, tipo } = tarjeta;
+    const fecha_added = new Date().toISOString().replace("T", " ").replace("Z", "");
     const values = [nombre, numero, saldo, estado, fecha, fecha_added, tipo];
     const statement = "INSERT INTO tarjetas VALUES (?, ?, ?, ?, ?, ?, ?)";
     const { changes } = await this.run(statement, values);
