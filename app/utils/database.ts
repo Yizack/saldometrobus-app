@@ -71,7 +71,7 @@ class Database {
   }
 
   // Tarjetas
-  async insertTarjeta (tarjeta: SaldometrobusTarjeta) {
+  async insertTarjeta (tarjeta: Partial<TarjetaAPI & TarjetaScrapper>) {
     const { nombre, numero, saldo, estado, fecha, fecha_added, tipo } = tarjeta;
     const values = [nombre, numero, saldo, estado, fecha, fecha_added, tipo];
     const statement = "INSERT INTO tarjetas VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -82,7 +82,7 @@ class Database {
   async getTarjeta (numero: string) {
     const statement = "SELECT * FROM tarjetas WHERE numero = ?";
     const { values } = await this.query(statement, [numero]);
-    let tarjeta = {} as SaldometrobusTarjeta;
+    let tarjeta = {} as TarjetaDB;
     if (values && values.length) {
       tarjeta = values[0];
       switch (tarjeta.tipo) {
@@ -139,10 +139,10 @@ class Database {
         }
       });
     }
-    return values as SaldometrobusTarjeta[];
+    return values as TarjetaDB[];
   }
 
-  async updateTarjeta (tarjeta: SaldometrobusTarjeta) {
+  async updateTarjeta (tarjeta: TarjetaScrapper) {
     const { numero, saldo, estado, fecha, tipo } = tarjeta;
     const statement = "UPDATE tarjetas SET saldo = ?, estado = ?, fecha = ?, tipo = ? WHERE numero = ?";
     const { changes } = await this.run(statement, [saldo, estado, fecha, tipo, numero]);
@@ -178,15 +178,15 @@ class Database {
   }
 
   // Movimientos
-  insertMovimientos (tarjeta: SaldometrobusTarjeta) {
+  insertMovimientos (tarjeta: Partial<TarjetaAPI & TarjetaScrapper>) {
     const statements = [];
     const { numero, movimientos } = tarjeta;
-    let size = movimientos.length;
+    let size = movimientos?.length;
     if (!size) {
       return false;
     }
     while (size--) {
-      const obj = movimientos[size];
+      const obj = movimientos?.[size];
       if (!obj) continue;
       const movimiento = obj.tipo;
       const fecha = convertToTime(obj.fecha_hora);
@@ -242,7 +242,7 @@ class Database {
         }
       });
     }
-    return values;
+    return values as MovimientoDB[];
   }
 
   deleteMovimientos (numero: string) {

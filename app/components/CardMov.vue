@@ -1,35 +1,15 @@
 <script setup lang="ts">
 import type { TableColumn } from "@nuxt/ui";
 
-interface Movimiento {
-  id: string;
-  movimiento: string;
-  fecha: string;
-  color: string;
-  sign: string;
-  monto: string;
-  saldo: string;
-  transaccion: string;
-  lugar: string;
-}
-
 const props = defineProps<{
-  tarjeta: {
-    numero: string;
-    nombre: string;
-    saldo: string;
-    estado: string;
-    fecha: string;
-    tipo: string;
-    movimientos: Movimiento[];
-  };
+  tarjeta: TarjetaDB;
 }>();
 
 const current = ref(0);
 const currentMov = computed(() => props.tarjeta.movimientos[current.value]);
 const showDetails = ref(false);
 
-const tableColumns: TableColumn<Movimiento>[] = [
+const tableColumns: TableColumn<MovimientoDB>[] = [
   {
     accessorKey: "tipo",
     header: t("tipo")

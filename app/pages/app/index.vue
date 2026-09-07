@@ -2,7 +2,7 @@
 definePageMeta({ layout: "main" });
 const auth = Auth();
 
-const tarjetas = ref<SaldometrobusTarjeta[]>([]);
+const tarjetas = ref<TarjetaDB[]>([]);
 const fetched = ref(0);
 const fetchLimit = ref(4);
 const showProgress = ref(false);
@@ -19,7 +19,7 @@ const validation = useFormValidation(form);
 const size = { width: 100, height: 63 };
 
 const isFetchLimited = computed(() => fetched.value > fetchLimit.value);
-const openCard = (tarjeta: SaldometrobusTarjeta) => {
+const openCard = (tarjeta: TarjetaDB) => {
   if (!tarjeta.saldo) return CAPACITOR.showToast(t("actualiza_tarjeta"), "long");
   navigateTo(`/app/${tarjeta.numero}`);
 };
@@ -31,19 +31,25 @@ const addTarjeta = async (event: Event) => {
 
   showAdd.value = false;
   showProgress.value = true;
-  const { tarjeta, error, error_key } = await API.getTarjetaAPI(form.value.numero);
+  const { tarjeta, error, error_key } = await SCRAPPER.getTarjeta(form.value.numero);
   if (tarjeta && !error) {
-    tarjeta.nombre = form.value.nombre;
-    tarjeta.fecha_added = new Date().toISOString().replace("T", " ").replace("Z", "");
+    const tarjetaAPI: TarjetaAPI = {
+      nombre: form.value.nombre,
+      numero: tarjeta.numero,
+      email: auth.user.email,
+      fecha_added: new Date().toISOString().replace("T", " ").replace("Z", "")
+    };
+
     const tarjetaExists = await DB.tarjetaExists(tarjeta.numero);
     if (!tarjetaExists) {
       const { error, error_key } = !auth.isGuest ? await API.addTarjeta({
-        nombre: tarjeta.nombre,
-        numero: tarjeta.numero,
-        email: auth.user.email,
+        ...tarjetaAPI,
         token: auth.user.token
       }) : { error: false };
-      const changes = await DB.insertTarjeta(tarjeta);
+      const changes = await DB.insertTarjeta({
+        ...tarjeta,
+        ...tarjetaAPI
+      });
       if (changes > 0 && !error) {
         await DB.insertMovimientos(tarjeta);
         await CAPACITOR.showToast(`${t("tarjeta_added")}: ${tarjeta.numero}`);
@@ -69,7 +75,7 @@ const updateTarjeta = async (event: Event, numero: string) => {
   event.stopPropagation();
   progressTitle.value = t("actualizando_tarjeta");
   showProgress.value = true;
-  const { tarjeta, error, error_key } = await API.getTarjetaAPI(numero, true);
+  const { tarjeta, error, error_key } = await SCRAPPER.getTarjeta(numero, true);
 
   if (tarjeta && !error) {
     const changes = await DB.updateTarjeta(tarjeta);
@@ -106,7 +112,7 @@ onMounted(async () => {
   showProgress.value = true;
   const { email, token } = auth.user;
   const { error, error_key, tarjetas: tarjetasAPI } = await API.getTarjetas({ email, token }) || [];
-  let tarjetasDetalles = [];
+  let tarjetasDetalles: Partial<TarjetaAPI & TarjetaScrapper>[] = [];
 
   if (error) {
     await CAPACITOR.showToast(t(error_key), "long");
@@ -118,7 +124,7 @@ onMounted(async () => {
       tarjetasDetalles = tarjetasAPI || [];
     }
     else {
-      tarjetasDetalles = await API.getDetallesTarjetas(tarjetasAPI) || [];
+      tarjetasDetalles = await SCRAPPER.getTarjetas(tarjetasAPI) || [];
     }
   }
 

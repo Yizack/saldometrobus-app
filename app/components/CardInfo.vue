@@ -1,12 +1,5 @@
 <script setup lang="ts">
-const tarjeta = defineModel<{
-  numero: string;
-  nombre: string;
-  saldo: string;
-  estado: string;
-  fecha: string;
-  tipo: string;
-}>({ required: true });
+const tarjeta = defineModel<TarjetaDB>({ required: true });
 
 const router = useRouter();
 

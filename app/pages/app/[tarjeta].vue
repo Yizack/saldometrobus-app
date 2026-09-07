@@ -1,11 +1,12 @@
 <script setup lang="ts">
 definePageMeta({ layout: "main" });
 
-const tarjeta = ref({} as any);
-
 const numero = useRoute().params.tarjeta;
-tarjeta.value = await DB.getTarjeta(numero);
-tarjeta.value.movimientos = await DB.getMovimientos(numero);
+
+const tarjeta = ref<TarjetaDB>({
+  ...await DB.getTarjeta(numero),
+  movimientos: await DB.getMovimientos(numero)
+});
 
 const tabs = [
   {

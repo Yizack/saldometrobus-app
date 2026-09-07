@@ -12,7 +12,7 @@ const user = ref({
   nombre: auth.user.nombre,
   email: auth.user.email,
   token: auth.user.token,
-  tarjetas: [] as SaldometrobusTarjeta[]
+  tarjetas: [] as TarjetaDB[]
 });
 
 const form = useFormState({

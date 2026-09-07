@@ -1,3 +1,4 @@
+import { Preferences } from "@capacitor/preferences";
 import { load } from "cheerio";
 import { CapacitorHttp } from "@capacitor/core";
 
@@ -12,6 +13,7 @@ interface ApiTransaction {
   montoDescuento: number;
   saldo: number;
 }
+
 const scrapperURL = import.meta.dev ? "/tarjetametrobus" : "https://www.tarjetametrobus.com";
 const scrapper2URL = import.meta.dev ? "/tarjetametrobus2" : "https://a2-20tarjetametrobus.com";
 let scrapperToken: string | undefined;
@@ -119,7 +121,7 @@ const scrapper1 = async (numero: string, shouldWait = false) => {
       numero,
       saldo: formatSaldo(cardResponse.saldo),
       estado: cardResponse.estadoCuenta === "Activa" ? "Contrato Activo" : "Contrato Inactivo",
-      fecha: formatFecha(Date.now()),
+      fecha: formatFecha(Date.now())!,
       tipo: getCardType(numero),
       movimientos: cardResponse.transacciones?.map((t: ApiTransaction) => ({
         transaccion: t.operador,
@@ -129,7 +131,7 @@ const scrapper1 = async (numero: string, shouldWait = false) => {
         saldo_tarjeta: formatSaldo(t.saldo),
         lugar: t.estacion
       })) ?? []
-    }
+    } as TarjetaScrapper
   };
 };
 
@@ -161,16 +163,67 @@ const scrapper2 = async (numero: string) => {
       numero,
       saldo: Number(cardResponse.saldo_tarjeta).toFixed(2),
       estado: cardResponse.estado_contrato === "Activa" ? "Contrato Activo" : "Contrato Inactivo",
-      fecha: formatFecha(Date.now()),
+      fecha: formatFecha(Date.now())!,
       tipo: getCardType(numero),
       movimientos: []
-    }
+    } as TarjetaScrapper
   };
 };
 
-export const scrapperTarjeta = async (numero: string, shouldWait = false) => {
+const scrapperTarjeta = async (numero: string, shouldWait = false) => {
   const result = await scrapper1(numero, shouldWait);
   if (!result) return scrapper2(numero);
 
   return result;
 };
+
+class Scrapper {
+  async getTarjeta (n: string | number, cached = false): Promise<Partial<{ tarjeta: TarjetaScrapper, error: boolean, error_key: string }>> {
+    const numero = String(n);
+    const currentTime = Date.now();
+    if (cached) {
+      const pref = (await Preferences.get({ key: numero })).value;
+      const cachedResponse = pref ? JSON.parse(pref) : null;
+      if (cachedResponse && cachedResponse.expires && currentTime < cachedResponse.expires) {
+        return {
+          error: true,
+          error_key: `${t("tarjeta_actualizada")}: ${numero}`
+        };
+      }
+    }
+
+    const scrapped = await scrapperTarjeta(numero);
+    if (!scrapped) return { error: true, error_key: "error" };
+
+    const { tarjeta, status } = scrapped;
+
+    if (status !== "ok" || !tarjeta) {
+      return { error: true, error_key: scrapped.error_key || "error_tarjeta_unknown" };
+    }
+
+    if (cached && parseInt(numero)) {
+      const maxAge = 60; // 1 minuto
+      const expiresTime = currentTime + (maxAge * 1000);
+      await Preferences.set({ key: numero, value: JSON.stringify({ expires: expiresTime }) });
+    }
+
+    return { tarjeta } as unknown as { tarjeta: TarjetaScrapper };
+  }
+
+  async getTarjetas (tarjetas: TarjetaAPI[]): Promise<(TarjetaAPI & TarjetaScrapper)[]> {
+    const arr = [];
+    for (const tarjeta of tarjetas) {
+      const scrapped = await scrapperTarjeta(tarjeta.numero, true);
+      if (scrapped && scrapped.status === "ok" && scrapped.tarjeta) {
+        Object.assign(scrapped.tarjeta, tarjeta); // needed for 1st time
+        arr.push(scrapped.tarjeta);
+      }
+      else {
+        arr.push(tarjeta);
+      }
+    }
+    return arr as (TarjetaAPI & TarjetaScrapper)[];
+  }
+}
+
+export const SCRAPPER = new Scrapper();
