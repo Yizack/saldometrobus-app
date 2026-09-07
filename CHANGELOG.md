@@ -1,5 +1,22 @@
 # Changelog
 
+## v2.10.5
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.4...v2.10.5)
+
+### 🩹 Fixes
+
+- Update card in card info ([0182214](https://github.com/Yizack/saldometrobus-app/commit/0182214))
+- **database:** Set card date on insert ([641b3eb](https://github.com/Yizack/saldometrobus-app/commit/641b3eb))
+
+### 💅 Refactors
+
+- Centralize db, api and scrapper card types ([ff5bf29](https://github.com/Yizack/saldometrobus-app/commit/ff5bf29))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.10.4
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.3...v2.10.4)
