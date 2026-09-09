@@ -80,6 +80,20 @@ export default defineAppConfig({
           }
         }
       }
+    },
+    switch: {
+      slots: {
+        root: "flex-row-reverse justify-between items-center"
+      },
+      variants: {
+        size: {
+          md: {
+            base: "w-11",
+            container: "h-6",
+            thumb: "size-5 data-[state=checked]:translate-x-5 data-[state=checked]:rtl:-translate-x-5"
+          }
+        }
+      }
     }
   }
 });

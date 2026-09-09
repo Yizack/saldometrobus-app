@@ -42,9 +42,7 @@ const languages = ref<SelectItem[]>([
         <USwitch
           v-model="dark"
           :label="t('dark_mode_desc')"
-          size="xl"
           color="secondary"
-          :ui="{ root: 'flex-row-reverse justify-between' }"
         />
       </BoxComponent>
     </div>
