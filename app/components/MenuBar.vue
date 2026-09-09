@@ -66,7 +66,7 @@ const more: DropdownMenuItem[] = [
   {
     label: t("config"),
     icon: "settings",
-    to: "/app/prefs/config/"
+    to: "/app/config/"
   },
   {
     label: t("acerca"),
@@ -92,7 +92,7 @@ const more: DropdownMenuItem[] = [
   {
     label: t("creditos"),
     icon: "credits",
-    to: "/app/prefs/creditos/"
+    to: "/app/creditos/"
   }
 ];
 </script>
