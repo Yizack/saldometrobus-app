@@ -1,5 +1,26 @@
 # Changelog
 
+## v2.10.7
+
+[compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.6...v2.10.7)
+
+### 🩹 Fixes
+
+- **ui:** Invert transit icons in dark mode ([c45ce37](https://github.com/Yizack/saldometrobus-app/commit/c45ce37))
+- **routing:** Move config and credits pages to the top-level app route ([f261927](https://github.com/Yizack/saldometrobus-app/commit/f261927))
+
+### 🏡 Chore
+
+- Update all deps ([2daa253](https://github.com/Yizack/saldometrobus-app/commit/2daa253))
+
+### 🎨 Styles
+
+- **ui:** Configure default switch appearance ([ca309ad](https://github.com/Yizack/saldometrobus-app/commit/ca309ad))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v2.10.6
 
 [compare changes](https://github.com/Yizack/saldometrobus-app/compare/v2.10.5...v2.10.6)
