@@ -1,0 +1,1 @@
+import{Fn as e,N as t}from"./DGufz4Mq.js";import{c as n}from"./5_eCTIGp.js";function r(r){let i=n({dir:e(`ltr`)});return t(()=>r?.value||i.dir?.value||`ltr`)}export{r as t};

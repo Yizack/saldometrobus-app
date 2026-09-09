@@ -1,0 +1,1 @@
+import{V as e}from"#entry";var t=e(`/images/logo.webp`);export{t};

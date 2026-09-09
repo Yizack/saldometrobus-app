@@ -1,1 +1,0 @@
-import{Fn as e,N as t}from"./CDDiXvCH.js";import{c as n}from"./CHy823t9.js";function r(r){let i=n({dir:e(`ltr`)});return t(()=>r?.value||i.dir?.value||`ltr`)}export{r as t};
