@@ -98,11 +98,11 @@ definePageMeta({ layout: "main" });
                   <div v-for="(step, key) in leg.steps" :key="key" class="flex flex-wrap items-center gap-1">
                     <template v-if="key < leg.steps.length - 1 || leg.steps.length === 1">
                       <template v-if="step.travel_mode === 'WALKING'">
-                        <img class="size-5 shrink-0 object-contain" src="https://maps.gstatic.com/mapfiles/transit/iw2/6/walk.png" width="20" height="20">
+                        <img class="size-5 shrink-0 object-contain dark:invert" src="https://maps.gstatic.com/mapfiles/transit/iw2/6/walk.png" width="20" height="20">
                       </template>
                       <template v-if="step.travel_mode === 'TRANSIT'">
                         <div class="flex flex-wrap items-center gap-1">
-                          <img class="size-5 shrink-0 object-contain" :src="step.transit.line.vehicle.icon" width="20" height="20">
+                          <img class="size-5 shrink-0 object-contain dark:invert" :src="step.transit.line.vehicle.icon" width="20" height="20">
                           <div v-if="step.transit" class="my-1 text-xs">
                             <span class="rounded-full px-1 shadow-sm" :style="{ backgroundColor: step.transit.line.color, color: step.transit.line.text_color }">{{ step.transit.line.short_name }}</span>
                           </div>
